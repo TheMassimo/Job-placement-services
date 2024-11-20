@@ -1,0 +1,20 @@
+
+//@no-log
+GET http://localhost:8080/API/joboffers
+
+###
+
+//@no-log
+GET http://localhost:8080/API/joboffers?page=0&limit=2
+
+###
+
+//@no-log
+GET http://localhost:8080/API/joboffers?page=0&limit=100&customerId=48
+
+###
+
+//@no-log
+GET http://localhost:8080/API/joboffers?page=0&limit=100&customerId=100
+
+###

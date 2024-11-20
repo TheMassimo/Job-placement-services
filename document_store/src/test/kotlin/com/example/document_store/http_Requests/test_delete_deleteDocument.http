@@ -1,0 +1,14 @@
+//@no-log
+DELETE http://localhost:8080/API/documents/1
+
+###
+
+//wrong id
+//@no-log
+DELETE http://localhost:8080/API/documents/0000
+
+###
+
+// negative id
+//@no-log
+DELETE http://localhost:8080/API/documents/-1

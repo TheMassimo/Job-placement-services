@@ -1,0 +1,25 @@
+
+//@no-log
+GET http://localhost:8080/API/joboffers/aborted
+
+###
+
+//@no-log
+GET http://localhost:8080/API/joboffers/aborted?page=0&limit=100
+
+###
+
+//@no-log
+GET http://localhost:8080/API/joboffers/aborted?page=0&limit=1
+
+###
+
+//@no-log
+GET http://localhost:8080/API/joboffers/aborted?page=0&limit=100&customer=1
+
+###
+
+//@no-log
+GET http://localhost:8080/API/joboffers/aborted?page=0&limit=100&customer=1&professional=4
+
+###

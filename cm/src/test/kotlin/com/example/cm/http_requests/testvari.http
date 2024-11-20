@@ -1,0 +1,37 @@
+###
+
+//@no-log
+GET http://localhost:9090/API/messages?page=0&limit=100
+
+###
+
+//@no-log
+POST http://localhost:9090/API/messages/1
+Content-Type: application/x-www-form-urlencoded
+
+state=read&comment=this is a comment
+
+###
+
+//@no-log
+GET http://localhost:9090/API/messages/
+
+###
+
+//@no-log
+GET http://localhost:8080/API/emails/
+
+###
+
+//@no-log
+POST http://localhost:9090/API/messages
+Content-Type: application/json
+
+{
+  "sender": "this is the sender of this new message",
+  "channel": "this is the channel of this new message",
+  "body": "this is the body of this new message",
+  "subject": "this is the subject of this new message"
+}
+
+

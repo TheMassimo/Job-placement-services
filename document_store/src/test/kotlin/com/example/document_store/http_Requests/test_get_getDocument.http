@@ -1,0 +1,14 @@
+//@no-log
+GET http://localhost:8080/API/documents/1/data
+
+###
+
+//wrong id
+//@no-log
+GET http://localhost:8080/API/documents/0000/data
+
+###
+
+//negative id
+//@no-log
+GET http://localhost:8080/API/documents/-1/data

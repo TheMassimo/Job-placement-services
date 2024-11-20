@@ -1,0 +1,48 @@
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/11
+Content-Type: application/x-www-form-urlencoded
+
+status=SELECTION_PHASE
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/11
+Content-Type: application/x-www-form-urlencoded
+
+status=CANDIDATE_PROPOSAL&professionalId=11
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/11
+Content-Type: application/x-www-form-urlencoded
+
+status=CONSOLIDATED&professionalId=11
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/11
+Content-Type: application/x-www-form-urlencoded
+
+status=DONE
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/12
+Content-Type: application/x-www-form-urlencoded
+
+status=ABORTED
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/101
+Content-Type: application/x-www-form-urlencoded
+
+status=SELECTION_PHASE
+
+###

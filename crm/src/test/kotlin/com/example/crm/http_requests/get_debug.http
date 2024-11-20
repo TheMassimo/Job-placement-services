@@ -1,0 +1,18 @@
+
+###
+//@no-log
+GET http://localhost:8080/API/customers
+
+###
+//@no-log
+GET http://localhost:8080/API/contacts
+
+###
+//@no-log
+GET http://localhost:8080/API/joboffers
+
+###
+//@no-log
+GET http://localhost:8080/API/professionals
+
+

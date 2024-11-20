@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: document_store
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  mvc:
+    problemdetails:
+      enabled: true
+  datasource:
+    url: jdbc:postgresql://postgres:5432/mydatabase
+    username: myuser
+    password: secret
+    driver-class-name: org.postgresql.Driver
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/CRM
+server:
+  port: 8081
+logging:
+  level:
+    root: INFO
+    com.example: DEBUG
+  file:
+    name: filename.log
+
+#fFormato del log
+#logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n

@@ -1,0 +1,28 @@
+
+//@no-log
+POST http://localhost:8080/API/joboffers/1
+Content-Type: application/json
+
+{
+  "description": "a new job offer",
+  "requiredSkills": "hit man",
+  "duration": 5,
+  "notes": "Some note",
+  "offerValue": 30000.0
+}
+
+###
+
+//@no-log
+POST http://localhost:8080/API/joboffers/100
+Content-Type: application/json
+
+{
+  "description": "a new job offer",
+  "requiredSkills": "hit man",
+  "duration": 5,
+  "notes": "Some note",
+  "offerValue": 30000.0
+}
+
+###

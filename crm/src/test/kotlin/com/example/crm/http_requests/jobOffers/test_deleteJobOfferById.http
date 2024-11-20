@@ -1,0 +1,10 @@
+
+//@no-log
+DELETE http://localhost:8080/API/joboffers/11
+
+###
+
+//@no-log
+DELETE http://localhost:8080/API/joboffers/101
+
+###

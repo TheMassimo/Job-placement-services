@@ -1,0 +1,33 @@
+
+//@no-log
+POST http://localhost:8080/API/customers/
+Content-Type: application/json
+
+{
+  "contactId": 3,
+  "notes": "Some note"
+}
+
+###
+
+//@no-log
+POST http://localhost:8080/API/customers/
+Content-Type: application/json
+
+{
+  "contactId": 1,
+  "notes": "Some note"
+}
+
+###
+
+//@no-log
+POST http://localhost:8080/API/customers/
+Content-Type: application/json
+
+{
+  "contactId": 100,
+  "notes": "Some note"
+}
+
+###

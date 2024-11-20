@@ -1,0 +1,28 @@
+//@no-log
+PUT http://localhost:8080/API/documents/1
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="file_input_test.txt"
+
+< ./file_input_test.txt
+
+###
+
+//empty PUT request
+//@no-log
+PUT http://localhost:8080/API/documents
+Content-Type: multipart/form-data;
+
+###
+
+//wrong content-type
+//@no-log
+PUT http://localhost:8080/API/documents
+Content-Type: application/json;
+
+{
+  "field 1": "something",
+  "field 2": "something something",
+  "field 3": 100
+}

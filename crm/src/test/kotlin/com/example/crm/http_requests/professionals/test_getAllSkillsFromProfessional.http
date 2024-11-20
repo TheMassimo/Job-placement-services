@@ -1,0 +1,10 @@
+
+//@no-log
+GET http://localhost:8080/API/professionals/11/skill
+
+###
+
+//@no-log
+GET http://localhost:8080/API/professionals/101/skill
+
+###

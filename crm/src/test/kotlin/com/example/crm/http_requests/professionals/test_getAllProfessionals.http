@@ -1,0 +1,21 @@
+
+//@no-log
+GET http://localhost:8080/API/professionals
+
+###
+
+//@no-log
+GET http://localhost:8080/API/professionals?page=0&limit=2
+
+###
+
+//@no-log
+GET http://localhost:8080/API/professionals?page=0&limit=100&skills=consultant
+
+###
+
+//@no-log
+GET http://localhost:8080/API/professionals?page=0&limit=100&skills=electrician
+
+###
+

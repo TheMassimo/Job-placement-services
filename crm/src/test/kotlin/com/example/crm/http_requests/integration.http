@@ -1,0 +1,243 @@
+///test case integration
+
+//create first contact, he will be a customer
+//@no-log
+POST http://localhost:8080/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Paolo",
+  "surname": "Bardella",
+  "category": "unknown",
+  "ssnCode": "0123456789",
+  "email": "paolo.bardella@gmail.com",
+  "address": "via roma, 14",
+  "telephone": "+39 3497412386"
+}
+###
+
+//create first contact, she will be a professional
+//@no-log
+POST http://localhost:8080/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Sofia",
+  "surname": "Colecchia",
+  "category": "unknown",
+  "ssnCode": "987654321",
+  "email": "sofia.colecchia@gmail.com",
+  "address": "via napoli, 15",
+  "telephone": "+39 3497412987"
+}
+
+###
+//new job offer in town baby
+
+//@no-log
+POST http://localhost:8080/API/joboffers/1
+Content-Type: application/json
+
+{
+  "description": "a new job offer",
+  "requiredSkills": "hit man",
+  "duration": 5,
+  "notes": "Some note",
+  "offerValue": 30000.0
+}
+
+###
+
+// at this point we have 2 contacts, 1 job offer and 1 customer
+// let's add 1 professional
+
+//@no-log
+POST http://localhost:8080/API/professionals
+Content-Type: application/json
+
+{
+  "geographicalInfo": "Turin",
+  "dailyRate": 80.0,
+  "contactId": 2,
+  "notes": "Some note"
+}
+
+###
+// now Sofia is a professional BD
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/1
+Content-Type: application/x-www-form-urlencoded
+
+status=SELECTION_PHASE
+
+###
+
+//our job is now in selection phase, time to look for a hit man D:
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/1
+Content-Type: application/x-www-form-urlencoded
+
+status=CANDIDATE_PROPOSAL&professionalId=1
+
+###
+
+// quality control is very bad and sofia gets proposed even if she's a hit woman, not a hit man
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/1
+Content-Type: application/x-www-form-urlencoded
+
+status=CONSOLIDATED&professionalId=1
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/1
+Content-Type: application/x-www-form-urlencoded
+
+status=ABORTED
+
+###
+///nvm she got busted in the end and couldn't complete her work, what a shame D:
+
+/// we need to find a work for our little girl, GO LIONESS u can make it!!!
+
+//@no-log
+POST http://localhost:8080/API/professionals/1/skill
+Content-Type: application/x-www-form-urlencoded
+
+skill=bodyguard
+
+###
+
+// in the meanwhile, sofia is growing and getting stronger, she's now a bodyguard
+
+//@no-log
+POST http://localhost:8080/API/joboffers/1
+Content-Type: application/json
+
+{
+  "description": "a new job offer",
+  "requiredSkills": "bodyguard",
+  "duration": 5,
+  "notes": "Some note",
+  "offerValue": 30000.0
+}
+
+###
+//in the meanwhile there is a new job offer, what a luck
+
+//@no-log
+POST http://localhost:8080/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Giovanni",
+  "surname": "Gio",
+  "category": "unknown",
+  "ssnCode": "0123456789",
+  "email": "giovanni.gio@gmail.com",
+  "address": "via roma, 14",
+  "telephone": "+39 3497412386"
+}
+###
+
+//@no-log
+POST http://localhost:8080/API/professionals
+Content-Type: application/json
+
+{
+  "geographicalInfo": "Turin",
+  "dailyRate": 80.0,
+  "contactId": 3,
+  "notes": "Some note"
+}
+###
+//@no-log
+POST http://localhost:8080/API/professionals/2/skill
+Content-Type: application/x-www-form-urlencoded
+
+skill=bodyguard
+
+###
+//oh now, sofia has a contender now, let's hope it goes well for her D:
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/2
+Content-Type: application/x-www-form-urlencoded
+
+status=SELECTION_PHASE
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/2
+Content-Type: application/x-www-form-urlencoded
+
+status=CANDIDATE_PROPOSAL&professionalId=2
+
+###
+
+//ofc unlucky, poor girl
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/2
+Content-Type: application/x-www-form-urlencoded
+
+status=CONSOLIDATED&professionalId=2
+
+###
+// D:
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/2
+Content-Type: application/x-www-form-urlencoded
+
+status=SELECTION_PHASE
+
+###
+
+// WAIT THEY DISCOVERED GIOVANNI IS A CHEATER, THERE IS STILL HOPE!!!
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/2
+Content-Type: application/x-www-form-urlencoded
+
+status=CANDIDATE_PROPOSAL&professionalId=1
+
+###
+
+//LET'S GO SOFIAAAA
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/2
+Content-Type: application/x-www-form-urlencoded
+
+status=CONSOLIDATED&professionalId=1
+
+###
+
+// U CAN DO IT !!!
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/2
+Content-Type: application/x-www-form-urlencoded
+
+status=DONE
+
+###
+
+// GOOD JOB QUEEN, YOU NAILED IT
+
+//                           THE END                           \\
+
+
+
+
+
+
+
+
+

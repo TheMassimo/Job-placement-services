@@ -1,0 +1,20 @@
+
+//@no-log
+POST http://localhost:8080/API/emails/
+Content-Type: application/json
+
+{
+  "receiver": "receiver@gmail.com",
+  "sender": "test email sender (us)",
+  "subject": "test email subject",
+  "body": "test email body",
+  "channel": "email"
+}
+
+###
+
+//@no-log
+POST http://localhost:8080/API/emails/
+Content-Type: application/json
+
+###

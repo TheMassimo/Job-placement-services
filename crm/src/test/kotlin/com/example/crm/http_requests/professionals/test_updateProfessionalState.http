@@ -1,0 +1,30 @@
+
+//@no-log
+PUT http://localhost:8080/API/professionals/12/state
+Content-Type: application/x-www-form-urlencoded
+
+state=BUSY
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/professionals/12/state
+Content-Type: application/x-www-form-urlencoded
+
+state=unemployed
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/professionals/12/state
+Content-Type: application/x-www-form-urlencoded
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/professionals/12/state
+Content-Type: application/x-www-form-urlencoded
+
+state=aaa
+
+###

@@ -1,0 +1,16 @@
+
+//@no-log
+PUT http://localhost:8080/API/professionals/12/skill/1
+Content-Type: application/x-www-form-urlencoded
+
+skill=different skill
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/professionals/12/skill/100
+Content-Type: application/x-www-form-urlencoded
+
+skill=different skill
+
+###

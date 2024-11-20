@@ -1,0 +1,57 @@
+///http to populate server for debug purposes
+
+POST http://localhost:8080/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Paolo",
+  "surname": "Bardella",
+  "category": "unknown",
+  "ssnCode": "0123456789",
+  "email": "paolo.bardella@gmail.com",
+  "address": "via roma, 14",
+  "telephone": "+39 3497412386"
+}
+###
+
+POST http://localhost:8080/API/customers
+Content-Type: application/json
+
+{
+  "contactId" : 1
+}
+
+###
+
+POST http://localhost:8080/API/joboffers/1
+Content-Type: application/json
+
+{
+  "description": "very interesting job offer",
+  "requiredSkills": "smart, fast",
+  "notes": "very interesting note",
+  "duration": "a lot",
+  "offerValue": 32.6
+}
+
+###
+
+POST http://localhost:8080/API/professionals
+Content-Type: application/json
+
+{
+  "geographicalInfo": "Turin",
+  "dailyRate": 50.50,
+  "contactId": 1,
+  "notes" : "pretty note"
+}
+
+###
+
+
+
+
+
+
+
+

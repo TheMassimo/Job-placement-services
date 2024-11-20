@@ -1,0 +1,15 @@
+
+//@no-log
+POST http://localhost:8080/API/professionals/note/11
+Content-Type: application/x-www-form-urlencoded
+
+note=new note
+
+###
+
+
+//@no-log
+POST http://localhost:8080/API/professionals/note/1001
+Content-Type: application/x-www-form-urlencoded
+
+note=new note

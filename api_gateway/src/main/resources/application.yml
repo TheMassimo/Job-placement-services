@@ -1,0 +1,87 @@
+spring:
+  application:
+    name: api_gateway
+  mvc:
+    problemdetails:
+      enabled: true
+  cloud:
+    gateway:
+      mvc:
+        http-client:
+          type: autodetect
+        routes:
+          #route for document_store
+          - id: service_ds
+            uri: http://localhost:8081
+            predicates:
+              - Path= /service_ds/**
+            filters:
+              - StripPrefix=1
+              - TokenRelay
+          #route for CRM
+          - id: service_crm
+            uri: http://localhost:8082
+            predicates:
+              - Path= /service_crm/**
+            filters:
+              - StripPrefix=1
+              - TokenRelay
+          #route for Communication_manager
+          - id: service_cm
+            uri: http://localhost:8083
+            predicates:
+              - Path= /service_cm/**
+            filters:
+              - StripPrefix=1
+              - TokenRelay
+
+          - id: ui
+            uri: http://localhost:5173
+            predicates:
+              - Path= /ui/**
+
+          - id: home
+            uri: http://localhost:8080
+            predicates:
+              - Path= /
+            filters:
+              - RedirectTo=301,http://localhost:8080/ui
+  security:
+    oauth2:
+      client:
+        provider:
+          keyclock: #keyclock
+            issuer-uri: http://localhost:9090/realms/CRM
+            user-name-attribute: sub
+        registration:
+          CRMclient:
+            provider: keyclock
+            client-id: CRMclient
+            #client-secret: 5r44MqZAPGMAgWmZPAU1LwVhPNxlpoVQ #Miriam
+            #client-secret: rZexIVvaOoBGTQalRrln5P2XbcWIjTw6 #Paolo
+            #client-secret: 9gXtKZ1Hx3FPvmjqF9qaqSXfHcz7jXYt #Massimo1
+            client-secret: aNI3KsrErAHFvI6E1F8q1sjCY4jtgtgC #Massimo2
+            #client-secret: JcP5pBQX2eTs9oLnOXW5Jtoa1DVrjF22 #Luca
+            scope:
+              - openid
+              - offline_access
+              - roles
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/CRMclient
+server:
+  port: 8080
+#logging:
+#  level:
+#    org.springframework.security: DEBUG
+  #  jpa:
+  #    show-sql: true
+  #    hibernate:
+  #      ddl-auto: update
+  #  mvc:
+  #    problemdetails:
+  #      enabled: true
+  #datasource:
+  #  url: jdbc:postgresql://postgres:5432/mydatabase
+  #  username: myuser
+  #  password: secret
+  #  driver-class-name: org.postgresql.Driver

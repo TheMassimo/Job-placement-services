@@ -1,0 +1,10 @@
+
+//@no-log
+GET http://localhost:8080/API/joboffers/11/value
+
+###
+
+//@no-log
+GET http://localhost:8080/API/joboffers/101/value
+
+###

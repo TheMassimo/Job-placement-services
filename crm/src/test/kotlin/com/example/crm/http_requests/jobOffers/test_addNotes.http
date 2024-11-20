@@ -1,0 +1,22 @@
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/11/addnotes
+Content-Type: application/x-www-form-urlencoded
+
+notes=new note
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/101/addnotes
+Content-Type: application/x-www-form-urlencoded
+
+notes=new note
+
+###
+
+//@no-log
+PUT http://localhost:8080/API/joboffers/11/addnotes
+Content-Type: application/x-www-form-urlencoded
+
+###

@@ -1,0 +1,15 @@
+
+//@no-log
+DELETE http://localhost:8080/API/professionals/12/skill/11
+
+###
+
+//@no-log
+DELETE http://localhost:8080/API/professionals/102/skill/1
+
+###
+
+//@no-log
+DELETE http://localhost:8080/API/professionals/12/skill/100
+
+###

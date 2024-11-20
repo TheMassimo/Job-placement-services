@@ -1,0 +1,24 @@
+
+//@no-log
+POST http://localhost:8080/API/professionals
+Content-Type: application/json
+
+{
+  "geographicalInfo": "Turin",
+  "dailyRate": 80.0,
+  "contactId": 1,
+  "notes": "Some note"
+}
+
+###
+
+
+//@no-log
+POST http://localhost:8080/API/professionals
+Content-Type: application/json
+
+{
+  "random_field": "something"
+}
+
+###

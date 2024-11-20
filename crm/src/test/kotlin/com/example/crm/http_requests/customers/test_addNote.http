@@ -1,0 +1,17 @@
+
+//@no-log
+PUT http://localhost:8080/API/customers/notes/48
+Content-Type: application/x-www-form-urlencoded
+
+note=new note
+
+###
+
+
+//@no-log
+PUT http://localhost:8080/API/professionals/notes/1001
+Content-Type: application/x-www-form-urlencoded
+
+note=new note
+
+###

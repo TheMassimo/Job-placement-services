@@ -1,0 +1,16 @@
+
+//@no-log
+POST http://localhost:8080/API/professionals/12/skill
+Content-Type: application/x-www-form-urlencoded
+
+skill=bodyguard
+
+###
+
+//@no-log
+POST http://localhost:8080/API/professionals/1001/skill
+Content-Type: application/x-www-form-urlencoded
+
+skill=bodyguard
+
+###
