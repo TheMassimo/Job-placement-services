@@ -16,13 +16,11 @@ function App() {
 
   return (
         <BrowserRouter>
-            <Container fluid>
                 <Routes>
                     <Route path = "/" >
                         <Route index element={<HomeLayout/>}/>
                     </Route>
                 </Routes>
-            </Container>
         </BrowserRouter>
   )
 }

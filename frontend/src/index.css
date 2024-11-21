@@ -1,4 +1,11 @@
-.root {
+html, body, #root {
+  height: 100%; /* Ensure full height propagates */
+  width: 100%;
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+}
+
+:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,7 +19,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  height: 100%;
 
 }
 
