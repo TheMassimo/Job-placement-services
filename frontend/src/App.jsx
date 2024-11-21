@@ -5,6 +5,9 @@ import './App.css'
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import { Container } from 'react-bootstrap'
 import HomeLayout from "./components/HomeLayout.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 
 
@@ -13,9 +16,9 @@ function App() {
 
   return (
         <BrowserRouter>
-            <Container>
+            <Container fluid>
                 <Routes>
-                    <Route path = "/">
+                    <Route path = "/" >
                         <Route index element={<HomeLayout/>}/>
                     </Route>
                 </Routes>
