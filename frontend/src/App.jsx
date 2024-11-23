@@ -25,4 +25,5 @@ function App() {
   )
 }
 // commento
+// commento ricevuto
 export default App
