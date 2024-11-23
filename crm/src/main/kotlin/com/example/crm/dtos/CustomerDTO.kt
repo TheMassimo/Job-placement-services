@@ -14,4 +14,9 @@ data class CustomerDTO(
 )
 
 fun Customer.toDto(): CustomerDTO =
-    CustomerDTO(this.customerId, /*this.contact, */ this.notes, this.jobOffers.map { it.toDto() }, this.replacementHistory.map { it.toDto() })
+    CustomerDTO(
+        this.customerId,
+        /*this.contact, */
+        this.notes,
+        this.jobOffers.map { it.toDto() },
+        this.replacementHistory.map { it.toDto() })

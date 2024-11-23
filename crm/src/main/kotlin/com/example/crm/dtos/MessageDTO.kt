@@ -17,4 +17,13 @@ data class MessageDTO (
 )
 
 fun Message.toDto(): MessageDTO =
-    MessageDTO(this.messageId, this.sender, this.date, this.subject, this.body, this.channel, this.priority, this.state.name)
+    MessageDTO(
+        this.messageId,
+        this.sender,
+        this.date,
+        this.subject,
+        this.body,
+        this.channel,
+        this.priority,
+        this.state.name
+    )
