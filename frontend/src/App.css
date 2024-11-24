@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+.navbar-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.no-line {
+  text-decoration: none !important;  /* Forza la rimozione della sottolineatura */
+}
