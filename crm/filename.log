@@ -275,3 +275,4 @@ java.lang.IllegalArgumentException: When allowCredentials is true, allowedOrigin
 2024-11-25T16:53:48.023+01:00  INFO 3792 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contacts fetched successfully
 2024-11-25T16:53:51.034+01:00  INFO 3792 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts fetched successfully
 2024-11-25T16:53:51.060+01:00  INFO 3792 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts fetched successfully
+2024-11-25T23:24:53.029+01:00  WARN 3792 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h7m48s106ms647µs900ns).
