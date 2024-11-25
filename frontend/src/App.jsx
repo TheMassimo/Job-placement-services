@@ -8,6 +8,8 @@ import HomeLayout from "./components/HomeLayout.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NavbarComponent from './components/NavbarComponent';
+import ViewCustomers from './components/ViewCustomers';
+import ViewJobOffers from './components/ViewJobOffers';
 //import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
@@ -23,6 +25,10 @@ function App() {
                 <Routes>
                     <Route path = "/" >
                         <Route index element={<HomeLayout/>}/>
+
+                        <Route path="/view-customers" element={<ViewCustomers />} />
+
+                        <Route path="/view-jobOffers" element={<ViewJobOffers />} />
                     </Route>
                 </Routes>
             </Container>

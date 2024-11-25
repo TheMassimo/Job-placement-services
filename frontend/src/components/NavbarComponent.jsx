@@ -1,7 +1,7 @@
 import { Navbar, Button, Nav, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink  } from 'react-router-dom';
 import logo from '../assets/logo_tmp.png';  // Importazione dell'immagine
 
 
@@ -26,20 +26,32 @@ function NavbarComponent() {
             </Link>
 
             <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                    <a className="nav-link" href="#">Home </a>
+                <li className="nav-item">
+                    <NavLink
+                        to="/"
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                        Home
+                    </NavLink>
                 </li>
                 <li className="nav-item active">
-                    <a className="nav-link" href="#">Job offers </a>
+                    <NavLink
+                        to="/view-jobOffers"
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                        Job Offers
+                    </NavLink>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Customers</a>
+                    <NavLink
+                        to="/view-customers"
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                        Customers
+                    </NavLink>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" href="#">Professionals</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Messages</a>
+                <a className="nav-link" href="#">Messages</a>
                 </li>
                 <NavDropdown title="Dropdown" id="navbarDropdown">
                     <NavDropdown.Item href="#">Action</NavDropdown.Item>
@@ -57,8 +69,8 @@ function NavbarComponent() {
                 <Nav.Item>
                     {name ?
                         <>
-                        <Navbar.Text className='fs-5'>
-                                {"Logged in as: " + "Miriam" + " " + "ueue"}
+                            <Navbar.Text className='fs-5'>
+                                <i className="bi bi-person-circle" style={{ fontStyle: 'normal' }}>{"  Miriam" + " " + "ueue"}</i>
                             </Navbar.Text>
                             <Link className='btn btn-secondary mx-2' variant='secondary' to={'/'} onClick={() => {
                             }}>Logout <i className="bi bi-person-down"></i> </Link>
