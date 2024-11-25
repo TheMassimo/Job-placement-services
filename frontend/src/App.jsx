@@ -8,23 +8,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
-
-
 //OUR component
 import NavbarComponent from './components/NavbarComponent';
 import HomeLayout from "./components/HomeLayout.jsx";
-// import ViewCustomers from './components/ViewCustomers';
-// import ViewJobOffers from './components/ViewJobOffers';
+import ViewCustomers from './components/ViewCustomers';
+import ViewJobOffers from './components/ViewJobOffers';
 import MassimoTest from "./components/MassimoTest";
 
 
-
-
-
 function App() {
-  //const [count, setCount] = useState(0)
+    //const [count, setCount] = useState(0)
 
-  let parametro = "prm_Massimo"
+    let parametro = "prm_Massimo"
 
     return (
         <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
