@@ -1,6 +1,6 @@
 
 //@no-log
-POST http://localhost:8080/API/joboffers/1
+POST http://localhost:8082/API/joboffers/1
 Content-Type: application/json
 
 {

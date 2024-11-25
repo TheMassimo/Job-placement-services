@@ -1,6 +1,6 @@
 
 //@no-log
-GET http://localhost:8080/API/joboffers
+GET http://localhost:8082/API/joboffers
 
 ###
 

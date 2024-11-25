@@ -12,29 +12,32 @@ import ViewCustomers from './components/ViewCustomers';
 import ViewJobOffers from './components/ViewJobOffers';
 //import 'bootstrap-icons/font/bootstrap-icons.css';
 
+//OUR component
+import MassimoTest from "./components/MassimoTest";
+
+
 
 
 
 function App() {
   //const [count, setCount] = useState(0)
 
-  return (
-        <BrowserRouter>
+  let parametro = "prm_Massimo"
+
+    return (
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <Container fluid>
                 <NavbarComponent />
                 <Routes>
-                    <Route path = "/" >
-                        <Route index element={<HomeLayout/>}/>
-
-                        <Route path="/view-customers" element={<ViewCustomers />} />
-
-                        <Route path="/view-jobOffers" element={<ViewJobOffers />} />
-                    </Route>
+                    <Route path="/" element={<HomeLayout />} />
+                    <Route path="/MassimoTest" element={<MassimoTest />} />
+                    <Route path="/view-customers" element={<ViewCustomers />} />
+                    <Route path="/view-jobOffers" element={<ViewJobOffers />} />
                 </Routes>
             </Container>
 
         </BrowserRouter>
-  )
+    );
 }
 // commento
 // commento ricevuto
