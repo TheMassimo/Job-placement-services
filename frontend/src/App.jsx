@@ -4,7 +4,6 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import { Container } from 'react-bootstrap'
-import HomeLayout from "./components/HomeLayout.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -13,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 //OUR component
 import NavbarComponent from './components/NavbarComponent';
+import HomeLayout from "./components/HomeLayout.jsx";
 // import ViewCustomers from './components/ViewCustomers';
 // import ViewJobOffers from './components/ViewJobOffers';
 import MassimoTest from "./components/MassimoTest";
