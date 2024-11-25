@@ -4,11 +4,14 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import { Container } from 'react-bootstrap'
-import HomeLayout from "./components/HomeLayout.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import NavbarComponent from './components/NavbarComponent';
 //import 'bootstrap-icons/font/bootstrap-icons.css';
+
+//OUR component
+import NavbarComponent from './components/NavbarComponent';
+import HomeLayout from "./components/HomeLayout.jsx";
+import MassimoTest from "./components/MassimoTest";
+
 
 
 
@@ -16,19 +19,19 @@ import NavbarComponent from './components/NavbarComponent';
 function App() {
   //const [count, setCount] = useState(0)
 
-  return (
-        <BrowserRouter>
+  let parametro = "prm_Massimo"
+
+    return (
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
             <Container fluid>
                 <NavbarComponent />
                 <Routes>
-                    <Route path = "/" >
-                        <Route index element={<HomeLayout/>}/>
-                    </Route>
+                    <Route path="/" element={<HomeLayout />} />
+                    <Route path="/MassimoTest" element={<MassimoTest />} />
                 </Routes>
             </Container>
-
         </BrowserRouter>
-  )
+    );
 }
 // commento
 // commento ricevuto
