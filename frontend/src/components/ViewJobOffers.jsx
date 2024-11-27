@@ -137,7 +137,43 @@ const ViewJobOffers = () => {
         contractType: '',
         workMode: '',
         status: '',
+        value: '',
+        duration:''
+
     });
+
+    const [tempFilter, setTempFilter] = useState({ ...filter });
+
+    // Gestione dei filtri temporanei
+    const handleTempFilterChange = (e) => {
+        const { name, value } = e.target;
+        setTempFilter({ ...tempFilter, [name]: value });
+    };
+
+    // Applica i filtri
+    const applyFilters = () => {
+        setFilter({ ...tempFilter });
+    };
+
+    // Resetta i filtri
+    const clearFilters = () => {
+        setFilter({ location: '', contractType: '', workMode: '', status: '' });
+        setTempFilter({ location: '', contractType: '', workMode: '', status: '' });
+    };
+
+    // Filtraggio delle offerte di lavoro
+    const filteredJobOffers = jobOffers.filter((offer) => {
+        return (
+            (filter.location ? offer.location.includes(filter.location) : true) &&
+            (filter.contractType ? offer.contractType.includes(filter.contractType) : true) &&
+            (filter.workMode ? offer.workMode.includes(filter.workMode) : true) &&
+            (filter.status ? offer.status.includes(filter.status) : true) &&
+            (filter.value ? offer.value.includes(filter.value) : true) &&
+            (filter.duration ? offer.duration.includes(filter.duration) : true)
+        );
+    });
+
+
 
     // Sorting function
     const sortJobOffers = (offers, sortBy) => {
@@ -153,29 +189,6 @@ const ViewJobOffers = () => {
     };
 
 
-    // roba per filtri
-    // Filter job offers based on the selected filters
-    const filteredJobOffers = jobOffers.filter((offer) => {
-        return (
-            (filter.location ? offer.location.includes(filter.location) : true) &&
-            (filter.contractType ? offer.contractType.includes(filter.contractType) : true) &&
-            (filter.workMode ? offer.workMode.includes(filter.workMode) : true) &&
-            (filter.status ? offer.workMode.includes(filter.workMode) : true)
-        );
-    });
-
-    // Funzione per gestire il cambiamento dei filtri
-    const handleFilterChange = (e) => {
-        const { name, value } = e.target;
-        setFilters({ ...filters, [name]: value });
-    };
-
-    // Funzione per resettare i filtri
-    const clearFilters = () => {
-        setFilters({ location: "", contractType: "", workMode: "", status: "" });
-    };
-
-
     // Sorted job offers
     const sortedJobOffers = sortJobOffers(filteredJobOffers, sortBy);
 
@@ -183,7 +196,7 @@ const ViewJobOffers = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage = 8;
 
-    // Pagina corrente dei clienti da visualizzare
+
     const offset = currentPage * itemsPerPage;
     const currentJobOffers = sortedJobOffers.slice(offset, offset + itemsPerPage);
 
@@ -207,48 +220,74 @@ const ViewJobOffers = () => {
                         type="text"
                         name="location"
                         placeholder="Enter Location"
-                        value={filteredJobOffers.location}
-                        onChange={handleFilterChange}
+                        value={tempFilter.location}
+                        onChange={handleTempFilterChange}
                     />
                 </Form.Group>
                 <Form.Group controlId="filterContractType" className="mb-3">
                     <Form.Label>Filter by Contract type</Form.Label>
                     <Form.Control
                         type="text"
-                        name="ContractType"
+                        name="contractType"
                         placeholder="Enter Contract Type"
-                        value={filteredJobOffers.contractType}
-                        onChange={handleFilterChange}
+                        value={tempFilter.contractType}
+                        onChange={handleTempFilterChange}
                     />
                 </Form.Group>
                 <Form.Group controlId="filterWorkMode" className="mb-3">
                     <Form.Label>Filter by work mode</Form.Label>
                     <Form.Control
                         type="text"
-                        name="WorkMode"
+                        name="workMode"
                         placeholder="Enter Work Mode"
-                        value={filteredJobOffers.workMode}
-                        onChange={handleFilterChange}
+                        value={tempFilter.workMode}
+                        onChange={handleTempFilterChange}
                     />
                 </Form.Group>
                 <Form.Group controlId="filterStatus" className="mb-3">
                     <Form.Label>Filter by status</Form.Label>
                     <Form.Control
                         type="text"
-                        name="Status"
+                        name="status"
                         placeholder="Enter Status"
-                        value={filteredJobOffers.status}
-                        onChange={handleFilterChange}
+                        value={tempFilter.status}
+                        onChange={handleTempFilterChange}
                     />
                 </Form.Group>
+                <Form.Group controlId="filterValue" className="mb-3">
+                    <Form.Label>Filter by value</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="value"
+                        placeholder="Enter Value"
+                        value={tempFilter.value}
+                        onChange={handleTempFilterChange}
+                    />
+                </Form.Group>
+                <Form.Group controlId="filterDuration" className="mb-3">
+                    <Form.Label>Filter by duration</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="duration"
+                        placeholder="Enter Duration"
+                        value={tempFilter.duration}
+                        onChange={handleTempFilterChange}
+                    />
+                </Form.Group>
+                <Button variant="secondary" className="me-2 custom-button" onClick={applyFilters} >
+                    <i class="bi bi-search"></i>  Apply Filters
+                </Button>
                 <Button variant="secondary" onClick={clearFilters}>
-                    Clear Filters
+                    <i class="bi bi-x-circle"></i>  Clear Filters
                 </Button>
             </div>
 
             {/* Main Content - Job Offers */}
             <div style={{flex: 1, padding: '20px'}}>
                 <h2>Job Offers</h2>
+                <Button variant="secondary" className="float-end custom-button">
+                    <i className="bi bi-plus-circle"></i> Add new job offer
+                </Button>
 
                 {/* Sorting Options */}
                 <div className="sortingContainer">

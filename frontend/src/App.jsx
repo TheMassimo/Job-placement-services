@@ -14,6 +14,9 @@ import HomeLayout from "./components/HomeLayout.jsx";
 import ViewCustomers from './components/ViewCustomers';
 import ViewJobOffers from './components/ViewJobOffers';
 import MassimoTest from "./components/MassimoTest";
+import AddCustomer from "./components/AddCustomer";
+import ViewProfessionals from "./components/ViewProfessionals";
+import AddProfessional from "./components/AddProfessional";
 
 
 function App() {
@@ -29,7 +32,11 @@ function App() {
                     <Route path="/" element={<HomeLayout />} />
                     <Route path="/MassimoTest" element={<MassimoTest />} />
                     <Route path="/view-customers" element={<ViewCustomers />} />
+                    <Route path="/add-customer" element={<AddCustomer />} />
                     <Route path="/view-jobOffers" element={<ViewJobOffers />} />
+
+                    <Route path="/view-professionals" element={<ViewProfessionals />} />
+                    <Route path="/add-professional" element={<AddProfessional />} />
                 </Routes>
             </Container>
 

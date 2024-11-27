@@ -11,7 +11,7 @@ function NavbarComponent() {
     const name = "miriam"
 
     return (
-        <Navbar bg='dark' variant='dark' fixed="top" className="navbar navbar-expand-lg w-100" style={{ zIndex: 1030 }}>
+        <Navbar  fixed="top" className="navbar navbar-expand-lg w-100" style={{ backgroundColor: '#003366', zIndex: 1030 }}>
             <Link to="/" className='no-line'>
                 <Navbar.Brand className="d-flex align-items-center" style={{ fontFamily: 'monospace, sans-serif' }}>
                     <img
@@ -21,7 +21,7 @@ function NavbarComponent() {
                         height="40"
                         className="d-inline-block align-top me-2"
                     />
-                    <span className="fs-2">Progetto webbb</span>
+                    <span className="fs-2" style={{ color: 'white' }}>Progetto webbb</span>
                 </Navbar.Brand>
             </Link>
 
@@ -29,38 +29,37 @@ function NavbarComponent() {
                 <li className="nav-item">
                     <NavLink
                         to="/"
-                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
+                        style={{ color: 'white' }}>
                         Home
                     </NavLink>
                 </li>
                 <li className="nav-item active">
                     <NavLink
                         to="/view-jobOffers"
-                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
+                        style={{ color: 'white' }}>
                         Job Offers
                     </NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink
                         to="/view-customers"
-                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
+                        style={{ color: 'white' }}>
                         Customers
                     </NavLink>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Professionals</a>
+                    <NavLink
+                        to="/view-professionals"
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
+                        style={{ color: 'white' }}>
+                        Professionals
+                    </NavLink>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="#">Messages</a>
-                </li>
-                <NavDropdown title="Dropdown" id="navbarDropdown">
-                    <NavDropdown.Item href="#">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#">Another action</NavDropdown.Item>
-                    <NavDropdown.Divider/>
-                    <NavDropdown.Item href="#">Something else here</NavDropdown.Item>
-                </NavDropdown>
-                <li className="nav-item">
-                    <a className="nav-link disabled" href="#">Disabled</a>
+                <a className="nav-link" href="#" style={{ color: 'white' }}>Messages</a>
                 </li>
             </ul>
 
@@ -70,7 +69,7 @@ function NavbarComponent() {
                     {name ?
                         <>
                             <Navbar.Text className='fs-5'>
-                                <i className="bi bi-person-circle" style={{ fontStyle: 'normal' }}>{"  Miriam" + " " + "ueue"}</i>
+                                <i className="bi bi-person-circle" style={{ fontStyle: 'normal', color: 'white' }}>{"  Miriam" + " " + "ueue"}</i>
                             </Navbar.Text>
                             <Link className='btn btn-secondary mx-2' variant='secondary' to={'/'} onClick={() => {
                             }}>Logout <i className="bi bi-person-down"></i> </Link>
