@@ -102,3 +102,16 @@
   gap: 10px;
   font-size: 14px;
 }
+ /* box per il filtri */
+.filterBox {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-height: 460px; /* Limita l'altezza */
+  overflow-y: auto; /* Aggiunge uno scroll interno se il contenuto è troppo */
+  padding: 20px; /* Mantiene il padding interno */
+  position: sticky;
+  top: 90px; /* Altezza dalla parte superiore */
+  height: fit-content;
+}
