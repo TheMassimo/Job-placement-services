@@ -53,16 +53,16 @@ class ContactServicesImpl(private val contactRepository: ContactRepository,
     }
 
     override fun getContactsAreCustomer(page: Int,
-                                       limit: Int): List<CustomerDetailsDTO>{
+                                       limit: Int): List<CustomerDetailDTO>{
 
         val pageable = PageRequest.of(page, limit)
         val contacts = contactRepository.findByCustomerIsNotNull(pageable)
 
 
         // Lista per contenere i DTO creati
-        val ritorno: List<CustomerDetailsDTO> = contacts.content.map { contact ->
+        val ritorno: List<CustomerDetailDTO> = contacts.content.map { contact ->
             // Creazione manuale del DTO
-            val tmpDTO = CustomerDetailsDTO(
+            val tmpDTO = CustomerDetailDTO(
                 contactId =  contact.contactId,
                 name = contact.name,
                 surname = contact.surname,

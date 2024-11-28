@@ -31,12 +31,13 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomeLayout />} />
                     <Route path="/MassimoTest" element={<MassimoTest />} />
-                    <Route path="/view-customers" element={<ViewCustomers />} />
-                    <Route path="/add-customer" element={<AddCustomer />} />
-                    <Route path="/view-jobOffers" element={<ViewJobOffers />} />
 
-                    <Route path="/view-professionals" element={<ViewProfessionals />} />
-                    <Route path="/add-professional" element={<AddProfessional />} />
+                    <Route path="/customers" element={<ViewCustomers />} />
+                    <Route path="/customers/add" element={<AddCustomer />} />
+                    <Route path="/jobOffers" element={<ViewJobOffers />} />
+
+                    <Route path="/professionals" element={<ViewProfessionals />} />
+                    <Route path="/professional/add" element={<AddProfessional />} />
                 </Routes>
             </Container>
 

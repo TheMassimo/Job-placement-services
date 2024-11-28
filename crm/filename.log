@@ -42,3 +42,107 @@
 2024-11-28T01:10:58.810+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
 2024-11-28T01:11:02.544+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
 2024-11-28T01:11:02.568+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:14:01.327+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:14:50.363+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:14:50.425+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:15:07.772+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:28:39.668+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:28:39.744+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:28:49.098+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:28:49.132+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:00.757+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:00.785+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:02.150+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:02.169+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:04.538+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contacts fetched successfully
+2024-11-28T01:29:04.567+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts fetched successfully
+2024-11-28T01:29:06.039+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:06.057+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:20.989+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:24.650+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:24.667+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:44.936+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:44.949+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:46.497+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T01:29:46.513+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:21:11.619+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:21:11.718+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:21:14.503+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:21:14.546+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:21:54.765+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:21:57.220+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:21:57.243+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:22:27.015+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:22:30.120+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:22:30.145+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:23:19.017+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:23:21.721+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:23:21.740+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:23:37.043+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:23:40.816+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:23:40.833+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:23:42.307+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:24:43.002+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:24:43.115+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:30:46.670+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:30:46.689+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:31:01.307+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:31:20.002+01:00  INFO 18668 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T02:31:36.436+01:00  INFO 18668 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-28T02:31:36.556+01:00  INFO 18668 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-28T02:31:36.632+01:00  INFO 18668 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-28T11:30:11.896+01:00  INFO 21488 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 21488 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2024-11-28T11:30:11.896+01:00 DEBUG 21488 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-11-28T11:30:11.896+01:00  INFO 21488 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2024-11-28T11:30:12.003+01:00  INFO 21488 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2024-11-28T11:30:17.151+01:00  INFO 21488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2024-11-28T11:30:17.165+01:00  INFO 21488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2024-11-28T11:30:21.104+01:00  INFO 21488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2024-11-28T11:30:21.105+01:00  INFO 21488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2024-11-28T11:30:21.636+01:00  INFO 21488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2024-11-28T11:30:27.914+01:00  INFO 21488 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-28T11:30:28.023+01:00  INFO 21488 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94 ms. Found 10 JPA repository interfaces.
+2024-11-28T11:30:28.620+01:00  INFO 21488 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-11-28T11:30:28.636+01:00  INFO 21488 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-11-28T11:30:28.636+01:00  INFO 21488 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-11-28T11:30:28.712+01:00  INFO 21488 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-11-28T11:30:28.712+01:00  INFO 21488 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2245 ms
+2024-11-28T11:30:28.823+01:00  INFO 21488 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-28T11:30:29.154+01:00  INFO 21488 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@56c0a61e
+2024-11-28T11:30:29.155+01:00  INFO 21488 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-28T11:30:29.286+01:00  INFO 21488 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-28T11:30:29.379+01:00  INFO 21488 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-11-28T11:30:29.426+01:00  INFO 21488 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-28T11:30:29.732+01:00  INFO 21488 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-28T11:30:31.094+01:00  INFO 21488 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-28T11:30:31.514+01:00  INFO 21488 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-28T11:30:32.519+01:00  WARN 21488 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-28T11:30:32.852+01:00  INFO 21488 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@471b7c9c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39cf7f3c, org.springframework.security.web.context.SecurityContextHolderFilter@6be865c1, org.springframework.security.web.header.HeaderWriterFilter@7a7f5c44, org.springframework.web.filter.CorsFilter@25df95b, org.springframework.security.web.authentication.logout.LogoutFilter@2df0a4c3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d140627, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@386ec37d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2fb9695a, org.springframework.security.web.session.SessionManagementFilter@5f9f1886, org.springframework.security.web.access.ExceptionTranslationFilter@5295a774, org.springframework.security.web.access.intercept.AuthorizationFilter@6bea0866]
+2024-11-28T11:30:33.806+01:00  INFO 21488 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-11-28T11:30:33.806+01:00  INFO 21488 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 22.519 seconds (process running for 24.48)
+2024-11-28T11:32:17.021+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-28T11:32:17.021+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-11-28T11:32:17.021+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-11-28T11:32:17.375+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T11:32:17.535+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T11:32:23.598+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T11:32:23.624+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T11:33:31.736+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T11:33:32.361+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T11:33:36.538+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T11:54:01.867+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T11:54:01.960+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:45:04.061+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:46:06.684+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:48:17.672+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:49:13.667+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:49:27.243+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:50:57.676+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:51:02.657+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:51:03.662+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:51:20.661+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:51:34.674+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:51:42.173+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:52:22.653+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:57:40.777+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully
+2024-11-28T12:59:25.719+01:00  INFO 21488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contacts that are also Customer fetched successfully

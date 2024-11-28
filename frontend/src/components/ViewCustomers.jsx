@@ -5,55 +5,99 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import ContactAPI from "../api/crm/ContactAPI.js";
+import {CustomersFilter} from "../api/crm/filters/CustomersFilter.ts";
 
 
-function Filters(){
+function Filters(props){
+    const setFilters = props.setFilters;
+    const [formFilters, setFormFilters] = useState(new CustomersFilter(null, null, null, null, null, null, null, 0));
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        setFilters(new CustomersFilter(
+            formFilters.name,
+            formFilters.surname,
+            formFilters.ssn,
+            check,
+            formFilters.address,
+            formFilters.emailAddress,
+            formFilters.telephoneNumber));
+    };
+
+    const handleFilterChange = (event) => {
+        let {name, value} = event.target;
+
+        if (name !== "category") {
+            if (value === "") {
+                value = null;
+            }
+            //update state
+            setFormFilters((old) => ({
+                ...old,
+                [name]: value,
+            }));
+        }
+    }
+
+    const handleClear = (event) => {
+        setFormFilters( new CustomersFilter(null, null, null, null, null, null, null, 0) );
+        setFilters(null);
+    }
+
     return (
         <>
-        <h4>Filters</h4>
-        <Form.Group controlId="filterName" className="mb-3">
-            <Form.Label>Filter by Name</Form.Label>
-            <Form.Control
-                type="text"
-                name="name"
-                placeholder="Enter name"
-                value={filters.name}
-                onChange={handleFilterChange}
-            />
-        </Form.Group>
-        <Form.Group controlId="filterSurname" className="mb-3">
-            <Form.Label>Filter by Surname</Form.Label>
-            <Form.Control
-                type="text"
-                name="surname"
-                placeholder="Enter surname"
-                value={filters.surname}
-                onChange={handleFilterChange}
-            />
-        </Form.Group>
-        <Form.Group controlId="filterSSN" className="mb-3">
-            <Form.Label>Filter by SSN</Form.Label>
-            <Form.Control
-                type="text"
-                name="ssn"
-                placeholder="Enter SSN"
-                value={filters.ssn}
-                onChange={handleFilterChange}
-            />
-        </Form.Group>
-        <Form.Group controlId="filterJobOffer" className="mb-3">
-            <Form.Label>Filter by Job Offer</Form.Label>
-            <Form.Control
-                type="number"
-                name="JobOffer"
-                placeholder="Enter Job Offer Number"
-                value={filters.JobOffer}
-                onChange={handleFilterChange}
-            />
-        </Form.Group>
-        <Button variant="secondary" onClick={clearFilters}>
-            Clear Filters
-        </Button>
+            <h4>Filters</h4>
+            <Form.Group controlId="filterName" className="mb-3">
+                <Form.Label>Filter by Name</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="name"
+                    placeholder="Enter name"
+                    value={formFilters.name === null ? "" : formFilters.name}
+                    onChange={handleFilterChange}
+                />
+            </Form.Group>
+            <Form.Group controlId="filterSurname" className="mb-3">
+                <Form.Label>Filter by Surname</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="surname"
+                    placeholder="Enter surname"
+                    value={formFilters.surname === null ? "" : formFilters.surname}
+                    onChange={handleFilterChange}
+                />
+            </Form.Group>
+            <Form.Group controlId="filterSSN" className="mb-3">
+                <Form.Label>Filter by SSN</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="ssn"
+                    placeholder="Enter SSN"
+                    value={formFilters.ssnCode === null ? "" : formFilters.snnCode}
+                    onChange={handleFilterChange}
+                />
+            </Form.Group>
+            <Form.Group controlId="filterJobOffer" className="mb-3">
+                <Form.Label>Filter by Job Offer</Form.Label>
+                <Form.Control
+                    type="number"
+                    name="JobOffer"
+                    placeholder="Enter Job Offer Number"
+                    value={formFilters.JobOffer}
+                    onChange={handleFilterChange}
+                />
+            </Form.Group>
+            <div className="d-flex justify-content-center align-items-center">
+                <Button variant="secondary" className="me-5" onClick={handleClear} >
+                    Clear Filters
+                </Button>
+                <Button variant="primary" className="me-5" onClick={handleSubmit}>
+                    <i className="bi bi-search" style={{marginRight: '10px'}}></i>
+                    Find
+                </Button>
+            </div>
+
         </>
     );
 }
@@ -61,18 +105,14 @@ function Filters(){
 function ViewCustomers(props) {
     const navigate = useNavigate();
     const [customers, setCustomers] = useState([]);
-    const [filters, setFilters] = useState({
-        status: [
-            //'filter_1',
-        ]
-    });
+    const [filters, setFilters] = useState(new CustomersFilter());
     const [currentPage, setCurrentPage] = useState(1);
 
     //USE Effect
     useEffect(() => {
         ContactAPI.getConstactsAreCustomer(filters, currentPage).then((res) => {
              setCustomers(res);
-             console.log("massimo -->", res);
+             console.log("Massimo");
         }).catch((err) => console.log(err))
     }, [filters, currentPage]);
 
@@ -96,8 +136,7 @@ function ViewCustomers(props) {
         <div style={{ paddingTop: '90px', display: 'flex', flexDirection: 'row' }}>
             {/* Filtri */}
             <div style={{ width: '30%', padding: '20px' }}>
-                {/*<Filters />*/}
-
+                <Filters setFilters={setFilters} />
             </div>
 
             {/* Tabella */}
@@ -151,7 +190,7 @@ function ViewCustomers(props) {
                         Next
                     </Button>
                 </div>
-                <Button variant="primary" className="mt-4" onClick={() => navigate(`/MassimoTest`)}>
+                <Button variant="primary" className="mt-4" onClick={() => navigate(`/customers/add`)}>
                     Add Customer
                 </Button>
             </div>

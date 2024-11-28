@@ -2,7 +2,7 @@ package com.example.crm.dtos
 
 import com.example.crm.entities.Contact
 
-data class CustomerDetailsDTO (
+data class CustomerDetailDTO (
     val contactId: Long,
     val name: String,
     val surname: String,

@@ -26,7 +26,7 @@ class ContactController(private val contactServices: ContactServices) {
     @GetMapping("/customers", "/customers/")
     fun getContactsAreCustomer(@RequestParam("page", defaultValue = "0")  @Min(value = 0) page: Int,
                        @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int
-    ) : ResponseEntity<List<CustomerDetailsDTO>> {
+    ) : ResponseEntity<List<CustomerDetailDTO>> {
         val contacts = contactServices.getContactsAreCustomer(page, limit)
         return ResponseEntity.ok(contacts)
     }

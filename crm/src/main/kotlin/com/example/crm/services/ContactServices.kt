@@ -7,7 +7,7 @@ interface ContactServices {
 
     fun getAllContacts(page: Int, limit: Int, email:String, address: String, telephone: String): List<ContactDTO>
 
-    fun getContactsAreCustomer(page: Int, limit: Int): List<CustomerDetailsDTO>
+    fun getContactsAreCustomer(page: Int, limit: Int): List<CustomerDetailDTO>
 
     fun getContactById(id: Long): ContactDTO
 

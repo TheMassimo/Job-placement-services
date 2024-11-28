@@ -36,7 +36,7 @@ function NavbarComponent() {
                 </li>
                 <li className="nav-item active">
                     <NavLink
-                        to="/view-jobOffers"
+                        to="/jobOffers"
                         className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
                         style={{ color: 'white' }}>
                         Job Offers
@@ -44,7 +44,7 @@ function NavbarComponent() {
                 </li>
                 <li className="nav-item">
                     <NavLink
-                        to="/view-customers"
+                        to="/customers"
                         className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
                         style={{ color: 'white' }}>
                         Customers
@@ -52,7 +52,7 @@ function NavbarComponent() {
                 </li>
                 <li className="nav-item">
                     <NavLink
-                        to="/view-professionals"
+                        to="/professionals"
                         className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
                         style={{ color: 'white' }}>
                         Professionals

@@ -47,7 +47,8 @@ async function getConstactsAreCustomer(filters, pagination){
         generateUrl(`${URL_CONTACTS}/customers`, filters, pagination), {
             method: 'GET',
             credentials: 'include'
-        })
+        }
+    )
     const obj = await response.json()
 
     if (response.ok) {
