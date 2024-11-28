@@ -10,5 +10,4 @@ interface CustomerRepository: JpaRepository<Customer, Long> {
 
     fun findByContact(contact: Contact): Customer?
 
-
 }

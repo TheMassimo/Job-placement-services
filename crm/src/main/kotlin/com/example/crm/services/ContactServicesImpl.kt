@@ -25,7 +25,11 @@ class ContactServicesImpl(private val contactRepository: ContactRepository,
 
     private val logger: Logger = LoggerFactory.getLogger(ContactServices::class.java)
 
-    override fun getAllContacts(page: Int, limit: Int, email:String, address: String, telephone: String): List<ContactDTO> {
+    override fun getAllContacts(page: Int,
+                                limit: Int,
+                                email:String,
+                                address: String,
+                                telephone: String): List<ContactDTO> {
         val pageable = PageRequest.of(page, limit)
         val contacts = contactRepository.findAll(pageable)
 
@@ -46,6 +50,36 @@ class ContactServicesImpl(private val contactRepository: ContactRepository,
 
         logger.info("Contacts fetched successfully")
         return ritorno.map { it.toDto() }
+    }
+
+    override fun getContactsAreCustomer(page: Int,
+                                       limit: Int): List<CustomerDetailsDTO>{
+
+        val pageable = PageRequest.of(page, limit)
+        val contacts = contactRepository.findByCustomerIsNotNull(pageable)
+
+
+        // Lista per contenere i DTO creati
+        val ritorno: List<CustomerDetailsDTO> = contacts.content.map { contact ->
+            // Creazione manuale del DTO
+            val tmpDTO = CustomerDetailsDTO(
+                contactId =  contact.contactId,
+                name = contact.name,
+                surname = contact.surname,
+                category = contact.category,
+                email = contact.email.map { it.toDto() },
+                address = contact.address.map{ it.toDto()},
+                ssnCode = contact.ssnCode,
+                telephone = contact.telephone.map { it.toDto() },
+                notes = contact.customer?.notes ?: "No notes", // Gestisce il caso in cui `customer` sia null
+                jobOffers = contact.customer?.jobOffers?.map { it.toDto() } ?: emptyList() // Gestisce se `customer` è null
+            )
+            tmpDTO
+        }
+
+
+        logger.info("Contacts that are also Customer fetched successfully")
+        return ritorno
     }
 
     override fun getContactById(id: Long): ContactDTO {

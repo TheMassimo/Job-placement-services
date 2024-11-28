@@ -4,7 +4,7 @@ POST http://localhost:8080/API/customers/
 Content-Type: application/json
 
 {
-  "contactId": 3,
+  "contactId": 1,
   "notes": "Some note"
 }
 

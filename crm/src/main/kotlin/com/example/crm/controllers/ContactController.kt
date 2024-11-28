@@ -23,6 +23,14 @@ class ContactController(private val contactServices: ContactServices) {
         return ResponseEntity.ok(contacts)
     }
 
+    @GetMapping("/customers", "/customers/")
+    fun getContactsAreCustomer(@RequestParam("page", defaultValue = "0")  @Min(value = 0) page: Int,
+                       @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int
+    ) : ResponseEntity<List<CustomerDetailsDTO>> {
+        val contacts = contactServices.getContactsAreCustomer(page, limit)
+        return ResponseEntity.ok(contacts)
+    }
+
     @GetMapping("/{id}", "/{id}/")
     fun getContactById(@PathVariable @Positive id: Long): ResponseEntity<ContactDTO>{
         val document = contactServices.getContactById(id)
