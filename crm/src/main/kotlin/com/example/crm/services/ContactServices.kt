@@ -1,13 +1,25 @@
 package com.example.crm.services
 
 import com.example.crm.dtos.*
+import com.example.crm.entities.Category
 
 
 interface ContactServices {
 
     fun getAllContacts(page: Int, limit: Int, email:String, address: String, telephone: String): List<ContactDTO>
 
-    fun getContactsAreCustomer(page: Int, limit: Int): List<CustomerDetailDTO>
+    fun getContactsAreCustomer(
+        name:String?,
+        surname:String?,
+        category:Category?,
+        email:String?,
+        address:String?,
+        ssnCode:String?,
+        telephone:String?,
+        jobOffers:Int?,
+        page: Int,
+        limit: Int
+    ): List<CustomerDetailDTO>
 
     fun getContactById(id: Long): ContactDTO
 
@@ -19,7 +31,7 @@ interface ContactServices {
 
     fun uploadTelephone(contactId: Long, telephone: String ): TelephoneDTO
 
-    fun updateCategory(id: Long, category:String): ContactDTO
+    fun updateCategory(id: Long, category:Category): ContactDTO
 
     fun deleteEmail(contactId: Long, emailId: Long)
 

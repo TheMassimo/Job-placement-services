@@ -2,6 +2,13 @@ package com.example.crm.entities
 
 import jakarta.persistence.*
 
+enum class Category {
+    Customer,
+    Professional,
+    CustomerProfessional,
+    Unknown,
+}
+
 @Entity
 class Contact {
     @Id
@@ -11,7 +18,7 @@ class Contact {
     lateinit var name: String
     lateinit var surname: String
     lateinit var ssnCode: String
-    lateinit var category: String
+    lateinit var category: Category
 
     @ManyToMany(mappedBy = "contact")
     var email: MutableSet<Email> = mutableSetOf()

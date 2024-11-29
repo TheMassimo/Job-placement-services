@@ -18,11 +18,13 @@ function Filters(props){
         setFilters(new CustomersFilter(
             formFilters.name,
             formFilters.surname,
-            formFilters.ssn,
-            check,
+            formFilters.category,
+            formFilters.email,
             formFilters.address,
-            formFilters.emailAddress,
-            formFilters.telephoneNumber));
+            formFilters.ssnCode,
+            formFilters.telephone,
+            formFilters.jobOffers
+        ));
     };
 
     const handleFilterChange = (event) => {
@@ -47,7 +49,7 @@ function Filters(props){
 
     return (
         <>
-            <h4>Filters</h4>
+            <h4 className={"offerTitle"}>Filters</h4>
             <Form.Group controlId="filterName" className="mb-3">
                 <Form.Label>Filter by Name</Form.Label>
                 <Form.Control
@@ -89,7 +91,7 @@ function Filters(props){
                 />
             </Form.Group>
             <div className="d-flex justify-content-center align-items-center">
-                <Button variant="secondary" className="me-5" onClick={handleClear} >
+                <Button variant="secondary" className="me-5" onClick={handleClear}>
                     Clear Filters
                 </Button>
                 <Button variant="primary" className="me-5" onClick={handleSubmit}>
@@ -97,16 +99,15 @@ function Filters(props){
                     Find
                 </Button>
             </div>
-
         </>
-    );
-}
+        );
+        }
 
-function ViewCustomers(props) {
-    const navigate = useNavigate();
-    const [customers, setCustomers] = useState([]);
-    const [filters, setFilters] = useState(new CustomersFilter());
-    const [currentPage, setCurrentPage] = useState(1);
+        function ViewCustomers(props) {
+                                          const navigate = useNavigate();
+                                          const [customers, setCustomers] = useState([]);
+                                          const [filters, setFilters] = useState(new CustomersFilter());
+                                          const [currentPage, setCurrentPage] = useState(1);
 
     //USE Effect
     useEffect(() => {
@@ -135,7 +136,7 @@ function ViewCustomers(props) {
     return (
         <div style={{ paddingTop: '90px', display: 'flex', flexDirection: 'row' }}>
             {/* Filtri */}
-            <div style={{ width: '30%', padding: '20px' }}>
+            <div style={{ width: '30%', padding: '20px' }} className="filterBox">
                 <Filters setFilters={setFilters} />
             </div>
 

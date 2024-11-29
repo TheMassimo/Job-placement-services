@@ -1,8 +1,7 @@
 export enum Category {
     Customer,
     Professional,
-    CustomerProfessional,
-    Unknown,
+    CustomerProfessional,Unknown,
 }
 
 export interface ContactRawData {

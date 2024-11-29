@@ -13,12 +13,16 @@ import com.example.crm.exeptions.ContactNotFoundException
 import com.example.crm.repositories.AddressRepository
 import com.example.crm.repositories.EmailRepository
 import com.example.crm.repositories.TelephoneRepository
+import org.hibernate.type.descriptor.jdbc.SmallIntJdbcType
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.transaction.annotation.Transactional
+import jakarta.persistence.EntityManager
+import jakarta.persistence.criteria.*
 
 
 @Service
-class ContactServicesImpl(private val contactRepository: ContactRepository,
+class ContactServicesImpl(private val entityManager: EntityManager,
+                          private val contactRepository: ContactRepository,
                           private val emailRepository: EmailRepository,
                           private val addressRepository: AddressRepository,
                           private val telephoneRepository: TelephoneRepository ): ContactServices  {
@@ -52,15 +56,80 @@ class ContactServicesImpl(private val contactRepository: ContactRepository,
         return ritorno.map { it.toDto() }
     }
 
-    override fun getContactsAreCustomer(page: Int,
-                                       limit: Int): List<CustomerDetailDTO>{
+    override fun getContactsAreCustomer(
+        name:String?,
+        surname:String?,
+        category:Category?,
+        email:String?,
+        address:String?,
+        ssnCode:String?,
+        telephone:String?,
+        jobOffers:Int?,
+        page: Int,
+        limit: Int
+        ): List<CustomerDetailDTO>{
 
-        val pageable = PageRequest.of(page, limit)
-        val contacts = contactRepository.findByCustomerIsNotNull(pageable)
+        val cb: CriteriaBuilder = entityManager.criteriaBuilder
 
+        val cqContact: CriteriaQuery<Contact> = cb.createQuery(Contact::class.java)
+        val rootContact: Root<Contact> = cqContact.from(Contact::class.java)
 
-        // Lista per contenere i DTO creati
-        val ritorno: List<CustomerDetailDTO> = contacts.content.map { contact ->
+        val predicates = mutableListOf<Predicate>()
+
+        if (!name.isNullOrBlank()) {
+            predicates.add(cb.equal(rootContact.get<String>("name"), name))
+        }
+        if (!surname.isNullOrBlank()) {
+            predicates.add(cb.equal(rootContact.get<String>("surname"), surname))
+        }
+        if (!ssnCode.isNullOrBlank()) {
+            predicates.add(cb.equal(rootContact.get<String>("ssnCode"), ssnCode))
+        }
+        if (category != null) {
+            val categoryPredicates = when (category) {
+                Category.Customer -> listOf(
+                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.Customer),
+                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.CustomerProfessional)
+                )
+                Category.Professional -> listOf(
+                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.Professional),
+                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.CustomerProfessional)
+                )
+                Category.Unknown -> listOf(cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.Unknown))
+                Category.CustomerProfessional -> listOf(
+                    cb.equal(
+                        rootContact.get<SmallIntJdbcType>("category"),
+                        Category.CustomerProfessional
+                    )
+                )
+            }
+            // Combine all filters in OR
+            predicates.add(cb.or(*categoryPredicates.toTypedArray()))
+        }
+        if (!address.isNullOrBlank()) {
+            val joinWithAddress: Join<Contact, Address> = rootContact.join("addresses", JoinType.INNER)
+            predicates.add(cb.equal(joinWithAddress.get<String>("address"), address))
+        }
+        if (!email.isNullOrBlank()) {
+            val joinWithEmail: Join<Contact, Email> = rootContact.join("emails", JoinType.INNER)
+            predicates.add(cb.equal(joinWithEmail.get<String>("emailAddress"), email))
+        }
+        if (!telephone.isNullOrBlank()) {
+            val joinWithTelephone: Join<Contact, Telephone> = rootContact.join("telephones", JoinType.INNER)
+            predicates.add(cb.equal(joinWithTelephone.get<String>("telephoneNumber"), telephone))
+        }
+
+        // Combine all filters in AND
+        cqContact.where(*predicates.toTypedArray())
+        cqContact.orderBy(cb.asc(rootContact.get<Long>("contactId")))
+
+        val query = entityManager.createQuery(cqContact)
+        query.firstResult = page * limit
+        query.maxResults = page
+
+        logger.info("Massimo {}", query.resultList);
+
+        return query.resultList.map { contact ->
             // Creazione manuale del DTO
             val tmpDTO = CustomerDetailDTO(
                 contactId =  contact.contactId,
@@ -78,8 +147,6 @@ class ContactServicesImpl(private val contactRepository: ContactRepository,
         }
 
 
-        logger.info("Contacts that are also Customer fetched successfully")
-        return ritorno
     }
 
     override fun getContactById(id: Long): ContactDTO {
@@ -207,7 +274,7 @@ class ContactServicesImpl(private val contactRepository: ContactRepository,
         val contact = contactRepository.findByIdOrNull(contactId)
             ?: throw BadParameterException("Contact not found")
 
-        //before add the new telephone, chek if it already exist
+        //before add the new telephone, chek if it already exists
         var eTelephone = telephoneRepository.findIdByTelephone(telephone)
         if(eTelephone == null){
             eTelephone = Telephone()
@@ -226,7 +293,7 @@ class ContactServicesImpl(private val contactRepository: ContactRepository,
         return eTelephone.toDto()
     }
 
-    override fun updateCategory(id: Long, category:String): ContactDTO{
+    override fun updateCategory(id: Long, category:Category): ContactDTO{
         val existingContact = contactRepository.findById(id)
             .orElseThrow{
                 logger.error("Contact not found")
