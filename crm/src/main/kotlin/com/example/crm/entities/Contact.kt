@@ -17,7 +17,7 @@ class Contact {
 
     lateinit var name: String
     lateinit var surname: String
-    lateinit var ssnCode: String
+    lateinit var ssn: String
     lateinit var category: Category
 
     @ManyToMany(mappedBy = "contact")

@@ -10,7 +10,7 @@ data class ContactDTO (
     val category: Category,
     val email: List<EmailDTO>,
     val address: List<AddressDTO>,
-    val ssnCode: String,
+    val ssn: String,
     val telephone: List<TelephoneDTO>
 )
 
@@ -22,6 +22,6 @@ fun Contact.toDto(): ContactDTO =
         this.category,
         this.email.map {it.toDto()},
         this.address.map { it.toDto() },
-        this.ssnCode,
+        this.ssn,
         this.telephone.map { it.toDto() }
     )
