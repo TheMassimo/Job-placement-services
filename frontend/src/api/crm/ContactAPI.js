@@ -80,8 +80,13 @@ const ContactAPI = {
     TEST,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     GetConstactsAreCustomer,
     PostContactCustomer,
+=======
+    getConstactsAreCustomer,
+    getConstactsAreProfessional
+>>>>>>> origin/main
 =======
     getConstactsAreCustomer,
     getConstactsAreProfessional
