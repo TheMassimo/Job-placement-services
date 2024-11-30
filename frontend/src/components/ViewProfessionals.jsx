@@ -172,7 +172,7 @@ function ViewProfessionals() {
                         <tr key={professional.contactId}>
                             <td>{professional.name}</td>
                             <td>{professional.surname}</td>
-                            <td>{professional.ssnCode}</td>
+                            <td>{professional.ssn}</td>
                             <td>{professional.employment}</td>
                             <td>{professional.skills?.join(', ')}</td>
                         </tr>

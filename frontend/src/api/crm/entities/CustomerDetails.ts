@@ -17,7 +17,7 @@ export interface CustomerDetailsRawData {
     category: Category | null
     email: Email[]
     address: Address[]
-    ssnCode: string
+    ssn: string
     telephone: Telephone[]
     notes: string | null
     jobOffers: JobOffer[]
@@ -30,7 +30,7 @@ export class CustomerDetails implements CustomerDetailsRawData {
     category: Category | null
     email: Email[]
     address: Address[]
-    ssnCode: string
+    ssn: string
     telephone: Telephone[]
     notes: string | null
     jobOffers: JobOffer[]
@@ -42,7 +42,7 @@ export class CustomerDetails implements CustomerDetailsRawData {
         category: Category | null,
         email: Email[],
         address: Address[],
-        ssnCode: string,
+        ssn: string,
         telephone: Telephone[],
         notes: string | null,
         jobOffers: JobOffer[]
@@ -53,7 +53,7 @@ export class CustomerDetails implements CustomerDetailsRawData {
         this.category = category
         this.email = email
         this.address = address
-        this.ssnCode = ssnCode
+        this.ssn = ssn
         this.telephone = telephone
         this.notes = notes
         this.jobOffers = jobOffers
@@ -68,7 +68,7 @@ export class CustomerDetails implements CustomerDetailsRawData {
                 obj.category,
                 obj.email,
                 obj.address,
-                obj.ssnCode,
+                obj.ssn,
                 obj.telephone,
                 obj.notes,
                 obj.jobOffers

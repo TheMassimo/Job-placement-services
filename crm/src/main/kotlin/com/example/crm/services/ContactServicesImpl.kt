@@ -16,12 +16,10 @@ import com.example.crm.repositories.TelephoneRepository
 import org.hibernate.type.descriptor.jdbc.SmallIntJdbcType
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.transaction.annotation.Transactional
-<<<<<<< HEAD
 import com.example.crm.services.ProfessionalEmployment
-=======
 import jakarta.persistence.EntityManager
 import jakarta.persistence.criteria.*
->>>>>>> origin/main
+
 
 
 @Service
@@ -66,7 +64,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         category:Category?,
         email:String?,
         address:String?,
-        ssnCode:String?,
+        ssn:String?,
         telephone:String?,
         jobOffers:Int?,
         page: Int,
@@ -87,8 +85,8 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             predicates.add(cb.like(cb.lower(rootContact.get<String>("surname")), "${surname.lowercase()}%"))
         }
 
-        if (!ssnCode.isNullOrBlank()) {
-            predicates.add(cb.like(cb.lower(rootContact.get<String>("ssnCode")), "${ssnCode.lowercase()}%"))
+        if (!ssn.isNullOrBlank()) {
+            predicates.add(cb.like(cb.lower(rootContact.get<String>("ssn")), "${ssn.lowercase()}%"))
         }
 
         if (category != null) {
@@ -153,7 +151,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
                 category = contact.category,
                 email = contact.email.map { it.toDto() },
                 address = contact.address.map{ it.toDto()},
-                ssnCode = contact.ssnCode,
+                ssn = contact.ssn,
                 telephone = contact.telephone.map { it.toDto() },
                 notes = contact.customer?.notes ?: "No notes", // Gestisce il caso in cui `customer` sia null
                 jobOffers = contact.customer?.jobOffers?.map { it.toDto() } ?: emptyList() // Gestisce se `customer` è null
@@ -181,7 +179,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
                 category = contact.category,
                 email = contact.email.map { it.toDto() },
                 address = contact.address.map{ it.toDto()},
-                ssnCode = contact.ssnCode,
+                ssn = contact.ssn,
                 telephone = contact.telephone.map { it.toDto() },
                 employment = contact.professional?.employment ?: ProfessionalEmployment.UNEMPLOYED,
                 dailyRate = contact.professional?.dailyRate ?: 0.0,
@@ -212,7 +210,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         val eContact = Contact()
         eContact.name = dto.name
         eContact.surname = dto.surname
-        eContact.ssnCode = dto.ssnCode ?: ""
+        eContact.ssn = dto.ssn ?: ""
         eContact.category = dto.category
 
         contactRepository.save(eContact)

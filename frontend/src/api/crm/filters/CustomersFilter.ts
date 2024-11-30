@@ -4,7 +4,7 @@ export class CustomersFilter {
     category: String | null
     email: string | null
     address: string | null
-    ssnCode: string | null
+    ssn: string | null
     telephone: string | null
     jobOffers: number | 0
 
@@ -14,7 +14,7 @@ export class CustomersFilter {
         category: number | null,
         email: string | null,
         address: string | null,
-        ssnCode: string | null,
+        ssn: string | null,
         telephone: string | null,
         jobOffers: number | 0) {
 
@@ -38,10 +38,10 @@ export class CustomersFilter {
         } else {
             this.address = address
         }
-        if (ssnCode?.trim() === "") {
-            this.ssnCode = null
+        if (ssn?.trim() === "") {
+            this.ssn = null
         } else {
-            this.ssnCode = ssnCode
+            this.ssn = ssn
         }
         if (telephone?.trim() === "") {
             this.telephone = null

@@ -21,7 +21,7 @@ function Filters(props) {
             formFilters.category,
             formFilters.email,
             formFilters.address,
-            formFilters.ssnCode,
+            formFilters.ssn,
             formFilters.telephone,
             formFilters.jobOffers
         ));
@@ -76,7 +76,7 @@ function Filters(props) {
                     type="text"
                     name="ssn"
                     placeholder="Enter SSN"
-                    value={formFilters.ssnCode === null ? "" : formFilters.snnCode}
+                    value={formFilters.ssn === null ? "" : formFilters.snnCode}
                     onChange={handleFilterChange}
                 />
             </Form.Group>
@@ -168,7 +168,7 @@ function ViewCustomers(props) {
                         <tr key={customer.contactId}>
                             <td>{customer.name}</td>
                             <td>{customer.surname}</td>
-                            <td>{customer.ssnCode}</td>
+                            <td>{customer.ssn}</td>
                             <td>{customer.jobOffers?.length || 0}</td>
                         </tr>
                     ))}

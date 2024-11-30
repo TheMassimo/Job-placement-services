@@ -14,7 +14,7 @@ interface ContactServices {
         category:Category?,
         email:String?,
         address:String?,
-        ssnCode:String?,
+        ssn:String?,
         telephone:String?,
         jobOffers:Int?,
         page: Int,

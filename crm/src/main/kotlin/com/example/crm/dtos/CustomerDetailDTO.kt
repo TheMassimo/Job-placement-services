@@ -9,7 +9,7 @@ data class CustomerDetailDTO (
     val category: Category,
     val email: List<EmailDTO>,
     val address: List<AddressDTO>,
-    val ssnCode: String,
+    val ssn: String,
     val telephone: List<TelephoneDTO>,
     val notes : String?,
     val jobOffers: List<JobOfferDTO>,
