@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form'
 import { useNavigate } from "react-router-dom";
+import ContactAPI from "../api/crm/ContactAPI.js";
 
 function ViewProfessionals() {
-    const [professionals, setProfessionals] = useState([
-        { id: 1, name: "Mario", surname: "Rossi", ssn: "mario.rossi@example.com", employment: "Software Engineer", skills: ["JavaScript", "React", "Node.js"] },
-        { id: 2, name: "Luigi", surname: "Verdi", ssn: "luigi.verdi@example.com", employment: "Data Scientist", skills: ["Python", "SQL", "Machine Learning"] },
-        { id: 3, name: "Anna", surname: "Bianchi", ssn: "anna.bianchi@example.com", employment: "Product Manager", skills: ["Product Strategy", "Agile", "Team Leadership"] },
-        { id: 4, name: "Giulia", surname: "Neri", ssn: "giulia.neri@example.com", employment: "UX/UI Designer", skills: ["Figma", "Adobe XD", "Wireframing"] },
-        { id: 5, name: "Marco", surname: "Blu", ssn: "marco.blu@example.com", employment: "Full Stack Developer", skills: ["Java", "Spring Boot", "React"] },
-        { id: 6, name: "Elisa", surname: "Viola", ssn: "elisa.viola@example.com", employment: "Marketing Specialist", skills: ["SEO", "Content Marketing", "Google Analytics"] },
-    ]);
-
+    const [professionals, setProfessionals] = useState([]);
 
     const navigate = useNavigate();
-
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
 
     const [filter, setFilter] = useState({
@@ -28,6 +20,16 @@ function ViewProfessionals() {
         employment: "",
         skills: ""
     });
+
+
+    //USE Effect
+    useEffect(() => {
+        ContactAPI.getConstactsAreProfessional(filter, currentPage).then((res) => {
+            setProfessionals(res);
+            console.log("Massimo", res);
+        }).catch((err) => console.log(err))
+    }, [filter, currentPage]);
+
 
     const [tempFilter, setTempFilter] = useState({ ...filter });
 
@@ -82,7 +84,7 @@ function ViewProfessionals() {
     const changePage = (direction) => {
         if (direction === "next" && (currentPage + 1) * itemsPerPage < filteredProfessionals.length) {
             setCurrentPage(currentPage + 1);
-        } else if (direction === "prev" && currentPage > 0) {
+        } else if (direction === "prev" && currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
     };
@@ -166,13 +168,13 @@ function ViewProfessionals() {
                     </tr>
                     </thead>
                     <tbody>
-                    {currentProfessionals.map((professional) => (
-                        <tr key={professional.id}>
+                    {professionals.map((professional) => (
+                        <tr key={professional.contactId}>
                             <td>{professional.name}</td>
                             <td>{professional.surname}</td>
-                            <td>{professional.ssn}</td>
+                            <td>{professional.ssnCode}</td>
                             <td>{professional.employment}</td>
-                            <td>{professional.skills.join(', ')}</td>
+                            <td>{professional.skills?.join(', ')}</td>
                         </tr>
                     ))}
                     </tbody>
@@ -181,15 +183,15 @@ function ViewProfessionals() {
                     <Button
                         variant="outline-secondary"
                         onClick={() => changePage("prev")}
-                        disabled={currentPage === 0}
+                        disabled={currentPage === 1}
                     >
                         Previous
                     </Button>
-                    <span>Page {currentPage + 1} of {Math.ceil(filteredProfessionals.length / itemsPerPage)}</span>
+                    <span>Page {currentPage} of {Math.ceil(filteredProfessionals.length / itemsPerPage)}</span>
                     <Button
                         variant="outline-secondary"
                         onClick={() => changePage("next")}
-                        disabled={(currentPage + 1) * itemsPerPage >= filteredProfessionals.length}
+                        disabled={(currentPage) * itemsPerPage >= filteredProfessionals.length}
                     >
                         Next
                     </Button>
