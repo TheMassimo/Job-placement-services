@@ -13,11 +13,13 @@ spring:
     username: myuser
     password: secret
     driver-class-name: org.postgresql.Driver
+
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:9090/realms/CRM
+
 server:
   port: 8082
 logging:

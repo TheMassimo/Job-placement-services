@@ -1,6 +1,7 @@
 package com.example.crm.controllers
 
 import com.example.crm.dtos.*
+import com.example.crm.entities.Category
 import com.example.crm.services.ContactServices
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Positive
@@ -24,10 +25,32 @@ class ContactController(private val contactServices: ContactServices) {
     }
 
     @GetMapping("/customers", "/customers/")
-    fun getContactsAreCustomer(@RequestParam("page", defaultValue = "0")  @Min(value = 0) page: Int,
-                       @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int
+    fun getContactsAreCustomer(
+
+        @RequestParam("name", required = false) name: String?,
+        @RequestParam("surname", required = false) surname: String?,
+        @RequestParam("category", required = false) category: Category?,
+        @RequestParam("email", required = false) email: String?,
+        @RequestParam("address", required = false) address: String?,
+        @RequestParam("ssnCode", required = false) ssnCode: String?,
+        @RequestParam("telephone", required = false) telephone: String?,
+        @RequestParam("jobOffers", required = false) jobOffers: Int?,
+        @RequestParam("page", defaultValue = "0")  @Min(value = 0) page: Int,
+        @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int
     ) : ResponseEntity<List<CustomerDetailDTO>> {
-        val contacts = contactServices.getContactsAreCustomer(page, limit)
+
+        val contacts = contactServices.getContactsAreCustomer(
+            name,
+            surname,
+            category,
+            email,
+            address,
+            ssnCode,
+            telephone,
+            jobOffers,
+            page,
+            limit
+        )
         return ResponseEntity.ok(contacts)
     }
 
@@ -94,7 +117,7 @@ class ContactController(private val contactServices: ContactServices) {
     @ResponseStatus(HttpStatus.OK)
     fun updateContactCategory(
         @PathVariable contactId : Long,
-        @RequestParam category: String
+        @RequestParam category: Category
     ): ContactDTO    {
         return contactServices.updateCategory(
             contactId,

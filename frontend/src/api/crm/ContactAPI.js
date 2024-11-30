@@ -53,7 +53,7 @@ async function getConstactsAreCustomer(filters, pagination){
     const obj = await response.json()
 
     if (response.ok) {
-        return obj.map((e) => Contact.fromJsonObject(e))
+        return obj.map((e) => CustomerDetails.fromJsonObject(e))
     } else {
         throw obj
     }
