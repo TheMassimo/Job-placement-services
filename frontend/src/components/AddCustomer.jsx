@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 
 function CustomerForm() {
+    const [phoneNumbers, setPhoneNumbers] = useState([]);
+    const [emailAddress, setEmailAddress] = useState([]);
+    const [addressInfo, setAddressInfo] = useState([]);
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+        name: '',
+        surname: '',
         email: '',
         address: '',
         ssn: '',
-        telephone: '',
         category: 'Customer', // Predefinito e non modificabile
         notes: '',
-        jobOffer: '',
-        replacementHistory: '',
     });
 
     // Gestione dei cambiamenti nei campi del form
@@ -26,53 +26,59 @@ function CustomerForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
-            // metrere API per creare il contact
-            const contactResponse = await fetch('https://API/createContact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    firstName: formData.firstName,
-                    lastName: formData.lastName,
-                    email: formData.email,
-                    address: formData.address,
-                    ssn: formData.ssn,
-                    telephone: formData.telephone,
-                    category: formData.category,
-                }),
-            });
-
-            if (contactResponse.ok) {
-                const contactData = await contactResponse.json();
-                setContactId(contactData.contactId); // Memorizza l'ID del Contact
-
-                //metter api per creare un nuovo customer
-                const customerResponse = await fetch('https://API/createCustomer', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        notes: formData.notes,
-                        jobOffer: formData.jobOffer,
-                        replacementHistory: formData.replacementHistory,
-                        contactId: contactData.contactId, // Usa l'ID del Contact
-                    }),
-                });
-
-                if (customerResponse.ok) {
-                    const customerData = await customerResponse.json();
-                    alert('Customer and Contact created successfully!');
-                    console.log('Customer ID:', customerData.customerId);
-                } else {
-                    alert('Error creating customer.');
-                }
-            } else {
-                alert('Error creating contact.');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred.');
+        }catch (e) {
+            
         }
+    };
+
+
+    // TELEPHONE
+    // Aggiungi un nuovo campo per il numero di telefono
+    const addPhoneNumber = () => {
+        setPhoneNumbers([...phoneNumbers, ""]);
+    };
+    // Rimuovi un campo per il numero di telefono
+    const removePhoneNumber = (index) => {
+        setPhoneNumbers(phoneNumbers.filter((_, i) => i !== index));
+    };
+    // Aggiorna il valore di un campo specifico
+    const handlePhoneNumberChange = (index, value) => {
+        const updatedNumbers = [...phoneNumbers];
+        updatedNumbers[index] = value;
+        setPhoneNumbers(updatedNumbers);
+    };
+
+    //EMAIL
+    // Aggiungi un nuovo campo per la email
+    const addEmailAddress = () => {
+        setEmailAddress([...emailAddress, ""]);
+    };
+    // Rimuovi un campo per la email
+    const removeEmailAddress = (index) => {
+        setEmailAddress(emailAddress.filter((_, i) => i !== index));
+    };
+    // Aggiorna il valore di un campo specifico
+    const handleEmailAddressChange = (index, value) => {
+        const updatedEmail = [...emailAddress];
+        updatedEmail[index] = value;
+        setEmailAddress(updatedEmail);
+    };
+
+    //ADDRESS
+    // Aggiungi un nuovo campo per la email
+    const addAddressInfo = () => {
+        setAddressInfo([...addressInfo, ""]);
+    };
+    // Rimuovi un campo per la email
+    const removeAddressInfo = (index) => {
+        setAddressInfo(addressInfo.filter((_, i) => i !== index));
+    };
+    // Aggiorna il valore di un campo specifico
+    const handleAddressInfoChange = (index, value) => {
+        const updatedAddress = [...addressInfo];
+        updatedAddress[index] = value;
+        setAddressInfo(updatedAddress);
     };
 
 
@@ -80,15 +86,16 @@ function CustomerForm() {
         <div className="container mt-4" style={{paddingTop: '90px'}} >
             <h2 className={"offerTitle"}>Create New Customer</h2>
             <form onSubmit={handleSubmit} className="filterBox">
+
                 <Row className="mb-3">
                     <Col>
-                        <Form.Group controlId="formFirstName" className="text-start">
+                        <Form.Group controlId="formName" className="text-start">
                             <Form.Label>First Name</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="firstName"
+                                name="name"
                                 placeholder="Enter First Name"
-                                value={formData.firstName}
+                                value={formData.name}
                                 onChange={handleChange}
                                 required
                                 className="form-control-sm"  // Per rendere il campo più stretto
@@ -96,54 +103,19 @@ function CustomerForm() {
                         </Form.Group>
                     </Col>
                     <Col>
-                        <Form.Group controlId="formLastName" className="text-start">
+                        <Form.Group controlId="formSurname" className="text-start">
                             <Form.Label>Last Name</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="lastName"
+                                name="surname"
                                 placeholder="Enter Last Name"
-                                value={formData.lastName}
+                                value={formData.surname}
                                 onChange={handleChange}
                                 required
                                 className="form-control-sm"
                             />
                         </Form.Group>
                     </Col>
-                </Row>
-
-                <Row className="mb-3">
-                    <Col>
-                        <Form.Group controlId="formEmail" className="text-start">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type="email"
-                                name="email"
-                                placeholder="Enter Email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-                    </Col>
-
-                    <Col>
-                        <Form.Group controlId="formAddress" className="text-start">
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="address"
-                                placeholder="Enter Address"
-                                value={formData.address}
-                                onChange={handleChange}
-                                required
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-                    </Col>
-                </Row>
-
-                <Row className="mb-3">
                     <Col>
                         <Form.Group controlId="formSSN" className="text-start">
                             <Form.Label>SSN</Form.Label>
@@ -158,55 +130,10 @@ function CustomerForm() {
                             />
                         </Form.Group>
                     </Col>
-
-                    <Col>
-                        <Form.Group controlId="formTelephone" className="text-start">
-                            <Form.Label>Telephone</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="telephone"
-                                placeholder="Enter Telephone"
-                                value={formData.telephone}
-                                onChange={handleChange}
-                                required
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-                    </Col>
                 </Row>
 
                 <Row className="mb-3">
-                    <Col>
-                        <Form.Group controlId="formCategory" className="text-start">
-                            <Form.Label>Category</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="category"
-                                value={formData.category}
-                                disabled
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-                    </Col>
-
-                    <Col>
-                        <Form.Group controlId="formJobOffer" className="text-start">
-                            <Form.Label>Job Offer</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="jobOffer"
-                                placeholder="Enter Job Offer"
-                                value={formData.jobOffer}
-                                onChange={handleChange}
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-
-                    </Col>
-                </Row>
-
-                <Row className="mb-3">
-                    <Col>
+                    <Col md={8}>
                         <Form.Group controlId="formNotes" className="text-start">
                             <Form.Label>Notes</Form.Label>
                             <Form.Control
@@ -220,24 +147,133 @@ function CustomerForm() {
                             />
                         </Form.Group>
                     </Col>
-
-                    <Col>
-                        <Form.Group controlId="formReplacementHistory" className="text-start">
-                            <Form.Label>Replacement History</Form.Label>
+                    <Col md={4}>
+                        <Form.Group controlId="formCategory" className="text-start">
+                            <Form.Label>Category</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="replacementHistory"
-                                placeholder="Enter Replacement History"
-                                value={formData.replacementHistory}
-                                onChange={handleChange}
+                                name="category"
+                                value={formData.category}
+                                disabled
                                 className="form-control-sm"
                             />
                         </Form.Group>
                     </Col>
                 </Row>
 
+                <Row className="mb-3">
+                    <Col>
+                        <Form.Group controlId="formTelephone" className="text-start">
+                            <Form.Label className="d-block">Telephone</Form.Label>
+                            {phoneNumbers.map((number, index) => (
+                                <div key={index} className="mb-3">
+                                    <div className="input-group">
+                                        <Form.Control
+                                            type="text"
+                                            name="telephone"
+                                            placeholder={`Enter Telephone ${index + 1}`}
+                                            value={number}
+                                            onChange={(e) => handlePhoneNumberChange(index, e.target.value)}
+                                            required
+                                            className="form-control-sm"
+                                        />
+                                        <button
+                                            type="button"
+                                            className="btn btn-danger"
+                                            onClick={() => removePhoneNumber(index)}
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                            <div className="d-flex justify-content-center">
+                                <button
+                                    type="button"
+                                    className="btn btn-success mb-3"
+                                    onClick={addPhoneNumber}
+                                >
+                                    Add Phone Number
+                                </button>
+                            </div>
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlId="formEmail" className="text-start">
+                            <Form.Label className="d-block">Email</Form.Label>
+                            {emailAddress.map((email, index) => (
+                                <div key={index} className="mb-3">
+                                    <div className="input-group">
+                                        <Form.Control
+                                            type="text"
+                                            name="email"
+                                            placeholder={`Enter Email ${index + 1}`}
+                                            value={email}
+                                            onChange={(e) => handleEmailAddressChange(index, e.target.value)}
+                                            required
+                                            className="form-control-sm"
+                                        />
+                                        <button
+                                            type="button"
+                                            className="btn btn-danger"
+                                            onClick={() => removeEmailAddress(index)}
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                            <div className="d-flex justify-content-center">
+                                <button
+                                    type="button"
+                                    className="btn btn-success mb-3"
+                                    onClick={addEmailAddress}
+                                >
+                                    Add Email Address
+                                </button>
+                            </div>
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group controlId="formAddress" className="text-start">
+                            <Form.Label className="d-block">Address</Form.Label>
+                            {addressInfo.map((number, index) => (
+                                <div key={index} className="mb-3">
+                                    <div className="input-group">
+                                        <Form.Control
+                                            type="text"
+                                            name="address"
+                                            placeholder={`Enter Address ${index + 1}`}
+                                            value={number}
+                                            onChange={(e) => handleAddressInfoChange(index, e.target.value)}
+                                            required
+                                            className="form-control-sm"
+                                        />
+                                        <button
+                                            type="button"
+                                            className="btn btn-danger"
+                                            onClick={() => removeAddressInfo(index)}
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                            <div className="d-flex justify-content-center">
+                                <button
+                                    type="button"
+                                    className="btn btn-success mb-3"
+                                    onClick={addAddressInfo}
+                                >
+                                    Add Address
+                                </button>
+                            </div>
+                        </Form.Group>
+                    </Col>
+                </Row>
+
                 <Button variant="primary" type="submit" className="custom-button">
-                    Submit
+                    Save
                 </Button>
             </form>
         </div>

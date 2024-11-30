@@ -1,0 +1,69 @@
+
+//@no-log
+GET http://localhost:8082/API/contacts
+
+###
+
+//@no-log
+POST http://localhost:8082/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Massimo",
+  "surname": "Porcheddu",
+  "snnCode": "MMPP",
+  "category": "Unknown",
+  "address": "Via Leonardo",
+  "email": "massimo@gmail.com",
+  "telephone": "3881111111"
+}
+
+###
+
+//@no-log
+POST http://localhost:8082/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Luca",
+  "surname": "Sturaro",
+  "snnCode": "LLSS",
+  "category": "Unknown",
+  "address": "Via Michelangelo",
+  "email": "luca@gmail.com",
+  "telephone": "3882222222"
+}
+
+###
+
+//@no-log
+POST http://localhost:8082/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Miriam",
+  "surname": "Ivaldi",
+  "snnCode": "MMII",
+  "category": "Unknown",
+  "address": "Via Raffaello",
+  "email": "miriam@gmail.com",
+  "telephone": "3883333333"
+}
+
+###
+
+//@no-log
+POST http://localhost:8082/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Paolo",
+  "surname": "Mucilli",
+  "snnCode": "PPMM",
+  "category": "Unknown",
+  "address": "Via Donatello",
+  "email": "paolo@gmail.com",
+  "telephone": "3884444444"
+}
+
+###

@@ -74,21 +74,23 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         ): List<CustomerDetailDTO>{
 
         val cb: CriteriaBuilder = entityManager.criteriaBuilder
-
         val cqContact: CriteriaQuery<Contact> = cb.createQuery(Contact::class.java)
         val rootContact: Root<Contact> = cqContact.from(Contact::class.java)
 
+        //prepare predicates list
         val predicates = mutableListOf<Predicate>()
 
         if (!name.isNullOrBlank()) {
-            predicates.add(cb.equal(rootContact.get<String>("name"), name))
+            predicates.add(cb.like(cb.lower(rootContact.get<String>("name")), "${name.lowercase()}%"))
         }
         if (!surname.isNullOrBlank()) {
-            predicates.add(cb.equal(rootContact.get<String>("surname"), surname))
+            predicates.add(cb.like(cb.lower(rootContact.get<String>("surname")), "${surname.lowercase()}%"))
         }
+
         if (!ssnCode.isNullOrBlank()) {
-            predicates.add(cb.equal(rootContact.get<String>("ssnCode"), ssnCode))
+            predicates.add(cb.like(cb.lower(rootContact.get<String>("ssnCode")), "${ssnCode.lowercase()}%"))
         }
+
         if (category != null) {
             val categoryPredicates = when (category) {
                 Category.Customer -> listOf(
@@ -111,29 +113,38 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             predicates.add(cb.or(*categoryPredicates.toTypedArray()))
         }
         if (!address.isNullOrBlank()) {
-            val joinWithAddress: Join<Contact, Address> = rootContact.join("addresses", JoinType.INNER)
-            predicates.add(cb.equal(joinWithAddress.get<String>("address"), address))
+            val joinWithAddress: Join<Contact, Address> = rootContact.join("address", JoinType.INNER)
+            predicates.add(cb.like(cb.lower(joinWithAddress.get<String>("address")), "${address.lowercase()}%"))
+            //predicates.add(cb.equal(joinWithAddress.get<String>("address"), address))
         }
         if (!email.isNullOrBlank()) {
-            val joinWithEmail: Join<Contact, Email> = rootContact.join("emails", JoinType.INNER)
-            predicates.add(cb.equal(joinWithEmail.get<String>("emailAddress"), email))
+            val joinWithEmail: Join<Contact, Email> = rootContact.join("email", JoinType.INNER)
+            predicates.add(cb.like(cb.lower(joinWithEmail.get<String>("email")), "${email.lowercase()}%"))
+            //predicates.add(cb.equal(joinWithEmail.get<String>("email"), email))
         }
         if (!telephone.isNullOrBlank()) {
-            val joinWithTelephone: Join<Contact, Telephone> = rootContact.join("telephones", JoinType.INNER)
-            predicates.add(cb.equal(joinWithTelephone.get<String>("telephoneNumber"), telephone))
+            val joinWithTelephone: Join<Contact, Telephone> = rootContact.join("telephone", JoinType.INNER)
+            predicates.add(cb.like(cb.lower(joinWithTelephone.get<String>("telephone")), "${telephone.lowercase()}%"))
+            //predicates.add(cb.equal(joinWithTelephone.get<String>("telephoneNumber"), telephone))
         }
 
-        // Combine all filters in AND
-        cqContact.where(*predicates.toTypedArray())
+        // Combine all filters
+        if (predicates.isNotEmpty()) {
+            cqContact.where(*predicates.toTypedArray())
+        }
+
+        // Set order
         cqContact.orderBy(cb.asc(rootContact.get<Long>("contactId")))
 
+        // Create the query
         val query = entityManager.createQuery(cqContact)
         query.firstResult = page * limit
-        query.maxResults = page
+        query.maxResults = limit  // Limitiamo il numero di risultati
 
-        logger.info("Massimo {}", query.resultList);
+        // execute the query anf get results
+        val resultList = query.resultList
 
-        return query.resultList.map { contact ->
+        return resultList.map { contact ->
             // Creazione manuale del DTO
             val tmpDTO = CustomerDetailDTO(
                 contactId =  contact.contactId,
@@ -197,48 +208,60 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         dto: ContactCreateDTO
     ) : ContactDTO {
 
-        //Check if an email already exists, otherwise create a new one.
-        var eEmail = emailRepository.findIdByEmail(dto.email?: "")
-        if(eEmail == null){
-            eEmail = Email()
-            eEmail.email = dto.email?: ""
-            emailRepository.save(eEmail)
-            logger.info("New email created")
-        }else{
-            logger.info("Email already exist")
-        }
-
-        //Check if an address already exists, otherwise create a new one.
-        var eAddress = addressRepository.findIdByAddress(dto.address?: "")
-        if(eAddress == null){
-            eAddress = Address()
-            eAddress.address = dto.address?: ""
-            addressRepository.save(eAddress)
-            logger.info("New address created")
-        }else{
-            logger.info("Address already exist")
-        }
-
-        //Check if a Telephone already exists, otherwise create a new one.
-        var eTelephone = telephoneRepository.findIdByTelephone(dto.telephone?: "")
-        if(eTelephone == null){
-            eTelephone = Telephone()
-            eTelephone.telephone = dto.telephone?: ""
-            telephoneRepository.save(eTelephone)
-            logger.info("New telephone created")
-        }else{
-            logger.info("Telephone already exist")
-        }
-
-        //Finally crate the new contact and add email,address and telephone
+        //Crate the new contact and add email,address and telephone
         val eContact = Contact()
         eContact.name = dto.name
         eContact.surname = dto.surname
         eContact.ssnCode = dto.ssnCode ?: ""
         eContact.category = dto.category
-        eContact.addEmail(eEmail)
-        eContact.addAddress(eAddress)
-        eContact.addTelephone(eTelephone)
+
+        contactRepository.save(eContact)
+
+        //Check if every email exist or not
+        var emailsToSave: MutableList<Email> = mutableListOf()
+        dto.email?.forEach { emailString ->
+            // Check if the email already exists
+            var eEmail = emailRepository.findIdByEmail(emailString)
+            if (eEmail == null) {
+                eEmail = Email()
+                eEmail.email = emailString
+                emailRepository.save(eEmail)
+                logger.info("New email created: $emailString")
+            } else {
+                logger.info("Email already exists: $emailString")
+            }
+            eContact.addEmail(eEmail)
+        }
+
+        //Check if every address exist or not
+        dto.address?.forEach { addressString ->
+            // Check if the email already exists
+            var eAddress = addressRepository.findIdByAddress(addressString)
+            if (eAddress == null) {
+                eAddress = Address()
+                eAddress.address = addressString
+                addressRepository.save(eAddress)
+                logger.info("New address created: $addressString")
+            } else {
+                logger.info("Address already exist: $addressString")
+            }
+            eContact.addAddress(eAddress)
+        }
+
+        //Check if every telephone exist or not
+        dto.telephone?.forEach { telephoneString ->
+            // Check if the email already exists
+            var eTelephone = telephoneRepository.findIdByTelephone(telephoneString)
+            if (eTelephone == null) {
+                eTelephone = Telephone()
+                eTelephone.telephone = telephoneString
+                telephoneRepository.save(eTelephone)
+                logger.info("New telephone created: $telephoneString")
+            } else {
+                logger.info("Telephone already exist: $telephoneString")
+            }
+            eContact.addTelephone(eTelephone)
+        }
 
         val contactDTO = contactRepository.save(eContact).toDto()
 

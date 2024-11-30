@@ -26,7 +26,6 @@ class ContactController(private val contactServices: ContactServices) {
 
     @GetMapping("/customers", "/customers/")
     fun getContactsAreCustomer(
-
         @RequestParam("name", required = false) name: String?,
         @RequestParam("surname", required = false) surname: String?,
         @RequestParam("category", required = false) category: Category?,
@@ -38,7 +37,7 @@ class ContactController(private val contactServices: ContactServices) {
         @RequestParam("page", defaultValue = "0")  @Min(value = 0) page: Int,
         @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int
     ) : ResponseEntity<List<CustomerDetailDTO>> {
-
+        //println("Entrando");
         val contacts = contactServices.getContactsAreCustomer(
             name,
             surname,
