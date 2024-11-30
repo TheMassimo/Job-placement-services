@@ -42,7 +42,7 @@ async function TEST(filters, pagination) {
     }
 }
 
-async function getConstactsAreCustomer(filters, pagination){
+async function GetConstactsAreCustomer(filters, pagination){
     const response = await fetch(
         generateUrl(`${URL_CONTACTS}/customers`, filters, pagination), {
             method: 'GET',
@@ -61,7 +61,8 @@ async function getConstactsAreCustomer(filters, pagination){
 const ContactAPI = {
     GetContacts,
     TEST,
-    getConstactsAreCustomer
+    GetConstactsAreCustomer,
+    PostContactCustomer,
 }
 
 export default ContactAPI

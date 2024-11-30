@@ -8,7 +8,7 @@ import ContactAPI from "../api/crm/ContactAPI.js";
 import {CustomersFilter} from "../api/crm/filters/CustomersFilter.ts";
 
 
-function Filters(props){
+function Filters(props) {
     const setFilters = props.setFilters;
     const [formFilters, setFormFilters] = useState(new CustomersFilter(null, null, null, null, null, null, null, 0));
 
@@ -43,7 +43,7 @@ function Filters(props){
     }
 
     const handleClear = (event) => {
-        setFormFilters( new CustomersFilter(null, null, null, null, null, null, null, 0) );
+        setFormFilters(new CustomersFilter(null, null, null, null, null, null, null, 0));
         setFilters(null);
     }
 
@@ -100,20 +100,20 @@ function Filters(props){
                 </Button>
             </div>
         </>
-        );
-        }
+    );
+}
 
-        function ViewCustomers(props) {
-                                          const navigate = useNavigate();
-                                          const [customers, setCustomers] = useState([]);
-                                          const [filters, setFilters] = useState(new CustomersFilter());
-                                          const [currentPage, setCurrentPage] = useState(1);
+function ViewCustomers(props) {
+    const navigate = useNavigate();
+    const [customers, setCustomers] = useState([]);
+    const [filters, setFilters] = useState(new CustomersFilter());
+    const [currentPage, setCurrentPage] = useState(1);
 
     //USE Effect
     useEffect(() => {
-        ContactAPI.getConstactsAreCustomer(filters, currentPage).then((res) => {
-             setCustomers(res);
-             console.log("Massimo");
+        ContactAPI.GetConstactsAreCustomer(filters, currentPage).then((res) => {
+            setCustomers(res);
+            console.log("Massimo");
         }).catch((err) => console.log(err))
     }, [filters, currentPage]);
 
@@ -134,14 +134,14 @@ function Filters(props){
 
 
     return (
-        <div style={{ paddingTop: '90px', display: 'flex', flexDirection: 'row' }}>
+        <div style={{paddingTop: '90px', display: 'flex', flexDirection: 'row'}}>
             {/* Filtri */}
-            <div style={{ width: '30%', padding: '20px' }} className="filterBox">
-                <Filters setFilters={setFilters} />
+            <div style={{width: '30%', padding: '20px'}} className="filterBox">
+                <Filters setFilters={setFilters}/>
             </div>
 
             {/* Tabella */}
-            <div style={{ width: '70%', padding: '20px' }}>
+            <div style={{width: '70%', padding: '20px'}}>
                 <h2>Customer List</h2>
 
                 {/* Ordinamento per cognome */}
