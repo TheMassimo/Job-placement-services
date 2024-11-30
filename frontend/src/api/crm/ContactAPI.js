@@ -1,6 +1,7 @@
 import {generateUrl} from "../utils/urlBuilder.js"
 import {Contact} from "./entities/Contact.ts"
 import {CustomerDetails} from "./entities/CustomerDetails.ts"
+import {ProfessionalDetails} from "./entities/ProfessionalDetails.ts"
 import {Address} from "./entities/Address.ts"
 import {Email} from "./entities/Email.ts"
 import {Telephone} from "./entities/Telephone.ts"
@@ -58,10 +59,27 @@ async function getConstactsAreCustomer(filters, pagination){
     }
 }
 
+async function getConstactsAreProfessional(filters, pagination){
+    const response = await fetch(
+        generateUrl(`${URL_CONTACTS}/professionals`, filters, pagination), {
+            method: 'GET',
+            credentials: 'include'
+        }
+    )
+    const obj = await response.json()
+
+    if (response.ok) {
+        return obj.map((e) => ProfessionalDetails.fromJsonObject(e))
+    } else {
+        throw obj
+    }
+}
+
 const ContactAPI = {
     GetContacts,
     TEST,
-    getConstactsAreCustomer
+    getConstactsAreCustomer,
+    getConstactsAreProfessional
 }
 
 export default ContactAPI

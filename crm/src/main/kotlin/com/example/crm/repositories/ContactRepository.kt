@@ -15,4 +15,6 @@ interface ContactRepository: JpaRepository<Contact, Long> {
     @EntityGraph(attributePaths = ["customer"])
     fun findByCustomerIsNotNull(pageable: Pageable): Page<Contact>
 
+    @EntityGraph(attributePaths = ["professional"])
+    fun findByProfessionalIsNotNull(pageable: Pageable): Page<Contact>
 }

@@ -15,6 +15,7 @@ import com.example.crm.repositories.EmailRepository
 import com.example.crm.repositories.TelephoneRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.transaction.annotation.Transactional
+import com.example.crm.services.ProfessionalEmployment
 
 
 @Service
@@ -81,6 +82,39 @@ class ContactServicesImpl(private val contactRepository: ContactRepository,
         logger.info("Contacts that are also Customer fetched successfully")
         return ritorno
     }
+
+    override fun getContactsAreProfessional(page: Int,
+                                        limit: Int): List<ProfessionalDetailDTO>{
+
+        val pageable = PageRequest.of(page, limit)
+        val contacts = contactRepository.findByProfessionalIsNotNull(pageable)
+
+
+        // Lista per contenere i DTO creati
+        val ritorno: List<ProfessionalDetailDTO> = contacts.content.map { contact ->
+            // Creazione manuale del DTO
+            val tmpDTO = ProfessionalDetailDTO(
+                contactId =  contact.contactId,
+                name = contact.name,
+                surname = contact.surname,
+                category = contact.category,
+                email = contact.email.map { it.toDto() },
+                address = contact.address.map{ it.toDto()},
+                ssnCode = contact.ssnCode,
+                telephone = contact.telephone.map { it.toDto() },
+                employment = contact.professional?.employment ?: ProfessionalEmployment.UNEMPLOYED,
+                dailyRate = contact.professional?.dailyRate ?: 0.0,
+                skills = contact.professional?.skills?.map { it.toDto() } ?: emptyList(),
+                notes = contact.professional?.notes ?: "No notes", // Gestisce il caso in cui `customer` sia null
+            )
+            tmpDTO
+        }
+
+
+        logger.info("Contacts that are also Professional fetched successfully")
+        return ritorno
+    }
+
 
     override fun getContactById(id: Long): ContactDTO {
         val contact = contactRepository.findByIdOrNull(id)

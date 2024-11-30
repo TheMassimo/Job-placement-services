@@ -9,6 +9,8 @@ interface ContactServices {
 
     fun getContactsAreCustomer(page: Int, limit: Int): List<CustomerDetailDTO>
 
+    fun getContactsAreProfessional(page: Int, limit: Int): List<ProfessionalDetailDTO>
+
     fun getContactById(id: Long): ContactDTO
 
     fun create(dto: ContactCreateDTO): ContactDTO
