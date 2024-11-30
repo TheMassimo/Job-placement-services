@@ -84,11 +84,9 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         if (!surname.isNullOrBlank()) {
             predicates.add(cb.like(cb.lower(rootContact.get<String>("surname")), "${surname.lowercase()}%"))
         }
-
         if (!ssn.isNullOrBlank()) {
             predicates.add(cb.like(cb.lower(rootContact.get<String>("ssn")), "${ssn.lowercase()}%"))
         }
-
         if (category != null) {
             val categoryPredicates = when (category) {
                 Category.Customer -> listOf(

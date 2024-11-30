@@ -11,11 +11,11 @@ Content-Type: application/json
 {
   "name": "Massimo",
   "surname": "Porcheddu",
-  "snnCode": "MMPP",
+  "ssn": "MMPP",
   "category": "Unknown",
-  "address": "Via Leonardo",
-  "email": "massimo@gmail.com",
-  "telephone": "3881111111"
+  "address": ["Via Leonardo"],
+  "email": ["massimo@gmail.com"],
+  "telephone": ["3881111111"]
 }
 
 ###
@@ -27,11 +27,11 @@ Content-Type: application/json
 {
   "name": "Luca",
   "surname": "Sturaro",
-  "snnCode": "LLSS",
+  "ssn": "LLSS",
   "category": "Unknown",
-  "address": "Via Michelangelo",
-  "email": "luca@gmail.com",
-  "telephone": "3882222222"
+  "address": ["Via Michelangelo"],
+  "email": ["luca@gmail.com"],
+  "telephone": ["3882222222"]
 }
 
 ###
@@ -43,11 +43,11 @@ Content-Type: application/json
 {
   "name": "Miriam",
   "surname": "Ivaldi",
-  "snnCode": "MMII",
+  "ssn": "MMII",
   "category": "Unknown",
-  "address": "Via Raffaello",
-  "email": "miriam@gmail.com",
-  "telephone": "3883333333"
+  "address": ["Via Raffaello"],
+  "email": ["miriam@gmail.com"],
+  "telephone": ["3883333333"]
 }
 
 ###
@@ -59,11 +59,11 @@ Content-Type: application/json
 {
   "name": "Paolo",
   "surname": "Mucilli",
-  "snnCode": "PPMM",
+  "ssn": "PPMM",
   "category": "Unknown",
-  "address": "Via Donatello",
-  "email": "paolo@gmail.com",
-  "telephone": "3884444444"
+  "address": ["Via Donatello"],
+  "email": ["paolo@gmail.com"],
+  "telephone": ["3884444444"]
 }
 
 ###
