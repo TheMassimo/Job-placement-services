@@ -77,6 +77,7 @@ class ProfessionalServicesImpl(private val professionalRepository: ProfessionalR
         if (existingProfessional != null) {
             throw BadParameterException("A professional already exists for this contact")
         } else {
+
             p.employment = ProfessionalEmployment.UNEMPLOYED
             p.geographicalInfo = dto.geographicalInfo
             p.dailyRate = dto.dailyRate

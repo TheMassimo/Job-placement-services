@@ -1,2 +1,4 @@
 2024-11-30T01:16:33.113+01:00  WARN 42056 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12m2s505ms483µs).
 2024-11-30T12:23:35.070+01:00  WARN 42056 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10h24m30s725ms188µs300ns).
+2024-11-30T12:27:02.246+01:00  INFO 42056 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contacts that are also Professional fetched successfully
+2024-11-30T12:27:02.246+01:00  INFO 42056 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts that are also Professional fetched successfully
