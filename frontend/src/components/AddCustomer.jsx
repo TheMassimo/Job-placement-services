@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import ContactAPI from "../api/crm/ContactAPI.js";
 
 function CustomerForm() {
     const [phoneNumbers, setPhoneNumbers] = useState([]);
@@ -8,11 +9,12 @@ function CustomerForm() {
     const [formData, setFormData] = useState({
         name: '',
         surname: '',
-        email: '',
-        address: '',
         ssn: '',
         category: 'Customer', // Predefinito e non modificabile
         notes: '',
+        telephone: [],
+        email: [],
+        address: []
     });
 
     // Gestione dei cambiamenti nei campi del form
@@ -26,10 +28,15 @@ function CustomerForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-        }catch (e) {
-            
-        }
+
+        const all = formData;
+        formData.telephone = phoneNumbers;
+        formData.email = emailAddress;
+        formData.address = addressInfo;
+
+        ContactAPI.AddCustomer(formData).then((res) => {
+            console.log("Add result ->", res);
+        }).catch((err) => console.log(err))
     };
 
 

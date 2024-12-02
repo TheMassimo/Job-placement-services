@@ -73,6 +73,7 @@ class ContactController(private val contactServices: ContactServices) {
     fun uploadContact(
         @RequestBody dto: ContactCreateDTO
     ): ContactDTO {
+        println("test {$dto}");
         return contactServices.create(dto)
     }
 

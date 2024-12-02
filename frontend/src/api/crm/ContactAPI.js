@@ -18,8 +18,7 @@ async function GetContacts(filters, pagination) {
     const obj = await response.json()
 
     if (response.ok) {
-        //return obj.map((e) => Contact.fromJsonObject(e))
-        return obj.map((e) => ({ Prova: "aaa", Test: "bbb" }))
+        return obj.map((e) => Contact.fromJsonObject(e))
     } else {
         throw obj
     }
@@ -59,6 +58,24 @@ async function GetConstactsAreCustomer(filters, pagination){
     }
 }
 
+async function AddCustomer(contact){
+    const response = await fetch(
+        generateUrl(`${URL_CONTACTS}`, null, null), {
+            method: 'POST',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'/*, 'X-XSRF-TOKEN': xsrfToken*/},
+            body: JSON.stringify(contact)
+        }
+    )
+    const obj = await response.json()
+
+    if (response.ok) {
+        return CustomerDetails.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
 async function GetConstactsAreProfessional(filters, pagination){
     const response = await fetch(
         generateUrl(`${URL_CONTACTS}/professionals`, filters, pagination), {
@@ -79,6 +96,7 @@ const ContactAPI = {
     GetContacts,
     TEST,
     GetConstactsAreCustomer,
+    AddCustomer,
     GetConstactsAreProfessional
 }
 
