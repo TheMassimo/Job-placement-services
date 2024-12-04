@@ -300,6 +300,12 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         dto: ContactCreateDTO
     ) : ContactDTO {
 
+        //Controllo che non esista già un contatto con q uell ssn
+        if (dto.ssn != null && contactRepository.existsBySsn(dto.ssn)) {
+            logger.error("Contact with SSN '${dto.ssn}' already exists")
+            throw BadParameterException("Contact with SSN '${dto.ssn}' already exists")
+        }
+
         //Crate the new contact and add email,address and telephone
         val eContact = Contact()
         eContact.name = dto.name

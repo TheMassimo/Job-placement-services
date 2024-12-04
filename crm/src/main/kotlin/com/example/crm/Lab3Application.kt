@@ -9,3 +9,4 @@ class Lab3Application
 fun main(args: Array<String>) {
 	runApplication<Lab3Application>(*args)
 }
+

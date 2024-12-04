@@ -1,3 +1,5 @@
+import {Skill} from "./Skill";
+
 export enum JobOfferStatus {
     CREATED,
     ABORTED,
@@ -11,7 +13,7 @@ interface JobOfferRawData {
     jobOfferId: number | null
     description: string
     status: JobOfferStatus | null
-    requiredSkills: string[]
+    requiredSkills: Skill[]
     duration: number
     offerValue: number | null
     notes: string | null
@@ -21,7 +23,7 @@ export class JobOffer implements JobOfferRawData {
     jobOfferId: number | null
     description: string
     status: JobOfferStatus | null
-    requiredSkills: string[]
+    requiredSkills: Skill[]
     duration: number
     offerValue: number | null
     notes: string | null
@@ -30,7 +32,7 @@ export class JobOffer implements JobOfferRawData {
         jobOfferId: number | null,
         description: string,
         status: JobOfferStatus | null,
-        requiredSkills: string[],
+        requiredSkills: Skill[],
         duration: number,
         offerValue: number | null,
         notes: string | null,

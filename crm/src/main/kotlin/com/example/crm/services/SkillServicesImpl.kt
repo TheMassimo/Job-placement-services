@@ -5,6 +5,7 @@ import com.example.crm.dtos.SkillCreateDTO
 import com.example.crm.dtos.SkillDTO
 import com.example.crm.dtos.toDto
 import com.example.crm.entities.Skill
+import com.example.crm.exeptions.BadParameterException
 import com.example.crm.exeptions.CustomerNotFoundException
 import com.example.crm.exeptions.ElementNotFoundException
 import com.example.crm.repositories.SkillRepository
@@ -21,16 +22,20 @@ class SkillServicesImpl(private val skillRepository: SkillRepository
     override fun create(
         dto: SkillCreateDTO
     ): SkillDTO {
-        val s = Skill()
+        // Controlla se esiste già una skill con lo stesso nome
+        if (skillRepository.existsBySkill(dto.name)) {
+            logger.error("Skill with name '${dto.name}' already exists")
+            throw BadParameterException("Skill with name '${dto.name}' already exists")
+        }
 
+        val s = Skill()
         s.skill = dto.name
 
         val sDTO = skillRepository.save(s).toDto()
-        logger.info("Skill successfully created")
+        logger.info("Skill successfully created with name '${dto.name}'")
 
-        return  sDTO
+        return sDTO
     }
-
     override fun getAllSkills(): List<SkillDTO> {
         return skillRepository.findAll().map { it.toDto() }
     }

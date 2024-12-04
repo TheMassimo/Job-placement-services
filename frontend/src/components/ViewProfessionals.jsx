@@ -174,7 +174,7 @@ function ViewProfessionals() {
                             <td>{professional.surname}</td>
                             <td>{professional.ssn}</td>
                             <td>{professional.employment}</td>
-                            <td>{professional.skills?.join(', ')}</td>
+                            <td>{professional.skills?.map(skill => skill.skill).join(', ')}</td>
                         </tr>
                     ))}
                     </tbody>

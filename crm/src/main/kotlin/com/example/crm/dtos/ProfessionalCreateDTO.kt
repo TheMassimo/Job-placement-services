@@ -5,5 +5,5 @@ data class ProfessionalCreateDTO (
     val dailyRate: Double,
     val contactId: Long,
     val notes: String,
-    val skills: List<SkillDTO>?,
+    val skills: List<Long>?,
 )
