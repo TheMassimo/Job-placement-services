@@ -1,14 +1,16 @@
 package com.example.crm.dtos
 
-import com.example.crm.services.JobStatus
+
 import com.example.crm.entities.JobOffer
+import com.example.crm.entities.JobStatus
+import com.example.crm.entities.Skill
 
 
 data class JobOfferDTO (
     val jobOfferId: Long,
     val description: String,
     val status: JobStatus,
-    val requiredSkills: String,
+    val requiredSkills: MutableSet<Skill>,
     val duration: Double,
     val offerValue: Double,
     val notes: String?,

@@ -1,5 +1,6 @@
 package com.example.crm.entities
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -7,7 +8,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.ManyToMany
 
 @Entity
-@JsonIgnoreProperties(value = ["professional"])
+@JsonIgnoreProperties(value = ["jobOffer","professional"])
 class Skill {
     @Id
     @GeneratedValue
@@ -16,4 +17,7 @@ class Skill {
 
     @ManyToMany
     var professional: MutableSet<Professional> = mutableSetOf()
+
+    @ManyToMany
+    var jobOffer: MutableSet<JobOffer> = mutableSetOf()
 }
