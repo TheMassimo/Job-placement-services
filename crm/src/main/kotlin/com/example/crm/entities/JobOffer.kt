@@ -1,6 +1,5 @@
 package com.example.crm.entities
 
-import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 
 enum class JobStatus {
@@ -28,6 +27,7 @@ enum class JobStatus {
     }
 }
 
+
 @Entity
 class JobOffer {
     @Id
@@ -36,6 +36,7 @@ class JobOffer {
 
     lateinit var description: String
     var status: JobStatus = JobStatus.CREATED
+    lateinit var requiredSkills: String
     lateinit var notes: String
     var duration: Double = 0.0
     var offerValue: Double = 0.0

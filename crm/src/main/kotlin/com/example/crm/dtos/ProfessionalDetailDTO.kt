@@ -2,7 +2,7 @@ package com.example.crm.dtos
 
 import com.example.crm.entities.Category
 import com.example.crm.entities.Contact
-import com.example.crm.services.ProfessionalEmployment
+import com.example.crm.entities.ProfessionalEmployment
 
 data class ProfessionalDetailDTO (
     val contactId: Long,

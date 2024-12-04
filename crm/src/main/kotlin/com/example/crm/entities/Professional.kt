@@ -1,7 +1,11 @@
 package com.example.crm.entities
-
-import com.example.crm.services.ProfessionalEmployment
 import jakarta.persistence.*
+
+enum class ProfessionalEmployment {
+    UNEMPLOYED,
+    BUSY,
+    EMPLOYED;
+}
 
 @Entity
 class Professional {
@@ -14,11 +18,11 @@ class Professional {
     lateinit var notes: String
     var dailyRate: Double = 0.0
 
-    @ManyToOne
-    var jobOfferProposal: JobOffer? = null
-
     @OneToOne
     var jobOffer: JobOffer? = null
+
+    @ManyToOne
+    var jobOfferProposal: JobOffer? = null
 
     @ManyToMany(mappedBy = "professional")
     var skills: MutableSet<Skill> = mutableSetOf()

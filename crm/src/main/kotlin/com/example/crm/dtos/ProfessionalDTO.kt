@@ -1,8 +1,9 @@
 package com.example.crm.dtos
 
 import com.example.crm.entities.Professional
+import com.example.crm.entities.ProfessionalEmployment
 import com.example.crm.entities.Skill
-import com.example.crm.services.ProfessionalEmployment
+
 
 
 data class ProfessionalDTO(

@@ -5,6 +5,7 @@ import com.example.crm.dtos.ProfessionalDTO
 import com.example.crm.dtos.SkillDTO
 import com.example.crm.dtos.toDto
 import com.example.crm.entities.Professional
+import com.example.crm.entities.ProfessionalEmployment
 import com.example.crm.entities.Skill
 import com.example.crm.exeptions.BadParameterException
 import com.example.crm.exeptions.ElementNotFoundException
