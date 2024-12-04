@@ -14,7 +14,7 @@ function Filters(props) {
     const setFilters = props.setFilters;
     const mode = props.mode;
     const setCurrentPage = props.setCurrentPage;
-    const [formFilters, setFormFilters] = useState(new ContactFilter(null, null, null, null, null, null, null, 0, null, null, null));
+    const [formFilters, setFormFilters] = useState(new ContactFilter(null, null, null, null, null, null, mode, null, null, null, null));
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -52,8 +52,9 @@ function Filters(props) {
     }
 
     const handleClear = (event) => {
-        setFormFilters(new ContactFilter(null, null, null, null, null, null, null, 0, null, null, null));
-        setFilters(null);
+        const tmpFilter = new ContactFilter(null, null, null, null, null, null, mode, null, null, null, null)
+        setFormFilters(tmpFilter);
+        setFilters(tmpFilter);
     }
 
     return (
@@ -124,13 +125,13 @@ function Filters(props) {
                 </>
             )}
             {mode==="Customer" && (
-                <Form.Group controlId="filterJobOffer" className="mb-2">
+                <Form.Group controlId="filterJobOffers" className="mb-2">
                     <Form.Label>Filter by Job Offer</Form.Label>
                     <Form.Control
                         type="number"
-                        name="jobOffer"
+                        name="jobOffers"
                         placeholder="Enter Job Offer Number"
-                        value={formFilters.JobOffer}
+                        value={formFilters.JobOffers}
                         onChange={handleFilterChange}
                     />
                 </Form.Group>
@@ -259,7 +260,7 @@ function CustomerCard(props) {
                         <span>SSN: {contact.ssn}</span>
                     </Col>
                     <Col className="text-center" xs={4}>
-                        <span>{/*contact.joOffers.length*/} job offers</span>
+                        <span>{contact.customer.jobOffers.length} job offers</span>
                     </Col>
                 </Row>
             </Card.Body>
@@ -317,7 +318,6 @@ function ViewContacts(props) {
 
     //USE Effect
     useEffect(() => {
-        console.log("FINAL filters: ", filters);
         ContactAPI.GetContacts(filters, new Pagination(currentPage, pageSize)).then((res) => {
             //get data
             setContacts(res);

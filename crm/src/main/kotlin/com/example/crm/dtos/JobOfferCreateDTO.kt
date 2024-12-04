@@ -1,6 +1,7 @@
 package com.example.crm.dtos
 
-class JobOfferCreateDTO (val description: String,
+class JobOfferCreateDTO (
+                         val description: String,
                          val requiredSkills: String,
                          val notes: String,
                          val duration: Double,

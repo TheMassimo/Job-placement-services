@@ -20,7 +20,7 @@ interface ContactServices {
         geographicalInfo:String?,
         pageNumber: Int,
         pageSize: Int
-    ): List<ContactDTO>
+    ): List<ContactDetailsDTO>
 
     fun getContactsAreCustomer(
         name:String?,

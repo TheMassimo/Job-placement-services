@@ -34,7 +34,7 @@ class ContactController(private val contactServices: ContactServices) {
             value = 1,
             message = "Page size not valid, value must be great or equal to 1"
         ) pageSize: Int = 20,
-    ) : ResponseEntity<List<ContactDTO>> {
+    ) : ResponseEntity<List<ContactDetailsDTO>> {
         val contacts = contactServices.getAllContacts(
             name,
             surname,

@@ -16,7 +16,6 @@ import com.example.crm.repositories.TelephoneRepository
 import org.hibernate.type.descriptor.jdbc.SmallIntJdbcType
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.transaction.annotation.Transactional
-import com.example.crm.services.ProfessionalEmployment
 import jakarta.persistence.EntityManager
 import jakarta.persistence.criteria.*
 
@@ -45,10 +44,14 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         geographicalInfo:String?,
         pageNumber: Int,
         pageSize: Int
-    ): List<ContactDTO> {
+    ): List<ContactDetailsDTO> {
         val cb: CriteriaBuilder = entityManager.criteriaBuilder
         val cqContact: CriteriaQuery<Contact> = cb.createQuery(Contact::class.java)
         val rootContact: Root<Contact> = cqContact.from(Contact::class.java)
+
+        // Forza il caricamento di customer e professional
+        rootContact.fetch<Contact, Customer>("customer", JoinType.LEFT)
+        rootContact.fetch<Contact, Professional>("professional", JoinType.LEFT)
 
         //prepare predicates list
         val predicates = mutableListOf<Predicate>()
@@ -70,17 +73,19 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             predicates.add(cb.like(cb.lower(joinWithEmail.get<String>("email")), "${email.lowercase()}%"))
             //predicates.add(cb.equal(joinWithEmail.get<String>("email"), email))
         }
+
         if (!address.isNullOrBlank()) {
             val joinWithAddress: Join<Contact, Address> = rootContact.join("address", JoinType.INNER)
             predicates.add(cb.like(cb.lower(joinWithAddress.get<String>("address")), "${address.lowercase()}%"))
             //predicates.add(cb.equal(joinWithAddress.get<String>("address"), address))
         }
+
         if (!telephone.isNullOrBlank()) {
             val joinWithTelephone: Join<Contact, Telephone> = rootContact.join("telephone", JoinType.INNER)
             predicates.add(cb.like(cb.lower(joinWithTelephone.get<String>("telephone")), "${telephone.lowercase()}%"))
             //predicates.add(cb.equal(joinWithTelephone.get<String>("telephoneNumber"), telephone))
         }
-        logger.info("category: {$category}, pageNumber:{$pageNumber}, pageSize{$pageSize}, predicates:{$predicates}");
+
         if (category != null) {
             val categoryPredicates = when (category) {
                 Category.Customer -> listOf(
@@ -103,23 +108,31 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             // Combine all filters in OR
             predicates.add(cb.or(*categoryPredicates.toTypedArray()))
         }
-        /*
+
         if (jobOffers != null) {
-            val joinWithJobOffers: Join<Contact, JobOffer> = rootContact.join("jobOffers", JoinType.LEFT)
+            // Join da Contact a Customer
+            val joinWithCustomer: Join<Contact, Customer> = rootContact.join("customer", JoinType.LEFT)
+
+            // Join da Customer a JobOffers
+            val joinWithJobOffers: Join<Customer, JobOffer> = joinWithCustomer.join("jobOffers", JoinType.LEFT)
+
+            // Conta i JobOffers
             val jobOfferCount = cb.count(joinWithJobOffers)
 
-            // Subquery to filter contacts with more than the specified number of job offers
+            // Subquery per filtrare Contact con più di un certo numero di JobOffers
             val subquery = cqContact.subquery(Long::class.java)
             val subqueryRoot = subquery.from(Contact::class.java)
-            val subqueryJoinWithJobOffers = subqueryRoot.join<Contact, JobOffer>("jobOffers", JoinType.LEFT)
+
+            // Join nel subquery
+            val subqueryJoinWithCustomer = subqueryRoot.join<Contact, Customer>("customer", JoinType.LEFT)
+            val subqueryJoinWithJobOffers = subqueryJoinWithCustomer.join<Customer, JobOffer>("jobOffers", JoinType.LEFT)
 
             subquery.select(cb.count(subqueryJoinWithJobOffers))
                 .where(cb.equal(subqueryRoot.get<Long>("contactId"), rootContact.get<Long>("contactId")))
 
-            // Predicate for the count of job offers
-            predicates.add(cb.greaterThan(subquery, 7))
+            // Usa `jobOffers` come soglia per il confronto
+            predicates.add(cb.greaterThanOrEqualTo(subquery, jobOffers.toLong()))
         }
-        */
 
         // Combine all filters
         if (predicates.isNotEmpty()) {
@@ -128,7 +141,6 @@ class ContactServicesImpl(private val entityManager: EntityManager,
 
         // Set order
         cqContact.orderBy(cb.asc(rootContact.get<Long>("contactId")))
-
 
         // Create the query
         val query = entityManager.createQuery(cqContact)
@@ -139,18 +151,8 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         val resultList = query.resultList
 
         return resultList.map { contact ->
-            // Creazione manuale del DTO
-            val tmpDTO = ContactDTO(
-                contactId =  contact.contactId,
-                name = contact.name,
-                surname = contact.surname,
-                category = contact.category,
-                email = contact.email.map { it.toDto() },
-                address = contact.address.map{ it.toDto()},
-                ssn = contact.ssn,
-                telephone = contact.telephone.map { it.toDto() }
-            )
-            tmpDTO
+            //logger.info("RESULT {$contact}");
+            contact.toDetailsDto()
         }
     }
 
