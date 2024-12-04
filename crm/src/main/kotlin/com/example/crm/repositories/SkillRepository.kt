@@ -7,4 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 @Repository
 interface SkillRepository: JpaRepository<Skill, Long> {
     fun findIdBySkill(skill: String): Skill?
+
+    fun existsBySkill(skill: String): Boolean
 }
+

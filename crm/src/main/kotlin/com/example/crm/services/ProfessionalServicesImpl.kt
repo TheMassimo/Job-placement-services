@@ -77,6 +77,14 @@ class ProfessionalServicesImpl(private val professionalRepository: ProfessionalR
         if (existingProfessional != null) {
             throw BadParameterException("A professional already exists for this contact")
         } else {
+            dto.skills?.forEach { skillId ->
+                val eSkill = skillRepository.findByIdOrNull(skillId)
+                    if (eSkill == null) {
+                        throw ElementNotFoundException("Skill with ID $skillId not found")
+                    } else {
+                        p.addSkill(eSkill)
+                    }
+            }
 
             p.employment = ProfessionalEmployment.UNEMPLOYED
             p.geographicalInfo = dto.geographicalInfo
@@ -85,7 +93,7 @@ class ProfessionalServicesImpl(private val professionalRepository: ProfessionalR
             p.notes = dto.notes
 
             val pDTO = professionalRepository.save(p).toDto()
-            logger.info("Professional successfully created")
+            logger.info("Professional successfully created }")
 
             return pDTO
         }
