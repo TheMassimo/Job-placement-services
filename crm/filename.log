@@ -385,3 +385,6 @@
 2024-12-04T15:57:24.321+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
 2024-12-04T15:58:19.931+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@4100f1f5]}
 2024-12-04T15:58:26.260+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@2ac4206b, org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@c3717ae]}
+2024-12-04T16:02:55.460+01:00  INFO 9260 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-04T16:02:55.639+01:00  INFO 9260 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-04T16:02:55.720+01:00  INFO 9260 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
