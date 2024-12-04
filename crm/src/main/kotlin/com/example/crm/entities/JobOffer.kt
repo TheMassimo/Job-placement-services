@@ -36,7 +36,6 @@ class JobOffer {
 
     lateinit var description: String
     var status: JobStatus = JobStatus.CREATED
-    lateinit var requiredSkills: String
     lateinit var notes: String
     var duration: Double = 0.0
     var offerValue: Double = 0.0

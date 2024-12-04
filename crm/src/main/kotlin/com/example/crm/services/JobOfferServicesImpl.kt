@@ -1,10 +1,7 @@
 package com.example.crm.services
 
 import com.example.crm.dtos.*
-import com.example.crm.entities.Customer
-import com.example.crm.entities.JobOffer
-import com.example.crm.entities.JobStatus
-import com.example.crm.entities.Professional
+import com.example.crm.entities.*
 import com.example.crm.exeptions.ContactNotFoundException
 import com.example.crm.exeptions.CustomerNotFoundException
 import com.example.crm.exeptions.ProfessionalNotFoundException
