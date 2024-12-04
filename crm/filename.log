@@ -1,17 +1,387 @@
-2024-12-02T03:03:31.696+01:00  WARN 28880 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h57m35s928ms36µs100ns).
-2024-12-02T06:05:30.372+01:00  WARN 28880 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h28s246ms345µs500ns).
-2024-12-02T10:45:13.278+01:00  WARN 28880 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h39m45s682ms655µs800ns).
-2024-12-02T13:09:00.112+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:09:00.318+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:10:36.559+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:10:40.699+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:10:42.158+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:10:47.187+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:10:48.563+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:10:57.942+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:10:59.335+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:10:59.490+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:10:59.695+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:11:05.491+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T13:11:05.555+01:00  INFO 28880 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contacts fetched successfully
-2024-12-02T15:27:40.422+01:00  WARN 28880 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h2m54s629ms912µs500ns).
+2024-12-04T09:14:32.776+01:00  INFO 17312 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 17312 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2024-12-04T09:14:32.789+01:00 DEBUG 17312 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-12-04T09:14:32.791+01:00  INFO 17312 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:14:32.875+01:00  INFO 17312 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2024-12-04T09:14:37.797+01:00  INFO 17312 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2024-12-04T09:14:37.806+01:00  INFO 17312 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2024-12-04T09:14:39.625+01:00  INFO 17312 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2024-12-04T09:14:39.625+01:00  INFO 17312 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2024-12-04T09:14:40.144+01:00  INFO 17312 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2024-12-04T09:14:43.330+01:00  INFO 17312 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-04T09:14:43.427+01:00  INFO 17312 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 10 JPA repository interfaces.
+2024-12-04T09:14:43.962+01:00  INFO 17312 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-12-04T09:14:43.982+01:00  INFO 17312 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-04T09:14:43.983+01:00  INFO 17312 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-12-04T09:14:44.062+01:00  INFO 17312 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-04T09:14:44.063+01:00  INFO 17312 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3167 ms
+2024-12-04T09:14:44.157+01:00  INFO 17312 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-04T09:14:44.367+01:00  INFO 17312 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7336fd8f
+2024-12-04T09:14:44.368+01:00  INFO 17312 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-04T09:14:44.477+01:00  INFO 17312 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-04T09:14:44.579+01:00  INFO 17312 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-12-04T09:14:44.634+01:00  INFO 17312 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-04T09:14:44.920+01:00  INFO 17312 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-04T09:14:46.045+01:00  INFO 17312 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-04T09:14:46.256+01:00  INFO 17312 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-04T09:14:47.165+01:00  WARN 17312 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-04T09:14:47.421+01:00  INFO 17312 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7a14d8a4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@20673498, org.springframework.security.web.context.SecurityContextHolderFilter@7a087132, org.springframework.security.web.header.HeaderWriterFilter@324afa73, org.springframework.web.filter.CorsFilter@7a8d6eb3, org.springframework.security.web.authentication.logout.LogoutFilter@6a4c4261, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a4979bf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@539570b8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@50c99398, org.springframework.security.web.session.SessionManagementFilter@59456e1, org.springframework.security.web.access.ExceptionTranslationFilter@87cb1d8, org.springframework.security.web.access.intercept.AuthorizationFilter@6b0636d9]
+2024-12-04T09:14:47.635+01:00  INFO 17312 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-12-04T09:14:47.641+01:00  INFO 17312 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 15.354 seconds (process running for 16.134)
+2024-12-04T09:16:40.229+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-04T09:16:40.229+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-04T09:16:40.231+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-04T09:16:40.617+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New email created: steve@gmail.com
+2024-12-04T09:16:40.646+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New address created: Via Cupertino
+2024-12-04T09:16:40.666+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New telephone created: 3887777777
+2024-12-04T09:16:40.686+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-04T09:16:43.987+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : New email created: bill@gmail.com
+2024-12-04T09:16:43.998+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : New address created: Via Window
+2024-12-04T09:16:44.011+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : New telephone created: 3889999999
+2024-12-04T09:16:44.018+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-04T09:17:05.427+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:05.566+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:09.582+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:12.581+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:16.577+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:21.908+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:25.111+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:26.589+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:33.655+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {Unknown}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:34.070+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {Unknown}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:34.768+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {Unknown}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:39.627+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:40.062+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:40.420+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:40.630+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:40.804+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:40.974+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:42.165+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:42.200+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:42.229+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:42.916+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:17:47.975+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:18:41.290+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:18:56.213+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{20}, predicates:{[]}
+2024-12-04T09:19:24.852+01:00  INFO 17312 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{20}, predicates:{[]}
+2024-12-04T09:20:13.035+01:00  INFO 17312 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-04T09:20:13.047+01:00  INFO 17312 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-04T09:20:13.056+01:00  INFO 17312 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-04T09:20:28.286+01:00  INFO 18492 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 18492 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2024-12-04T09:20:28.288+01:00 DEBUG 18492 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-12-04T09:20:28.288+01:00  INFO 18492 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:20:28.378+01:00  INFO 18492 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2024-12-04T09:20:30.283+01:00  INFO 18492 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2024-12-04T09:20:30.289+01:00  INFO 18492 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2024-12-04T09:20:31.479+01:00  INFO 18492 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2024-12-04T09:20:31.480+01:00  INFO 18492 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2024-12-04T09:20:31.997+01:00  INFO 18492 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2024-12-04T09:20:34.771+01:00  INFO 18492 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-04T09:20:34.856+01:00  INFO 18492 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76 ms. Found 10 JPA repository interfaces.
+2024-12-04T09:20:35.361+01:00  INFO 18492 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-12-04T09:20:35.373+01:00  INFO 18492 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-04T09:20:35.374+01:00  INFO 18492 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-12-04T09:20:35.429+01:00  INFO 18492 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-04T09:20:35.429+01:00  INFO 18492 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2715 ms
+2024-12-04T09:20:35.514+01:00  INFO 18492 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-04T09:20:35.701+01:00  INFO 18492 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@119d4443
+2024-12-04T09:20:35.703+01:00  INFO 18492 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-04T09:20:35.785+01:00  INFO 18492 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-04T09:20:35.861+01:00  INFO 18492 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-12-04T09:20:35.903+01:00  INFO 18492 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-04T09:20:36.190+01:00  INFO 18492 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-04T09:20:37.360+01:00  INFO 18492 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-04T09:20:37.645+01:00  INFO 18492 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-04T09:20:38.607+01:00  WARN 18492 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-04T09:20:38.895+01:00  INFO 18492 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7a14d8a4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@20673498, org.springframework.security.web.context.SecurityContextHolderFilter@7a087132, org.springframework.security.web.header.HeaderWriterFilter@324afa73, org.springframework.web.filter.CorsFilter@7a8d6eb3, org.springframework.security.web.authentication.logout.LogoutFilter@6a4c4261, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a4979bf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@539570b8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@50c99398, org.springframework.security.web.session.SessionManagementFilter@59456e1, org.springframework.security.web.access.ExceptionTranslationFilter@87cb1d8, org.springframework.security.web.access.intercept.AuthorizationFilter@6b0636d9]
+2024-12-04T09:20:39.103+01:00  INFO 18492 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-12-04T09:20:39.109+01:00  INFO 18492 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 11.397 seconds (process running for 12.216)
+2024-12-04T09:26:53.914+01:00  INFO 18492 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-04T09:26:53.915+01:00  INFO 18492 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-04T09:26:53.916+01:00  INFO 18492 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-04T09:26:54.045+01:00  INFO 18492 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:26:54.350+01:00  INFO 18492 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:26:57.223+01:00  INFO 18492 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:26:59.698+01:00  INFO 18492 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:27:04.507+01:00  INFO 18492 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:27:11.627+01:00  INFO 18492 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:27:13.158+01:00  INFO 18492 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {Unknown}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:28:53.854+01:00  INFO 18492 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-04T09:28:53.856+01:00  INFO 18492 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-04T09:28:53.859+01:00  INFO 18492 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-04T09:29:03.839+01:00  INFO 18964 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 18964 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2024-12-04T09:29:03.840+01:00 DEBUG 18964 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-12-04T09:29:03.841+01:00  INFO 18964 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:29:03.914+01:00  INFO 18964 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2024-12-04T09:29:05.560+01:00  INFO 18964 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2024-12-04T09:29:05.565+01:00  INFO 18964 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2024-12-04T09:29:06.232+01:00  INFO 18964 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2024-12-04T09:29:06.232+01:00  INFO 18964 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2024-12-04T09:29:06.739+01:00  INFO 18964 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2024-12-04T09:29:08.144+01:00  INFO 18964 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-04T09:29:08.220+01:00  INFO 18964 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71 ms. Found 10 JPA repository interfaces.
+2024-12-04T09:29:08.742+01:00  INFO 18964 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-12-04T09:29:08.754+01:00  INFO 18964 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-04T09:29:08.754+01:00  INFO 18964 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-12-04T09:29:08.827+01:00  INFO 18964 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-04T09:29:08.827+01:00  INFO 18964 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1344 ms
+2024-12-04T09:29:08.908+01:00  INFO 18964 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-04T09:29:09.098+01:00  INFO 18964 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2cc75b25
+2024-12-04T09:29:09.099+01:00  INFO 18964 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-04T09:29:09.180+01:00  INFO 18964 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-04T09:29:09.268+01:00  INFO 18964 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-12-04T09:29:09.317+01:00  INFO 18964 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-04T09:29:10.979+01:00  INFO 18964 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-04T09:29:12.571+01:00  INFO 18964 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-04T09:29:12.786+01:00  INFO 18964 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-04T09:29:13.631+01:00  WARN 18964 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-04T09:29:13.868+01:00  INFO 18964 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@56114349, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@46c28400, org.springframework.security.web.context.SecurityContextHolderFilter@25df95b, org.springframework.security.web.header.HeaderWriterFilter@2df0a4c3, org.springframework.web.filter.CorsFilter@2d6abfc7, org.springframework.security.web.authentication.logout.LogoutFilter@6a2d0a19, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33da0fad, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@712eb075, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f5d587c, org.springframework.security.web.session.SessionManagementFilter@3c5d183, org.springframework.security.web.access.ExceptionTranslationFilter@4d65fbad, org.springframework.security.web.access.intercept.AuthorizationFilter@4f8488ef]
+2024-12-04T09:29:14.062+01:00  INFO 18964 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-12-04T09:29:14.068+01:00  INFO 18964 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 10.731 seconds (process running for 11.489)
+2024-12-04T09:29:34.874+01:00  INFO 18964 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-04T09:29:34.874+01:00  INFO 18964 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-04T09:29:34.875+01:00  INFO 18964 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-04T09:29:34.978+01:00  INFO 18964 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:29:35.246+01:00  INFO 18964 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:29:37.126+01:00  INFO 18964 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:29:38.596+01:00  INFO 18964 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:29:42.296+01:00  INFO 18964 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-04T09:29:42.296+01:00  INFO 18964 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-04T09:29:42.304+01:00  INFO 18964 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-04T09:38:54.143+01:00  INFO 23020 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 23020 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2024-12-04T09:38:54.145+01:00 DEBUG 23020 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-12-04T09:38:54.146+01:00  INFO 23020 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2024-12-04T09:38:54.247+01:00  INFO 23020 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2024-12-04T09:38:57.725+01:00  INFO 23020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2024-12-04T09:38:57.734+01:00  INFO 23020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2024-12-04T09:39:00.083+01:00  INFO 23020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2024-12-04T09:39:00.084+01:00  INFO 23020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2024-12-04T09:39:00.604+01:00  INFO 23020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2024-12-04T09:39:04.483+01:00  INFO 23020 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-04T09:39:04.926+01:00  INFO 23020 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 276 ms. Found 10 JPA repository interfaces.
+2024-12-04T09:39:05.948+01:00  INFO 23020 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-12-04T09:39:05.982+01:00  INFO 23020 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-04T09:39:05.982+01:00  INFO 23020 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-12-04T09:39:06.108+01:00  INFO 23020 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-04T09:39:06.108+01:00  INFO 23020 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4741 ms
+2024-12-04T09:39:06.239+01:00  INFO 23020 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-04T09:39:06.629+01:00  INFO 23020 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@773eca84
+2024-12-04T09:39:06.630+01:00  INFO 23020 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-04T09:39:06.810+01:00  INFO 23020 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-04T09:39:06.968+01:00  INFO 23020 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-12-04T09:39:07.058+01:00  INFO 23020 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-04T09:39:07.501+01:00  INFO 23020 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-04T09:39:08.745+01:00  INFO 23020 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-04T09:39:08.960+01:00  INFO 23020 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-04T09:39:09.986+01:00  WARN 23020 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-04T09:39:10.291+01:00  INFO 23020 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6792aa3e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1027cdcd, org.springframework.security.web.context.SecurityContextHolderFilter@203b98cf, org.springframework.security.web.header.HeaderWriterFilter@1cd4082a, org.springframework.web.filter.CorsFilter@37e0614e, org.springframework.security.web.authentication.logout.LogoutFilter@39d62e47, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@22495f2f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@25fb43a9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75707f05, org.springframework.security.web.session.SessionManagementFilter@5444c63f, org.springframework.security.web.access.ExceptionTranslationFilter@33da0fad, org.springframework.security.web.access.intercept.AuthorizationFilter@17d606c9]
+2024-12-04T09:39:10.565+01:00  INFO 23020 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-12-04T09:39:10.571+01:00  INFO 23020 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 17.023 seconds (process running for 17.779)
+2024-12-04T09:39:50.828+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-04T09:39:50.828+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-04T09:39:50.829+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-04T09:39:50.942+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:08.746+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:08.816+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:10.790+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:13.534+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:16.165+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:16.986+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:19.626+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:19.788+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:19.930+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:20.358+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:20.936+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:22.477+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:24.102+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:24.831+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:29.576+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:31.495+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:32.613+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:33.087+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:33.228+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:47.763+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:50.682+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:50.725+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:53.112+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:55.918+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:57.545+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:40:59.433+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:41:00.836+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:41:02.284+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:41:03.062+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:41:57.744+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:42:03.045+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:42:03.082+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:42:05.410+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:42:06.619+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:42:07.916+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:42:10.375+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:42:13.089+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:42:15.666+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:42:16.444+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:12.749+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:18.225+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:18.260+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:19.918+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:21.257+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:22.550+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:27.695+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:29.307+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:30.132+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:31.460+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:32.082+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:32.818+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:33.446+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:34.293+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:34.953+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:36.253+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:36.791+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:38.029+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:39.401+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:40.469+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:42.008+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:43:45.246+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:44:55.748+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:44:58.215+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:44:58.320+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:20.753+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:31.741+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:40.581+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:42.599+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:43.567+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:44.444+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:45.142+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:45.965+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:46.851+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:48.492+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:52.956+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:54.456+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:55.580+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:57.912+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:45:58.841+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:01.830+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:02.862+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:04.464+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:12.448+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:13.294+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:14.083+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:16.046+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:18.547+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:19.345+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:19.976+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:21.873+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:26.181+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:26.704+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:27.590+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:29.038+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:29.071+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:30.036+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:30.068+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:32.413+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:32.447+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:50.753+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:53.601+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:54.488+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:55.501+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:57.863+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:46:59.565+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:47:02.574+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:47:06.686+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@b9e63d7]}
+2024-12-04T09:47:11.674+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@422d9131]}
+2024-12-04T09:47:12.185+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@1b600541]}
+2024-12-04T09:48:23.739+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@7af540d7]}
+2024-12-04T09:48:27.129+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:48:27.167+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:48:31.569+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:48:32.216+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:48:33.481+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:48:33.518+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:48:35.149+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:48:35.179+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:48:51.743+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:48:54.745+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:49:41.750+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:50:00.753+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:50:04.160+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:50:04.193+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:50:06.180+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T09:50:12.118+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@213d8134]}
+2024-12-04T09:50:21.080+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@3aa2cd87]}
+2024-12-04T09:53:19.755+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@64cd456d]}
+2024-12-04T09:55:07.755+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:55:07.790+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:57:02.751+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:59:19.745+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:59:19.778+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:59:28.408+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{10}, predicates:{[]}
+2024-12-04T09:59:37.456+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{20}, predicates:{[]}
+2024-12-04T09:59:41.233+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:59:44.880+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T09:59:47.110+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{20}, predicates:{[]}
+2024-12-04T09:59:48.380+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{20}, predicates:{[]}
+2024-12-04T09:59:51.516+01:00  INFO 23020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{20}, predicates:{[]}
+2024-12-04T10:00:07.716+01:00  INFO 23020 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-04T10:00:07.735+01:00  INFO 23020 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-04T10:00:07.746+01:00  INFO 23020 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-04T15:26:51.244+01:00  INFO 9260 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 9260 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2024-12-04T15:26:51.245+01:00 DEBUG 9260 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-12-04T15:26:51.247+01:00  INFO 9260 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2024-12-04T15:26:51.332+01:00  INFO 9260 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2024-12-04T15:26:54.587+01:00  INFO 9260 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2024-12-04T15:26:54.609+01:00  INFO 9260 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2024-12-04T15:26:58.219+01:00  INFO 9260 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2024-12-04T15:26:58.221+01:00  INFO 9260 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2024-12-04T15:26:58.740+01:00  INFO 9260 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2024-12-04T15:27:01.645+01:00  INFO 9260 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-04T15:27:01.732+01:00  INFO 9260 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 10 JPA repository interfaces.
+2024-12-04T15:27:02.275+01:00  INFO 9260 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-12-04T15:27:02.287+01:00  INFO 9260 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-04T15:27:02.287+01:00  INFO 9260 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-12-04T15:27:02.353+01:00  INFO 9260 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-04T15:27:02.354+01:00  INFO 9260 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2761 ms
+2024-12-04T15:27:02.448+01:00  INFO 9260 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-04T15:27:02.640+01:00  INFO 9260 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6682e6a5
+2024-12-04T15:27:02.642+01:00  INFO 9260 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-04T15:27:02.732+01:00  INFO 9260 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-04T15:27:02.823+01:00  INFO 9260 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-12-04T15:27:02.868+01:00  INFO 9260 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-04T15:27:03.158+01:00  INFO 9260 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-04T15:27:06.701+01:00  INFO 9260 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-04T15:27:07.066+01:00  INFO 9260 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-04T15:27:08.097+01:00  WARN 9260 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-04T15:27:08.429+01:00  INFO 9260 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@56114349, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@46c28400, org.springframework.security.web.context.SecurityContextHolderFilter@25df95b, org.springframework.security.web.header.HeaderWriterFilter@2df0a4c3, org.springframework.web.filter.CorsFilter@2d6abfc7, org.springframework.security.web.authentication.logout.LogoutFilter@6a2d0a19, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33da0fad, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@712eb075, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f5d587c, org.springframework.security.web.session.SessionManagementFilter@3c5d183, org.springframework.security.web.access.ExceptionTranslationFilter@4d65fbad, org.springframework.security.web.access.intercept.AuthorizationFilter@4f8488ef]
+2024-12-04T15:27:08.731+01:00  INFO 9260 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-12-04T15:27:08.738+01:00  INFO 9260 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 18.014 seconds (process running for 18.638)
+2024-12-04T15:50:53.826+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-04T15:50:53.841+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-04T15:50:53.993+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 149 ms
+2024-12-04T15:50:54.536+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:50:55.398+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:51:11.864+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:51:11.924+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:51:42.464+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:51:42.514+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:51:50.390+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{1}, pageSize{5}, predicates:{[]}
+2024-12-04T15:51:53.214+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:51:56.409+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{10}, predicates:{[]}
+2024-12-04T15:52:00.024+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:52:04.201+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:52:12.313+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:52:42.263+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:52:42.338+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:52:48.472+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:52:49.928+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:52:51.493+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:53:29.011+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:53:29.061+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:53:38.794+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:53:38.837+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:54:21.776+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {Professional}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:54:22.386+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {Customer}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:54:28.896+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:54:49.887+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:54:49.942+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:57:24.276+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:57:24.321+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[]}
+2024-12-04T15:58:19.931+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@4100f1f5]}
+2024-12-04T15:58:26.260+01:00  INFO 9260 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : category: {null}, pageNumber:{0}, pageSize{5}, predicates:{[org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@2ac4206b, org.hibernate.query.sqm.tree.predicate.SqmLikePredicate@c3717ae]}

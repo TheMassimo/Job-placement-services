@@ -67,3 +67,65 @@ Content-Type: application/json
 }
 
 ###
+
+//@no-log
+POST http://localhost:8082/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Mario",
+  "surname": "Rossi",
+  "ssn": "MMRR",
+  "category": "Customer",
+  "address": ["Via Wario"],
+  "email": ["mario@gmail.com"],
+  "telephone": ["3885555555"]
+}
+
+###
+
+//@no-log
+POST http://localhost:8082/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Luigi",
+  "surname": "Verdi",
+  "ssn": "LLVV",
+  "category": "Customer",
+  "address": ["Via Wluigi"],
+  "email": ["luigi@gmail.com"],
+  "telephone": ["3886666666"]
+}
+
+###
+
+//@no-log
+POST http://localhost:8082/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Steve",
+  "surname": "Jobs",
+  "ssn": "SSJJ",
+  "category": "Professional",
+  "address": ["Via Cupertino"],
+  "email": ["steve@gmail.com"],
+  "telephone": ["3887777777"]
+}
+
+###
+
+//@no-log
+POST http://localhost:8082/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Bill",
+  "surname": "Gates",
+  "ssn": "BBGG",
+  "category": "Professional",
+  "address": ["Via Window"],
+  "email": ["bill@gmail.com"],
+  "telephone": ["3889999999"]
+}

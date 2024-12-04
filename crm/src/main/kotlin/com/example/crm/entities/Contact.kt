@@ -18,6 +18,7 @@ class Contact {
     lateinit var name: String
     lateinit var surname: String
     lateinit var ssn: String
+    @Enumerated(EnumType.STRING)
     lateinit var category: Category
 
     @ManyToMany(mappedBy = "contact")

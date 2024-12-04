@@ -9,13 +9,17 @@ interface ContactServices {
     fun getAllContacts(
         name:String?,
         surname:String?,
-        category:Category?,
+        ssn:String?,
         email:String?,
         address:String?,
-        ssn:String?,
         telephone:String?,
-        page: Int,
-        limit: Int
+        category:Category?,
+        jobOffers: Int?,
+        skills:String?,
+        status:String?,
+        geographicalInfo:String?,
+        pageNumber: Int,
+        pageSize: Int
     ): List<ContactDTO>
 
     fun getContactsAreCustomer(

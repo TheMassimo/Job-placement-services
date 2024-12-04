@@ -1,21 +1,29 @@
 export class ContactFilter {
     name: string | null
     surname: string | null
-    category: String | null
+    ssn: string | null
     email: string | null
     address: string | null
-    ssn: string | null
     telephone: string | null
+    category: string | null
+    jobOffers: number | null
+    skills: string | null
+    status: string | null
+    geographicalInfo: string | null
 
     constructor(
         name: string | null,
         surname: string | null,
-        category: number | null,
+        ssn: string | null,
         email: string | null,
         address: string | null,
-        ssn: string | null,
-        telephone: string | null
-        ){
+        telephone: string | null,
+        category: string | null,
+        jobOffers: number | null,
+        skills: string | null,
+        status: string | null,
+        geographicalInfo: string | null
+    ){
 
         if (name?.trim() === "") {
             this.name = null
@@ -47,22 +55,30 @@ export class ContactFilter {
         } else {
             this.telephone = telephone
         }
-
-        switch (category) {
-            case 0:
-                this.category = "Customer"
-                break
-            case 1:
-                this.category = "Professional"
-                break
-            case 2:
-                this.category = "Unknown"
-                break
-            case 3:
-                this.category = "CustomerProfessional"
-                break
-            default:
-                this.category = null
+        if(category?.trim() === "Customer" || category?.trim() === "Professional") {
+            this.category = category
+        }else{
+            this.category = null
+        }
+        if (jobOffers == null || jobOffers <= 0) { // Verifica null, undefined e valori non validi
+            this.jobOffers = 0;
+        } else {
+            this.jobOffers = jobOffers;
+        }
+        if (skills?.trim() === "") {
+            this.skills = null
+        } else {
+            this.skills = skills
+        }
+        if (status?.trim() === "") {
+            this.status = null
+        } else {
+            this.status = status
+        }
+        if (geographicalInfo?.trim() === "") {
+            this.geographicalInfo = null
+        } else {
+            this.geographicalInfo = geographicalInfo
         }
     }
 }

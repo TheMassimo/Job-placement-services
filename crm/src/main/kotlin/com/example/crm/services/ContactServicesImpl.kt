@@ -34,13 +34,17 @@ class ContactServicesImpl(private val entityManager: EntityManager,
     override fun getAllContacts(
         name:String?,
         surname:String?,
-        category:Category?,
+        ssn:String?,
         email:String?,
         address:String?,
-        ssn:String?,
         telephone:String?,
-        page: Int,
-        limit: Int
+        category:Category?,
+        jobOffers: Int?,
+        skills:String?,
+        status:String?,
+        geographicalInfo:String?,
+        pageNumber: Int,
+        pageSize: Int
     ): List<ContactDTO> {
         val cb: CriteriaBuilder = entityManager.criteriaBuilder
         val cqContact: CriteriaQuery<Contact> = cb.createQuery(Contact::class.java)
@@ -52,48 +56,70 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         if (!name.isNullOrBlank()) {
             predicates.add(cb.like(cb.lower(rootContact.get<String>("name")), "${name.lowercase()}%"))
         }
+
         if (!surname.isNullOrBlank()) {
             predicates.add(cb.like(cb.lower(rootContact.get<String>("surname")), "${surname.lowercase()}%"))
         }
+
         if (!ssn.isNullOrBlank()) {
             predicates.add(cb.like(cb.lower(rootContact.get<String>("ssn")), "${ssn.lowercase()}%"))
         }
-        if (category != null) {
-            val categoryPredicates = when (category) {
-                Category.Customer -> listOf(
-                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.Customer),
-                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.CustomerProfessional)
-                )
-                Category.Professional -> listOf(
-                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.Professional),
-                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.CustomerProfessional)
-                )
-                Category.Unknown -> listOf(cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.Unknown))
-                Category.CustomerProfessional -> listOf(
-                    cb.equal(
-                        rootContact.get<SmallIntJdbcType>("category"),
-                        Category.CustomerProfessional
-                    )
-                )
-            }
-            // Combine all filters in OR
-            predicates.add(cb.or(*categoryPredicates.toTypedArray()))
+
+        if (!email.isNullOrBlank()) {
+            val joinWithEmail: Join<Contact, Email> = rootContact.join("email", JoinType.INNER)
+            predicates.add(cb.like(cb.lower(joinWithEmail.get<String>("email")), "${email.lowercase()}%"))
+            //predicates.add(cb.equal(joinWithEmail.get<String>("email"), email))
         }
         if (!address.isNullOrBlank()) {
             val joinWithAddress: Join<Contact, Address> = rootContact.join("address", JoinType.INNER)
             predicates.add(cb.like(cb.lower(joinWithAddress.get<String>("address")), "${address.lowercase()}%"))
             //predicates.add(cb.equal(joinWithAddress.get<String>("address"), address))
         }
-        if (!email.isNullOrBlank()) {
-            val joinWithEmail: Join<Contact, Email> = rootContact.join("email", JoinType.INNER)
-            predicates.add(cb.like(cb.lower(joinWithEmail.get<String>("email")), "${email.lowercase()}%"))
-            //predicates.add(cb.equal(joinWithEmail.get<String>("email"), email))
-        }
         if (!telephone.isNullOrBlank()) {
             val joinWithTelephone: Join<Contact, Telephone> = rootContact.join("telephone", JoinType.INNER)
             predicates.add(cb.like(cb.lower(joinWithTelephone.get<String>("telephone")), "${telephone.lowercase()}%"))
             //predicates.add(cb.equal(joinWithTelephone.get<String>("telephoneNumber"), telephone))
         }
+        logger.info("category: {$category}, pageNumber:{$pageNumber}, pageSize{$pageSize}, predicates:{$predicates}");
+        if (category != null) {
+            val categoryPredicates = when (category) {
+                Category.Customer -> listOf(
+                    cb.equal(rootContact.get<Category>("category"), Category.Customer),
+                    cb.equal(rootContact.get<Category>("category"), Category.CustomerProfessional)
+                )
+                Category.Professional -> listOf(
+                    cb.equal(rootContact.get<Category>("category"), Category.Professional),
+                    cb.equal(rootContact.get<Category>("category"), Category.CustomerProfessional)
+                )
+                Category.Unknown -> listOf(cb.equal(rootContact.get<Category>("category"), Category.Unknown))
+                Category.CustomerProfessional -> listOf(
+                    cb.equal(
+                        rootContact.get<Category>("category"),
+                        Category.CustomerProfessional
+                    )
+                )
+            }
+
+            // Combine all filters in OR
+            predicates.add(cb.or(*categoryPredicates.toTypedArray()))
+        }
+        /*
+        if (jobOffers != null) {
+            val joinWithJobOffers: Join<Contact, JobOffer> = rootContact.join("jobOffers", JoinType.LEFT)
+            val jobOfferCount = cb.count(joinWithJobOffers)
+
+            // Subquery to filter contacts with more than the specified number of job offers
+            val subquery = cqContact.subquery(Long::class.java)
+            val subqueryRoot = subquery.from(Contact::class.java)
+            val subqueryJoinWithJobOffers = subqueryRoot.join<Contact, JobOffer>("jobOffers", JoinType.LEFT)
+
+            subquery.select(cb.count(subqueryJoinWithJobOffers))
+                .where(cb.equal(subqueryRoot.get<Long>("contactId"), rootContact.get<Long>("contactId")))
+
+            // Predicate for the count of job offers
+            predicates.add(cb.greaterThan(subquery, 7))
+        }
+        */
 
         // Combine all filters
         if (predicates.isNotEmpty()) {
@@ -103,10 +129,11 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         // Set order
         cqContact.orderBy(cb.asc(rootContact.get<Long>("contactId")))
 
+
         // Create the query
         val query = entityManager.createQuery(cqContact)
-        query.firstResult = page * limit
-        query.maxResults = limit  // Limitiamo il numero di risultati
+        query.firstResult = pageNumber * pageSize
+        query.maxResults = pageSize  // Limitiamo il numero di risultati
 
         // execute the query anf get results
         val resultList = query.resultList
