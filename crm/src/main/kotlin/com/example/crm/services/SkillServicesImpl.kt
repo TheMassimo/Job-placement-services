@@ -23,16 +23,16 @@ class SkillServicesImpl(private val skillRepository: SkillRepository
         dto: SkillCreateDTO
     ): SkillDTO {
         // Controlla se esiste già una skill con lo stesso nome
-        if (skillRepository.existsBySkill(dto.name)) {
-            logger.error("Skill with name '${dto.name}' already exists")
-            throw BadParameterException("Skill with name '${dto.name}' already exists")
+        if (skillRepository.existsBySkill(dto.skill)) {
+            logger.error("Skill with name '${dto.skill}' already exists")
+            throw BadParameterException("Skill with name '${dto.skill}' already exists")
         }
 
         val s = Skill()
-        s.skill = dto.name
+        s.skill = dto.skill
 
         val sDTO = skillRepository.save(s).toDto()
-        logger.info("Skill successfully created with name '${dto.name}'")
+        logger.info("Skill successfully created with name '${dto.skill}'")
 
         return sDTO
     }

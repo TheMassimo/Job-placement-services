@@ -4,7 +4,7 @@ import com.example.crm.entities.Skill
 
 data class SkillDTO (
     val skillId: Long,
-    val name: String
+    val skill: String
 )
 
 fun Skill.toDto(): SkillDTO =

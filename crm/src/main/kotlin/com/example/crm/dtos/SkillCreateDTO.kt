@@ -1,3 +1,3 @@
 package com.example.crm.dtos
 
-class SkillCreateDTO(val name: String)
+class SkillCreateDTO(val skill: String)
