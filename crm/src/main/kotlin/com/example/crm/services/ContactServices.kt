@@ -6,7 +6,21 @@ import com.example.crm.entities.Category
 
 interface ContactServices {
 
-    fun getAllContacts(page: Int, limit: Int, email:String, address: String, telephone: String): List<ContactDTO>
+    fun getAllContacts(
+        name:String?,
+        surname:String?,
+        ssn:String?,
+        email:String?,
+        address:String?,
+        telephone:String?,
+        category:Category?,
+        jobOffers: Int?,
+        skills:String?,
+        status:String?,
+        geographicalInfo:String?,
+        pageNumber: Int,
+        pageSize: Int
+    ): List<ContactDTO>
 
     fun getContactsAreCustomer(
         name:String?,

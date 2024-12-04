@@ -89,7 +89,7 @@
 }
 
 /* Job title style */
-.offerTitle {
+.filtersTitle {
   color: #003366; /* Dark blue */
   font-weight: bold;
   margin-bottom: 10px;
@@ -122,6 +122,11 @@
   background-color: #003366 !important;
   border-color: #003366 !important;
   color: white !important;
+}
+
+/* Testo blu scuro */
+.custom-text {
+  color: #003366 !important;
 }
 
 .custom-button:hover {

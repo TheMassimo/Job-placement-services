@@ -14,13 +14,43 @@ import org.springframework.web.bind.annotation.*
 class ContactController(private val contactServices: ContactServices) {
 
     @GetMapping("", "/")
-    fun getAllContacts(@RequestParam("page", defaultValue = "0")  @Min(value = 0) page: Int,
-                       @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int,
-                       @RequestParam(defaultValue = "") email: String,
-                       @RequestParam(defaultValue = "") address: String,
-                       @RequestParam(defaultValue = "") telephone: String
+    fun getAllContacts(
+        @RequestParam("name", required = false) name: String?,
+        @RequestParam("surname", required = false) surname: String?,
+        @RequestParam("ssn", required = false) ssn: String?,
+        @RequestParam("email", required = false) email: String?,
+        @RequestParam("address", required = false) address: String?,
+        @RequestParam("telephone", required = false) telephone: String?,
+        @RequestParam("category", required = false) category: Category?,
+        @RequestParam("jobOffers", required = false) jobOffers: Int?,
+        @RequestParam("skills", required = false) skills: String?,
+        @RequestParam("status", required = false) status: String?,
+        @RequestParam("geographicalInfo", required = false) geographicalInfo: String?,
+        @RequestParam("pageNumber", required = false) @Min(
+            value = 0,
+            message = "Page number not valid, value must be great or equal to 0"
+        ) pageNumber: Int = 0,
+        @RequestParam("pageSize", required = false) @Min(
+            value = 1,
+            message = "Page size not valid, value must be great or equal to 1"
+        ) pageSize: Int = 20,
     ) : ResponseEntity<List<ContactDTO>> {
-        val contacts = contactServices.getAllContacts(page, limit, email, address, telephone)
+        val contacts = contactServices.getAllContacts(
+            name,
+            surname,
+            ssn,
+            email,
+            address,
+            telephone,
+            category,
+            jobOffers,
+            skills,
+            status,
+            geographicalInfo,
+            pageNumber,
+            pageSize
+        );
+
         return ResponseEntity.ok(contacts)
     }
 
@@ -73,6 +103,7 @@ class ContactController(private val contactServices: ContactServices) {
     fun uploadContact(
         @RequestBody dto: ContactCreateDTO
     ): ContactDTO {
+        println("test {$dto}");
         return contactServices.create(dto)
     }
 

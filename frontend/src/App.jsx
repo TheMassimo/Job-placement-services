@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //OUR component
 import NavbarComponent from './components/NavbarComponent';
 import HomeLayout from "./components/HomeLayout.jsx";
+import ViewContacts from './components/ViewContacts';
 import ViewCustomers from './components/ViewCustomers';
 import ViewJobOffers from './components/ViewJobOffers';
 import MassimoTest from "./components/MassimoTest";
@@ -32,6 +33,7 @@ function App() {
                     <Route path="/" element={<HomeLayout />} />
                     <Route path="/MassimoTest" element={<MassimoTest />} />
 
+                    <Route path="/contacts" element={<ViewContacts />} />
                     <Route path="/customers" element={<ViewCustomers />} />
                     <Route path="/customers/add" element={<AddCustomer />} />
                     <Route path="/jobOffers" element={<ViewJobOffers />} />

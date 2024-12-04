@@ -30,15 +30,23 @@ function NavbarComponent() {
                     <NavLink
                         to="/"
                         className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
-                        style={{ color: 'white' }}>
+                        style={{color: 'white'}}>
                         Home
+                    </NavLink>
+                </li>
+                <li className="nav-item active">
+                    <NavLink
+                        to="/contacts"
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
+                        style={{color: 'white'}}>
+                        Contacts
                     </NavLink>
                 </li>
                 <li className="nav-item active">
                     <NavLink
                         to="/jobOffers"
                         className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
-                        style={{ color: 'white' }}>
+                        style={{color: 'white'}}>
                         Job Offers
                     </NavLink>
                 </li>
@@ -46,7 +54,7 @@ function NavbarComponent() {
                     <NavLink
                         to="/customers"
                         className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
-                        style={{ color: 'white' }}>
+                        style={{color: 'white'}}>
                         Customers
                     </NavLink>
                 </li>
@@ -54,12 +62,12 @@ function NavbarComponent() {
                     <NavLink
                         to="/professionals"
                         className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
-                        style={{ color: 'white' }}>
+                        style={{color: 'white'}}>
                         Professionals
                     </NavLink>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="#" style={{ color: 'white' }}>Messages</a>
+                    <a className="nav-link" href="#" style={{color: 'white'}}>Messages</a>
                 </li>
             </ul>
 
@@ -69,7 +77,8 @@ function NavbarComponent() {
                     {name ?
                         <>
                             <Navbar.Text className='fs-5'>
-                                <i className="bi bi-person-circle" style={{ fontStyle: 'normal', color: 'white' }}>{"  Miriam" + " " + "ueue"}</i>
+                                <i className="bi bi-person-circle"
+                                   style={{fontStyle: 'normal', color: 'white'}}>{"  Miriam" + " " + "ueue"}</i>
                             </Navbar.Text>
                             <Link className='btn btn-secondary mx-2' variant='secondary' to={'/'} onClick={() => {
                             }}>Logout <i className="bi bi-person-down"></i> </Link>

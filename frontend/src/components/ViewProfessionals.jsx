@@ -26,7 +26,7 @@ function ViewProfessionals() {
     useEffect(() => {
         ContactAPI.getConstactsAreProfessional(filter, currentPage).then((res) => {
             setProfessionals(res);
-            console.log("Massimo", res);
+            console.log("Customers ->", res);
         }).catch((err) => console.log(err))
     }, [filter, currentPage]);
 
