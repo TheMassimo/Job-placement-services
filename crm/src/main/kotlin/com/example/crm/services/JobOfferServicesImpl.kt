@@ -3,15 +3,13 @@ package com.example.crm.services
 import com.example.crm.dtos.*
 import com.example.crm.entities.Customer
 import com.example.crm.entities.JobOffer
+import com.example.crm.entities.JobStatus
 import com.example.crm.entities.Professional
 import com.example.crm.exeptions.ContactNotFoundException
 import com.example.crm.exeptions.CustomerNotFoundException
 import com.example.crm.exeptions.ProfessionalNotFoundException
-import com.example.crm.repositories.ContactRepository
 import com.example.crm.exeptions.*
-import com.example.crm.repositories.CustomerRepository
-import com.example.crm.repositories.JobOfferRepository
-import com.example.crm.repositories.ProfessionalRepository
+import com.example.crm.repositories.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.data.domain.PageRequest
@@ -19,30 +17,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-enum class JobStatus {
-    CREATED,
-    ABORTED,
-    SELECTION_PHASE,
-    CANDIDATE_PROPOSAL,
-    CONSOLIDATED,
-    DONE;
 
-    fun getJobStatusFor(): List<JobStatus> {
-        return JobStatus.stateMap[this]
-            ?: emptyList() //empty list if state is a leaf, consider throwing something instead
-    }
-
-    companion object {
-        private val stateMap = mapOf(
-            //JobStatus.CREATED to listOf(JobStatus.ABORTED, JobStatus.SELECTION_PHASE),
-            CREATED to listOf(ABORTED, SELECTION_PHASE),
-            SELECTION_PHASE to listOf(ABORTED, CANDIDATE_PROPOSAL),
-            CANDIDATE_PROPOSAL to listOf(ABORTED, CONSOLIDATED, SELECTION_PHASE),
-            CONSOLIDATED to listOf(ABORTED, DONE, SELECTION_PHASE),
-            DONE to listOf(SELECTION_PHASE),
-        )
-    }
-}
 
 enum class ProfessionalEmployment {
     UNEMPLOYED,
@@ -54,7 +29,8 @@ enum class ProfessionalEmployment {
 class JobOfferServicesImpl(private val jobOfferRepository: JobOfferRepository,
                            private val customerRepository: CustomerRepository,
                            private val contactRepository: ContactRepository,
-                           private val professionalRepository: ProfessionalRepository
+                           private val professionalRepository: ProfessionalRepository,
+                           private val skillRepository: SkillRepository
 ): JobOfferServices   {
     private val logger: Logger = LoggerFactory.getLogger(ContactServices::class.java)
 
@@ -113,7 +89,7 @@ class JobOfferServicesImpl(private val jobOfferRepository: JobOfferRepository,
 
     }
 
-    override fun getJobOffers(page: Int, limit: Int, customerId:Long?, professionalId:Long?, status:String?): List<JobOfferDTO>{
+    override fun getJobOffers(page: Int, limit: Int, customerId:Long?, professionalId:Long?, status:JobStatus?): List<JobOfferDTO>{
         //find the customer
         val pageable = PageRequest.of(page, limit)
 
@@ -132,11 +108,12 @@ class JobOfferServicesImpl(private val jobOfferRepository: JobOfferRepository,
         var jobStatus: JobStatus? = null
         if(status != null){
             try {
-                jobStatus = JobStatus.valueOf(status.uppercase())
+                jobStatus = status
             } catch (e: Exception) {
                 throw BadParameterException("$status is not a valid state")
             }
         }
+
 
         val result = when {
             customer != null && professional != null && jobStatus != null -> jobOfferRepository.findByCurrentCustomerAndProfessionalAndStatus(customer, professional, jobStatus, pageable)
@@ -149,6 +126,7 @@ class JobOfferServicesImpl(private val jobOfferRepository: JobOfferRepository,
             else -> jobOfferRepository.findAll(pageable)
         }
 
+
         return result.content.map { it.toDto() }
     }
 
@@ -158,10 +136,18 @@ class JobOfferServicesImpl(private val jobOfferRepository: JobOfferRepository,
     ): JobOfferDTO {
         val j = JobOffer()
 
+        dto.requiredSkills?.forEach { skillId ->
+            val eSkill = skillRepository.findByIdOrNull(skillId)
+            if (eSkill == null) {
+                throw ElementNotFoundException("Skill with ID $skillId not found")
+            } else {
+                logger.info("skill added")
+            }
+            j.addSkill(eSkill)
+        }
 
         j.description = dto.description
         j.status = JobStatus.CREATED
-        j.requiredSkills = dto.requiredSkills
         j.notes = dto.notes
         j.duration = dto.duration
         j.offerValue = dto.offerValue

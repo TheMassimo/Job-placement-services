@@ -2,6 +2,7 @@ package com.example.crm.services
 
 import com.example.crm.dtos.JobOfferCreateDTO
 import com.example.crm.dtos.JobOfferDTO
+import com.example.crm.entities.JobStatus
 
 interface JobOfferServices {
     fun getOpenJobOffers(customerId: Long, page: Int, limit: Int): List<JobOfferDTO>
@@ -10,7 +11,7 @@ interface JobOfferServices {
 
     fun getAbortedJobOffers(page: Int, limit: Int, customer: String, professional: String): List<JobOfferDTO>
 
-    fun getJobOffers(page: Int, limit: Int, customerId:Long?, professionalId:Long?, status: String?): List<JobOfferDTO>
+    fun getJobOffers(page: Int, limit: Int, customerId:Long?, professionalId:Long?, status: JobStatus?): List<JobOfferDTO>
 
     fun create(dto: JobOfferCreateDTO, contactId: Long): JobOfferDTO
 

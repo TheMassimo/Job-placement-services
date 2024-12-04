@@ -1,8 +1,9 @@
 package com.example.crm.repositories
 
-import com.example.crm.services.JobStatus
+
 import com.example.crm.entities.Customer
 import com.example.crm.entities.JobOffer
+import com.example.crm.entities.JobStatus
 import com.example.crm.entities.Professional
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository

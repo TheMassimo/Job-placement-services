@@ -2,6 +2,7 @@ package com.example.crm.controllers
 
 import com.example.crm.services.JobOfferServices
 import com.example.crm.dtos.*
+import com.example.crm.entities.JobStatus
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Positive
 import org.springframework.http.HttpStatus
@@ -42,7 +43,7 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
                              @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int,
                              @RequestParam(required = false) customerId: Long?,
                              @RequestParam(required = false) professionalId: Long?,
-                             @RequestParam(required = false) status: String?
+                             @RequestParam(required = false) status: JobStatus?,
                             ): ResponseEntity<List<JobOfferDTO>>{
         val jobOffers = jobOfferServices.getJobOffers(page, limit, customerId, professionalId, status)
 
