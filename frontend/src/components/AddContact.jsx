@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import ContactAPI from "../api/crm/ContactAPI.js";
 
-function CustomerForm() {
+function AddContact() {
     const [phoneNumbers, setPhoneNumbers] = useState([]);
     const [emailAddress, setEmailAddress] = useState([]);
     const [addressInfo, setAddressInfo] = useState([]);
@@ -16,6 +16,9 @@ function CustomerForm() {
         email: [],
         address: []
     });
+    // Stati per gestire il valore delle checkbox
+    const [customerChecked, setCustomerChecked] = useState(false);
+    const [professionalChecked, setProfessionalChecked] = useState(false);
 
     // Gestione dei cambiamenti nei campi del form
     const handleChange = (e) => {
@@ -86,6 +89,11 @@ function CustomerForm() {
         const updatedAddress = [...addressInfo];
         updatedAddress[index] = value;
         setAddressInfo(updatedAddress);
+    };
+
+    // CUSTOMER and PROFESSIONAL Funzione per gestire il cambiamento delle checkbox
+    const handleCheckboxChange = (event, setState) => {
+        setState(event.target.checked);
     };
 
 
@@ -278,7 +286,67 @@ function CustomerForm() {
                         </Form.Group>
                     </Col>
                 </Row>
+                <Row>
+                    {/* Colonna Customer */}
+                    <Col md={4} style={{ backgroundColor: '#D3D3D3', borderRadius: '8px', margin: '25px', padding: '15px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <label>
+                                Customer
+                            </label>
+                            <Form.Check
+                                type="checkbox"
+                                checked={customerChecked}
+                                onChange={(e) => handleCheckboxChange(e, setCustomerChecked)}
+                                style={{ marginLeft: '10px' }}
+                            />
+                        </div>
+                        {customerChecked && (
+                            <Form.Group controlId="formNotes" className="text-start">
+                                <Form.Label>Notes</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    name="notes"
+                                    placeholder="Enter Notes"
+                                    value={formData.notes}
+                                    onChange={handleChange}
+                                    className="form-control-sm"
+                                />
+                            </Form.Group>
+                        )}
+                    </Col>
 
+                    {/* Colonna Professional */}
+                    <Col md={7} style={{ backgroundColor: '#D3D3D3', borderRadius: '8px', margin: '25px', padding: '15px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <label>
+                                Professional
+                            </label>
+                            <Form.Check
+                                type="checkbox"
+                                checked={professionalChecked}
+                                onChange={(e) => handleCheckboxChange(e, setProfessionalChecked)}
+                                style={{ marginLeft: '10px' }}
+                            />
+                        </div>
+                        {professionalChecked && (
+                            <>
+                            <Form.Group controlId="formNotes" className="text-start">
+                                <Form.Label>Notes</Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    name="notes"
+                                    placeholder="Enter Notes"
+                                    value={formData.notes}
+                                    onChange={handleChange}
+                                    className="form-control-sm"
+                                />
+                            </Form.Group>
+                            </>
+                        )}
+                    </Col>
+                </Row>
                 <Button variant="primary" type="submit" className="custom-button">
                     Save
                 </Button>
@@ -287,4 +355,4 @@ function CustomerForm() {
     );
 }
 
-export default CustomerForm;
+export default AddContact;
