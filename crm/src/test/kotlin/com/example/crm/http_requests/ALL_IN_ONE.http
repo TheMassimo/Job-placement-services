@@ -98,6 +98,27 @@ Content-Type: application/json
   "telephone": ["3886666666"]
 }
 
+### Connect customer
+
+//@no-log
+POST http://localhost:8082/API/customers
+Content-Type: application/json
+
+{
+  "contactId": 5,
+  "notes": "Some note"
+}
+
+###
+
+POST http://localhost:8082/API/customers
+Content-Type: application/json
+
+{
+  "contactId": 6,
+  "notes": "Some note"
+}
+
 ### Add professional
 
 //@no-log
@@ -139,3 +160,127 @@ Content-Type: application/json
 {
   "skill": "skill_1"
 }
+
+###
+
+//@no-log
+POST http://localhost:8082/API/skills
+Content-Type: application/json
+
+{
+  "skill": "skill_2"
+}
+
+###
+
+//@no-log
+POST http://localhost:8082/API/skills
+Content-Type: application/json
+
+{
+  "skill": "skill_3"
+}
+
+### Add job offer for customer
+
+//@no-log
+POST http://localhost:8082/API/joboffers/5
+Content-Type: application/json
+
+{
+  "description": "Description job 11",
+  "requiredSkills": [1, 2, 3],
+  "notes": "note job 11",
+  "duration": 9.0,
+  "offerValue": 55.0
+}
+
+###
+
+//@no-log
+POST http://localhost:8082/API/joboffers/6
+Content-Type: application/json
+
+{
+  "description": "Description job 222",
+  "requiredSkills": [2, 3],
+  "notes": "note job 222",
+  "duration": 6.0,
+  "offerValue": 59.0
+}
+
+###Connect professional
+
+POST http://localhost:8082/API/professionals
+Content-Type: application/json
+
+{
+  "contactId": 7,
+  "geographicalInfo": "Turin",
+  "dailyRate": 80.0,
+  "notes": "Some note",
+  "skills": [1, 2]
+}
+
+###
+
+POST http://localhost:8082/API/professionals
+Content-Type: application/json
+
+{
+  "contactId": 8,
+  "geographicalInfo": "Milan",
+  "dailyRate": 98.0,
+  "notes": "Some note 222",
+  "skills": [3, 1]
+}
+
+### Add Job Offer professional
+
+//@no-log
+POST http://localhost:8082/API/joboffers/7
+Content-Type: application/json
+
+{
+  "description": "Description job 1",
+  "requiredSkills": [1,3],
+  "notes": "note job 1",
+  "duration": 10.0,
+  "offerValue": 70.0
+}
+
+###
+
+//@no-log
+POST http://localhost:8082/API/joboffers/8
+Content-Type: application/json
+
+{
+  "description": "Description job 2",
+  "requiredSkills": [1,2],
+  "notes": "note job 2",
+  "duration": 15.0,
+  "offerValue": 88.0
+}
+
+###
+
+//@no-log
+POST http://localhost:8082/API/joboffers/8
+Content-Type: application/json
+
+{
+  "description": "Description job 3",
+  "requiredSkills": [3],
+  "notes": "note job 3",
+  "duration": 11.0,
+  "offerValue": 68.0
+}
+
+### Change emplyment state
+
+//@no-log
+PUT http://localhost:8082/API/professionals/1/state
+Content-Type: application/x-www-form-urlencoded
+
+state=BUSY

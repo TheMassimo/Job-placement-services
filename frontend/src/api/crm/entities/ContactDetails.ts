@@ -41,9 +41,9 @@ export class ContactDetails implements ContactDetailsRawData {
                 surname: string,
                 ssn: string,
                 category: Category | null,
-                email: Email[],
-                address: Address[],
-                telephone: Telephone[],
+                email: Email[] | [],
+                address: Address[] | [],
+                telephone: Telephone[] | [],
                 customer: Customer,
                 professional: Professional
 

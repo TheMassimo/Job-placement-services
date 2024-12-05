@@ -176,13 +176,13 @@ class ProfessionalServicesImpl(private val professionalRepository: ProfessionalR
         return professional.toDto()
     }
 
-    override fun updateEmploymentState(id: Long, employmentState: String): ProfessionalDTO {
+    override fun updateEmploymentState(id: Long, employmentState: ProfessionalEmployment): ProfessionalDTO {
         val professional = professionalRepository.findByIdOrNull(id)
             ?: throw ProfessionalNotFoundException("professionalId not found")
 
         val newEmploymentState: ProfessionalEmployment
         try {
-            newEmploymentState = ProfessionalEmployment.valueOf(employmentState.uppercase())
+            newEmploymentState = employmentState
         } catch (e: Exception) {
             throw BadParameterException("$employmentState is not a valid employment status")
         }

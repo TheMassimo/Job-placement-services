@@ -13,6 +13,7 @@ class Professional {
     @GeneratedValue
     val professionalId: Long = 0
 
+    @Enumerated(EnumType.STRING)
     lateinit var employment: ProfessionalEmployment
     lateinit var geographicalInfo: String
     lateinit var notes: String

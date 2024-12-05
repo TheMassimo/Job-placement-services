@@ -2,6 +2,7 @@ package com.example.crm.services
 
 import com.example.crm.dtos.*
 import com.example.crm.entities.Category
+import com.example.crm.entities.ProfessionalEmployment
 
 
 interface ContactServices {
@@ -16,7 +17,7 @@ interface ContactServices {
         category:Category?,
         jobOffers: Int?,
         skills:String?,
-        status:String?,
+        status: ProfessionalEmployment?,
         geographicalInfo:String?,
         pageNumber: Int,
         pageSize: Int
