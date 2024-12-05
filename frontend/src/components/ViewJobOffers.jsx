@@ -83,7 +83,7 @@ const ViewJobOffers = () => {
 
             {/* Main Content - Job Offers */}
             <div style={{flex: 1, padding: '20px'}}>
-                <AddJobOfferButton mode={"Customer"} showModal={showModal} handleModalClose={handleModalClose} /> 
+                <AddJobOfferButton mode={"Customer"} showModal={showModal} handleModalClose={handleModalClose} />
 
                 <Button variant="secondary" className="float-end custom-button" onClick={() => setShowModal(true)}>
                     <i className="bi bi-plus-circle"></i> Add new job offer
