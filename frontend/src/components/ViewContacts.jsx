@@ -58,6 +58,7 @@ function Filters(props) {
         const tmpFilter = new ContactFilter(null, null, null, null, null, null, mode, null, null, null, null)
         setFormFilters(tmpFilter);
         setFilters(tmpFilter);
+        console.log("ripulisco")
     }
 
     return (
@@ -151,7 +152,7 @@ function Filters(props) {
                     >
                         <option value="">All Skills</option>
                         {skills && skills.map((skill) => (
-                            <option key={skill.skillId} value={skill.skillId}>
+                            <option key={skill.skillId} value={skill.skill}>
                                 {skill.skill}
                             </option>
                         ))}
@@ -378,10 +379,8 @@ function ViewContacts(props) {
     const changeMode = (newMode) => {
         setMode(newMode)
         //update state of filters
-        setFilters((old) => ({
-            ...old,
-            ["category"]: newMode,
-        }));
+        setFilters(new ContactFilter(null, null, null, null, null, null, newMode, null, null, null, null));
+        handleClear();
         //reset page
         setCurrentPage(0);
     };
