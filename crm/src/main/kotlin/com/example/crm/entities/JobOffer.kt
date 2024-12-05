@@ -35,6 +35,7 @@ class JobOffer {
     var jobOfferId: Long = 0
 
     lateinit var description: String
+    @Enumerated(EnumType.STRING)
     var status: JobStatus = JobStatus.CREATED
     lateinit var notes: String
     var duration: Double = 0.0

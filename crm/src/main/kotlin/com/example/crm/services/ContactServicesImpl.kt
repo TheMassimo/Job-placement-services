@@ -40,7 +40,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         category:Category?,
         jobOffers: Int?,
         skills:String?,
-        status:String?,
+        status:ProfessionalEmployment?,
         geographicalInfo:String?,
         pageNumber: Int,
         pageSize: Int
@@ -133,6 +133,23 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             // Usa `jobOffers` come soglia per il confronto
             predicates.add(cb.greaterThanOrEqualTo(subquery, jobOffers.toLong()))
         }
+
+        if (status != null) {
+            // Effettua la join diretta tra Contact e Professional
+            val joinWithProfessional: Join<Contact, Professional> = rootContact.join("professional", JoinType.LEFT)
+
+            // Aggiungi il predicato per employment
+            predicates.add(cb.equal(joinWithProfessional.get<ProfessionalEmployment>("employment"), status))
+        }
+
+        if (!geographicalInfo.isNullOrBlank()) {
+            // Effettua la join diretta tra Contact e Professional
+            val joinWithProfessional: Join<Contact, Professional> = rootContact.join("professional", JoinType.LEFT)
+
+            // Aggiungi il predicato per geographicalInfo che inizia con il valore specificato
+            predicates.add(cb.like(cb.lower(joinWithProfessional.get<String>("geographicalInfo")), "${geographicalInfo.lowercase()}%"))
+        }
+
 
         // Combine all filters
         if (predicates.isNotEmpty()) {

@@ -3,6 +3,7 @@ package com.example.crm.services
 import com.example.crm.dtos.ProfessionalCreateDTO
 import com.example.crm.dtos.ProfessionalDTO
 import com.example.crm.dtos.SkillDTO
+import com.example.crm.entities.ProfessionalEmployment
 
 interface ProfessionalServices {
 
@@ -26,7 +27,7 @@ interface ProfessionalServices {
 
     fun updateLocation(id : Long, location : String) : ProfessionalDTO
 
-    fun updateEmploymentState(id : Long, employmentState : String) : ProfessionalDTO
+    fun updateEmploymentState(id : Long, employmentState : ProfessionalEmployment) : ProfessionalDTO
 
     fun getAllSkills(id : Long?) : List<SkillDTO>
 

@@ -2,6 +2,7 @@ package com.example.crm.controllers
 
 import com.example.crm.dtos.*
 import com.example.crm.entities.Category
+import com.example.crm.entities.ProfessionalEmployment
 import com.example.crm.services.ContactServices
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Positive
@@ -24,7 +25,7 @@ class ContactController(private val contactServices: ContactServices) {
         @RequestParam("category", required = false) category: Category?,
         @RequestParam("jobOffers", required = false) jobOffers: Int?,
         @RequestParam("skills", required = false) skills: String?,
-        @RequestParam("status", required = false) status: String?,
+        @RequestParam("status", required = false) status: ProfessionalEmployment?,
         @RequestParam("geographicalInfo", required = false) geographicalInfo: String?,
         @RequestParam("pageNumber", required = false) @Min(
             value = 0,

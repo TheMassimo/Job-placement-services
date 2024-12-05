@@ -34,10 +34,10 @@ export class Professional implements ProfessionalRawData {
         employment: ProfessionalEmployment | null,
         geographicalInfo: string | null,
         dailyRate: number | null,
-        jobOffer: JobOffer[] | null,
-        jobOfferProposal: JobOffer[] | null,
+        jobOffer: JobOffer[] | [],
+        jobOfferProposal: JobOffer[] | [],
         notes: string | null,
-        skills: Skill[] | null,
+        skills: Skill[] | [],
     ) {
         this.professionalId = professionalId
         this.employment = employment

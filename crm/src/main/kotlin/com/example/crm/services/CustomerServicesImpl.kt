@@ -40,8 +40,6 @@ class CustomerServicesImpl(private val customerRepository: CustomerRepository, p
 
         c.addContact(contact)
 
-
-
         //contactRepository.save(contact)
         c.notes = dto.notes?:""
 

@@ -2,6 +2,7 @@ package com.example.crm.controllers
 
 import com.example.crm.services.ProfessionalServices
 import com.example.crm.dtos.*
+import com.example.crm.entities.ProfessionalEmployment
 import jakarta.validation.constraints.Min
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -77,7 +78,7 @@ class ProfessionalController(private val professionalServices : ProfessionalServ
     @ResponseStatus(HttpStatus.OK)
     fun updateProfessionalState(
         @PathVariable id : Long,
-        @RequestParam state: String
+        @RequestParam state: ProfessionalEmployment
     ): ProfessionalDTO {
         return professionalServices.updateEmploymentState(id, state)
     }

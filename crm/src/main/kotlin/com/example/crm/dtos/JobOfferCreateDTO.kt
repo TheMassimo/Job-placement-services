@@ -5,6 +5,4 @@ class JobOfferCreateDTO (val description: String,
                          val notes: String,
                          val duration: Double,
                          val offerValue: Double,
-                         //val professional: List<ProfessionalDTO>,
-                         //val customer: Contact
 )
