@@ -38,6 +38,8 @@ function App() {
                     <Route path="/customers/add" element={<AddCustomer />} />
                     <Route path="/jobOffers" element={<ViewJobOffers />} />
 
+
+
                     <Route path="/professionals" element={<ViewProfessionals />} />
                     <Route path="/professional/add" element={<AddProfessional />} />
                 </Routes>

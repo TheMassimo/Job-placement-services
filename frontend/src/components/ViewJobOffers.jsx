@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import '../App.css';  // Importa il file CSS
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
+import AddJobOfferButton from "./AddJobOfferButton";
 
 import JobOffersAPI from "../api/crm/JobOffersAPI.js";
 
@@ -10,48 +11,17 @@ import JobOffersAPI from "../api/crm/JobOffersAPI.js";
 
 const ViewJobOffers = () => {
     const [jobOffers, setJobOffers] = useState([]);
-    const [filter, setFilter] = useState({
-        status: '',
-        value: '',
-        duration:''
-
-    });
-
-    const [tempFilter, setTempFilter] = useState({ ...filter });
-
+    const [filter, setFilter] = useState([]);
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
+    const [showModal, setShowModal] = useState(false); // Per gestire la visibilità del modale
     const itemsPerPage = 8;
 
-    // Gestione dei filtri temporanei
-    const handleTempFilterChange = (e) => {
-        const { name, value } = e.target;
-        setTempFilter({ ...tempFilter, [name]: value });
-    };
+    //Da non togliere
+    const handleModalClose = () => setShowModal(false);
+    const handleModalShow = () => setShowModal(true);
 
-    // Applica i filtri
-    const applyFilters = () => {
-        setFilter({ ...tempFilter });
-    };
-
-    // Resetta i filtri
-    const clearFilters = () => {
-        setFilter({ location: '', contractType: '', workMode: '', status: '' });
-        setTempFilter({ location: '', contractType: '', workMode: '', status: '' });
-    };
-
-    // Filtraggio delle offerte di lavoro
-    const filteredJobOffers = jobOffers.filter((offer) => {
-        return (
-            (filter.status ? offer.status.includes(filter.status) : true) &&
-            (filter.value ? offer.value.includes(filter.value) : true) &&
-            (filter.duration ? offer.duration.includes(filter.duration) : true)
-        );
-    });
-
-
-
-//USE Effect
+    //USE Effect
     useEffect(() => {
         JobOffersAPI.GetJobOffers(filter, currentPage).then((res) => {
             setJobOffers(res);
@@ -59,15 +29,12 @@ const ViewJobOffers = () => {
         }).catch((err) => console.log(err))
     }, [filter, currentPage]);
 
-
-
-
     const offset = currentPage * itemsPerPage;
 
 
     // Funzione per cambiare pagina
     const changePage = (direction) => {
-        if (direction === "next" && (currentPage + 1) * itemsPerPage < filteredJobOffers.length) {
+        if (direction === "next" && (currentPage + 1) * itemsPerPage < jobOffers.length) {
             setCurrentPage(currentPage + 1);
         } else if (direction === "prev" && currentPage > 1) {
             setCurrentPage(currentPage - 1);
@@ -85,8 +52,7 @@ const ViewJobOffers = () => {
                         type="text"
                         name="status"
                         placeholder="Enter Status"
-                        value={tempFilter.status}
-                        onChange={handleTempFilterChange}
+
                     />
                 </Form.Group>
                 <Form.Group controlId="filterValue" className="mb-3">
@@ -95,8 +61,7 @@ const ViewJobOffers = () => {
                         type="text"
                         name="value"
                         placeholder="Enter Value"
-                        value={tempFilter.value}
-                        onChange={handleTempFilterChange}
+
                     />
                 </Form.Group>
                 <Form.Group controlId="filterDuration" className="mb-3">
@@ -105,21 +70,22 @@ const ViewJobOffers = () => {
                         type="text"
                         name="duration"
                         placeholder="Enter Duration"
-                        value={tempFilter.duration}
-                        onChange={handleTempFilterChange}
+
                     />
                 </Form.Group>
-                <Button variant="secondary" className="me-2 custom-button" onClick={applyFilters} >
+                <Button variant="secondary" className="me-2 custom-button" >
                     <i className="bi bi-search"></i>  Apply Filters
                 </Button>
-                <Button variant="secondary" onClick={clearFilters}>
+                <Button variant="secondary">
                     <i className="bi bi-x-circle"></i>  Clear Filters
                 </Button>
             </div>
 
             {/* Main Content - Job Offers */}
             <div style={{flex: 1, padding: '20px'}}>
-                <Button variant="secondary" className="float-end custom-button">
+                <AddJobOfferButton mode={"Customer"} showModal={showModal} handleModalClose={handleModalClose} />
+
+                <Button variant="secondary" className="float-end custom-button" onClick={() => setShowModal(true)}>
                     <i className="bi bi-plus-circle"></i> Add new job offer
                 </Button>
                 <h2>Job Offers</h2>
@@ -153,7 +119,7 @@ const ViewJobOffers = () => {
                     <Button
                         variant="outline-secondary"
                         onClick={() => changePage("next")}
-                        disabled={(currentPage) * itemsPerPage >= filteredJobOffers.length}
+                        disabled={(currentPage) * itemsPerPage >= jobOffers.length}
                     >
                         Next
                     </Button>
