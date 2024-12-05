@@ -4,17 +4,19 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import ContactAPI from "../api/crm/ContactAPI.js";
 import {ContactFilter} from "../api/crm/filters/ContactFilter.ts";
 import {Card, Badge, Dropdown, ListGroup, ListGroupItem} from "react-bootstrap";
 import {Row, Col} from "react-bootstrap"
 import {Pagination} from "../api/utils/Pagination.ts";
+import ContactAPI from "../api/crm/ContactAPI.js";
+import SkillAPI from "../api/crm/SkillAPI.js";
 
 function Filters(props) {
     const setFilters = props.setFilters;
-    const mode = props.mode;
     const setCurrentPage = props.setCurrentPage;
-    const [formFilters, setFormFilters] = useState(new ContactFilter(null, null, null, null, null, null, null, 0, null, null, null));
+    const mode = props.mode;
+    const skills = props.skills;
+    const [formFilters, setFormFilters] = useState(new ContactFilter(null, null, null, null, null, null, mode, null, null, null, null));
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -43,6 +45,7 @@ function Filters(props) {
             if (value === "") {
                 value = null;
             }
+
             //update state
             setFormFilters((old) => ({
                 ...old,
@@ -52,8 +55,10 @@ function Filters(props) {
     }
 
     const handleClear = (event) => {
-        setFormFilters(new ContactFilter(null, null, null, null, null, null, null, 0, null, null, null));
-        setFilters(null);
+        const tmpFilter = new ContactFilter(null, null, null, null, null, null, mode, null, null, null, null)
+        setFormFilters(tmpFilter);
+        setFilters(tmpFilter);
+        console.log("ripulisco")
     }
 
     return (
@@ -124,13 +129,13 @@ function Filters(props) {
                 </>
             )}
             {mode==="Customer" && (
-                <Form.Group controlId="filterJobOffer" className="mb-2">
+                <Form.Group controlId="filterJobOffers" className="mb-2">
                     <Form.Label>Filter by Job Offer</Form.Label>
                     <Form.Control
                         type="number"
-                        name="jobOffer"
+                        name="jobOffers"
                         placeholder="Enter Job Offer Number"
-                        value={formFilters.JobOffer}
+                        value={formFilters.jobOffers === null ? 0 : formFilters.jobOffers}
                         onChange={handleFilterChange}
                     />
                 </Form.Group>
@@ -140,22 +145,31 @@ function Filters(props) {
                 <Form.Group controlId="filterSkill" className="mb-2">
                     <Form.Label>Filter by Skill</Form.Label>
                     <Form.Control
-                        type="text"
-                        name="skill"
-                        placeholder="Enter Skill"
-                        value={formFilters.skill}
+                        as="select"
+                        name="skills"
+                        value={formFilters.skills === null ? "" : formFilters.skills}
                         onChange={handleFilterChange}
-                    />
+                    >
+                        <option value="">All Skills</option>
+                        {skills && skills.map((skill) => (
+                            <option key={skill.skillId} value={skill.skill}>
+                                {skill.skill}
+                            </option>
+                        ))}
+                    </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="filterStatus" className="mb-2">
                     <Form.Label>Filter by Status</Form.Label>
-                    <Form.Control
-                        type="text"
+                    <Form.Select
                         name="status"
-                        placeholder="Enter Status"
-                        value={formFilters.status}
-                        onChange={handleFilterChange}
-                    />
+                        value={formFilters.status ?? ""} // Imposta "all" come valore di default
+                        onChange={handleFilterChange} // Funzione per gestire il cambiamento
+                    >
+                        <option value="">All</option>
+                        <option value="UNEMPLOYED">Unemployed</option>
+                        <option value="BUSY">Busy</option>
+                        <option value="EMPLOYED">Employed</option>
+                    </Form.Select>
                 </Form.Group>
                 <Form.Group controlId="filterGeographicalInfo" className="mb-2">
                     <Form.Label>Filter by Geographical Info</Form.Label>
@@ -163,7 +177,7 @@ function Filters(props) {
                         type="text"
                         name="geographicalInfo"
                         placeholder="Enter Geographical Info"
-                        value={formFilters.GeographicalInfo}
+                        value={formFilters.geographicalInfo === null ? "" : formFilters.geographicalInfo}
                         onChange={handleFilterChange}
                     />
                 </Form.Group>
@@ -200,7 +214,7 @@ function ContactCard(props) {
                             <Card.Title>ssn: {contact.ssn}</Card.Title>
                         </span>
                     </Col>
-                    <Col xs={4}>
+                    <Col xs={4} className="text-end">
                         {(contact.category === "Customer" || contact.category === "CustomerProfessional") ? (
                             <Badge pill bg="success" className="me-2">
                                 Customer
@@ -219,25 +233,34 @@ function ContactCard(props) {
                     {/* Prima colonna - Email */}
                     <Col xs={12} md={4}>
                         <h6>Email</h6>
-                        {contact.email.map((emailObj) => (
-                            <div key={emailObj.emailId}>{emailObj.email}</div>
-                        ))}
+                        {contact.email
+                            .slice() // Copia l'array
+                            .sort((a, b) => a.email.localeCompare(b.email)) // Ordina alfabeticamente
+                            .map((emailObj) => (
+                                <div key={emailObj.emailId}>{emailObj.email}</div>
+                            ))}
                     </Col>
 
                     {/* Seconda colonna - Indirizzi */}
                     <Col xs={12} md={4}>
                         <h6>Addresses</h6>
-                        {contact.address.map((addressObj) => (
-                            <div key={addressObj.addressId}>{addressObj.address}</div>
-                        ))}
+                        {contact.address
+                            .slice() // Copia l'array
+                            .sort((a, b) => a.address.localeCompare(b.address)) // Ordina alfabeticamente
+                            .map((addressObj) => (
+                                <div key={addressObj.addressId}>{addressObj.address}</div>
+                            ))}
                     </Col>
 
                     {/* Terza colonna - Numeri di telefono */}
                     <Col xs={12} md={4}>
                         <h6>Telephone</h6>
-                        {contact.telephone.map((telephoneObj) => (
-                            <div key={telephoneObj.telephoneId}>{telephoneObj.telephone}</div>
-                        ))}
+                        {contact.telephone
+                            .slice() // Copia l'array
+                            .sort((a, b) => a.telephone.localeCompare(b.telephone)) // Ordina alfabeticamente
+                            .map((telephoneObj) => (
+                                <div key={telephoneObj.telephoneId}>{telephoneObj.telephone}</div>
+                            ))}
                     </Col>
                 </Row>
             </Card.Body>
@@ -256,10 +279,12 @@ function CustomerCard(props) {
                         <Card.Title className="">{contact.name} {contact.surname}</Card.Title>
                     </Col>
                     <Col className="text-center" xs={4}>
-                        <span>SSN: {contact.ssn}</span>
+                        <span className="custom-text">
+                            <Card.Title>ssn: {contact.ssn}</Card.Title>
+                        </span>
                     </Col>
                     <Col className="text-center" xs={4}>
-                        <span>{/*contact.joOffers.length*/} job offers</span>
+                        <span>{contact.customer?.jobOffers?.length | 0} job offers</span>
                     </Col>
                 </Row>
             </Card.Body>
@@ -280,26 +305,41 @@ function ProfessionalCard(props) {
                             {contact.name} {contact.surname}
                         </Card.Title>
                     </Col>
-                    <Col>
+                    <Col xs={4}>
                         <span className="custom-text">
                             <Card.Title>ssn: {contact.ssn}</Card.Title>
                         </span>
                     </Col>
-                    <Col xs={4}>
-                        <Badge pill bg="success" className="me-1">
-                            state: {contact.state}
+                    <Col xs={4} className="text-end">
+                        <Badge
+                            pill
+                            className={`me-1 ${
+                                contact.professional?.employment === "UNEMPLOYED"
+                                    ? "bg-danger"
+                                    : contact.professional?.employment === "BUSY"
+                                    ? "bg-warning"
+                                    : contact.professional?.employment === "EMPLOYED"
+                                    ? "bg-success"
+                                    : "bg-secondary"
+                            }`}
+                        >
+                            {contact.professional?.employment}
                         </Badge>
                     </Col>
                 </Row>
             </Card.Header>
             <Card.Body>
                 <Row>
-                    Nation: {contact.geographicalInfo}
+                    Nation: {contact.professional?.geographicalInfo || "N/A"}
                 </Row>
                 <Row>
-                    Skills: {/*contact.skills.map((skill) => (
-                        <span key={skill.skillId}>{skill.skill}</span>
-                    ))*/}
+                    Skills: {contact.professional?.skills && contact.professional.skills.length > 0
+                    ? contact.professional.skills
+                        .slice() // Copia l'array per evitare di mutare i dati originali
+                        .sort((a, b) => a.skill.localeCompare(b.skill)) // Ordina alfabeticamente
+                        .map(skill => skill.skill)
+                        .join(", ") // Usa una virgola o uno spazio per separare le skill
+                    : "No skills available"}
                 </Row>
             </Card.Body>
         </Card>
@@ -314,25 +354,33 @@ function ViewContacts(props) {
     const [currentPage, setCurrentPage] = useState(0);
     const [pageSize, setPageSize] = useState(5);
     const [mode, setMode] = useState(null);
+    const [skills, setSkills] = useState([]);
 
     //USE Effect
     useEffect(() => {
-        console.log("FINAL filters: ", filters);
         ContactAPI.GetContacts(filters, new Pagination(currentPage, pageSize)).then((res) => {
             //get data
             setContacts(res);
+            console.log("CONTACTS ",res);
         }).catch((err) => console.log(err))
     }, [filters, currentPage, pageSize]);
 
+    useEffect(() => {
+        SkillAPI.GetSkills()
+            .then((res) => {
+                // Setta le skills
+                setSkills(res);
+                console.log("skills", res);
+            })
+            .catch((err) => console.log(err));
+    }, []); // Esegui solo una volta quando il componente viene montato
 
     // FUNCTIONS
     const changeMode = (newMode) => {
         setMode(newMode)
         //update state of filters
-        setFilters((old) => ({
-            ...old,
-            ["category"]: newMode,
-        }));
+        setFilters(new ContactFilter(null, null, null, null, null, null, newMode, null, null, null, null));
+        handleClear();
         //reset page
         setCurrentPage(0);
     };
@@ -347,7 +395,7 @@ function ViewContacts(props) {
 
             {/* Filtri */}
             <div style={{width: '30%', padding: '20px'}} className="filterBox">
-                <Filters setFilters={setFilters} mode={mode} setCurrentPage={setCurrentPage}/>
+                <Filters setFilters={setFilters} setCurrentPage={setCurrentPage} mode={mode} skills={skills} />
             </div>
 
             {/*Center of the page*/}

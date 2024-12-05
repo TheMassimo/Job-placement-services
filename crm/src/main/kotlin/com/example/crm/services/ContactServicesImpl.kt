@@ -49,9 +49,6 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         val cqContact: CriteriaQuery<Contact> = cb.createQuery(Contact::class.java)
         val rootContact: Root<Contact> = cqContact.from(Contact::class.java)
 
-        // Forza il caricamento di customer e professional
-        rootContact.fetch<Contact, Customer>("customer", JoinType.LEFT)
-        rootContact.fetch<Contact, Professional>("professional", JoinType.LEFT)
 
         //prepare predicates list
         val predicates = mutableListOf<Predicate>()
@@ -134,6 +131,17 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             predicates.add(cb.greaterThanOrEqualTo(subquery, jobOffers.toLong()))
         }
 
+        if (!skills.isNullOrBlank()) {
+            // Effettua la join tra Contact e Professional
+            val joinWithProfessional: Join<Contact, Professional> = rootContact.join("professional", JoinType.LEFT)
+
+            // Effettua la join tra Professional e Skill (skills è una relazione Many-to-Many)
+            val joinWithSkills: Join<Professional, Skill> = joinWithProfessional.join("skills", JoinType.LEFT)
+
+            // Aggiungi il predicato per cercare la skill che esattamente corrisponde al valore
+            predicates.add(cb.equal(cb.lower(joinWithSkills.get<String>("skill")), skills.lowercase()))
+        }
+
         if (status != null) {
             // Effettua la join diretta tra Contact e Professional
             val joinWithProfessional: Join<Contact, Professional> = rootContact.join("professional", JoinType.LEFT)
@@ -149,6 +157,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             // Aggiungi il predicato per geographicalInfo che inizia con il valore specificato
             predicates.add(cb.like(cb.lower(joinWithProfessional.get<String>("geographicalInfo")), "${geographicalInfo.lowercase()}%"))
         }
+
 
 
         // Combine all filters
