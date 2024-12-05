@@ -1,7 +1,8 @@
 import {Email} from "./Email";
 import {Telephone} from "./Telephone";
 import {Address} from "./Address";
-import {JobOffer} from "./JobOffer";
+import {Customer} from "./Customer";
+import {Professional} from "./Professional";
 
 export enum Category {
     Customer,
@@ -10,7 +11,7 @@ export enum Category {
     Unknown,
 }
 
-export interface ContactRawData {
+export interface ContactDetailsRawData {
     contactId: number | null
     name: string
     surname: string
@@ -19,9 +20,11 @@ export interface ContactRawData {
     email: Email[]
     address: Address[]
     telephone: Telephone[]
+    customer: Customer
+    professional: Professional
 }
 
-export class Contact implements ContactRawData {
+export class ContactDetails implements ContactDetailsRawData {
     contactId: number | null
     name: string
     surname: string
@@ -30,6 +33,8 @@ export class Contact implements ContactRawData {
     email: Email[]
     address: Address[]
     telephone: Telephone[]
+    customer: Customer
+    professional: Professional
 
     constructor(contactId: number | null,
                 name: string,
@@ -38,7 +43,9 @@ export class Contact implements ContactRawData {
                 category: Category | null,
                 email: Email[] | [],
                 address: Address[] | [],
-                telephone: Telephone[] | []
+                telephone: Telephone[] | [],
+                customer: Customer,
+                professional: Professional
 
     ) {
         this.contactId = contactId
@@ -49,11 +56,13 @@ export class Contact implements ContactRawData {
         this.email = email
         this.address = address
         this.telephone = telephone
+        this.customer = customer
+        this.professional = professional
     }
 
-    static fromJsonObject(obj: ContactRawData): Contact | null {
+    static fromJsonObject(obj: ContactDetailsRawData): ContactDetails | null {
         try {
-            return new Contact(
+            return new ContactDetails(
                 obj.contactId,
                 obj.name,
                 obj.surname,
@@ -61,7 +70,10 @@ export class Contact implements ContactRawData {
                 obj.category,
                 obj.email,
                 obj.address,
-                obj.telephone)
+                obj.telephone,
+                obj.customer,
+                obj.professional
+            )
         } catch (e) {
             console.error(e)
             return null

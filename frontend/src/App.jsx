@@ -37,8 +37,6 @@ function App() {
                     <Route path="/contacts/add" element={<AddContact />} />
                     <Route path="/jobOffers" element={<ViewJobOffers />} />
 
-
-
                     <Route path="/professionals" element={<ViewProfessionals />} />
                     <Route path="/professional/add" element={<AddProfessional />} />
                 </Routes>

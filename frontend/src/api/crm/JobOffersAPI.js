@@ -47,7 +47,6 @@ async function GetJobOffers(filters, pagination){
 }
 
 
-
 const JobOffersAPI = {
     TEST,
     GetJobOffers
