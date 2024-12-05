@@ -1,6 +1,5 @@
 import {generateUrl} from "../utils/urlBuilder.js"
 import {Contact} from "./entities/Contact.ts"
-import {ContactDetails} from "./entities/ContactDetails.ts"
 import {CustomerDetails} from "./entities/CustomerDetails.ts"
 import {ProfessionalDetails} from "./entities/ProfessionalDetails.ts"
 import {Address} from "./entities/Address.ts"
@@ -19,7 +18,7 @@ async function GetContacts(filters, pagination) {
     const obj = await response.json()
 
     if (response.ok) {
-        return obj.map((e) => ContactDetails.fromJsonObject(e))
+        return obj.map((e) => Contact.fromJsonObject(e))
     } else {
         throw obj
     }

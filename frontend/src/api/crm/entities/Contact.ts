@@ -36,9 +36,9 @@ export class Contact implements ContactRawData {
                 surname: string,
                 ssn: string,
                 category: Category | null,
-                email: Email[] | [],
-                address: Address[] | [],
-                telephone: Telephone[] | []
+                email: Email[],
+                address: Address[],
+                telephone: Telephone[]
 
     ) {
         this.contactId = contactId
