@@ -339,7 +339,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         eContact.name = dto.name
         eContact.surname = dto.surname
         eContact.ssn = dto.ssn ?: ""
-        eContact.category = dto.category
+        eContact.category = Category.Unknown
 
         contactRepository.save(eContact)
 
@@ -486,7 +486,6 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             }
 
         existingContact.category = category
-        contactRepository.save(existingContact)
 
         logger.info("Contact category modified successfully")
 

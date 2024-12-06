@@ -380,7 +380,6 @@ function ViewContacts(props) {
         setMode(newMode)
         //update state of filters
         setFilters(new ContactFilter(null, null, null, null, null, null, newMode, null, null, null, null));
-        handleClear();
         //reset page
         setCurrentPage(0);
     };
@@ -388,6 +387,8 @@ function ViewContacts(props) {
     const handleSelect = (eventKey) => {
         const parsedValue = parseInt(eventKey, 10); // Converte l'eventKey in un numero intero
         setPageSize(parsedValue);
+        //reset page
+        setCurrentPage(0);
     };
 
     return (
@@ -425,17 +426,30 @@ function ViewContacts(props) {
 
                 {/*Title of list*/}
                 <h2>{mode === null ? "Contacts" : mode+"s"} list:</h2>
-                <Dropdown onSelect={handleSelect}>
-                    <Dropdown.Toggle className="custom-button m-2"  id="dropdown-basic">
-                        {pageSize ? `${pageSize} items` : "Select an option"}
-                    </Dropdown.Toggle>
+                <Row className="d-flex align-items-center">
+                    <Col>
+                        <Dropdown onSelect={handleSelect}>
+                            <Dropdown.Toggle className="custom-button m-2" id="dropdown-basic">
+                                {pageSize ? `${pageSize} items` : "Select an option"}
+                            </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                        <Dropdown.Item eventKey="5">5 items</Dropdown.Item>
-                        <Dropdown.Item eventKey="10">10 items</Dropdown.Item>
-                        <Dropdown.Item eventKey="20">20 items</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
+                            <Dropdown.Menu>
+                                <Dropdown.Item eventKey="5">5 items</Dropdown.Item>
+                                <Dropdown.Item eventKey="10">10 items</Dropdown.Item>
+                                <Dropdown.Item eventKey="20">20 items</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Col>
+                    <Col>
+                        <Button className="m-2" variant="success" onClick={() => navigate(`/contacts/add`)}>
+                            {mode === "Customer"
+                                ? "Create new Customer"
+                                : mode === "Professional"
+                                ? "Create new Professional"
+                                : "Create new Contact"}
+                        </Button>
+                    </Col>
+                </Row>
 
                 {/*Show all contacts*/}
                 {contacts.length > 0 ?

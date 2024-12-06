@@ -51,22 +51,6 @@ function NavbarComponent() {
                     </NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink
-                        to="/customers"
-                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
-                        style={{color: 'white'}}>
-                        Customers
-                    </NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink
-                        to="/professionals"
-                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
-                        style={{color: 'white'}}>
-                        Professionals
-                    </NavLink>
-                </li>
-                <li className="nav-item">
                     <a className="nav-link" href="#" style={{color: 'white'}}>Messages</a>
                 </li>
             </ul>

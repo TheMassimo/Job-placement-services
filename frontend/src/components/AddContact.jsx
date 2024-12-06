@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import ContactAPI from "../api/crm/ContactAPI.js";
+import CustomerAPI from "../api/crm/CustomerAPI.js";
 
 function AddContact() {
     const [phoneNumbers, setPhoneNumbers] = useState([]);
@@ -10,11 +11,16 @@ function AddContact() {
         name: '',
         surname: '',
         ssn: '',
-        category: 'Customer', // Predefinito e non modificabile
+        category: '', // Predefinito e non modificabile
         notes: '',
         telephone: [],
         email: [],
-        address: []
+        address: [],
+        customerNotes: '',
+        geographicalInfo: '',
+        dailyRate: 0,
+        skills:[],
+        professionalNotes: '',
     });
     // Stati per gestire il valore delle checkbox
     const [customerChecked, setCustomerChecked] = useState(false);
@@ -32,14 +38,28 @@ function AddContact() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const all = formData;
-        formData.telephone = phoneNumbers;
-        formData.email = emailAddress;
-        formData.address = addressInfo;
+        try {
+            // Popola formData
+            formData.telephone = phoneNumbers;
+            formData.email = emailAddress;
+            formData.address = addressInfo;
 
-        ContactAPI.AddCustomer(formData).then((res) => {
-            console.log("Add result ->", res);
-        }).catch((err) => console.log(err))
+            console.log("Ci siamo", formData);
+
+            // Prima chiamata API per aggiugnere il contatto
+            const resAddContact = await ContactAPI.AddContact(formData);
+            console.log("Add Contact result ->", resAddContact);
+
+            // Se spuntato aggiungere anche il customer
+            if(customerChecked) {
+                const tmpCustomerData = {contactId: resAddContact.contactId, notes: formData.customerNotes}
+                const resAddCustomer = await CustomerAPI.AddCustomer(tmpCustomerData);
+                console.log("Add Customer result ->", resAddContact);
+            }
+
+        } catch (err) {
+            console.error("Errore durante l'elaborazione:", err);
+        }
     };
 
 
@@ -141,35 +161,6 @@ function AddContact() {
                                 value={formData.ssn}
                                 onChange={handleChange}
                                 required
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-                    </Col>
-                </Row>
-
-                <Row className="mb-3">
-                    <Col md={8}>
-                        <Form.Group controlId="formNotes" className="text-start">
-                            <Form.Label>Notes</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={3}
-                                name="notes"
-                                placeholder="Enter Notes"
-                                value={formData.notes}
-                                onChange={handleChange}
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-                    </Col>
-                    <Col md={4}>
-                        <Form.Group controlId="formCategory" className="text-start">
-                            <Form.Label>Category</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="category"
-                                value={formData.category}
-                                disabled
                                 className="form-control-sm"
                             />
                         </Form.Group>
@@ -301,14 +292,14 @@ function AddContact() {
                             />
                         </div>
                         {customerChecked && (
-                            <Form.Group controlId="formNotes" className="text-start">
+                            <Form.Group controlId="formCustomerNotes" className="text-start">
                                 <Form.Label>Notes</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     rows={3}
-                                    name="notes"
-                                    placeholder="Enter Notes"
-                                    value={formData.notes}
+                                    name="customerNotes"
+                                    placeholder="Enter Customer Notes"
+                                    value={formData.customerNotes}
                                     onChange={handleChange}
                                     className="form-control-sm"
                                 />
@@ -331,14 +322,45 @@ function AddContact() {
                         </div>
                         {professionalChecked && (
                             <>
-                            <Form.Group controlId="formNotes" className="text-start">
+                            <Form.Group controlId="formGeographicalInfo" className="text-start">
+                                <Form.Label>Geographical Information</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="geographicalInfo"
+                                    placeholder="Enter Geographical Information "
+                                    value={formData.geographicalInfo}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-control-sm"  // Per rendere il campo più stretto
+                                />
+                            </Form.Group>
+                            <Form.Group controlId="formDailyRate" className="text-start">
+                                <Form.Label>Daily Rate</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="dailyRate"
+                                    placeholder="Enter Daily Rate"
+                                    value={formData.dailyRate}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        // Permette solo numeri con una virgola e al massimo due cifre decimali
+                                        if (/^\d*(,\d{0,2})?$/.test(value)) {
+                                            handleChange(e); // Aggiorna lo stato solo se il valore è valido
+                                        }
+                                    }}
+                                    inputMode="decimal" // Mostra tastiera numerica con separatore decimale sui dispositivi mobili
+                                    required
+                                    className="form-control-sm"
+                                />
+                            </Form.Group>
+                            <Form.Group controlId="formProfessionalNotes" className="text-start">
                                 <Form.Label>Notes</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     rows={3}
-                                    name="notes"
+                                    name="professionalNotes"
                                     placeholder="Enter Notes"
-                                    value={formData.notes}
+                                    value={formData.professionalNotes}
                                     onChange={handleChange}
                                     className="form-control-sm"
                                 />

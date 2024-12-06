@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import '../App.css';  // Importa il file CSS
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
-import AddJobOfferButton from "./AddJobOfferButton";
+import PopUp from "./PopUp";
 
 import JobOffersAPI from "../api/crm/JobOffersAPI.js";
 
@@ -83,7 +83,7 @@ const ViewJobOffers = () => {
 
             {/* Main Content - Job Offers */}
             <div style={{flex: 1, padding: '20px'}}>
-                <AddJobOfferButton mode={"Customer"} showModal={showModal} handleModalClose={handleModalClose} />
+                <PopUp mode={"Customer"} showModal={showModal} handleModalClose={handleModalClose} />
 
                 <Button variant="secondary" className="float-end custom-button" onClick={() => setShowModal(true)}>
                     <i className="bi bi-plus-circle"></i> Add new job offer
