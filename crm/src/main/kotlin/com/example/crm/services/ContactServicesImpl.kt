@@ -167,7 +167,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
 
         // Set order
         cqContact.orderBy(cb.asc(rootContact.get<Long>("contactId")))
-
+        
         // Create the query
         val query = entityManager.createQuery(cqContact)
         query.firstResult = pageNumber * pageSize
@@ -485,7 +485,19 @@ class ContactServicesImpl(private val entityManager: EntityManager,
                 throw ContactNotFoundException("Contact not found")
             }
 
-        existingContact.category = category
+        if(category == Category.Customer){
+            existingContact.category = category;
+            if(existingContact.category == Category.Professional){
+                existingContact.category = Category.CustomerProfessional;
+            }
+        }
+
+        if(category == Category.Professional){
+            existingContact.category = category;
+            if(existingContact.category == Category.Customer){
+                existingContact.category = Category.CustomerProfessional;
+            }
+        }
 
         logger.info("Contact category modified successfully")
 

@@ -358,6 +358,7 @@ function ViewContacts(props) {
 
     //USE Effect
     useEffect(() => {
+        console.log("pagina corrente:  page size", currentPage, pageSize);
         ContactAPI.GetContacts(filters, new Pagination(currentPage, pageSize)).then((res) => {
             //get data
             setContacts(res);
@@ -482,9 +483,6 @@ function ViewContacts(props) {
                                 Next
                             </Button>
                         </div>
-                        <Button variant="primary" className="mt-4" onClick={() => navigate(`/contact/add`)}>
-                            Add Customer
-                        </Button>
                     </>
                     :
                     <div> No data available </div>}

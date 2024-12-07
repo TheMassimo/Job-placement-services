@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface CustomerRepository: JpaRepository<Customer, Long> {
 
+
     fun findByContact(contact: Contact): Customer?
 
 }

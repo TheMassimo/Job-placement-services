@@ -3,6 +3,7 @@ package com.example.crm.services
 import com.example.crm.dtos.CustomerCreateDTO
 import com.example.crm.dtos.CustomerDTO
 import com.example.crm.dtos.toDto
+import com.example.crm.entities.Category
 import com.example.crm.entities.Customer
 import com.example.crm.exeptions.BadParameterException
 import com.example.crm.exeptions.ContactNotFoundException
@@ -13,9 +14,14 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-class CustomerServicesImpl(private val customerRepository: CustomerRepository, private val contactRepository: ContactRepository) : CustomerServices {
+class CustomerServicesImpl(
+    private val customerRepository: CustomerRepository,
+    private val contactRepository: ContactRepository,
+    private val contactServices: ContactServices
+) : CustomerServices {
 
     private val logger: Logger = LoggerFactory.getLogger(CustomerServices::class.java)
 
@@ -29,26 +35,31 @@ class CustomerServicesImpl(private val customerRepository: CustomerRepository, p
         return customer.toDto()
     }
 
+    @Transactional
     override fun create(dto: CustomerCreateDTO): CustomerDTO {
         val c = Customer()
         val contact = contactRepository.findByIdOrNull(dto.contactId)
             ?: throw ContactNotFoundException("Contact id does not exist")
+        logger.info("111")
 
-        if (customerRepository.findByContact(contact) != null){
+        val existingCustomer = customerRepository.findByContact(contact)
+        if (existingCustomer != null) {
             throw BadParameterException("A customer already exists for this contact")
         }
 
         c.addContact(contact)
+        c.notes = dto.notes ?: ""
 
-        //contactRepository.save(contact)
-        c.notes = dto.notes?:""
-
-
+        // Salva prima il cliente
         val cDTO = customerRepository.save(c).toDto()
-        logger.info("Customer successfully created")
 
+        // Solo dopo aggiorna la categoria del contatto
+        contactServices.updateCategory(dto.contactId, Category.Customer)
+
+        logger.info("Customer successfully created")
         return cDTO
     }
+
 
     override fun addNote(id: Long,note: String): CustomerDTO {
         val customer = customerRepository.findByIdOrNull(id)
