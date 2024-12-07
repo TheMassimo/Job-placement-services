@@ -7,29 +7,29 @@ import {Email} from "./entities/Email.ts"
 import {Telephone} from "./entities/Telephone.ts"
 
 
-const URL_CONTACTS = 'http://localhost:8082/API/customers'
+const URL_CONTACTS = 'http://localhost:8082/API/professionals'
 
-async function AddCustomer(customer){
+async function AddProfessional(professional){
     const response = await fetch(
         generateUrl(`${URL_CONTACTS}`, null, null), {
             method: 'POST',
             credentials: 'include',
             headers: {'Content-Type': 'application/json'/*, 'X-XSRF-TOKEN': xsrfToken*/},
-            body: JSON.stringify(customer)
+            body: JSON.stringify(professional)
         }
     )
     const obj = await response.json()
 
     if (response.ok) {
-        return Customer.fromJsonObject(obj)
+        return Professional.fromJsonObject(obj)
     } else {
         throw obj
     }
 }
 
 
-const CustomerAPI = {
-    AddCustomer,
+const ProfessionalAPI = {
+    AddProfessional,
 }
 
-export default CustomerAPI
+export default ProfessionalAPI

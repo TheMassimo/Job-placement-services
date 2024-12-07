@@ -4,6 +4,7 @@ import com.example.crm.dtos.ProfessionalCreateDTO
 import com.example.crm.dtos.ProfessionalDTO
 import com.example.crm.dtos.SkillDTO
 import com.example.crm.dtos.toDto
+import com.example.crm.entities.Category
 import com.example.crm.entities.Professional
 import com.example.crm.entities.ProfessionalEmployment
 import com.example.crm.entities.Skill
@@ -22,7 +23,8 @@ import org.springframework.stereotype.Service
 @Service
 class ProfessionalServicesImpl(private val professionalRepository: ProfessionalRepository,
                                private val skillRepository: SkillRepository,
-                               private val contactRepository: ContactRepository) : ProfessionalServices {
+                               private val contactRepository: ContactRepository,
+                               private val contactServices: ContactServices) : ProfessionalServices {
 
     private val logger: Logger = LoggerFactory.getLogger(ProfessionalServices::class.java)
 
@@ -93,7 +95,12 @@ class ProfessionalServicesImpl(private val professionalRepository: ProfessionalR
             p.contact = contact
             p.notes = dto.notes
 
+            // Salva prima il professional
             val pDTO = professionalRepository.save(p).toDto()
+
+            // Solo dopo aggiorna la categoria del contatto
+            contactServices.updateCategory(dto.contactId, Category.Professional)
+
             logger.info("Professional successfully created }")
 
             return pDTO

@@ -167,7 +167,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
 
         // Set order
         cqContact.orderBy(cb.asc(rootContact.get<Long>("contactId")))
-        
+
         // Create the query
         val query = entityManager.createQuery(cqContact)
         query.firstResult = pageNumber * pageSize

@@ -40,7 +40,6 @@ class CustomerServicesImpl(
         val c = Customer()
         val contact = contactRepository.findByIdOrNull(dto.contactId)
             ?: throw ContactNotFoundException("Contact id does not exist")
-        logger.info("111")
 
         val existingCustomer = customerRepository.findByContact(contact)
         if (existingCustomer != null) {

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import ContactAPI from "../api/crm/ContactAPI.js";
 import CustomerAPI from "../api/crm/CustomerAPI.js";
+import ProfessionalAPI from "../api/crm/ProfessionalAPI.js";
 
 function AddContact() {
     const [phoneNumbers, setPhoneNumbers] = useState([]);
@@ -55,6 +56,19 @@ function AddContact() {
                 const tmpCustomerData = {contactId: resAddContact.contactId, notes: formData.customerNotes}
                 const resAddCustomer = await CustomerAPI.AddCustomer(tmpCustomerData);
                 console.log("Add Customer result ->", resAddContact);
+            }
+
+            // Se spuntato aggiungere anche il professional
+            if(professionalChecked) {
+                const tmpProfessionalData = {
+                    contactId: resAddContact.contactId,
+                    geographicalInfo: formData.geographicalInfo,
+                    dailyRate: formData.dailyRate,
+                    notes: formData.professionalNotes,
+                    //skills: List<Long>?,
+                }
+                const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData);
+                console.log("Add Professional result ->", tmpProfessionalData);
             }
 
         } catch (err) {
