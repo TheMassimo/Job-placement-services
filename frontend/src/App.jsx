@@ -14,6 +14,8 @@ import ViewJobOffers from './components/ViewJobOffers';
 import MassimoTest from "./components/MassimoTest";
 import ContactForm from "./components/ContactForm";
 import ViewProfessionals from "./components/ViewProfessionals";
+import AddProfessional from "./components/AddProfessional";
+import AddJobOffer from "./components/AddJobOffer";
 
 // Import del provider di errore
 import { NotificationProvider } from './contexts/NotificationProvider';
@@ -31,6 +33,7 @@ function App() {
                         <Route path="/contacts/add" element={<ContactForm />} />
 
                         <Route path="/jobOffers" element={<ViewJobOffers />} />
+                        <Route path="/jobOffer/add" element={<AddJobOffer />} />
 
                         <Route path='*' element={<NotFoundPage />} />
                     </Routes>

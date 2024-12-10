@@ -140,3 +140,33 @@
   flex-direction: row;
 }
 
+.selected-row {
+  background-color: lightgreen;
+}
+
+.customer-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* Spaziatura tra gli elementi */
+  flex-wrap: wrap; /* Permette la disposizione in più righe se necessario */
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa; /* Colore di sfondo chiaro */
+  padding: 10px 20px;
+  border-radius: 8px; /* Angoli arrotondati */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Leggera ombra per effetto elevato */
+  font-size: 14px;
+  color: #333;
+}
+
+.info-item strong {
+  color: #002244; /* Colore blu per il testo "strong" */
+  margin-right: 8px; /* Aggiunge uno spazio tra il titolo e il valore */
+}
