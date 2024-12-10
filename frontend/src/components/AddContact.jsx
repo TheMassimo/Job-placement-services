@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, Toast } from 'react-bootstrap';
 import ContactAPI from "../api/crm/ContactAPI.js";
 import CustomerAPI from "../api/crm/CustomerAPI.js";
 import ProfessionalAPI from "../api/crm/ProfessionalAPI.js";
+import PopupSkills from "./PopupSkills.jsx";
+import {useNavigate} from "react-router-dom";
+import { useNotification } from '../contexts/NotificationProvider';
 
 function AddContact() {
+    const navigate = useNavigate();
+    const { handleError, handleSuccess } = useNotification();
     const [phoneNumbers, setPhoneNumbers] = useState([]);
     const [emailAddress, setEmailAddress] = useState([]);
     const [addressInfo, setAddressInfo] = useState([]);
@@ -26,6 +31,9 @@ function AddContact() {
     // Stati per gestire il valore delle checkbox
     const [customerChecked, setCustomerChecked] = useState(false);
     const [professionalChecked, setProfessionalChecked] = useState(false);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [selectedSkills, setSelectedSkills] = useState([]);
+    const [submitButton, setSubmitButton] = useState(false);
 
     // Gestione dei cambiamenti nei campi del form
     const handleChange = (e) => {
@@ -38,24 +46,25 @@ function AddContact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitButton(true);
 
         try {
             // Popola formData
             formData.telephone = phoneNumbers;
             formData.email = emailAddress;
             formData.address = addressInfo;
-
-            console.log("Ci siamo", formData);
+            //take only id of skills
+            formData.skills = selectedSkills.map((skill) => skill.skillId);
 
             // Prima chiamata API per aggiugnere il contatto
             const resAddContact = await ContactAPI.AddContact(formData);
-            console.log("Add Contact result ->", resAddContact);
+            handleSuccess('Contact added successfully!');
 
             // Se spuntato aggiungere anche il customer
             if(customerChecked) {
                 const tmpCustomerData = {contactId: resAddContact.contactId, notes: formData.customerNotes}
                 const resAddCustomer = await CustomerAPI.AddCustomer(tmpCustomerData);
-                console.log("Add Customer result ->", resAddContact);
+                handleSuccess('Customer added successfully!');
             }
 
             // Se spuntato aggiungere anche il professional
@@ -65,15 +74,18 @@ function AddContact() {
                     geographicalInfo: formData.geographicalInfo,
                     dailyRate: formData.dailyRate,
                     notes: formData.professionalNotes,
-                    //skills: List<Long>?,
+                    skills: formData.skills,
                 }
                 const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData);
-                console.log("Add Professional result ->", tmpProfessionalData);
+                handleSuccess('Professional added successfully!');
             }
-
+            //if all is right go back to contacts
+            navigate(`/contacts`)
         } catch (err) {
             console.error("Errore durante l'elaborazione:", err);
+            handleError(err);
         }
+        setSubmitButton(false);
     };
 
 
@@ -130,6 +142,7 @@ function AddContact() {
         setState(event.target.checked);
     };
 
+    const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
     return (
         <div className="container mt-4" style={{paddingTop: '90px'}} >
@@ -367,6 +380,26 @@ function AddContact() {
                                     className="form-control-sm"
                                 />
                             </Form.Group>
+                            <Form.Group controlId="formSkills" className="text-start">
+                                <div className="d-flex align-items-start justify-content-between">
+                                    {/* Bottone per aprire il popup */}
+                                    <Button className="custom-button m-3" onClick={togglePopup}>
+                                        Select Skills
+                                    </Button>
+
+                                    {/* Mostra le skill selezionate */}
+                                    {selectedSkills.length > 0 && (
+                                        <div className="mt-3 ms-3" style={{ flexGrow: 1 }}>
+                                            <strong>Selected skills:</strong>
+                                            <ul className="mb-0">
+                                                {selectedSkills.map((skill, index) => (
+                                                    <li key={index}>{skill.skill}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+                            </Form.Group>
                             <Form.Group controlId="formProfessionalNotes" className="text-start">
                                 <Form.Label>Notes</Form.Label>
                                 <Form.Control
@@ -383,10 +416,21 @@ function AddContact() {
                         )}
                     </Col>
                 </Row>
-                <Button variant="primary" type="submit" className="custom-button">
+                <Button variant="primary" type="submit" className="custom-button" disabled={submitButton}>
                     Save
                 </Button>
             </form>
+            {/* PopupSelector */}
+            {isPopupOpen && (
+                <PopupSkills
+                    isOpen={isPopupOpen}
+                    onClose={togglePopup}
+                    onConfirm={(skills) => {
+                        setSelectedSkills(skills); // Salva le skill selezionate
+                        togglePopup(); // Chiudi il popup
+                    }}
+                />
+            )}
         </div>
     );
 }

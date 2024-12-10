@@ -66,37 +66,6 @@ Content-Type: application/json
   "telephone": ["3884444444"]
 }
 
-### Add customer
-
-//@no-log
-POST http://localhost:8082/API/contacts
-Content-Type: application/json
-
-{
-  "name": "Mario",
-  "surname": "Rossi",
-  "ssn": "MMRR",
-  "category": "Customer",
-  "address": ["Via Wario"],
-  "email": ["mario@gmail.com"],
-  "telephone": ["3885555555"]
-}
-
-###
-
-//@no-log
-POST http://localhost:8082/API/contacts
-Content-Type: application/json
-
-{
-  "name": "Luigi",
-  "surname": "Verdi",
-  "ssn": "LLVV",
-  "category": "Customer",
-  "address": ["Via Wluigi"],
-  "email": ["luigi@gmail.com"],
-  "telephone": ["3886666666"]
-}
 
 ### Connect customer
 
@@ -105,7 +74,7 @@ POST http://localhost:8082/API/customers
 Content-Type: application/json
 
 {
-  "contactId": 5,
+  "contactId": 3,
   "notes": "Some note"
 }
 
@@ -115,40 +84,8 @@ POST http://localhost:8082/API/customers
 Content-Type: application/json
 
 {
-  "contactId": 6,
+  "contactId": 4,
   "notes": "Some note"
-}
-
-### Add professional
-
-//@no-log
-POST http://localhost:8082/API/contacts
-Content-Type: application/json
-
-{
-  "name": "Steve",
-  "surname": "Jobs",
-  "ssn": "SSJJ",
-  "category": "Professional",
-  "address": ["Via Cupertino"],
-  "email": ["steve@gmail.com"],
-  "telephone": ["3887777777"]
-}
-
-###
-
-//@no-log
-POST http://localhost:8082/API/contacts
-Content-Type: application/json
-
-{
-  "name": "Bill",
-  "surname": "Gates",
-  "ssn": "BBGG",
-  "category": "Professional",
-  "address": ["Via Window"],
-  "email": ["bill@gmail.com"],
-  "telephone": ["3889999999"]
 }
 
 ### Add skills

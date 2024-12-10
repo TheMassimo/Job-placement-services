@@ -333,6 +333,9 @@ function ProfessionalCard(props) {
                     Nation: {contact.professional?.geographicalInfo || "N/A"}
                 </Row>
                 <Row>
+                    Daily Rate: {contact.professional?.dailyRate+"€" || "N/A"}
+                </Row>
+                <Row>
                     Skills: {contact.professional?.skills && contact.professional.skills.length > 0
                     ? contact.professional.skills
                         .slice() // Copia l'array per evitare di mutare i dati originali

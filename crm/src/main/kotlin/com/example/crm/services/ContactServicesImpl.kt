@@ -486,16 +486,18 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             }
 
         if(category == Category.Customer){
-            existingContact.category = category;
             if(existingContact.category == Category.Professional){
                 existingContact.category = Category.CustomerProfessional;
+            }else{
+                existingContact.category = Category.Customer;
             }
         }
 
         if(category == Category.Professional){
-            existingContact.category = category;
             if(existingContact.category == Category.Customer){
                 existingContact.category = Category.CustomerProfessional;
+            }else{
+                existingContact.category = Category.Professional;
             }
         }
 
