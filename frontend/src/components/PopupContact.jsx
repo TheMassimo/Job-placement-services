@@ -241,7 +241,7 @@ const CustomerTable = ({ contacts, onSelectCustomer }) => {
     );
 };
 
-function PopUp(props) {
+function PopupContact(props) {
     const [selectedPerson, setSelectedPerson] = useState(""); // Per memorizzare il cliente selezionato
     const navigate = useNavigate(); // Per navigare a un'altra pagina
     const [contacts, setContacts] = useState([]);
