@@ -44,3 +44,23 @@
 2024-12-10T17:15:22.060+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
 2024-12-10T17:15:42.361+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
 2024-12-10T17:15:44.184+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
+2024-12-10T17:17:20.681+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
+2024-12-10T17:17:25.614+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-10T17:19:44.900+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
+2024-12-10T17:19:59.493+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-10T17:19:59.523+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-10T17:19:59.528+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.CustomerServices  : Customer successfully created
+2024-12-10T18:23:47.808+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New email created: luffy@gmail.com
+2024-12-10T18:23:47.841+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New address created: via naso
+2024-12-10T18:23:47.862+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New telephone created: 123
+2024-12-10T18:23:47.872+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New telephone created: 789
+2024-12-10T18:23:47.966+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-10T18:23:48.038+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-10T18:23:48.052+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-6] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-10T18:32:20.006+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : New email created: zoro@gmail.com
+2024-12-10T18:32:20.023+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : New email created: zoro3@gamil.com
+2024-12-10T18:32:20.035+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : New address created: via persa
+2024-12-10T18:32:20.046+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : New telephone created: 777
+2024-12-10T18:32:20.052+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-10T18:32:20.163+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-10T18:32:20.175+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-9] c.e.crm.services.ProfessionalServices    : Professional successfully created }

@@ -12,9 +12,8 @@ import ViewContacts from './components/ViewContacts';
 import ViewCustomers from './components/ViewCustomers';
 import ViewJobOffers from './components/ViewJobOffers';
 import MassimoTest from "./components/MassimoTest";
-import AddContact from "./components/AddContact";
+import ContactForm from "./components/ContactForm";
 import ViewProfessionals from "./components/ViewProfessionals";
-import AddProfessional from "./components/AddProfessional";
 
 // Import del provider di errore
 import { NotificationProvider } from './contexts/NotificationProvider';
@@ -27,12 +26,12 @@ function App() {
                     <NavbarComponent />
                     <Routes>
                         <Route path="/" element={<HomeLayout />} />
-                        <Route path="/MassimoTest" element={<MassimoTest />} />
+
                         <Route path="/contacts" element={<ViewContacts />} />
-                        <Route path="/contacts/add" element={<AddContact />} />
+                        <Route path="/contacts/add" element={<ContactForm />} />
+
                         <Route path="/jobOffers" element={<ViewJobOffers />} />
-                        <Route path="/professionals" element={<ViewProfessionals />} />
-                        <Route path="/professional/add" element={<AddProfessional />} />
+
                         <Route path='*' element={<NotFoundPage />} />
                     </Routes>
                 </Container>

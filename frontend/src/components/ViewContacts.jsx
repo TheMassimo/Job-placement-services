@@ -445,7 +445,14 @@ function ViewContacts(props) {
                         </Dropdown>
                     </Col>
                     <Col>
-                        <Button className="m-2" variant="success" onClick={() => navigate(`/contacts/add`)}>
+                        <Button className="m-2"
+                                variant="success"
+                                onClick={() => navigate(`/contacts/add`, { state: {
+                                    mode: "edit",
+                                    contact: contacts[14]
+                                    //user: { nome: "massimo", cognome: "porcheddu" }
+                        } })}>
+
                             {mode === "Customer"
                                 ? "Create new Customer"
                                 : mode === "Professional"

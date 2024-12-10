@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Form, Button, Row, Col, Toast } from 'react-bootstrap';
 import ContactAPI from "../api/crm/ContactAPI.js";
 import CustomerAPI from "../api/crm/CustomerAPI.js";
@@ -7,9 +8,18 @@ import PopupSkills from "./PopupSkills.jsx";
 import {useNavigate} from "react-router-dom";
 import { useNotification } from '../contexts/NotificationProvider';
 
-function AddContact() {
+function ContactForm() {
+    //get data from navigate
+    const location = useLocation();
+    const { state } = location;
+    //take the data we need from state (from navigate)
+    const mode = state?.mode;  // "customer"
+    const contact = state?.contact;  // { nome: "massimo", cognome: "porcheddu" }
+    //use navigate
     const navigate = useNavigate();
+    //use notification
     const { handleError, handleSuccess } = useNotification();
+    // use state
     const [phoneNumbers, setPhoneNumbers] = useState([]);
     const [emailAddress, setEmailAddress] = useState([]);
     const [addressInfo, setAddressInfo] = useState([]);
@@ -35,6 +45,35 @@ function AddContact() {
     const [selectedSkills, setSelectedSkills] = useState([]);
     const [submitButton, setSubmitButton] = useState(false);
 
+    //USE EFFECT
+    useEffect(() => {
+        if (contact) {
+            setFormData({
+                name: contact.name || '',
+                surname: contact.surname || '',
+                ssn: contact.ssn || '',
+                category: contact.category || '',
+                notes: contact.notes || '',
+                telephone: contact.telephone || [],
+                email: contact.email || [],
+                address: contact.address || [],
+                customerNotes: contact.customer?.notes || '',
+                geographicalInfo: contact.professional?.geographicalInfo || '',
+                dailyRate: contact.professional?.dailyRate || 0,
+                skills: contact.skills || [],
+                professionalNotes: contact.professional?.notes || '',
+            });
+            setEmailAddress(contact.email.map(el => el.email) || []);
+            setAddressInfo(contact.address.map(el => el.address) || []);
+            setPhoneNumbers(contact.telephone.map(el => el.telephone) || []);
+            setCustomerChecked(contact.customer ? true : false);
+            setProfessionalChecked(contact.professional ? true : false);
+            setSelectedSkills(contact.professional?.skills);
+            console.log("selectedSkills", selectedSkills);
+        }
+    }, []);
+
+    // FUCTIONS
     // Gestione dei cambiamenti nei campi del form
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,7 +82,7 @@ function AddContact() {
             [name]: value,
         }));
     };
-
+    //Gestione invio form
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitButton(true);
@@ -87,7 +126,6 @@ function AddContact() {
         }
         setSubmitButton(false);
     };
-
 
     // TELEPHONE
     // Aggiungi un nuovo campo per il numero di telefono
@@ -349,69 +387,69 @@ function AddContact() {
                         </div>
                         {professionalChecked && (
                             <>
-                            <Form.Group controlId="formGeographicalInfo" className="text-start">
-                                <Form.Label>Geographical Information</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="geographicalInfo"
-                                    placeholder="Enter Geographical Information "
-                                    value={formData.geographicalInfo}
-                                    onChange={handleChange}
-                                    required
-                                    className="form-control-sm"  // Per rendere il campo più stretto
-                                />
-                            </Form.Group>
-                            <Form.Group controlId="formDailyRate" className="text-start">
-                                <Form.Label>Daily Rate</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="dailyRate"
-                                    placeholder="Enter Daily Rate"
-                                    value={formData.dailyRate}
-                                    onChange={(e) => {
-                                        const value = e.target.value;
-                                        // Permette solo numeri con una virgola e al massimo due cifre decimali
-                                        if (/^\d*(,\d{0,2})?$/.test(value)) {
-                                            handleChange(e); // Aggiorna lo stato solo se il valore è valido
-                                        }
-                                    }}
-                                    inputMode="decimal" // Mostra tastiera numerica con separatore decimale sui dispositivi mobili
-                                    required
-                                    className="form-control-sm"
-                                />
-                            </Form.Group>
-                            <Form.Group controlId="formSkills" className="text-start">
-                                <div className="d-flex align-items-start justify-content-between">
-                                    {/* Bottone per aprire il popup */}
-                                    <Button className="custom-button m-3" onClick={togglePopup}>
-                                        Select Skills
-                                    </Button>
+                                <Form.Group controlId="formGeographicalInfo" className="text-start">
+                                    <Form.Label>Geographical Information</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name="geographicalInfo"
+                                        placeholder="Enter Geographical Information "
+                                        value={formData.geographicalInfo}
+                                        onChange={handleChange}
+                                        required
+                                        className="form-control-sm"  // Per rendere il campo più stretto
+                                    />
+                                </Form.Group>
+                                <Form.Group controlId="formDailyRate" className="text-start">
+                                    <Form.Label>Daily Rate</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name="dailyRate"
+                                        placeholder="Enter Daily Rate"
+                                        value={formData.dailyRate}
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            // Permette solo numeri con una virgola e al massimo due cifre decimali
+                                            if (/^\d*(,\d{0,2})?$/.test(value)) {
+                                                handleChange(e); // Aggiorna lo stato solo se il valore è valido
+                                            }
+                                        }}
+                                        inputMode="decimal" // Mostra tastiera numerica con separatore decimale sui dispositivi mobili
+                                        required
+                                        className="form-control-sm"
+                                    />
+                                </Form.Group>
+                                <Form.Group controlId="formSkills" className="text-start">
+                                    <div className="d-flex align-items-start justify-content-between">
+                                        {/* Bottone per aprire il popup */}
+                                        <Button className="custom-button m-3" onClick={togglePopup}>
+                                            Select Skills
+                                        </Button>
 
-                                    {/* Mostra le skill selezionate */}
-                                    {selectedSkills.length > 0 && (
-                                        <div className="mt-3 ms-3" style={{ flexGrow: 1 }}>
-                                            <strong>Selected skills:</strong>
-                                            <ul className="mb-0">
-                                                {selectedSkills.map((skill, index) => (
-                                                    <li key={index}>{skill.skill}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-                            </Form.Group>
-                            <Form.Group controlId="formProfessionalNotes" className="text-start">
-                                <Form.Label>Notes</Form.Label>
-                                <Form.Control
-                                    as="textarea"
-                                    rows={3}
-                                    name="professionalNotes"
-                                    placeholder="Enter Notes"
-                                    value={formData.professionalNotes}
-                                    onChange={handleChange}
-                                    className="form-control-sm"
-                                />
-                            </Form.Group>
+                                        {/* Mostra le skill selezionate */}
+                                        {selectedSkills.length > 0 && (
+                                            <div className="mt-3 ms-3" style={{ flexGrow: 1 }}>
+                                                <strong>Selected skills:</strong>
+                                                <ul className="mb-0">
+                                                    {selectedSkills.map((skill, index) => (
+                                                        <li key={index}>{skill.skill}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </div>
+                                </Form.Group>
+                                <Form.Group controlId="formProfessionalNotes" className="text-start">
+                                    <Form.Label>Notes</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        name="professionalNotes"
+                                        placeholder="Enter Notes"
+                                        value={formData.professionalNotes}
+                                        onChange={handleChange}
+                                        className="form-control-sm"
+                                    />
+                                </Form.Group>
                             </>
                         )}
                     </Col>
@@ -435,4 +473,4 @@ function AddContact() {
     );
 }
 
-export default AddContact;
+export default ContactForm;
