@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ContactAPI from "../api/crm/ContactAPI.js";
 import {Pagination} from "../api/utils/Pagination.ts"
 import {ContactFilter} from "../api/crm/filters/ContactFilter.ts";
-
+import '../App.css';  // Importa il file CSS
 
 function Filters(props) {
     const setFilters = props.setFilters;
@@ -183,18 +183,15 @@ const CustomerTable = ({ contacts, onSelectCustomer }) => {
     const [selectedPerson, setSelectedPerson] = useState("");
 
     const handleRowClick = (customerId) => {
-        console.log("Row clicked, customerId:", customerId);  // Log per vedere quale customerId viene passato
+        console.log("Selected Customer ID:", customerId); // Log dell'ID selezionato
         setSelectedPerson(customerId);
+        console.log("selectedPerson dopo setState:", customerId);
         if (onSelectCustomer) {
             onSelectCustomer(customerId); // Comunica al genitore il cliente selezionato
         }
     };
 
-    console.log("Contacts passed to the table:", contacts);  // Log per vedere i contatti passati alla tabella
-    console.log("Selected Person:", selectedPerson);  // Log per vedere quale persona è stata selezionata
-
     return (
-
         <div>
             <h4>Select a customer:</h4>
 
@@ -209,31 +206,37 @@ const CustomerTable = ({ contacts, onSelectCustomer }) => {
                 </tr>
                 </thead>
                 <tbody>
-                {contacts.map((contact, index) => (
-                    <tr
+                {contacts.map((contact, index) => {
+
+                    return (<tr
                         key={index}
-                        onClick={() => handleRowClick(contact.customer?.customerId)}
+                        onClick={() => {
+                            console.log("Valore passato al callback:", contact.customer.customerId);
+                            console.log("ID della riga cliccata customerId:", contact.customer.customerId);
+                            console.log("ID selezionato (selectedPerson):", selectedPerson);
+                            handleRowClick(contact.customer?.customerId);
+                        }}
                         style={{
                             cursor: "pointer",
-                            backgroundColor: selectedPerson === contact.customer?.customerId ? "#d3f9d8" : "white",
+                            backgroundColor:
+                                String(selectedPerson) === String(contact.customer?.customerId)
+                                    ? "lightgreen"
+                                    : "white",
                         }}
+
                     >
                         <td>{index + 1}</td>
                         <td>{contact.name}</td>
                         <td>{contact.surname}</td>
                         <td>{contact.ssn}</td>
-                        <td>{contact.customer?.jobOffers}</td>
+                        <td>{Array.isArray(contact.customer?.jobOffers)
+                            ? contact.customer.jobOffers.length
+                            : 0}</td>
                     </tr>
-                ))}
+                    );
+                })}
                 </tbody>
             </Table>
-            {selectedPerson && (
-                <div>
-                    <p>
-                        <strong>Selected Customer ID:</strong> {selectedPerson}
-                    </p>
-                </div>
-            )}
         </div>
     );
 };
@@ -260,7 +263,26 @@ function PopUp(props) {
 
     const handlePersonSelection = () => {
         if (selectedPerson) {
-            navigate("/addNewJobOffer", { state: { customer: selectedPerson } });
+            // Trova il contatto selezionato dai dati
+            const selectedContact = contacts.find(contact => contact.customer?.customerId === selectedPerson);
+
+            if (selectedContact) {
+                // Aggiungi una stampa per vedere il contatto selezionato
+                console.log("Dati del contatto selezionato:", selectedContact);
+                console.log("ID del contatto selezionato:", selectedContact.customer?.customerId);
+
+                // Passa il contatto completo alla pagina successiva
+                navigate('/jobOffer/add', {
+                    state: {
+                        contact: selectedContact,  // Passa l'intero oggetto contatto
+                        customerId: selectedContact.customer?.customerId // Passa anche l'ID del customer
+                    }
+                });
+            } else {
+                console.log("Contatto non trovato con ID:", selectedPerson);
+            }
+        } else {
+            console.log("Nessun contatto selezionato.");
         }
     };
 
@@ -274,7 +296,16 @@ function PopUp(props) {
                 <Modal.Body>
                     <Form>
                         <Filters mode = {mode} setFilter={setFilter} currentPage={currentPage} />
-                        <CustomerTable contacts={contacts} onSelectCustomer={(customerId) => setSelectedPerson(customerId)}/>
+                        {mode === "Customer" && (
+                            <CustomerTable
+                                contacts={contacts}
+                                onSelectCustomer={(customerId) => {
+                                    console.log("Valore passato dal CustomerTable:", customerId);
+                                    setSelectedPerson(customerId);
+                                }}
+                            />
+                        )}
+
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>

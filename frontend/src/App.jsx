@@ -18,6 +18,7 @@ import MassimoTest from "./components/MassimoTest";
 import AddContact from "./components/AddContact";
 import ViewProfessionals from "./components/ViewProfessionals";
 import AddProfessional from "./components/AddProfessional";
+import AddJobOffer from "./components/AddJobOffer";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                     <Route path="/contacts" element={<ViewContacts />} />
                     <Route path="/contacts/add" element={<AddContact />} />
                     <Route path="/jobOffers" element={<ViewJobOffers />} />
+                    <Route path="/jobOffer/add" element={<AddJobOffer />} />
 
                     <Route path="/professionals" element={<ViewProfessionals />} />
                     <Route path="/professional/add" element={<AddProfessional />} />
