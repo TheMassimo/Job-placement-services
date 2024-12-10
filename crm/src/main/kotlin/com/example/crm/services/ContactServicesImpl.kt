@@ -339,7 +339,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         eContact.name = dto.name
         eContact.surname = dto.surname
         eContact.ssn = dto.ssn ?: ""
-        eContact.category = dto.category
+        eContact.category = Category.Unknown
 
         contactRepository.save(eContact)
 
@@ -485,8 +485,21 @@ class ContactServicesImpl(private val entityManager: EntityManager,
                 throw ContactNotFoundException("Contact not found")
             }
 
-        existingContact.category = category
-        contactRepository.save(existingContact)
+        if(category == Category.Customer){
+            if(existingContact.category == Category.Professional){
+                existingContact.category = Category.CustomerProfessional;
+            }else{
+                existingContact.category = Category.Customer;
+            }
+        }
+
+        if(category == Category.Professional){
+            if(existingContact.category == Category.Customer){
+                existingContact.category = Category.CustomerProfessional;
+            }else{
+                existingContact.category = Category.Professional;
+            }
+        }
 
         logger.info("Contact category modified successfully")
 

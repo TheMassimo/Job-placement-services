@@ -29,7 +29,7 @@ function HomeLayout(props) {
     };
 
     return (
-        <Container className="page-container mt-4">
+        <Container className="page-container mt-4 filterBox" >
             <Row>
                 <Col md={4} className="mx-auto">
                     <div className="d-flex align-items-center mb-4">
@@ -57,15 +57,15 @@ function HomeLayout(props) {
                         ))}
                         {isEditing ? (
                             <div className="d-flex justify-content-end">
-                                <Button variant="success" onClick={handleSave} className="me-2">
+                                <Button variant="success" onClick={handleSave} className="custom-button">
                                     Save
                                 </Button>
-                                <Button variant="secondary" onClick={handleEditToggle}>
+                                <Button variant="secondary" onClick={handleEditToggle} className="custom-button">
                                     Cancel
                                 </Button>
                             </div>
                         ) : (
-                            <Button variant="primary" onClick={handleEditToggle}>
+                            <Button variant="primary" onClick={handleEditToggle} className="custom-button">
                                 Edit Profile
                             </Button>
                         )}

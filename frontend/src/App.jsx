@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import { Container } from 'react-bootstrap'
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+import { ToastContainer } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import 'bootstrap-icons/font/bootstrap-icons.css';
 
-
-//OUR component
+// Import dei componenti
 import NavbarComponent from './components/NavbarComponent';
+import NotFoundPage from './components/NotFoundPage';
 import HomeLayout from "./components/HomeLayout.jsx";
 import ViewContacts from './components/ViewContacts';
 import ViewCustomers from './components/ViewCustomers';
@@ -20,6 +18,8 @@ import ViewProfessionals from "./components/ViewProfessionals";
 import AddProfessional from "./components/AddProfessional";
 import AddJobOffer from "./components/AddJobOffer";
 
+// Import del provider di errore
+import { NotificationProvider } from './contexts/NotificationProvider';
 
 function App() {
     //const [count, setCount] = useState(0)
@@ -27,26 +27,26 @@ function App() {
     let parametro = "prm_Massimo"
 
     return (
-        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-            <Container fluid>
-                <NavbarComponent />
-                <Routes>
-                    <Route path="/" element={<HomeLayout />} />
-                    <Route path="/MassimoTest" element={<MassimoTest />} />
-
-                    <Route path="/contacts" element={<ViewContacts />} />
-                    <Route path="/contacts/add" element={<AddContact />} />
-                    <Route path="/jobOffers" element={<ViewJobOffers />} />
-                    <Route path="/jobOffer/add" element={<AddJobOffer />} />
-
-                    <Route path="/professionals" element={<ViewProfessionals />} />
-                    <Route path="/professional/add" element={<AddProfessional />} />
-                </Routes>
-            </Container>
-
-        </BrowserRouter>
+        <NotificationProvider>
+            <BrowserRouter>
+                <Container fluid>
+                    <NavbarComponent />
+                    <Routes>
+                        <Route path="/" element={<HomeLayout />} />
+                        <Route path="/MassimoTest" element={<MassimoTest />} />
+                        <Route path="/contacts" element={<ViewContacts />} />
+                        <Route path="/contacts/add" element={<AddContact />} />
+                        <Route path="/jobOffers" element={<ViewJobOffers />} />
+                        <Route path="/jobOffer/add" element={<AddJobOffer />} />
+                        <Route path="/professionals" element={<ViewProfessionals />} />
+                        <Route path="/professional/add" element={<AddProfessional />} />
+                        <Route path='*' element={<NotFoundPage />} />
+                    </Routes>
+                </Container>
+                <ToastContainer />
+            </BrowserRouter>
+        </NotificationProvider>
     );
 }
-// commento
-// commento ricevuto
-export default App
+
+export default App;

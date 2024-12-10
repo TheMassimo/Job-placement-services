@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, Toast } from 'react-bootstrap';
 import ContactAPI from "../api/crm/ContactAPI.js";
+import CustomerAPI from "../api/crm/CustomerAPI.js";
+import ProfessionalAPI from "../api/crm/ProfessionalAPI.js";
+import PopupSkills from "./PopupSkills.jsx";
+import {useNavigate} from "react-router-dom";
+import { useNotification } from '../contexts/NotificationProvider';
 
 function AddContact() {
+    const navigate = useNavigate();
+    const { handleError, handleSuccess } = useNotification();
     const [phoneNumbers, setPhoneNumbers] = useState([]);
     const [emailAddress, setEmailAddress] = useState([]);
     const [addressInfo, setAddressInfo] = useState([]);
@@ -10,15 +17,23 @@ function AddContact() {
         name: '',
         surname: '',
         ssn: '',
-        category: 'Customer', // Predefinito e non modificabile
+        category: '', // Predefinito e non modificabile
         notes: '',
         telephone: [],
         email: [],
-        address: []
+        address: [],
+        customerNotes: '',
+        geographicalInfo: '',
+        dailyRate: 0,
+        skills:[],
+        professionalNotes: '',
     });
     // Stati per gestire il valore delle checkbox
     const [customerChecked, setCustomerChecked] = useState(false);
     const [professionalChecked, setProfessionalChecked] = useState(false);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [selectedSkills, setSelectedSkills] = useState([]);
+    const [submitButton, setSubmitButton] = useState(false);
 
     // Gestione dei cambiamenti nei campi del form
     const handleChange = (e) => {
@@ -31,15 +46,46 @@ function AddContact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitButton(true);
 
-        const all = formData;
-        formData.telephone = phoneNumbers;
-        formData.email = emailAddress;
-        formData.address = addressInfo;
+        try {
+            // Popola formData
+            formData.telephone = phoneNumbers;
+            formData.email = emailAddress;
+            formData.address = addressInfo;
+            //take only id of skills
+            formData.skills = selectedSkills.map((skill) => skill.skillId);
 
-        ContactAPI.AddCustomer(formData).then((res) => {
-            console.log("Add result ->", res);
-        }).catch((err) => console.log(err))
+            // Prima chiamata API per aggiugnere il contatto
+            const resAddContact = await ContactAPI.AddContact(formData);
+            handleSuccess('Contact added successfully!');
+
+            // Se spuntato aggiungere anche il customer
+            if(customerChecked) {
+                const tmpCustomerData = {contactId: resAddContact.contactId, notes: formData.customerNotes}
+                const resAddCustomer = await CustomerAPI.AddCustomer(tmpCustomerData);
+                handleSuccess('Customer added successfully!');
+            }
+
+            // Se spuntato aggiungere anche il professional
+            if(professionalChecked) {
+                const tmpProfessionalData = {
+                    contactId: resAddContact.contactId,
+                    geographicalInfo: formData.geographicalInfo,
+                    dailyRate: formData.dailyRate,
+                    notes: formData.professionalNotes,
+                    skills: formData.skills,
+                }
+                const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData);
+                handleSuccess('Professional added successfully!');
+            }
+            //if all is right go back to contacts
+            navigate(`/contacts`)
+        } catch (err) {
+            console.error("Errore durante l'elaborazione:", err);
+            handleError(err);
+        }
+        setSubmitButton(false);
     };
 
 
@@ -96,6 +142,7 @@ function AddContact() {
         setState(event.target.checked);
     };
 
+    const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
     return (
         <div className="container mt-4" style={{paddingTop: '90px'}} >
@@ -141,35 +188,6 @@ function AddContact() {
                                 value={formData.ssn}
                                 onChange={handleChange}
                                 required
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-                    </Col>
-                </Row>
-
-                <Row className="mb-3">
-                    <Col md={8}>
-                        <Form.Group controlId="formNotes" className="text-start">
-                            <Form.Label>Notes</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={3}
-                                name="notes"
-                                placeholder="Enter Notes"
-                                value={formData.notes}
-                                onChange={handleChange}
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-                    </Col>
-                    <Col md={4}>
-                        <Form.Group controlId="formCategory" className="text-start">
-                            <Form.Label>Category</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="category"
-                                value={formData.category}
-                                disabled
                                 className="form-control-sm"
                             />
                         </Form.Group>
@@ -301,14 +319,14 @@ function AddContact() {
                             />
                         </div>
                         {customerChecked && (
-                            <Form.Group controlId="formNotes" className="text-start">
+                            <Form.Group controlId="formCustomerNotes" className="text-start">
                                 <Form.Label>Notes</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     rows={3}
-                                    name="notes"
-                                    placeholder="Enter Notes"
-                                    value={formData.notes}
+                                    name="customerNotes"
+                                    placeholder="Enter Customer Notes"
+                                    value={formData.customerNotes}
                                     onChange={handleChange}
                                     className="form-control-sm"
                                 />
@@ -331,14 +349,65 @@ function AddContact() {
                         </div>
                         {professionalChecked && (
                             <>
-                            <Form.Group controlId="formNotes" className="text-start">
+                            <Form.Group controlId="formGeographicalInfo" className="text-start">
+                                <Form.Label>Geographical Information</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="geographicalInfo"
+                                    placeholder="Enter Geographical Information "
+                                    value={formData.geographicalInfo}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-control-sm"  // Per rendere il campo più stretto
+                                />
+                            </Form.Group>
+                            <Form.Group controlId="formDailyRate" className="text-start">
+                                <Form.Label>Daily Rate</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="dailyRate"
+                                    placeholder="Enter Daily Rate"
+                                    value={formData.dailyRate}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        // Permette solo numeri con una virgola e al massimo due cifre decimali
+                                        if (/^\d*(,\d{0,2})?$/.test(value)) {
+                                            handleChange(e); // Aggiorna lo stato solo se il valore è valido
+                                        }
+                                    }}
+                                    inputMode="decimal" // Mostra tastiera numerica con separatore decimale sui dispositivi mobili
+                                    required
+                                    className="form-control-sm"
+                                />
+                            </Form.Group>
+                            <Form.Group controlId="formSkills" className="text-start">
+                                <div className="d-flex align-items-start justify-content-between">
+                                    {/* Bottone per aprire il popup */}
+                                    <Button className="custom-button m-3" onClick={togglePopup}>
+                                        Select Skills
+                                    </Button>
+
+                                    {/* Mostra le skill selezionate */}
+                                    {selectedSkills.length > 0 && (
+                                        <div className="mt-3 ms-3" style={{ flexGrow: 1 }}>
+                                            <strong>Selected skills:</strong>
+                                            <ul className="mb-0">
+                                                {selectedSkills.map((skill, index) => (
+                                                    <li key={index}>{skill.skill}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+                            </Form.Group>
+                            <Form.Group controlId="formProfessionalNotes" className="text-start">
                                 <Form.Label>Notes</Form.Label>
                                 <Form.Control
                                     as="textarea"
                                     rows={3}
-                                    name="notes"
+                                    name="professionalNotes"
                                     placeholder="Enter Notes"
-                                    value={formData.notes}
+                                    value={formData.professionalNotes}
                                     onChange={handleChange}
                                     className="form-control-sm"
                                 />
@@ -347,10 +416,21 @@ function AddContact() {
                         )}
                     </Col>
                 </Row>
-                <Button variant="primary" type="submit" className="custom-button">
+                <Button variant="primary" type="submit" className="custom-button" disabled={submitButton}>
                     Save
                 </Button>
             </form>
+            {/* PopupSelector */}
+            {isPopupOpen && (
+                <PopupSkills
+                    isOpen={isPopupOpen}
+                    onClose={togglePopup}
+                    onConfirm={(skills) => {
+                        setSelectedSkills(skills); // Salva le skill selezionate
+                        togglePopup(); // Chiudi il popup
+                    }}
+                />
+            )}
         </div>
     );
 }
