@@ -8,6 +8,7 @@ import {ContactFilter} from "../api/crm/filters/ContactFilter.ts";
 import {Card, Badge, Dropdown, ListGroup, ListGroupItem} from "react-bootstrap";
 import {Row, Col} from "react-bootstrap"
 import {Pagination} from "../api/utils/Pagination.ts";
+import PopupContact from "./PopupContact";
 import ContactAPI from "../api/crm/ContactAPI.js";
 import SkillAPI from "../api/crm/SkillAPI.js";
 
@@ -62,7 +63,7 @@ function Filters(props) {
     }
 
     return (
-        <>
+        <Form>
             <h4 className={"filtersTitle"}>Filters</h4>
             <Form.Group controlId="filterName" className="mb-2">
                 <Form.Label>Filter by Name</Form.Label>
@@ -192,7 +193,7 @@ function Filters(props) {
                     Find
                 </Button>
             </div>
-        </>
+        </Form>
     );
 }
 
@@ -271,20 +272,20 @@ function ContactCard(props) {
 function CustomerCard(props) {
     const contact = props.contact;
 
-    return(
-        <Card  className="p-0 m-1">
+    return (
+        <Card className="p-0 m-1" style={{ height: '100px' }}>
             <Card.Body>
                 <Row>
                     <Col className="text-start" xs={4}>
-                        <Card.Title className="">{contact.name} {contact.surname}</Card.Title>
+                        <Card.Title>{contact.name} {contact.surname}</Card.Title>
                     </Col>
                     <Col className="text-center" xs={4}>
-                        <span className="custom-text">
-                            <Card.Title>ssn: {contact.ssn}</Card.Title>
-                        </span>
+                    <span className="custom-text">
+                        <Card.Title>ssn: {contact.ssn}</Card.Title>
+                    </span>
                     </Col>
                     <Col className="text-center" xs={4}>
-                        <span>{contact.customer?.jobOffers?.length | 0} job offers</span>
+                        <span>{contact.customer?.jobOffers?.length || 0} job offers</span>
                     </Col>
                 </Row>
             </Card.Body>
@@ -357,7 +358,13 @@ function ViewContacts(props) {
     const [currentPage, setCurrentPage] = useState(0);
     const [pageSize, setPageSize] = useState(5);
     const [mode, setMode] = useState(null);
+    const [operation, setOperation] = useState(null);
     const [skills, setSkills] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+
+    //Per gestione modal
+    const handleModalClose = () => setShowModal(false);
+    const handleModalShow = () => setShowModal(true);
 
     //USE Effect
     useEffect(() => {
@@ -395,6 +402,15 @@ function ViewContacts(props) {
         setCurrentPage(0);
     };
 
+    const handleConfirmContact = (contact) => {
+        navigate('/contacts/add', {
+            state: {
+                mode: mode,
+                contact: contact,  // Passa l'intero oggetto contatto
+            }
+        });
+    }
+
     return (
         <div style={{paddingTop: '90px', display: 'flex', flexDirection: 'row'}}>
 
@@ -427,9 +443,11 @@ function ViewContacts(props) {
                         Professionals
                     </Button>
                 </div>
+                {/*Pop up per contatti*/}
+                <PopupContact mode={mode} showModal={showModal} handleModalClose={handleModalClose} toLoad={"Contacts"} handleConfirmContact={handleConfirmContact} />
 
                 {/*Title of list*/}
-                <h2>{mode === null ? "Contacts" : mode+"s"} list:</h2>
+                <h2>{mode === null ? "Contacts" : mode + "s"} list:</h2>
                 <Row className="d-flex align-items-center">
                     <Col>
                         <Dropdown onSelect={handleSelect}>
@@ -445,20 +463,31 @@ function ViewContacts(props) {
                         </Dropdown>
                     </Col>
                     <Col>
+                        {mode === null && (
                         <Button className="m-2"
                                 variant="success"
-                                onClick={() => navigate(`/contacts/add`, { state: {
-                                    mode: "edit",
-                                    contact: contacts[14]
-                                    //user: { nome: "massimo", cognome: "porcheddu" }
-                        } })}>
-
-                            {mode === "Customer"
-                                ? "Create new Customer"
-                                : mode === "Professional"
-                                ? "Create new Professional"
-                                : "Create new Contact"}
+                                onClick={() => navigate(`/contacts/add`, {
+                                    state: {
+                                        mode: mode,
+                                        operation: "add",
+                                    }
+                                })}>
+                            <i className="bi bi-plus-circle p-1"></i>
+                            {"Create new Contact"}
                         </Button>
+                        )}
+                        {mode !== null && (
+                            <Button className="m-2"
+                                    variant="success"
+                                    onClick={() => setShowModal(true)}>
+                                <i className="bi bi-plus-circle p-1"></i>
+                                {mode === "Customer"
+                                    ? "Create new Customer"
+                                    : mode === "Professional"
+                                        ? "Create new Professional"
+                                        : "Create new Contact"}
+                            </Button>
+                        )}
                     </Col>
                 </Row>
 
@@ -466,36 +495,67 @@ function ViewContacts(props) {
                 {contacts.length > 0 ?
                     <>
                         {contacts.map((contact) => {
-                            if (mode === "Customer") {
-                                return <CustomerCard key={contact.contactId} contact={contact} />;
-                            } else if (mode === "Professional") {
-                                return <ProfessionalCard key={contact.contactId} contact={contact} />;
-                            } else {
-                                return <ContactCard key={contact.contactId} contact={contact} />;
-                            }
+                            return (
+                                <div key={contact.contactId} className="d-flex w-100 position-relative">
+                                    {/* Contenitore card con padding per lasciare spazio ai tasti */}
+                                    <div className="flex-grow-1" style={{ paddingRight: "50px" }}>
+                                        {mode === "Customer" ? (
+                                            <CustomerCard contact={contact} />
+                                        ) : mode === "Professional" ? (
+                                            <ProfessionalCard contact={contact} />
+                                        ) : (
+                                            <ContactCard contact={contact} />
+                                        )}
+                                    </div>
+
+                                    {/* Contenitore dei tasti, con larghezza fissa per evitare sovrapposizioni */}
+                                    <div
+                                        className="position-absolute top-50 end-0 translate-middle-y d-flex flex-column align-items-center"
+                                        style={{ width: "50px" }} // larghezza fissa per i tasti
+                                    >
+                                        <button
+                                            className="btn btn-primary mb-2"
+                                            style={{ width: "40px", height: "40px" }}
+                                        >
+                                            <i className="bi bi-pencil"></i>
+                                        </button>
+                                        <button
+                                            className="btn btn-danger"
+                                            style={{ width: "40px", height: "40px" }}
+                                        >
+                                            <i className="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            );
                         })}
-                        <div className="d-flex justify-content-between mt-3">
-                            <Button
-                                className="m-3"
-                                variant="outline-primary"
-                                onClick={() => {setCurrentPage(currentPage - 1);}}
-                                disabled={currentPage === 0}
-                            >
-                                Previous
-                            </Button>
-                            <span>Page {currentPage+1}</span>
-                            <Button
-                                className="m-3"
-                                variant="outline-primary"
-                                onClick={() => {setCurrentPage(currentPage + 1);}}
-                                disabled={contacts.length < pageSize}
-                            >
-                                Next
-                            </Button>
-                        </div>
                     </>
+
                     :
                     <div> No data available </div>}
+                <div className="d-flex justify-content-between mt-3">
+                    <Button
+                        className="m-3"
+                        variant="outline-primary"
+                        onClick={() => {
+                            setCurrentPage(currentPage - 1);
+                        }}
+                        disabled={currentPage === 0}
+                    >
+                        Previous
+                    </Button>
+                    <span>Page {currentPage + 1}</span>
+                    <Button
+                        className="m-3"
+                        variant="outline-primary"
+                        onClick={() => {
+                            setCurrentPage(currentPage + 1);
+                        }}
+                        disabled={contacts.length < pageSize}
+                    >
+                        Next
+                    </Button>
+                </div>
             </div>
         </div>
     );

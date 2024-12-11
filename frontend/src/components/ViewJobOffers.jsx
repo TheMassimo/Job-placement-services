@@ -17,9 +17,6 @@ const ViewJobOffers = () => {
     const [showModal, setShowModal] = useState(false); // Per gestire la visibilità del modale
     const itemsPerPage = 8;
 
-    //Da non togliere
-    const handleModalClose = () => setShowModal(false);
-    const handleModalShow = () => setShowModal(true);
 
     //USE Effect
     useEffect(() => {
@@ -40,6 +37,18 @@ const ViewJobOffers = () => {
             setCurrentPage(currentPage - 1);
         }
     };
+    //Per gestione modal
+    const handleModalClose = () => setShowModal(false);
+    const handleModalShow = () => setShowModal(true);
+
+    const handleConfirmContact = (contact) => {
+        navigate('/jobOffer/add', {
+            state: {
+                contact: contact,  // Passa l'intero oggetto contatto
+                customerId: contact.customer?.customerId // Passa anche l'ID del customer
+            }
+        });
+    }
 
     return (
         <div style={{display: 'flex', paddingTop: '90px'}}>
@@ -83,9 +92,9 @@ const ViewJobOffers = () => {
 
             {/* Main Content - Job Offers */}
             <div style={{flex: 1, padding: '20px'}}>
-                <PopupContact mode={"Customer"} showModal={showModal} handleModalClose={handleModalClose} />
+                <PopupContact showModal={showModal} handleModalClose={handleModalClose} toLoad={"Customers"} handleConfirmContact={handleConfirmContact}/>
 
-                <Button variant="secondary" className="float-end custom-button" onClick={() => setShowModal(true)}>
+                <Button variant="success" className="float-end" onClick={() => setShowModal(true)}>
                     <i className="bi bi-plus-circle"></i> Add new job offer
                 </Button>
                 <h2>Job Offers</h2>

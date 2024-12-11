@@ -31,6 +31,7 @@ function App() {
 
                         <Route path="/contacts" element={<ViewContacts />} />
                         <Route path="/contacts/add" element={<ContactForm />} />
+                        <Route path="/contacts/edit" element={<ContactForm />} />
 
                         <Route path="/jobOffers" element={<ViewJobOffers />} />
                         <Route path="/jobOffer/add" element={<AddJobOffer />} />

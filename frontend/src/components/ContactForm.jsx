@@ -14,6 +14,7 @@ function ContactForm() {
     const { state } = location;
     //take the data we need from state (from navigate)
     const mode = state?.mode;  // "customer"
+    const operation = state?.operation;  // "add"/"edit"
     const contact = state?.contact;  // { nome: "massimo", cognome: "porcheddu" }
     //use navigate
     const navigate = useNavigate();
@@ -93,23 +94,30 @@ function ContactForm() {
             formData.email = emailAddress;
             formData.address = addressInfo;
             //take only id of skills
-            formData.skills = selectedSkills.map((skill) => skill.skillId);
+            if (selectedSkills) {
+                formData.skills = selectedSkills.map((skill) => skill.skillId);
+            }
 
+            let resAddContact = null;
             // Prima chiamata API per aggiugnere il contatto
-            const resAddContact = await ContactAPI.AddContact(formData);
-            handleSuccess('Contact added successfully!');
+            if (mode === null) {
+                resAddContact = await ContactAPI.AddContact(formData);
+                handleSuccess('Contact added successfully!');
+            }
 
             // Se spuntato aggiungere anche il customer
-            if(customerChecked) {
-                const tmpCustomerData = {contactId: resAddContact.contactId, notes: formData.customerNotes}
+            if( (mode===null || mode==="Customer") && customerChecked) {
+                const contactId = resAddContact?.contactId || contact?.contactId;
+                const tmpCustomerData = {contactId: contactId, notes: formData.customerNotes}
                 const resAddCustomer = await CustomerAPI.AddCustomer(tmpCustomerData);
                 handleSuccess('Customer added successfully!');
             }
 
             // Se spuntato aggiungere anche il professional
-            if(professionalChecked) {
+            if( (mode===null || mode==="Professional") && professionalChecked) {
+                const contactId = resAddContact?.contactId || contact?.contactId;
                 const tmpProfessionalData = {
-                    contactId: resAddContact.contactId,
+                    contactId: contactId,
                     geographicalInfo: formData.geographicalInfo,
                     dailyRate: formData.dailyRate,
                     notes: formData.professionalNotes,
@@ -182,11 +190,20 @@ function ContactForm() {
 
     const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
+    const contactDisable = (mode !== null);
+    const customerDisable = (mode !== "Customer" && contactDisable);
+    const professionalDisable = (mode !== "Professional" && contactDisable);
+
     return (
         <div className="container mt-4" style={{paddingTop: '90px'}} >
-            <h2 className={"offerTitle"}>Create New Customer</h2>
+            <h2 className={"offerTitle"}>
+                { mode === "Professional"
+                ? "Create New Professional:"
+                : mode === "Customer"
+                    ? "Create New Customer:"
+                    : "Create New Contact:"
+            }</h2>
             <form onSubmit={handleSubmit} className="filterBox">
-
                 <Row className="mb-3">
                     <Col>
                         <Form.Group controlId="formName" className="text-start">
@@ -199,6 +216,7 @@ function ContactForm() {
                                 onChange={handleChange}
                                 required
                                 className="form-control-sm"  // Per rendere il campo più stretto
+                                disabled={contactDisable}
                             />
                         </Form.Group>
                     </Col>
@@ -213,6 +231,7 @@ function ContactForm() {
                                 onChange={handleChange}
                                 required
                                 className="form-control-sm"
+                                disabled={contactDisable}
                             />
                         </Form.Group>
                     </Col>
@@ -227,6 +246,7 @@ function ContactForm() {
                                 onChange={handleChange}
                                 required
                                 className="form-control-sm"
+                                disabled={contactDisable}
                             />
                         </Form.Group>
                     </Col>
@@ -247,11 +267,13 @@ function ContactForm() {
                                             onChange={(e) => handlePhoneNumberChange(index, e.target.value)}
                                             required
                                             className="form-control-sm"
+                                            disabled={contactDisable}
                                         />
                                         <button
                                             type="button"
                                             className="btn btn-danger"
                                             onClick={() => removePhoneNumber(index)}
+                                            disabled={contactDisable}
                                         >
                                             Remove
                                         </button>
@@ -263,6 +285,7 @@ function ContactForm() {
                                     type="button"
                                     className="btn btn-success mb-3"
                                     onClick={addPhoneNumber}
+                                    disabled={contactDisable}
                                 >
                                     Add Phone Number
                                 </button>
@@ -283,11 +306,13 @@ function ContactForm() {
                                             onChange={(e) => handleEmailAddressChange(index, e.target.value)}
                                             required
                                             className="form-control-sm"
+                                            disabled={contactDisable}
                                         />
                                         <button
                                             type="button"
                                             className="btn btn-danger"
                                             onClick={() => removeEmailAddress(index)}
+                                            disabled={contactDisable}
                                         >
                                             Remove
                                         </button>
@@ -299,6 +324,7 @@ function ContactForm() {
                                     type="button"
                                     className="btn btn-success mb-3"
                                     onClick={addEmailAddress}
+                                    disabled={contactDisable}
                                 >
                                     Add Email Address
                                 </button>
@@ -319,11 +345,13 @@ function ContactForm() {
                                             onChange={(e) => handleAddressInfoChange(index, e.target.value)}
                                             required
                                             className="form-control-sm"
+                                            disabled={contactDisable}
                                         />
                                         <button
                                             type="button"
                                             className="btn btn-danger"
                                             onClick={() => removeAddressInfo(index)}
+                                            disabled={contactDisable}
                                         >
                                             Remove
                                         </button>
@@ -335,6 +363,7 @@ function ContactForm() {
                                     type="button"
                                     className="btn btn-success mb-3"
                                     onClick={addAddressInfo}
+                                    disabled={contactDisable}
                                 >
                                     Add Address
                                 </button>
@@ -354,6 +383,7 @@ function ContactForm() {
                                 checked={customerChecked}
                                 onChange={(e) => handleCheckboxChange(e, setCustomerChecked)}
                                 style={{ marginLeft: '10px' }}
+                                disabled = {customerDisable}
                             />
                         </div>
                         {customerChecked && (
@@ -367,6 +397,7 @@ function ContactForm() {
                                     value={formData.customerNotes}
                                     onChange={handleChange}
                                     className="form-control-sm"
+                                    disabled = {customerDisable}
                                 />
                             </Form.Group>
                         )}
@@ -383,6 +414,7 @@ function ContactForm() {
                                 checked={professionalChecked}
                                 onChange={(e) => handleCheckboxChange(e, setProfessionalChecked)}
                                 style={{ marginLeft: '10px' }}
+                                disabled = {professionalDisable}
                             />
                         </div>
                         {professionalChecked && (
@@ -397,6 +429,7 @@ function ContactForm() {
                                         onChange={handleChange}
                                         required
                                         className="form-control-sm"  // Per rendere il campo più stretto
+                                        disabled = {professionalDisable}
                                     />
                                 </Form.Group>
                                 <Form.Group controlId="formDailyRate" className="text-start">
@@ -416,17 +449,22 @@ function ContactForm() {
                                         inputMode="decimal" // Mostra tastiera numerica con separatore decimale sui dispositivi mobili
                                         required
                                         className="form-control-sm"
+                                        disabled = {professionalDisable}
                                     />
                                 </Form.Group>
                                 <Form.Group controlId="formSkills" className="text-start">
                                     <div className="d-flex align-items-start justify-content-between">
                                         {/* Bottone per aprire il popup */}
-                                        <Button className="custom-button m-3" onClick={togglePopup}>
+                                        <Button
+                                            className="custom-button m-3"
+                                            onClick={togglePopup}
+                                            disabled = {professionalDisable}
+                                        >
                                             Select Skills
                                         </Button>
 
                                         {/* Mostra le skill selezionate */}
-                                        {selectedSkills.length > 0 && (
+                                        {selectedSkills && selectedSkills.length > 0 && (
                                             <div className="mt-3 ms-3" style={{ flexGrow: 1 }}>
                                                 <strong>Selected skills:</strong>
                                                 <ul className="mb-0">
@@ -448,6 +486,7 @@ function ContactForm() {
                                         value={formData.professionalNotes}
                                         onChange={handleChange}
                                         className="form-control-sm"
+                                        disabled = {professionalDisable}
                                     />
                                 </Form.Group>
                             </>
