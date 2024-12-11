@@ -25,6 +25,21 @@ async function GetContacts(filters, pagination) {
     }
 }
 
+async function GetContactById(contactId) {
+    const response = await fetch(
+        generateUrl(`${URL_CONTACTS}/${contactId}`, null, null), {
+            method: 'GET',
+            credentials: 'include'
+        })
+    const obj = await response.json()
+
+    if (response.ok) {
+        return ContactDetails.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
 async function AddContact(contact){
     const response = await fetch(
         generateUrl(`${URL_CONTACTS}`, null, null), {
@@ -61,44 +76,11 @@ async function TEST(filters, pagination) {
     }
 }
 
-async function GetConstactsAreCustomer(filters, pagination){
-    const response = await fetch(
-        generateUrl(`${URL_CONTACTS}/customers`, filters, pagination), {
-            method: 'GET',
-            credentials: 'include'
-        }
-    )
-    const obj = await response.json()
-
-    if (response.ok) {
-        return obj.map((e) => CustomerDetails.fromJsonObject(e))
-    } else {
-        throw obj
-    }
-}
-
-async function GetConstactsAreProfessional(filters, pagination){
-    const response = await fetch(
-        generateUrl(`${URL_CONTACTS}/professionals`, filters, pagination), {
-            method: 'GET',
-            credentials: 'include'
-        }
-    )
-    const obj = await response.json()
-
-    if (response.ok) {
-        return obj.map((e) => ProfessionalDetails.fromJsonObject(e))
-    } else {
-        throw obj
-    }
-}
 
 const ContactAPI = {
     GetContacts,
+    GetContactById,
     AddContact,
-    TEST,
-    GetConstactsAreCustomer,
-    GetConstactsAreProfessional
 }
 
 export default ContactAPI

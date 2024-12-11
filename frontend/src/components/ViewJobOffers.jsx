@@ -42,12 +42,7 @@ const ViewJobOffers = () => {
     const handleModalShow = () => setShowModal(true);
 
     const handleConfirmContact = (contact) => {
-        navigate('/jobOffer/add', {
-            state: {
-                contact: contact,  // Passa l'intero oggetto contatto
-                customerId: contact.customer?.customerId // Passa anche l'ID del customer
-            }
-        });
+        navigate(`/jobOffer/add/${contact.contactId}`);
     }
 
     return (

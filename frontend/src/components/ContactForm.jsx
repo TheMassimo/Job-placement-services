@@ -5,22 +5,22 @@ import ContactAPI from "../api/crm/ContactAPI.js";
 import CustomerAPI from "../api/crm/CustomerAPI.js";
 import ProfessionalAPI from "../api/crm/ProfessionalAPI.js";
 import PopupSkills from "./PopupSkills.jsx";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import { useNotification } from '../contexts/NotificationProvider';
 
-function ContactForm() {
+function ContactForm(props) {
+    const {contactId} = useParams();
     //get data from navigate
     const location = useLocation();
     const { state } = location;
     //take the data we need from state (from navigate)
-    const mode = state?.mode;  // "customer"
-    const operation = state?.operation;  // "add"/"edit"
-    const contact = state?.contact;  // { nome: "massimo", cognome: "porcheddu" }
+    const mode = props.mode;  // "customer"
     //use navigate
     const navigate = useNavigate();
     //use notification
     const { handleError, handleSuccess } = useNotification();
     // use state
+    const [contact, setContact] = useState({});
     const [phoneNumbers, setPhoneNumbers] = useState([]);
     const [emailAddress, setEmailAddress] = useState([]);
     const [addressInfo, setAddressInfo] = useState([]);
@@ -64,15 +64,23 @@ function ContactForm() {
                 skills: contact.skills || [],
                 professionalNotes: contact.professional?.notes || '',
             });
-            setEmailAddress(contact.email.map(el => el.email) || []);
-            setAddressInfo(contact.address.map(el => el.address) || []);
-            setPhoneNumbers(contact.telephone.map(el => el.telephone) || []);
+            setEmailAddress(contact.email?.map(el => el.email) || []);
+            setAddressInfo(contact.address?.map(el => el.address) || []);
+            setPhoneNumbers(contact.telephone?.map(el => el.telephone) || []);
             setCustomerChecked(contact.customer ? true : false);
             setProfessionalChecked(contact.professional ? true : false);
             setSelectedSkills(contact.professional?.skills);
             console.log("selectedSkills", selectedSkills);
         }
-    }, []);
+    }, [contact]);
+
+    useEffect( () => {
+        ContactAPI.GetContactById(contactId).then((res) => {
+            setContact(res);
+            console.log("risultato:",res);
+            console.log("mode",mode);
+        }).catch((err) => console.log(err));
+    }, [contactId]);
 
     // FUCTIONS
     // Gestione dei cambiamenti nei campi del form

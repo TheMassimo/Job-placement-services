@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 function AddJobOffer(props) {
 
     const location = useLocation();
+
+    //USE PARAMS
     const { contact, customerId } = location.state || {}; // Recupera il contatto e customerId
 
     // Aggiungi delle stampe per vedere i dati

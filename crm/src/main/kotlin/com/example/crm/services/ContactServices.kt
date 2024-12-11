@@ -23,22 +23,7 @@ interface ContactServices {
         pageSize: Int
     ): List<ContactDetailsDTO>
 
-    fun getContactsAreCustomer(
-        name:String?,
-        surname:String?,
-        category:Category?,
-        email:String?,
-        address:String?,
-        ssn:String?,
-        telephone:String?,
-        jobOffers:Int?,
-        page: Int,
-        limit: Int
-    ): List<CustomerDetailDTO>
-
-    fun getContactsAreProfessional(page: Int, limit: Int): List<ProfessionalDetailDTO>
-
-    fun getContactById(id: Long): ContactDTO
+    fun getContactById(id: Long): ContactDetailsDTO
 
     fun create(dto: ContactCreateDTO): ContactDTO
 

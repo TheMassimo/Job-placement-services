@@ -403,12 +403,7 @@ function ViewContacts(props) {
     };
 
     const handleConfirmContact = (contact) => {
-        navigate('/contacts/add', {
-            state: {
-                mode: mode,
-                contact: contact,  // Passa l'intero oggetto contatto
-            }
-        });
+        navigate(`/contacts/add/${contact.contactId}/${mode}`);
     }
 
     return (

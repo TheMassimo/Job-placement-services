@@ -30,7 +30,9 @@ function App() {
                         <Route path="/" element={<HomeLayout />} />
 
                         <Route path="/contacts" element={<ViewContacts />} />
-                        <Route path="/contacts/add" element={<ContactForm />} />
+                        <Route path="/contacts/add" element={<ContactForm mode={null} />} />
+                        <Route path="/contacts/add/:contactId/customer" element={<ContactForm mode={"Customer"} />} />
+                        <Route path="/contacts/add/:contactId/professional" element={<ContactForm mode={"Professional"} />} />
                         <Route path="/contacts/edit" element={<ContactForm />} />
 
                         <Route path="/jobOffers" element={<ViewJobOffers />} />
