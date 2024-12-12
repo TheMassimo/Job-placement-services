@@ -46,6 +46,19 @@ async function UpdateProfessional(professional) {
     }
 }
 
+async function DeleteProfessional(professionalId) {
+    const response = await fetch(
+        generateUrl(`${URL_PROFESSIONALS}/${professionalId}`, null, null), {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+        })
+
+    if (!response.ok) {
+        throw "Error"
+    }
+}
+
 async function AddSkillToProfessional(professionalId, skill) {
     const response = await fetch(
         generateUrl(`${URL_PROFESSIONALS}/${professionalId}/skill`, null, null), {
@@ -96,10 +109,10 @@ async function DeleteSkillOfProfessioanl(professionalId, skillId) {
 }
 
 
-
 const ProfessionalAPI = {
     AddProfessional,
     UpdateProfessional,
+    DeleteProfessional,
     AddSkillToProfessional,
     UpdateSkillOfProfessional,
     DeleteSkillOfProfessioanl,

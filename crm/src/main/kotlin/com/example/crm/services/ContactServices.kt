@@ -36,6 +36,8 @@ interface ContactServices {
 
     fun updateCategory(id: Long, category:Category): ContactDTO
 
+    fun downgradeCategory(id: Long, category:Category): ContactDTO
+
     fun deleteEmail(contactId: Long, emailId: Long)
 
     fun deleteAddress(contactId: Long, addressId: Long)

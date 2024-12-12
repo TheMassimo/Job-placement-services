@@ -3,6 +3,7 @@ package com.example.crm.services
 import com.example.crm.dtos.ProfessionalCreateDTO
 import com.example.crm.dtos.ProfessionalDTO
 import com.example.crm.dtos.SkillDTO
+import com.example.crm.entities.Professional
 import com.example.crm.entities.ProfessionalEmployment
 
 interface ProfessionalServices {
@@ -16,6 +17,10 @@ interface ProfessionalServices {
     fun getProfessionalById(id : Long) : ProfessionalDTO
 
     fun create(dto : ProfessionalCreateDTO) : ProfessionalDTO
+
+    fun deleteProfessional(professionalId:Long)
+
+    fun updateProfessional(professionalId:Long, dto: ProfessionalCreateDTO): ProfessionalDTO
 
     fun addNote(id : Long, note: String) : ProfessionalDTO
 

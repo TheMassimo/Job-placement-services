@@ -369,6 +369,34 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         return contactRepository.save(existingContact).toDto()
     }
 
+    override fun downgradeCategory(id: Long, category:Category): ContactDTO{
+        val existingContact = contactRepository.findById(id)
+            .orElseThrow{
+                logger.error("Contact not found")
+                throw ContactNotFoundException("Contact not found")
+            }
+
+        if(category == Category.Customer){
+            if(existingContact.category == Category.CustomerProfessional){
+                existingContact.category = Category.Professional;
+            }else{
+                existingContact.category = Category.Unknown;
+            }
+        }
+
+        if(category == Category.Professional){
+            if(existingContact.category == Category.CustomerProfessional){
+                existingContact.category = Category.Customer;
+            }else{
+                existingContact.category = Category.Unknown;
+            }
+        }
+
+        logger.info("Contact category modified successfully")
+
+        return contactRepository.save(existingContact).toDto()
+    }
+
     override fun deleteEmail (contactId: Long, emailId: Long ){
         //check if contact exist
         val eContact = contactRepository.findByIdOrNull(contactId)

@@ -9,8 +9,11 @@ import {Card, Badge, Dropdown, ListGroup, ListGroupItem} from "react-bootstrap";
 import {Row, Col} from "react-bootstrap"
 import {Pagination} from "../api/utils/Pagination.ts";
 import PopupContact from "./PopupContact";
+import PopupConfirmation from "./PopupConfirmation";
 import ContactAPI from "../api/crm/ContactAPI.js";
+import ProfessionalAPI from "../api/crm/ProfessionalAPI.js";
 import SkillAPI from "../api/crm/SkillAPI.js";
+import { useNotification } from '../contexts/NotificationProvider';
 
 function Filters(props) {
     const setFilters = props.setFilters;
@@ -352,6 +355,7 @@ function ProfessionalCard(props) {
 
 function ViewContacts(props) {
     const navigate = useNavigate();
+    const { handleError, handleSuccess } = useNotification();
     const [contacts, setContacts] = useState([]);
     const [filters, setFilters] = useState(new ContactFilter());
     const [currentPage, setCurrentPage] = useState(0);
@@ -360,6 +364,9 @@ function ViewContacts(props) {
     const [operation, setOperation] = useState(null);
     const [skills, setSkills] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [isOpenConfirmation, setIsOpenConfirmation] = useState(false);
+    const [contactToDelete, setContactToDelete] = useState(null);
+    const [refreshContact, setRefreshContact] = useState(0);
 
     //Per gestione modal
     const handleModalClose = () => setShowModal(false);
@@ -373,7 +380,7 @@ function ViewContacts(props) {
             setContacts(res);
             //console.log("CONTACTS ",res);
         }).catch((err) => console.log(err))
-    }, [filters, currentPage, pageSize]);
+    }, [filters, currentPage, pageSize, refreshContact]);
 
     useEffect(() => {
         SkillAPI.GetSkills()
@@ -404,6 +411,30 @@ function ViewContacts(props) {
     const handleConfirmContact = (contact) => {
         navigate(`/${mode.toLowerCase()}/add/${contact.contactId}`);
     }
+
+    const onCloseConfirmation = () => {
+        setIsOpenConfirmation(false);
+        setContactToDelete(null)
+    }
+
+    const onConfirmConfirmation = async () => {
+        try {
+            if (mode === "Customer") {
+                // Aggiungi il codice per gestire la logica per "Customer" se necessario
+            } else if (mode === "Professional") {
+                await ProfessionalAPI.DeleteProfessional(contactToDelete.professional.professionalId); // Chiamata asincrona
+                handleSuccess('Professional successfully deleted!');
+                setIsOpenConfirmation(false);
+                setRefreshContact(prev => prev + 1);
+            } else {
+                // Gestisci altri casi
+            }
+        } catch (error) {
+            console.error("Errore durante la conferma:", error);
+            handleError(error);
+        }
+    };
+
 
     return (
         <div style={{paddingTop: '90px', display: 'flex', flexDirection: 'row'}}>
@@ -438,7 +469,21 @@ function ViewContacts(props) {
                     </Button>
                 </div>
                 {/*Pop up per contatti*/}
-                <PopupContact mode={mode} showModal={showModal} handleModalClose={handleModalClose} toLoad={"Contacts"} handleConfirmContact={handleConfirmContact} />
+                <PopupContact
+                    mode={mode}
+                    showModal={showModal}
+                    handleModalClose={handleModalClose}
+                    toLoad={"Contacts"}
+                    handleConfirmContact={handleConfirmContact}
+                />
+                {/* Popup per confermare*/}
+                <PopupConfirmation
+                    isOpen={isOpenConfirmation}
+                    onClose={onCloseConfirmation}
+                    onConfirm={onConfirmConfirmation}
+                    title="Confirm"
+                    message={"Are you sure you want to proceed?"}
+                />
 
                 {/*Title of list*/}
                 <h2>{mode === null ? "Contacts" : mode + "s"} list:</h2>
@@ -520,6 +565,10 @@ function ViewContacts(props) {
                                         <button
                                             className="btn btn-danger"
                                             style={{ width: "40px", height: "40px" }}
+                                            onClick={() => {
+                                                setIsOpenConfirmation(true);
+                                                setContactToDelete(contact)
+                                            }}
                                         >
                                             <i className="bi bi-trash"></i>
                                         </button>
