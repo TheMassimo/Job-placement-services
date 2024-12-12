@@ -403,7 +403,7 @@ function ViewContacts(props) {
     };
 
     const handleConfirmContact = (contact) => {
-        navigate(`/contacts/add/${contact.contactId}/${mode}`);
+        navigate(`/${mode.toLowerCase()}/add/${contact.contactId}`);
     }
 
     return (
@@ -511,6 +511,10 @@ function ViewContacts(props) {
                                         <button
                                             className="btn btn-primary mb-2"
                                             style={{ width: "40px", height: "40px" }}
+                                            onClick={() => {
+                                                const path = mode ? mode.toLowerCase() : "contacts";
+                                                navigate(`/${path}/edit/${contact.contactId}`);
+                                            }}
                                         >
                                             <i className="bi bi-pencil"></i>
                                         </button>

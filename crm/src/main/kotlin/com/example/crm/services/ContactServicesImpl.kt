@@ -432,6 +432,23 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         logger.info("Telephone successfully deleted from the contact")
     }
 
+    override fun updateContact(contactId:Long, dto: ContactCreateDTO): ContactDTO{
+        logger.info("Updating contact with ID $contactId")
+
+        val contact = contactRepository.findById(contactId)
+            .orElseThrow { ContactNotFoundException("Contact with id $contactId not found") }
+
+        contact.name = dto.name
+        contact.surname = dto.surname
+        contact.ssn = dto.ssn ?: ""
+
+        val savedContact = contactRepository.save(contact)
+
+        logger.info("Name updated successfully")
+
+        return savedContact.toDto()
+    }
+
     @Transactional
     override fun updateEmail(contactId: Long, emailId: Long, email: String): EmailDTO{
         //delete the current email for that contact

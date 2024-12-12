@@ -106,6 +106,15 @@ class ContactController(private val contactServices: ContactServices) {
         )
     }
 
+    @PutMapping("/{contactId}", "/{contactId}/")
+    @ResponseStatus(HttpStatus.OK)
+    fun updateContact(
+        @PathVariable contactId : Long,
+        @RequestBody dto: ContactCreateDTO
+    ):ContactDTO{
+        return contactServices.updateContact(contactId, dto)
+    }
+
     @PutMapping("/{contactId}/category", "/{contactId}/category/")
     @ResponseStatus(HttpStatus.OK)
     fun updateContactCategory(

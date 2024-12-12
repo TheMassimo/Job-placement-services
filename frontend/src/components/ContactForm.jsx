@@ -10,9 +10,7 @@ import { useNotification } from '../contexts/NotificationProvider';
 
 function ContactForm(props) {
     const {contactId} = useParams();
-    //get data from navigate
-    const location = useLocation();
-    const { state } = location;
+    const {action} = useParams();
     //take the data we need from state (from navigate)
     const mode = props.mode;  // "customer"
     //use navigate
@@ -75,11 +73,13 @@ function ContactForm(props) {
     }, [contact]);
 
     useEffect( () => {
-        ContactAPI.GetContactById(contactId).then((res) => {
-            setContact(res);
-            console.log("risultato:",res);
-            console.log("mode",mode);
-        }).catch((err) => console.log(err));
+        if(contactId) {
+            ContactAPI.GetContactById(contactId).then((res) => {
+                setContact(res);
+                console.log("risultato:", res);
+                console.log("mode", mode);
+            }).catch((err) => console.log(err));
+        }
     }, [contactId]);
 
     // FUCTIONS
@@ -96,6 +96,16 @@ function ContactForm(props) {
         e.preventDefault();
         setSubmitButton(true);
 
+        if (action === "add") {
+            handleAdd(e);
+        } else if (action === "edit") {
+            handleEdit(e);
+        }
+
+        setSubmitButton(false);
+    };
+
+    const handleAdd = async (e) => {
         try {
             // Popola formData
             formData.telephone = phoneNumbers;
@@ -140,7 +150,63 @@ function ContactForm(props) {
             console.error("Errore durante l'elaborazione:", err);
             handleError(err);
         }
-        setSubmitButton(false);
+    };
+
+    const handleEdit = async () => {
+        try {
+            // Popola formData
+            /*
+            formData.telephone = phoneNumbers;
+            formData.email = emailAddress;
+            formData.address = addressInfo;
+            //take only id of skills
+            if (selectedSkills) {
+                formData.skills = selectedSkills.map((skill) => skill.skillId);
+            }
+            */
+
+            let resAddContact = null;
+            // Prima chiamata API per aggiugnere il contatto
+            if (mode === null) {
+                //update name, surname and ssn
+                const tmpContact = {contactId:contact.contactId, name:formData.name, surname:formData.surname, ssn:formData.ssn};
+                const resUpdateContact = await ContactAPI.UpdateContact(tmpContact);
+                handleSuccess('Contact data update!');
+            }
+
+
+            // Se spuntato aggiungere anche il customer
+            /*
+            if( (mode===null || mode==="Customer") && customerChecked) {
+                const customerId = contact?.customer?.customerId;
+                const resUpdateCustomer = await CustomerAPI.UpdateNotes(customerId, formData.customerNotes);
+                console.log(resUpdateCustomer);
+                handleSuccess('Customer data update!');
+            }
+
+             */
+
+            /*
+            // Se spuntato aggiungere anche il professional
+            if( (mode===null || mode==="Professional") && professionalChecked) {
+                const contactId = resAddContact?.contactId || contact?.contactId;
+                const tmpProfessionalData = {
+                    contactId: contactId,
+                    geographicalInfo: formData.geographicalInfo,
+                    dailyRate: formData.dailyRate,
+                    notes: formData.professionalNotes,
+                    skills: formData.skills,
+                }
+                const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData);
+                handleSuccess('Professional added successfully!');
+            }
+            */
+            //if all is right go back to contacts
+            navigate(`/contacts`)
+        } catch (err) {
+            console.error("Errore durante l'elaborazione:", err);
+            handleError(err);
+        }
     };
 
     // TELEPHONE
@@ -391,7 +457,7 @@ function ContactForm(props) {
                                 checked={customerChecked}
                                 onChange={(e) => handleCheckboxChange(e, setCustomerChecked)}
                                 style={{ marginLeft: '10px' }}
-                                disabled = {customerDisable}
+                                disabled = {customerDisable || action==="edit"}
                             />
                         </div>
                         {customerChecked && (
@@ -422,7 +488,7 @@ function ContactForm(props) {
                                 checked={professionalChecked}
                                 onChange={(e) => handleCheckboxChange(e, setProfessionalChecked)}
                                 style={{ marginLeft: '10px' }}
-                                disabled = {professionalDisable}
+                                disabled = {professionalDisable || action==="edit"}
                             />
                         </div>
                         {professionalChecked && (

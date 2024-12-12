@@ -60,9 +60,9 @@ class CustomerServicesImpl(
     }
 
 
-    override fun addNote(id: Long,note: String): CustomerDTO {
+    override fun updateNote(id: Long, note: String): CustomerDTO {
         val customer = customerRepository.findByIdOrNull(id)
-            ?: throw CustomerNotFoundException("customerid not found")
+            ?: throw CustomerNotFoundException("customerId not found")
 
         customer.notes = note
 

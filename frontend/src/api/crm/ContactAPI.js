@@ -58,6 +58,36 @@ async function AddContact(contact){
     }
 }
 
+async function UpdateContact(contact) {
+    console.log("previu",JSON.stringify(contact) );
+    const response = await fetch(
+        generateUrl(`${URL_CONTACTS}/${contact.contactId}`, null, null), {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'}, //, 'X-XSRF-TOKEN': xsrfToken
+            body: JSON.stringify(contact)
+        })
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return Contact.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
+const ContactAPI = {
+    GetContacts,
+    GetContactById,
+    AddContact,
+    UpdateContact,
+}
+
+export default ContactAPI
+
+
+/*
 async function TEST(filters, pagination) {
     console.log("link -> ", URL_CONTACTS );
     const response = await fetch(
@@ -75,12 +105,4 @@ async function TEST(filters, pagination) {
         throw obj
     }
 }
-
-
-const ContactAPI = {
-    GetContacts,
-    GetContactById,
-    AddContact,
-}
-
-export default ContactAPI
+*/

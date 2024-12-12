@@ -2,6 +2,7 @@ package com.example.crm.services
 
 import com.example.crm.dtos.*
 import com.example.crm.entities.Category
+import com.example.crm.entities.Contact
 import com.example.crm.entities.ProfessionalEmployment
 
 
@@ -40,6 +41,8 @@ interface ContactServices {
     fun deleteAddress(contactId: Long, addressId: Long)
 
     fun deleteTelephone(contactId: Long, telephoneId: Long)
+
+    fun updateContact(contactId:Long, dto: ContactCreateDTO): ContactDTO
 
     fun updateEmail(contactId: Long, emailId: Long, email: String): EmailDTO
 
