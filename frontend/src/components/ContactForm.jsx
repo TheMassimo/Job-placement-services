@@ -34,7 +34,6 @@ function ContactForm(props) {
     const [customerChecked, setCustomerChecked] = useState(false);
     const [professionalChecked, setProfessionalChecked] = useState(false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [selectedSkills, setSelectedSkills] = useState([]);
     const [submitButton, setSubmitButton] = useState(false);
 
     useEffect(() => {
@@ -51,12 +50,11 @@ function ContactForm(props) {
                 customerNotes: contact.customer?.notes || '',
                 geographicalInfo: contact.professional?.geographicalInfo || '',
                 dailyRate: contact.professional?.dailyRate || 0,
-                skills: contact.skills || [],
+                skills: contact.professional?.skills || [],
                 professionalNotes: contact.professional?.notes || '',
             });
             setCustomerChecked(!!contact.customer);
             setProfessionalChecked(!!contact.professional);
-            setSelectedSkills(contact.professional?.skills || []);
         }
     }, [contact]);
 
@@ -94,15 +92,21 @@ function ContactForm(props) {
     };
     const handleAdd = async (e) => {
         try {
-            //take only id of skills
-            if (selectedSkills) {
-                formData.skills = selectedSkills.map((skill) => skill.skillId);
-            }
+            // La logica rimane la stessa, ora usi solo formData.skills
+            formData.skills = formData.skills.map((skill) => skill.skillId);
 
             let resAddContact = null;
             // Prima chiamata API per aggiugnere il contatto
             if (mode === null) {
-                resAddContact = await ContactAPI.AddContact(formData);
+                const tmpContact = {
+                    name:formData.name,
+                    surname: formData.surname,
+                    ssn:formData.ssn,
+                    email: formData.email.map((item) => item.email),
+                    address: formData.address.map((item) => item.address),
+                    telephone: formData.telephone.map((item) => item.telephone),
+                };
+                resAddContact = await ContactAPI.AddContact(tmpContact);
                 handleSuccess('Contact added successfully!');
             }
 
@@ -138,7 +142,6 @@ function ContactForm(props) {
         try {
 
             //change name/surname/ssn
-            /*
             let resAddContact = null;
             // Prima chiamata API per aggiugnere il contatto
             if (mode === null) {
@@ -149,37 +152,31 @@ function ContactForm(props) {
                 processContactChanges(contact, formData)
                 handleSuccess('Contact data update!');
             }
-            */
-
 
             // Se spuntato aggiungere anche il customer
-            /*
             if( (mode===null || mode==="Customer") && customerChecked) {
                 const customerId = contact?.customer?.customerId;
                 const resUpdateCustomer = await CustomerAPI.UpdateNotes(customerId, formData.customerNotes);
-                console.log(resUpdateCustomer);
                 handleSuccess('Customer data update!');
             }
 
-             */
-
-            /*
             // Se spuntato aggiungere anche il professional
             if( (mode===null || mode==="Professional") && professionalChecked) {
-                const contactId = resAddContact?.contactId || contact?.contactId;
-                const tmpProfessionalData = {
-                    contactId: contactId,
-                    geographicalInfo: formData.geographicalInfo,
-                    dailyRate: formData.dailyRate,
-                    notes: formData.professionalNotes,
-                    skills: formData.skills,
-                }
-                const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData);
-                handleSuccess('Professional added successfully!');
+                //update professional data
+                const professionalId = contact?.professional?.professionalId;
+                const tmpProfessional = { contactId:contactId,
+                                          professionalId:professionalId,
+                                          geographicalInfo:formData.geographicalInfo,
+                                          dailyRate:formData.dailyRate,
+                                          notes:formData.professionalNotes}
+                const resUpdateContact = await ProfessionalAPI.UpdateProfessional(tmpProfessional);
+                //update professional skills
+                processProfessionalSkillsChanges(contact, formData);
+                handleSuccess('Professional data updated!');
             }
-            */
+
             //if all is right go back to contacts
-            //navigate(`/contacts`)
+            navigate(`/contacts`)
         } catch (err) {
             console.error("Errore durante l'elaborazione:", err);
             handleError(err);
@@ -238,6 +235,35 @@ function ContactForm(props) {
         processField(contact.address, formData.address, 'addressId', 'address', fieldAPI.address);
     };
 
+    const processProfessionalSkillsChanges = (contact, formData) => {
+        const contactField = contact.professional.skills || [];
+        const formDataField = formData.skills || [];
+
+        // Mappa i dati di origine in oggetti chiave-valore
+        const contactMap = new Map(contactField.map(item => [item.skillId, item.skill]));
+        const formDataMap = new Map(formDataField.map(item => [item.skillId, item.skill]));
+
+        //console.log("TEst contact:", contactMap, "  formData:", formDataMap);
+        const professionalId = contact.professional.professionalId;
+
+        // Gestisci eliminazioni
+        for (let id of contactMap.keys()) {
+            if (!formDataMap.has(id)) {
+                ProfessionalAPI.DeleteSkillOfProfessioanl(professionalId, id);
+            }
+        }
+
+        // Gestisci aggiunte e aggiornamenti
+        for (let [id, value] of formDataMap.entries()) {
+            if (contactMap.has(id)) {
+                if (contactMap.get(id) !== value) {
+                    ProfessionalAPI.UpdateSkillOfProfessional(professionalId, id, value);
+                }
+            } else {
+                ProfessionalAPI.AddSkillToProfessional(professionalId, value);
+            }
+        }
+    };
 
     // Funzioni di gestione telefono
     const addPhoneNumber = () => {
@@ -591,13 +617,16 @@ function ContactForm(props) {
                                         </Button>
 
                                         {/* Mostra le skill selezionate */}
-                                        {selectedSkills && selectedSkills.length > 0 && (
+                                        {formData.skills && formData.skills.length > 0 && (
                                             <div className="mt-3 ms-3" style={{ flexGrow: 1 }}>
                                                 <strong>Selected skills:</strong>
                                                 <ul className="mb-0">
-                                                    {selectedSkills.map((skill, index) => (
-                                                        <li key={index}>{skill.skill}</li>
-                                                    ))}
+                                                    {formData.skills
+                                                        .slice() // Creare una copia per non modificare l'array originale
+                                                        .sort((a, b) => a.skill.localeCompare(b.skill)) // Ordinare alfabeticamente
+                                                        .map((skill, index) => (
+                                                            <li key={index}>{skill.skill}</li>
+                                                        ))}
                                                 </ul>
                                             </div>
                                         )}
@@ -629,8 +658,12 @@ function ContactForm(props) {
                 <PopupSkills
                     isOpen={isPopupOpen}
                     onClose={togglePopup}
+                    preSelectedSkills={formData.skills}
                     onConfirm={(skills) => {
-                        setSelectedSkills(skills); // Salva le skill selezionate
+                        setFormData((prevFormData) => ({
+                            ...prevFormData,
+                            skills: skills, // Aggiorna il campo skills direttamente
+                        }));
                         togglePopup(); // Chiudi il popup
                     }}
                 />

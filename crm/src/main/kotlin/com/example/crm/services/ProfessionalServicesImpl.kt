@@ -1,14 +1,12 @@
 package com.example.crm.services
 
-import com.example.crm.dtos.ProfessionalCreateDTO
-import com.example.crm.dtos.ProfessionalDTO
-import com.example.crm.dtos.SkillDTO
-import com.example.crm.dtos.toDto
+import com.example.crm.dtos.*
 import com.example.crm.entities.Category
 import com.example.crm.entities.Professional
 import com.example.crm.entities.ProfessionalEmployment
 import com.example.crm.entities.Skill
 import com.example.crm.exeptions.BadParameterException
+import com.example.crm.exeptions.ContactNotFoundException
 import com.example.crm.exeptions.ElementNotFoundException
 import com.example.crm.exeptions.ProfessionalNotFoundException
 import com.example.crm.repositories.ContactRepository
@@ -105,6 +103,23 @@ class ProfessionalServicesImpl(private val professionalRepository: ProfessionalR
 
             return pDTO
         }
+    }
+
+    override fun updateProfessional(professionalId:Long, dto: ProfessionalCreateDTO): ProfessionalDTO {
+        logger.info("Updating professional with ID $professionalId")
+
+        val professional = professionalRepository.findById(professionalId)
+            .orElseThrow { ContactNotFoundException("Contact with id $professionalId not found") }
+
+
+        professional.geographicalInfo = dto.geographicalInfo
+        professional.dailyRate = dto.dailyRate
+        professional.notes = dto.notes ?: ""
+
+        val savedProfessional = professionalRepository.save(professional)
+        logger.info("Professional updated successfully")
+
+        return savedProfessional.toDto()
     }
 
     override fun addNote(id: Long, note: String): ProfessionalDTO {

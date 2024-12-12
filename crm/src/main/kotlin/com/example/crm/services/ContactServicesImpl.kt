@@ -444,7 +444,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
 
         val savedContact = contactRepository.save(contact)
 
-        logger.info("Name updated successfully")
+        logger.info("Contact updated successfully")
 
         return savedContact.toDto()
     }

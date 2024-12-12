@@ -329,7 +329,6 @@ function PopupContact(props) {
     useEffect(() => {
         ContactAPI.GetContacts(filters, new Pagination(currentPage, pageSize)).then((res) => {
             setContacts(res);
-            console.log("Massimo");
         }).catch((err) => console.log(err))
     }, [filters, currentPage]);
 

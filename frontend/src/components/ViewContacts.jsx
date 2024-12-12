@@ -59,7 +59,6 @@ function Filters(props) {
         const tmpFilter = new ContactFilter(null, null, null, null, null, null, mode, null, null, null, null)
         setFormFilters(tmpFilter);
         setFilters(tmpFilter);
-        console.log("ripulisco")
     }
 
     return (
@@ -231,7 +230,18 @@ function ContactCard(props) {
             </Card.Header>
             <Card.Body>
                 <Row>
-                    {/* Prima colonna - Email */}
+                    {/* Prima colonna - Numeri di telefono */}
+                    <Col xs={12} md={4}>
+                        <h6>Telephone</h6>
+                        {contact.telephone
+                            .slice() // Copia l'array
+                            .sort((a, b) => a.telephone.localeCompare(b.telephone)) // Ordina alfabeticamente
+                            .map((telephoneObj) => (
+                                <div key={telephoneObj.telephoneId}>{telephoneObj.telephone}</div>
+                            ))}
+                    </Col>
+
+                    {/* Seconda colonna - Email */}
                     <Col xs={12} md={4}>
                         <h6>Email</h6>
                         {contact.email
@@ -242,7 +252,7 @@ function ContactCard(props) {
                             ))}
                     </Col>
 
-                    {/* Seconda colonna - Indirizzi */}
+                    {/* Terza colonna - Indirizzi */}
                     <Col xs={12} md={4}>
                         <h6>Addresses</h6>
                         {contact.address
@@ -250,17 +260,6 @@ function ContactCard(props) {
                             .sort((a, b) => a.address.localeCompare(b.address)) // Ordina alfabeticamente
                             .map((addressObj) => (
                                 <div key={addressObj.addressId}>{addressObj.address}</div>
-                            ))}
-                    </Col>
-
-                    {/* Terza colonna - Numeri di telefono */}
-                    <Col xs={12} md={4}>
-                        <h6>Telephone</h6>
-                        {contact.telephone
-                            .slice() // Copia l'array
-                            .sort((a, b) => a.telephone.localeCompare(b.telephone)) // Ordina alfabeticamente
-                            .map((telephoneObj) => (
-                                <div key={telephoneObj.telephoneId}>{telephoneObj.telephone}</div>
                             ))}
                     </Col>
                 </Row>
@@ -368,11 +367,11 @@ function ViewContacts(props) {
 
     //USE Effect
     useEffect(() => {
-        console.log("pagina corrente:  page size", currentPage, pageSize);
+        //console.log("pagina corrente:  page size", currentPage, pageSize);
         ContactAPI.GetContacts(filters, new Pagination(currentPage, pageSize)).then((res) => {
             //get data
             setContacts(res);
-            console.log("CONTACTS ",res);
+            //console.log("CONTACTS ",res);
         }).catch((err) => console.log(err))
     }, [filters, currentPage, pageSize]);
 
@@ -381,7 +380,7 @@ function ViewContacts(props) {
             .then((res) => {
                 // Setta le skills
                 setSkills(res);
-                console.log("skills", res);
+                //console.log("skills", res);
             })
             .catch((err) => console.log(err));
     }, []); // Esegui solo una volta quando il componente viene montato
