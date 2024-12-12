@@ -29,12 +29,12 @@ class CustomerController(private val customerServices : CustomerServices) {
         return customerServices.create(dto)
     }
 
-    @PutMapping("/notes/{id}", "/notes/{id}/")
+    @PutMapping("/note/{id}", "/note/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    fun addNote(
-        @RequestParam note: String,
-        @PathVariable @Positive id: Long
+    fun updateNote(
+        @PathVariable @Positive id: Long,
+        @RequestBody note: String
     ): CustomerDTO {
-        return customerServices.addNote(id, note)
+        return customerServices.updateNote(id, note)
     }
 }

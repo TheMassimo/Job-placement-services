@@ -74,7 +74,7 @@ class ContactController(private val contactServices: ContactServices) {
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadContactEmail(
         @PathVariable contactId : Long,
-        @RequestParam email: String,
+        @RequestBody email: String,
     ): EmailDTO {
         return contactServices.uploadEmail(
             contactId,
@@ -86,7 +86,7 @@ class ContactController(private val contactServices: ContactServices) {
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadContactAddress(
         @PathVariable contactId : Long,
-        @RequestParam address: String,
+        @RequestBody address: String,
     ): AddressDTO {
         return contactServices.uploadAddress(
             contactId,
@@ -98,7 +98,7 @@ class ContactController(private val contactServices: ContactServices) {
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadContactTelephone(
         @PathVariable contactId : Long,
-        @RequestParam telephone: String,
+        @RequestBody telephone: String,
     ): TelephoneDTO {
         return contactServices.uploadTelephone(
             contactId,
@@ -147,7 +147,7 @@ class ContactController(private val contactServices: ContactServices) {
     fun updateContactEmail(
         @PathVariable contactId : Long,
         @PathVariable emailId : Long,
-        @RequestParam email: String
+        @RequestBody email: String
     ): EmailDTO {
         return contactServices.updateEmail(
             contactId,
@@ -161,7 +161,7 @@ class ContactController(private val contactServices: ContactServices) {
     fun updateContactAddress(
         @PathVariable contactId : Long,
         @PathVariable addressId : Long,
-        @RequestParam address: String
+        @RequestBody address: String
     ): AddressDTO    {
         return contactServices.updateAddress(
             contactId,
@@ -175,7 +175,7 @@ class ContactController(private val contactServices: ContactServices) {
     fun updateContactTelephone(
         @PathVariable contactId : Long,
         @PathVariable telephoneId : Long,
-        @RequestParam telephone: String
+        @RequestBody telephone: String
     ): TelephoneDTO    {
         return contactServices.updateTelephone(
             contactId,

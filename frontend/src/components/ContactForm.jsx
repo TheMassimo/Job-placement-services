@@ -9,24 +9,17 @@ import {useNavigate, useParams} from "react-router-dom";
 import { useNotification } from '../contexts/NotificationProvider';
 
 function ContactForm(props) {
-    const {contactId} = useParams();
-    const {action} = useParams();
-    //take the data we need from state (from navigate)
-    const mode = props.mode;  // "customer"
-    //use navigate
+    const { contactId } = useParams();
+    const { action } = useParams();
+    const mode = props.mode;
     const navigate = useNavigate();
-    //use notification
     const { handleError, handleSuccess } = useNotification();
-    // use state
     const [contact, setContact] = useState({});
-    const [phoneNumbers, setPhoneNumbers] = useState([]);
-    const [emailAddress, setEmailAddress] = useState([]);
-    const [addressInfo, setAddressInfo] = useState([]);
     const [formData, setFormData] = useState({
         name: '',
         surname: '',
         ssn: '',
-        category: '', // Predefinito e non modificabile
+        category: '',
         notes: '',
         telephone: [],
         email: [],
@@ -34,17 +27,16 @@ function ContactForm(props) {
         customerNotes: '',
         geographicalInfo: '',
         dailyRate: 0,
-        skills:[],
+        skills: [],
         professionalNotes: '',
     });
-    // Stati per gestire il valore delle checkbox
+
     const [customerChecked, setCustomerChecked] = useState(false);
     const [professionalChecked, setProfessionalChecked] = useState(false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [selectedSkills, setSelectedSkills] = useState([]);
     const [submitButton, setSubmitButton] = useState(false);
 
-    //USE EFFECT
     useEffect(() => {
         if (contact) {
             setFormData({
@@ -53,32 +45,28 @@ function ContactForm(props) {
                 ssn: contact.ssn || '',
                 category: contact.category || '',
                 notes: contact.notes || '',
-                telephone: contact.telephone || [],
-                email: contact.email || [],
-                address: contact.address || [],
+                telephone: (contact.telephone || []).map(obj => ({ ...obj })),
+                email: (contact.email || []).map(obj => ({ ...obj })),
+                address: (contact.address || []).map(obj => ({ ...obj })),
                 customerNotes: contact.customer?.notes || '',
                 geographicalInfo: contact.professional?.geographicalInfo || '',
                 dailyRate: contact.professional?.dailyRate || 0,
                 skills: contact.skills || [],
                 professionalNotes: contact.professional?.notes || '',
             });
-            setEmailAddress(contact.email?.map(el => el.email) || []);
-            setAddressInfo(contact.address?.map(el => el.address) || []);
-            setPhoneNumbers(contact.telephone?.map(el => el.telephone) || []);
-            setCustomerChecked(contact.customer ? true : false);
-            setProfessionalChecked(contact.professional ? true : false);
-            setSelectedSkills(contact.professional?.skills);
-            console.log("selectedSkills", selectedSkills);
+            setCustomerChecked(!!contact.customer);
+            setProfessionalChecked(!!contact.professional);
+            setSelectedSkills(contact.professional?.skills || []);
         }
     }, [contact]);
 
-    useEffect( () => {
-        if(contactId) {
-            ContactAPI.GetContactById(contactId).then((res) => {
-                setContact(res);
-                console.log("risultato:", res);
-                console.log("mode", mode);
-            }).catch((err) => console.log(err));
+    useEffect(() => {
+        if (contactId) {
+            ContactAPI.GetContactById(contactId)
+                .then((res) => {
+                    setContact(res);
+                })
+                .catch((err) => console.log(err));
         }
     }, [contactId]);
 
@@ -104,13 +92,8 @@ function ContactForm(props) {
 
         setSubmitButton(false);
     };
-
     const handleAdd = async (e) => {
         try {
-            // Popola formData
-            formData.telephone = phoneNumbers;
-            formData.email = emailAddress;
-            formData.address = addressInfo;
             //take only id of skills
             if (selectedSkills) {
                 formData.skills = selectedSkills.map((skill) => skill.skillId);
@@ -151,28 +134,22 @@ function ContactForm(props) {
             handleError(err);
         }
     };
-
     const handleEdit = async () => {
         try {
-            // Popola formData
-            /*
-            formData.telephone = phoneNumbers;
-            formData.email = emailAddress;
-            formData.address = addressInfo;
-            //take only id of skills
-            if (selectedSkills) {
-                formData.skills = selectedSkills.map((skill) => skill.skillId);
-            }
-            */
 
+            //change name/surname/ssn
+            /*
             let resAddContact = null;
             // Prima chiamata API per aggiugnere il contatto
             if (mode === null) {
                 //update name, surname and ssn
                 const tmpContact = {contactId:contact.contactId, name:formData.name, surname:formData.surname, ssn:formData.ssn};
                 const resUpdateContact = await ContactAPI.UpdateContact(tmpContact);
+                //check for email/telephone/address
+                processContactChanges(contact, formData)
                 handleSuccess('Contact data update!');
             }
+            */
 
 
             // Se spuntato aggiungere anche il customer
@@ -202,60 +179,136 @@ function ContactForm(props) {
             }
             */
             //if all is right go back to contacts
-            navigate(`/contacts`)
+            //navigate(`/contacts`)
         } catch (err) {
             console.error("Errore durante l'elaborazione:", err);
             handleError(err);
         }
     };
 
-    // TELEPHONE
-    // Aggiungi un nuovo campo per il numero di telefono
+    const processContactChanges = (contact, formData, API) => {
+        // Mappa i campi alle relative funzioni API
+        const fieldAPI = {
+            telephone: {
+                add: ContactAPI.AddTelephoneToContact,
+                update: ContactAPI.UpdateTelephoneOfContact,
+                delete: ContactAPI.DeleteTelephoneOfContact,
+            },
+            email: {
+                add: ContactAPI.AddEmailToContact,
+                update: ContactAPI.UpdateEmailOfContact,
+                delete: ContactAPI.DeleteEmailOfContact,
+            },
+            address: {
+                add: ContactAPI.AddAddressToContact,
+                update: ContactAPI.UpdateAddressOfContact,
+                delete: ContactAPI.DeleteAddressOfContact,
+            },
+        };
+
+        const processField = (contactField, formDataField, idKey, valueKey, apiMethods) => {
+            // Mappa i dati di origine in oggetti chiave-valore
+            const contactMap = new Map((contactField || []).map(item => [item[idKey], item[valueKey]]));
+            const formDataMap = new Map((formDataField || []).map(item => [item[idKey], item[valueKey]]));
+
+            //console.log("TEst contact:", contactMap, "  formData:", formDataMap);
+
+            // Gestisci eliminazioni
+            for (let id of contactMap.keys()) {
+                if (!formDataMap.has(id)) {
+                    apiMethods.delete(contactId, id);
+                }
+            }
+
+            // Gestisci aggiunte e aggiornamenti
+            for (let [id, value] of formDataMap.entries()) {
+                if (contactMap.has(id)) {
+                    if (contactMap.get(id) !== value) {
+                        apiMethods.update(contactId, id, value);
+                    }
+                } else {
+                    apiMethods.add(contactId, value);
+                }
+            }
+        };
+
+        // Chiama processField per ogni campo
+        processField(contact.telephone, formData.telephone, 'telephoneId', 'telephone', fieldAPI.telephone);
+        processField(contact.email, formData.email, 'emailId', 'email', fieldAPI.email);
+        processField(contact.address, formData.address, 'addressId', 'address', fieldAPI.address);
+    };
+
+
+    // Funzioni di gestione telefono
     const addPhoneNumber = () => {
-        setPhoneNumbers([...phoneNumbers, ""]);
+        const nextId = String.fromCharCode(65 + formData.telephone.length);
+        setFormData({
+            ...formData,
+            telephone: [
+                ...formData.telephone,
+                { telephoneId:nextId, telephone: '' }
+            ]
+        });
     };
-    // Rimuovi un campo per il numero di telefono
     const removePhoneNumber = (index) => {
-        setPhoneNumbers(phoneNumbers.filter((_, i) => i !== index));
+        setFormData({
+            ...formData,
+            telephone: formData.telephone.filter((_, i) => i !== index),
+        });
     };
-    // Aggiorna il valore di un campo specifico
     const handlePhoneNumberChange = (index, value) => {
-        const updatedNumbers = [...phoneNumbers];
-        updatedNumbers[index] = value;
-        setPhoneNumbers(updatedNumbers);
+        const updatedNumbers = [...formData.telephone];
+        updatedNumbers[index].telephone = value;
+        setFormData({ ...formData, telephone: updatedNumbers });
     };
 
-    //EMAIL
-    // Aggiungi un nuovo campo per la email
+    // Funzioni di gestione email
     const addEmailAddress = () => {
-        setEmailAddress([...emailAddress, ""]);
+        const nextId = String.fromCharCode(65 + formData.email.length);
+        // Aggiungi la nuova email con l'ID incrementale
+        setFormData({
+            ...formData,
+            email: [
+                ...formData.email,
+                { emailId: nextId, email: '' } // Assegna 'id' come lettera incrementale
+            ]
+        });
     };
-    // Rimuovi un campo per la email
     const removeEmailAddress = (index) => {
-        setEmailAddress(emailAddress.filter((_, i) => i !== index));
+        setFormData({
+            ...formData,
+            email: formData.email.filter((_, i) => i !== index),
+        });
     };
-    // Aggiorna il valore di un campo specifico
     const handleEmailAddressChange = (index, value) => {
-        const updatedEmail = [...emailAddress];
-        updatedEmail[index] = value;
-        setEmailAddress(updatedEmail);
+        const updatedEmails = [...formData.email];
+        updatedEmails[index].email = value;
+        setFormData({ ...formData, email: updatedEmails });
     };
 
-    //ADDRESS
-    // Aggiungi un nuovo campo per la email
+    // Funzioni di gestione indirizzi
     const addAddressInfo = () => {
-        setAddressInfo([...addressInfo, ""]);
+        const nextId = String.fromCharCode(65 + formData.address.length);
+        setFormData({
+            ...formData,
+            address: [
+                ...formData.address,
+                { addressId:nextId, address: '' }
+            ]
+        });
     };
-    // Rimuovi un campo per la email
     const removeAddressInfo = (index) => {
-        setAddressInfo(addressInfo.filter((_, i) => i !== index));
+        setFormData({
+            ...formData,
+            address: formData.address.filter((_, i) => i !== index),
+        });
     };
-    // Aggiorna il valore di un campo specifico
     const handleAddressInfoChange = (index, value) => {
-        const updatedAddress = [...addressInfo];
-        updatedAddress[index] = value;
-        setAddressInfo(updatedAddress);
+        const updatedAddresses = [...formData.address];
+        updatedAddresses[index].address = value;
+        setFormData({ ...formData, address: updatedAddresses });
     };
+
 
     // CUSTOMER and PROFESSIONAL Funzione per gestire il cambiamento delle checkbox
     const handleCheckboxChange = (event, setState) => {
@@ -330,14 +383,14 @@ function ContactForm(props) {
                     <Col>
                         <Form.Group controlId="formTelephone" className="text-start">
                             <Form.Label className="d-block">Telephone</Form.Label>
-                            {phoneNumbers.map((number, index) => (
+                            {formData.telephone.map((item, index) => (
                                 <div key={index} className="mb-3">
                                     <div className="input-group">
                                         <Form.Control
                                             type="text"
                                             name="telephone"
                                             placeholder={`Enter Telephone ${index + 1}`}
-                                            value={number}
+                                            value={item.telephone}
                                             onChange={(e) => handlePhoneNumberChange(index, e.target.value)}
                                             required
                                             className="form-control-sm"
@@ -369,14 +422,14 @@ function ContactForm(props) {
                     <Col>
                         <Form.Group controlId="formEmail" className="text-start">
                             <Form.Label className="d-block">Email</Form.Label>
-                            {emailAddress.map((email, index) => (
+                            {formData.email.map((item, index) => (
                                 <div key={index} className="mb-3">
                                     <div className="input-group">
                                         <Form.Control
                                             type="text"
                                             name="email"
                                             placeholder={`Enter Email ${index + 1}`}
-                                            value={email}
+                                            value={item.email}
                                             onChange={(e) => handleEmailAddressChange(index, e.target.value)}
                                             required
                                             className="form-control-sm"
@@ -408,14 +461,14 @@ function ContactForm(props) {
                     <Col>
                         <Form.Group controlId="formAddress" className="text-start">
                             <Form.Label className="d-block">Address</Form.Label>
-                            {addressInfo.map((number, index) => (
+                            {formData.address.map((item, index) => (
                                 <div key={index} className="mb-3">
                                     <div className="input-group">
                                         <Form.Control
                                             type="text"
                                             name="address"
                                             placeholder={`Enter Address ${index + 1}`}
-                                            value={number}
+                                            value={item.address}
                                             onChange={(e) => handleAddressInfoChange(index, e.target.value)}
                                             required
                                             className="form-control-sm"
