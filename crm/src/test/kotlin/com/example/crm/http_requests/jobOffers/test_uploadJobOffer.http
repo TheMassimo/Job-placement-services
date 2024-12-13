@@ -1,11 +1,11 @@
 
 //@no-log
-POST http://localhost:8082/API/joboffers/1
+POST http://localhost:8082/API/joboffers/5
 Content-Type: application/json
 
 {
   "description": "a new job offer",
-  "requiredSkills": "hit man",
+  "requiredSkills": [1,2],
   "duration": 5,
   "notes": "Some note",
   "offerValue": 30000.0
@@ -14,15 +14,15 @@ Content-Type: application/json
 ###
 
 //@no-log
-POST http://localhost:8080/API/joboffers/100
+POST http://localhost:8082/API/joboffers/4
 Content-Type: application/json
 
 {
-  "description": "a new job offer",
-  "requiredSkills": "hit man",
-  "duration": 5,
+  "description": "Dentista",
+  "requiredSkills": [3],
+  "duration": 55,
   "notes": "Some note",
-  "offerValue": 30000.0
+  "offerValue": 770.0
 }
 
 ###

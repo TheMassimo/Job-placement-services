@@ -10,5 +10,7 @@ interface CustomerServices {
 
     fun create(dto: CustomerCreateDTO) : CustomerDTO
 
+    fun deleteCustomer(customerId:Long)
+
     fun updateNote(id: Long, note: String): CustomerDTO
 }

@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory
 import org.springframework.data.domain.PageRequest
 import com.example.crm.exeptions.BadParameterException
 import com.example.crm.exeptions.ContactNotFoundException
+import com.example.crm.exeptions.ProfessionalNotFoundException
+import com.example.crm.exeptions.ProfessionalProcessingException
 import com.example.crm.repositories.AddressRepository
 import com.example.crm.repositories.EmailRepository
 import com.example.crm.repositories.TelephoneRepository
@@ -18,7 +20,8 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.transaction.annotation.Transactional
 import jakarta.persistence.EntityManager
 import jakarta.persistence.criteria.*
-
+import org.hibernate.exception.ConstraintViolationException
+import org.springframework.dao.DataIntegrityViolationException
 
 
 @Service
@@ -255,6 +258,49 @@ class ContactServicesImpl(private val entityManager: EntityManager,
 
         logger.info("Contact created with success")
         return contactDTO
+    }
+
+    @Transactional
+    override fun deleteContact(contactId:Long){
+        val contact =
+            contactRepository.findById(contactId)
+                .orElseThrow { ContactNotFoundException("contact not found") }
+
+        // Crea una copia delle collezioni per evitare la ConcurrentModificationException
+        val telephoneCopy = ArrayList(contact.telephone)
+        telephoneCopy.forEach { elTelephone ->
+            contact.removeTelephone(elTelephone) // Rimuove il telefono dalla collezione del contatto e viceversa
+        }
+
+        val emailCopy = ArrayList(contact.email)
+        emailCopy.forEach { elEmail ->
+            contact.removeEmail(elEmail) // Rimuove l'email dalla collezione del contatto e viceversa
+        }
+
+        val addressCopy = ArrayList(contact.address)
+        addressCopy.forEach { elAddress ->
+            contact.removeAddress(elAddress) // Rimuove l'indirizzo dalla collezione del contatto e viceversa
+        }
+
+        // Se il contatto esiste, aggiorno la categoria e rimuovo la relazione con il professionista
+        /*
+        professional.contact?.let { contact ->
+            contact.professional = null // Rimuovo il collegamento tra contatto e professionista
+            contactServices.downgradeCategory(contact.contactId, Category.Professional) // Rimuovo anche la categoria, se necessario
+        }
+        */
+
+        try {
+            contactRepository.delete(contact)
+        } catch (e: DataIntegrityViolationException) {
+            if (e.cause is ConstraintViolationException) {
+                throw ContactNotFoundException("Delete of a professional is only permitted if the contact is not associated with")
+            } else {
+                throw e
+            }
+        } catch (e: Exception) {
+            throw ContactNotFoundException("Error occurred while deleting contact with ID $contact")
+        }
     }
 
     override fun uploadEmail(

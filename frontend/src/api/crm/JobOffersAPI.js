@@ -11,25 +11,6 @@ import {JobOffer} from "./entities/JobOffer.ts"
 
 const URL_JOBOFFERS = 'http://localhost:8082/API/joboffers'
 
-
-async function TEST(filters, pagination) {
-    console.log("link -> ", URL_CONTACTS );
-    const response = await fetch(
-        generateUrl(URL_CONTACTS, filters, pagination),{
-            method: 'GET',
-            credentials: 'include'
-        })
-    console.log("MAssimomsmsom-->",response);
-    const obj = await response.json()
-
-    if (response.ok) {
-        return obj.map((e) => CustomerDetails.fromJsonObject(e))
-        //return obj.map((e) => ({ Prova: "aaa", Test: "bbb" }))
-    } else {
-        throw obj
-    }
-}
-
 async function GetJobOffers(filters, pagination){
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}`, filters, pagination), {
@@ -37,6 +18,7 @@ async function GetJobOffers(filters, pagination){
             credentials: 'include'
         }
     )
+
     const obj = await response.json()
 
     if (response.ok) {
@@ -48,9 +30,7 @@ async function GetJobOffers(filters, pagination){
 
 
 const JobOffersAPI = {
-    TEST,
-    GetJobOffers
-
+    GetJobOffers,
 }
 
 export default JobOffersAPI

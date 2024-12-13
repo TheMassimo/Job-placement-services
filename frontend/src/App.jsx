@@ -9,11 +9,9 @@ import NavbarComponent from './components/NavbarComponent';
 import NotFoundPage from './components/NotFoundPage';
 import HomeLayout from "./components/HomeLayout.jsx";
 import ViewContacts from './components/ViewContacts';
-import ViewCustomers from './components/ViewCustomers';
 import ViewJobOffers from './components/ViewJobOffers';
 import MassimoTest from "./components/MassimoTest";
 import ContactForm from "./components/ContactForm";
-import ViewProfessionals from "./components/ViewProfessionals";
 import AddProfessional from "./components/AddProfessional";
 import AddJobOffer from "./components/AddJobOffer";
 
@@ -35,7 +33,6 @@ function App() {
                         <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} />} />
                         <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"} />} />
                         <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
-
 
                         <Route path="/jobOffers" element={<ViewJobOffers />} />
                         <Route path="/jobOffer/add" element={<AddJobOffer />} />

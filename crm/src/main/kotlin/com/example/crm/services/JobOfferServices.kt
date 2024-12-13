@@ -12,7 +12,17 @@ interface JobOfferServices {
 
     fun getAbortedJobOffers(page: Int, limit: Int, customer: String, professional: String): List<JobOfferDTO>
 
-    fun getJobOffers(page: Int, limit: Int, customerId:Long?, professionalId:Long?, status: JobStatus?): List<JobOfferDTO>
+    fun getJobOffers(
+        customerId: Long?,
+        professionalId: Long?,
+        status: JobStatus?,
+        description: String?,
+        duration: Int?,
+        offerValue: Int?,
+        requiredSkills: String?,
+        pageNumber: Int,
+        pageSize: Int
+    ): List<JobOfferDTO>
 
     fun create(dto: JobOfferCreateDTO, contactId: Long): JobOfferDTO
 

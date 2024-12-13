@@ -70,6 +70,15 @@ class ContactController(private val contactServices: ContactServices) {
         return contactServices.create(dto)
     }
 
+    @DeleteMapping("/{id}")
+    //@PreAuthorize("hasAnyRole('ROLE_operator', 'ROLE_manager', 'ROLE_recruiter')")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteContact(
+        @PathVariable("id", required = true) contactId: Long
+    ) {
+        contactServices.deleteContact(contactId)
+    }
+
     @PostMapping("/{contactId}/email", "/{contactId}/email/")
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadContactEmail(

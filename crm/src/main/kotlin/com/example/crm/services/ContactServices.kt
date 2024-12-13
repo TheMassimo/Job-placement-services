@@ -30,6 +30,8 @@ interface ContactServices {
 
     fun uploadEmail(contactId: Long, email: String ): EmailDTO
 
+    fun deleteContact(contactId:Long)
+
     fun uploadAddress(contactId: Long, address: String ): AddressDTO
 
     fun uploadTelephone(contactId: Long, telephone: String ): TelephoneDTO

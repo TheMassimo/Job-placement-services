@@ -45,11 +45,25 @@ async function UpdateNotes(customerId, note) {
     }
 }
 
+async function DeleteCustomer(customerId) {
+    const response = await fetch(
+        generateUrl(`${URL_CUSTOMER}/${customerId}`, null, null), {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+        })
+
+    if (!response.ok) {
+        throw "Error"
+    }
+}
+
 
 
 const CustomerAPI = {
     AddCustomer,
     UpdateNotes,
+    DeleteCustomer,
 }
 
 export default CustomerAPI

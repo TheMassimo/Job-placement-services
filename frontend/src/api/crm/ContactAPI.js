@@ -77,6 +77,19 @@ async function UpdateContact(contact) {
     }
 }
 
+async function DeleteContact(contactId) {
+    const response = await fetch(
+        generateUrl(`${URL_CONTACTS}/${contactId}`, null, null), {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+        })
+
+    if (!response.ok) {
+        throw "Error"
+    }
+}
+
 async function AddTelephoneToContact(contactId, telephone) {
     const response = await fetch(
         generateUrl(`${URL_CONTACTS}/${contactId}/telephone`, null, null), {
@@ -231,6 +244,7 @@ const ContactAPI = {
     GetContactById,
     AddContact,
     UpdateContact,
+    DeleteContact,
     AddTelephoneToContact,
     AddEmailToContact,
     AddAddressToContact,

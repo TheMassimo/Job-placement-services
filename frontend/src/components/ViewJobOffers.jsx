@@ -4,34 +4,158 @@ import '../App.css';  // Importa il file CSS
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import PopupContact from "./PopupContact";
-
+import {JobOffersFilter} from "../api/crm/filters/JobOffersFilter.ts";
+import {Pagination} from "../api/utils/Pagination.ts";
+import {Card, Badge, Dropdown, ListGroup, ListGroupItem} from "react-bootstrap";
+import SkillAPI from "../api/crm/SkillAPI.js";
 import JobOffersAPI from "../api/crm/JobOffersAPI.js";
 
+function Filters(props) {
+    const setFilters = props.setFilters;
+    const setCurrentPage = props.setCurrentPage;
+    const mode = props.mode;
+    const skills = props.skills;
+    const [formFilters, setFormFilters] = useState(new JobOffersFilter(null, null, 0, 0, null));
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        //reset the number of page
+        setCurrentPage(0);
+        //update filters
+        setFilters(new JobOffersFilter(
+            formFilters.description,
+            formFilters.status,
+            formFilters.duration,
+            formFilters.offerValue,
+            formFilters.requiredSkills,
+        ));
+    };
+
+    const handleFilterChange = (event) => {
+        let {name, value} = event.target;
+        //update state
+        setFormFilters((old) => ({
+            ...old,
+            [name]: value,
+        }));
+    }
+
+    const handleClear = (event) => {
+        const tmpFilter = new JobOffersFilter(null, null, 0, 0, null);
+        setFormFilters(tmpFilter);
+        setFilters(tmpFilter);
+    }
+
+    return (
+        <div style={{width: '30%', padding: '20px'}} className="filterBox">
+            <h4 className={"offerTitle"}>Filters</h4>
+            <Form.Group controlId="filterDescription" className="mb-3">
+                <Form.Label>Filter by description</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="description"
+                    placeholder="Enter Description"
+                    onChange={handleFilterChange}
+                />
+            </Form.Group>
+            <Form.Group controlId="filterStatus" className="mb-2">
+                <Form.Label>Filter by Status</Form.Label>
+                <Form.Select
+                    name="status"
+                    value={formFilters.status ?? ""} // Imposta "all" come valore di default
+                    onChange={handleFilterChange} // Funzione per gestire il cambiamento
+                >
+                    <option value="">All</option>
+                    <option value="CREATED">Created</option>
+                    <option value="ABORTED">Aborted</option>
+                    <option value="SELECTION_PHASE">Selection phase</option>
+                    <option value="CANDIDATE_PROPOSAL">Candidate proposal</option>
+                    <option value="CONSOLIDATED">Consolidated</option>
+                    <option value="DONE">Done</option>
+                </Form.Select>
+            </Form.Group>
+            <Form.Group controlId="filterDuration" className="mb-3">
+                <Form.Label>Filter by duration</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="duration"
+                    placeholder="Enter Duration"
+                    onChange={handleFilterChange}
+                />
+            </Form.Group>
+            <Form.Group controlId="filterOfferValue" className="mb-3">
+                <Form.Label>Filter by value</Form.Label>
+                <Form.Control
+                    type="text"
+                    name="offerValue"
+                    placeholder="Enter Value"
+                    onChange={handleFilterChange}
+                />
+            </Form.Group>
+            <Form.Group controlId="filterSkill" className="mb-2">
+                <Form.Label>Filter by Skill</Form.Label>
+                <Form.Control
+                    as="select"
+                    name="requiredSkills"
+                    value={formFilters.skills === null ? "" : formFilters.skills}
+                    onChange={handleFilterChange}
+                >
+                    <option value="">All Skills</option>
+                    {skills &&
+                        skills
+                            .sort((a, b) => a.skill.localeCompare(b.skill)) // Ordina alfabeticamente
+                            .map((skill) => (
+                                <option key={skill.skillId} value={skill.skill}>
+                                    {skill.skill}
+                                </option>
+                            ))}
+                </Form.Control>
+            </Form.Group>
+            <Button variant="danger" onClick={handleClear}>
+                <i className="bi bi-x-circle"></i> Clear Filters
+            </Button>
+            <Button variant="primary" className="custom-button mx-3 my-1" onClick={handleSubmit}>
+                <i className="bi bi-search"></i> Apply Filters
+            </Button>
+        </div>
+    );
+}
 
 
 const ViewJobOffers = () => {
     const [jobOffers, setJobOffers] = useState([]);
-    const [filter, setFilter] = useState([]);
+    const [filters, setFilters] = useState([]);
     const navigate = useNavigate();
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [pageSize, setPageSize] = useState(6);
     const [showModal, setShowModal] = useState(false); // Per gestire la visibilità del modale
-    const itemsPerPage = 8;
-
+    const [skills, setSkills] = useState([]);
+    const [refreshContact, setRefreshContact] = useState(0);
 
     //USE Effect
     useEffect(() => {
-        JobOffersAPI.GetJobOffers(filter, currentPage).then((res) => {
+        JobOffersAPI.GetJobOffers(filters, new Pagination(currentPage, pageSize)).then((res) => {
             setJobOffers(res);
             console.log("Massimo", res);
         }).catch((err) => console.log(err))
-    }, [filter, currentPage]);
+    }, [filters, currentPage, pageSize, refreshContact]);
 
-    const offset = currentPage * itemsPerPage;
+    useEffect(() => {
+        SkillAPI.GetSkills()
+            .then((res) => {
+                // Setta le skills
+                setSkills(res);
+                //console.log("skills", res);
+            })
+            .catch((err) => console.log(err));
+    }, []); // Esegui solo una volta quando il componente viene montato
+
+    const offset = currentPage * pageSize;
 
 
     // Funzione per cambiare pagina
     const changePage = (direction) => {
-        if (direction === "next" && (currentPage + 1) * itemsPerPage < jobOffers.length) {
+        if (direction === "next" && (currentPage + 1) * pageSize < jobOffers.length) {
             setCurrentPage(currentPage + 1);
         } else if (direction === "prev" && currentPage > 1) {
             setCurrentPage(currentPage - 1);
@@ -45,45 +169,17 @@ const ViewJobOffers = () => {
         navigate(`/jobOffer/add/${contact.contactId}`);
     }
 
+    const handleSelect = (eventKey) => {
+        const parsedValue = parseInt(eventKey, 10); // Converte l'eventKey in un numero intero
+        setPageSize(parsedValue);
+        //reset page
+        setCurrentPage(0);
+    };
+
     return (
         <div style={{display: 'flex', paddingTop: '90px'}}>
             {/* Sidebar for filters */}
-            <div style={{width: '30%', padding: '20px'}} className="filterBox">
-                <h4 className={"offerTitle"}>Filters</h4>
-                <Form.Group controlId="filterStatus" className="mb-3">
-                    <Form.Label>Filter by status</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="status"
-                        placeholder="Enter Status"
-
-                    />
-                </Form.Group>
-                <Form.Group controlId="filterValue" className="mb-3">
-                    <Form.Label>Filter by value</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="value"
-                        placeholder="Enter Value"
-
-                    />
-                </Form.Group>
-                <Form.Group controlId="filterDuration" className="mb-3">
-                    <Form.Label>Filter by duration</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="duration"
-                        placeholder="Enter Duration"
-
-                    />
-                </Form.Group>
-                <Button variant="secondary" className="me-2 custom-button" >
-                    <i className="bi bi-search"></i>  Apply Filters
-                </Button>
-                <Button variant="secondary">
-                    <i className="bi bi-x-circle"></i>  Clear Filters
-                </Button>
-            </div>
+            <Filters setFilters={setFilters} setCurrentPage={setCurrentPage} skills={skills} />
 
             {/* Main Content - Job Offers */}
             <div style={{flex: 1, padding: '20px'}}>
@@ -94,6 +190,17 @@ const ViewJobOffers = () => {
                 </Button>
                 <h2>Job Offers</h2>
 
+                <Dropdown onSelect={handleSelect}>
+                    <Dropdown.Toggle className="custom-button m-2" id="dropdown-basic">
+                        {pageSize ? `${pageSize} items` : "Select an option"}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <Dropdown.Item eventKey="6">6 items</Dropdown.Item>
+                        <Dropdown.Item eventKey="12">12 items</Dropdown.Item>
+                        <Dropdown.Item eventKey="24">24 items</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
 
                 {/* Job Offer Boxes */}
                 <div className="offersContainer">
@@ -119,11 +226,11 @@ const ViewJobOffers = () => {
                     >
                         Previous
                     </Button>
-                    <span>Page {currentPage} of {Math.ceil(jobOffers.length / itemsPerPage)}</span>
+                    <span>Page {currentPage+1}</span>
                     <Button
                         variant="outline-secondary"
                         onClick={() => changePage("next")}
-                        disabled={(currentPage) * itemsPerPage >= jobOffers.length}
+                        disabled={(currentPage) * pageSize >= jobOffers.length}
                     >
                         Next
                     </Button>

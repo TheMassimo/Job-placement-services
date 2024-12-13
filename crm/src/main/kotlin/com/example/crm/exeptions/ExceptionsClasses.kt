@@ -17,3 +17,9 @@ class ContactNotFoundException(message: String) : RuntimeException(message)
 class ProfessionalNotFoundException(message: String) : RuntimeException(message)
 
 class ElementNotFoundException(message: String) : RuntimeException(message)
+
+class ContactProcessingException(message: String?) : RuntimeException(message)
+
+class CustomerProcessingException(message: String?) : RuntimeException(message)
+
+class ProfessionalProcessingException(message: String?) : RuntimeException(message)

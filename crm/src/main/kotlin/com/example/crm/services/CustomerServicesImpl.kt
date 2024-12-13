@@ -5,13 +5,13 @@ import com.example.crm.dtos.CustomerDTO
 import com.example.crm.dtos.toDto
 import com.example.crm.entities.Category
 import com.example.crm.entities.Customer
-import com.example.crm.exeptions.BadParameterException
-import com.example.crm.exeptions.ContactNotFoundException
-import com.example.crm.exeptions.CustomerNotFoundException
+import com.example.crm.exeptions.*
 import com.example.crm.repositories.ContactRepository
 import com.example.crm.repositories.CustomerRepository
+import org.hibernate.exception.ConstraintViolationException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -57,6 +57,32 @@ class CustomerServicesImpl(
 
         logger.info("Customer successfully created")
         return cDTO
+    }
+
+
+    @Transactional
+    override fun deleteCustomer(customerId:Long){
+        val customer =
+            customerRepository.findById(customerId)
+                .orElseThrow { CustomerProcessingException("customer not found") }
+
+        // Se il contatto esiste, aggiorno la categoria e rimuovo la relazione con il professionista
+        customer.contact?.let { contact ->
+            contact.professional = null // Rimuovo il collegamento tra contatto e professionista
+            contactServices.downgradeCategory(contact.contactId, Category.Customer) // Rimuovo anche la categoria, se necessario
+        }
+
+        try {
+            customerRepository.delete(customer)
+        } catch (e: DataIntegrityViolationException) {
+            if (e.cause is ConstraintViolationException) {
+                throw CustomerProcessingException("Delete of a customer is only permitted if the customer is not associated with any job offer")
+            } else {
+                throw e
+            }
+        } catch (e: Exception) {
+            throw CustomerProcessingException("Error occurred while deleting customer with ID $customerId")
+        }
     }
 
 

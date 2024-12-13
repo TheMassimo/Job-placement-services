@@ -11,6 +11,7 @@ import {Pagination} from "../api/utils/Pagination.ts";
 import PopupContact from "./PopupContact";
 import PopupConfirmation from "./PopupConfirmation";
 import ContactAPI from "../api/crm/ContactAPI.js";
+import CustomerAPI from "../api/crm/CustomerAPI.js";
 import ProfessionalAPI from "../api/crm/ProfessionalAPI.js";
 import SkillAPI from "../api/crm/SkillAPI.js";
 import { useNotification } from '../contexts/NotificationProvider';
@@ -188,11 +189,10 @@ function Filters(props) {
             )}
             <div className="d-flex justify-content-center align-items-center">
                 <Button variant="danger" className="mx-3 my-1" onClick={handleClear}>
-                    Clear Filters
+                    <i className="bi bi-x-circle"></i> Clear Filters
                 </Button>
                 <Button variant="primary" className="custom-button mx-3 my-1" onClick={handleSubmit}>
-                    <i className="bi bi-search" style={{marginRight: '10px'}}></i>
-                    Find
+                    <i className="bi bi-search"></i> Apply Filters
                 </Button>
             </div>
         </Form>
@@ -420,14 +420,20 @@ function ViewContacts(props) {
     const onConfirmConfirmation = async () => {
         try {
             if (mode === "Customer") {
-                // Aggiungi il codice per gestire la logica per "Customer" se necessario
+                await CustomerAPI.DeleteCustomer(contactToDelete.customer.customerId); // Chiamata asincrona
+                handleSuccess('Customer successfully deleted!');
+                setIsOpenConfirmation(false);
+                setRefreshContact(prev => prev + 1);
             } else if (mode === "Professional") {
                 await ProfessionalAPI.DeleteProfessional(contactToDelete.professional.professionalId); // Chiamata asincrona
                 handleSuccess('Professional successfully deleted!');
                 setIsOpenConfirmation(false);
                 setRefreshContact(prev => prev + 1);
             } else {
-                // Gestisci altri casi
+                await ContactAPI.DeleteContact(contactToDelete.contactId); // Chiamata asincrona
+                handleSuccess('Contact successfully deleted!');
+                setIsOpenConfirmation(false);
+                setRefreshContact(prev => prev + 1);
             }
         } catch (error) {
             console.error("Errore durante la conferma:", error);

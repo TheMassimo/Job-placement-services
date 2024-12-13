@@ -7,16 +7,22 @@ import com.example.crm.exeptions.CustomerNotFoundException
 import com.example.crm.exeptions.ProfessionalNotFoundException
 import com.example.crm.exeptions.*
 import com.example.crm.repositories.*
+import jakarta.persistence.EntityManager
+import jakarta.persistence.criteria.CriteriaBuilder
+import jakarta.persistence.criteria.CriteriaQuery
+import jakarta.persistence.criteria.Root
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import jakarta.persistence.criteria.*
 
 
 @Service
-class JobOfferServicesImpl(private val jobOfferRepository: JobOfferRepository,
+class JobOfferServicesImpl(private val entityManager: EntityManager,
+                           private val jobOfferRepository: JobOfferRepository,
                            private val customerRepository: CustomerRepository,
                            private val contactRepository: ContactRepository,
                            private val professionalRepository: ProfessionalRepository,
@@ -79,45 +85,67 @@ class JobOfferServicesImpl(private val jobOfferRepository: JobOfferRepository,
 
     }
 
-    override fun getJobOffers(page: Int, limit: Int, customerId:Long?, professionalId:Long?, status:JobStatus?): List<JobOfferDTO>{
-        //find the customer
-        val pageable = PageRequest.of(page, limit)
+    override fun getJobOffers(
+        customerId: Long?,
+        professionalId: Long?,
+        status: JobStatus?,
+        description: String?,
+        duration: Int?,
+        offerValue: Int?,
+        requiredSkills: String?,
+        pageNumber: Int,
+        pageSize: Int
+    ): List<JobOfferDTO>{
 
-        var customer: Customer? = null
-        if(customerId != null){
-            customer = customerRepository.findByIdOrNull(customerId)
-            ?: throw CustomerNotFoundException("Customer not found")
+        val cb: CriteriaBuilder = entityManager.criteriaBuilder
+        val cqJobOffer: CriteriaQuery<JobOffer> = cb.createQuery(JobOffer::class.java)
+        val rootJobOffer: Root<JobOffer> = cqJobOffer.from(JobOffer::class.java)
+
+        //prepare predicates list
+        val predicates = mutableListOf<Predicate>()
+
+        if (!description.isNullOrBlank()) {
+            predicates.add(cb.like(cb.lower(rootJobOffer.get<String>("description")), "${description.lowercase()}%"))
         }
 
-        var professional: Professional? = null
-        if(professionalId != null) {
-            professional = professionalRepository.findByIdOrNull(professionalId)
-                ?: throw ProfessionalNotFoundException("Professional not found")
+        if (duration != null) {
+            predicates.add(cb.greaterThanOrEqualTo(rootJobOffer.get<Int>("duration"), duration));
         }
 
-        var jobStatus: JobStatus? = null
-        if(status != null){
-            try {
-                jobStatus = status
-            } catch (e: Exception) {
-                throw BadParameterException("$status is not a valid state")
-            }
+        if (status != null) {
+            // Aggiungi il predicato per employment
+            predicates.add(cb.equal(rootJobOffer.get<JobStatus>("status"), status))
         }
 
-
-        val result = when {
-            customer != null && professional != null && jobStatus != null -> jobOfferRepository.findByCurrentCustomerAndProfessionalAndStatus(customer, professional, jobStatus, pageable)
-            customer != null && professional != null -> jobOfferRepository.findByCurrentCustomerAndProfessional(customer, professional, pageable)
-            customer != null && jobStatus != null -> jobOfferRepository.findByCurrentCustomerAndStatus(customer, jobStatus, pageable)
-            professional != null && jobStatus != null -> jobOfferRepository.findByProfessionalAndStatus(professional, jobStatus, pageable)
-            customer != null -> jobOfferRepository.findByCurrentCustomer(customer, pageable)
-            professional != null -> jobOfferRepository.findByProfessional(professional, pageable)
-            jobStatus != null -> jobOfferRepository.findByStatus(jobStatus, pageable)
-            else -> jobOfferRepository.findAll(pageable)
+        if (offerValue != null) {
+            predicates.add(cb.greaterThanOrEqualTo(rootJobOffer.get<Int>("offerValue"), offerValue));
         }
 
+        if (!requiredSkills.isNullOrBlank()) {
+            val skillJoin: Join<JobOffer, Skill> = rootJobOffer.join("requiredSkills") // Nome del campo associato
+            predicates.add(cb.equal(skillJoin.get<String>("skill"), requiredSkills))
+        }
 
-        return result.content.map { it.toDto() }
+        // Combine all filters
+        if (predicates.isNotEmpty()) {
+            cqJobOffer.where(*predicates.toTypedArray())
+        }
+
+        // Set order
+        cqJobOffer.orderBy(cb.asc(rootJobOffer.get<Long>("jobOfferId")))
+
+        // Create the query
+        val query = entityManager.createQuery(cqJobOffer)
+        query.firstResult = pageNumber * pageSize
+        query.maxResults = pageSize  // Limitiamo il numero di risultati
+
+        // execute the query anf get results
+        val resultList = query.resultList
+
+        return resultList.map { jobOffer ->
+            //logger.info("RESULT {$jobOffer}");
+            jobOffer.toDto()
+        }
     }
 
     @Transactional

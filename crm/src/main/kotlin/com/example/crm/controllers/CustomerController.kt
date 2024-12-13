@@ -21,6 +21,15 @@ class CustomerController(private val customerServices : CustomerServices) {
         return customerServices.getCustomerById(id)
     }
 
+    @DeleteMapping("/{id}")
+    //@PreAuthorize("hasAnyRole('ROLE_operator', 'ROLE_manager', 'ROLE_recruiter')")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteCustomer(
+        @PathVariable("id", required = true) customerId: Long
+    ) {
+        customerServices.deleteCustomer(customerId)
+    }
+
     @PostMapping("", "/")
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadCustomer(
