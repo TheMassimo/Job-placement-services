@@ -212,27 +212,25 @@ const ViewJobOffers = () => {
                         <Card key={offer.jobOfferId} className="mb-4" style={{backgroundColor: '#f8f9fa'}}>
                             <Card.Body className="p-1">
                                 <Card.Title>{offer.description}</Card.Title>
-                                <Row>
-                                    {/* Left Column */}
-                                    <Col md={6}>
-                                        <div><strong>Duration:</strong> {offer.duration}</div>
-                                        <div><strong>Status:</strong> {offer.status}</div>
-                                    </Col>
-                                    {/* Right Column */}
-                                    <Col md={6}>
-                                        <div><strong>Value:</strong> € {offer.offerValue}</div>
-                                        <div>
-                                            <strong>Required
-                                                Skills:</strong> {offer.requiredSkills?.map(skill => skill.skill).join(', ')}
-                                        </div>
-                                    </Col>
-                                </Row>
+                                <div className="card-content-row">
+                                    <div><strong>Duration:</strong> {offer.duration}</div>
+                                    <div><strong>Status:</strong> {offer.status}</div>
+                                </div>
+                                <div className="card-content-row">
+                                    <div><strong>Value:</strong> € {offer.offerValue}</div>
+                                    <div>
+                                        <strong>Required Skills:</strong> {offer.requiredSkills?.map(skill => skill.skill).join(', ')}
+                                    </div>
+                                </div>
                                 <Row className="mt-3">
                                     <Col className="text-center">
-                                        <Button variant="primary">Apply Now</Button>
+                                        <Button variant="danger" className="bi bi-trash me-2"> </Button>
+
+                                        <Button variant="warning" className="bi bi-pencil text-white"> </Button>
                                     </Col>
                                 </Row>
                             </Card.Body>
+
                         </Card>
                     ))}
                 </div>

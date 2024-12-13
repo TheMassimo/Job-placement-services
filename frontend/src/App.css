@@ -170,3 +170,26 @@
   color: #002244; /* Colore blu per il testo "strong" */
   margin-right: 8px; /* Aggiunge uno spazio tra il titolo e il valore */
 }
+
+.card-content-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 8px; /* Distanza tra le righe */
+}
+
+.card-content-row div {
+  flex: 1; /* Distribuisce uniformemente lo spazio */
+  padding-right: 0px; /* Distanza tra i due elementi */
+  text-align: left; /* Allinea il testo a sinistra */
+}
+.card-title {
+  font-size: 1.5rem; /* Più grande */
+  font-weight: bold; /* In grassetto */
+  margin-bottom: 16px; /* Spaziatura sotto il titolo */
+  color: #002244;
+  text-align: left;
+}
+
+
+
