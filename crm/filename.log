@@ -1,76 +1,36 @@
-2024-12-10T00:29:20.736+01:00  WARN 24364 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h41m12s949ms644µs600ns).
-2024-12-10T03:06:14.706+01:00  WARN 24364 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h35m23s812ms639µs100ns).
-2024-12-10T10:38:41.885+01:00  WARN 24364 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7h30m33s220ms184µs400ns).
-2024-12-10T12:14:25.255+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T13:16:39.986+01:00  WARN 24364 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m55s415ms894µs700ns).
-2024-12-10T14:30:01.194+01:00  WARN 24364 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h11m21s91ms21µs500ns).
-2024-12-10T16:14:34.282+01:00  WARN 24364 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h42m33s57ms166µs400ns).
-2024-12-10T16:33:20.973+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:34:14.285+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:34:22.061+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:34:23.890+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:34:42.729+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:34:46.222+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:35:02.422+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:35:09.285+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:45:15.988+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:46:18.116+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:47:38.563+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:47:43.979+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:47:48.779+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:51:39.237+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:52:12.208+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:52:30.778+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:54:38.129+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:56:04.275+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:56:11.341+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:58:10.769+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T16:58:43.092+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T17:01:23.791+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T17:01:30.247+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T17:01:55.969+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact with SSN 'aaa' already exists
-2024-12-10T17:02:00.359+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T17:03:46.823+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T17:05:36.948+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T17:05:37.083+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact with SSN 'aazt' already exists
-2024-12-10T17:05:37.236+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact with SSN 'aazt' already exists
-2024-12-10T17:06:20.271+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact with SSN 'aazt' already exists
-2024-12-10T17:10:42.746+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T17:10:46.298+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T17:11:54.465+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T17:11:59.362+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T17:12:00.003+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact category modified successfully
-2024-12-10T17:12:00.023+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.CustomerServices  : Customer successfully created
-2024-12-10T17:15:22.060+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T17:15:42.361+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T17:15:44.184+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T17:17:20.681+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T17:17:25.614+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T17:19:44.900+01:00 ERROR 24364 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact with SSN 'aa' already exists
-2024-12-10T17:19:59.493+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T17:19:59.523+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact category modified successfully
-2024-12-10T17:19:59.528+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.CustomerServices  : Customer successfully created
-2024-12-10T18:23:47.808+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New email created: luffy@gmail.com
-2024-12-10T18:23:47.841+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New address created: via naso
-2024-12-10T18:23:47.862+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New telephone created: 123
-2024-12-10T18:23:47.872+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : New telephone created: 789
-2024-12-10T18:23:47.966+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T18:23:48.038+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact category modified successfully
-2024-12-10T18:23:48.052+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-6] c.e.crm.services.ProfessionalServices    : Professional successfully created }
-2024-12-10T18:32:20.006+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : New email created: zoro@gmail.com
-2024-12-10T18:32:20.023+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : New email created: zoro3@gamil.com
-2024-12-10T18:32:20.035+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : New address created: via persa
-2024-12-10T18:32:20.046+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : New telephone created: 777
-2024-12-10T18:32:20.052+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T18:32:20.163+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact category modified successfully
-2024-12-10T18:32:20.175+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-9] c.e.crm.services.ProfessionalServices    : Professional successfully created }
-2024-12-10T18:40:58.195+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T18:40:58.310+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact category modified successfully
-2024-12-10T18:40:58.318+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.CustomerServices  : Customer successfully created
-2024-12-10T18:40:58.530+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact category modified successfully
-2024-12-10T18:40:58.539+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-9] c.e.crm.services.ProfessionalServices    : Professional successfully created }
-2024-12-10T18:40:58.195+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-10T18:40:58.310+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact category modified successfully
-2024-12-10T18:40:58.318+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.CustomerServices  : Customer successfully created
-2024-12-10T18:40:58.530+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact category modified successfully
-2024-12-10T18:40:58.539+01:00  INFO 24364 --- [crm] [http-nio-8082-exec-9] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-13T11:03:53.720+01:00  INFO 45416 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 45416 (C:\Users\miria\Desktop\2_anno_2 semestre\Web_application2\progetto\crm\build\classes\kotlin\main started by miria in C:\Users\miria\Desktop\2_anno_2 semestre\Web_application2\progetto\crm)
+2024-12-13T11:03:53.728+01:00 DEBUG 45416 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-12-13T11:03:53.729+01:00  INFO 45416 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2024-12-13T11:03:53.793+01:00  INFO 45416 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\miria\Desktop\2_anno_2 semestre\Web_application2\progetto\crm\compose.yml'
+2024-12-13T11:10:42.027+01:00  INFO 45416 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2024-12-13T11:10:42.032+01:00  INFO 45416 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2024-12-13T11:10:42.457+01:00  INFO 45416 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2024-12-13T11:10:42.457+01:00  INFO 45416 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2024-12-13T11:10:42.974+01:00  INFO 45416 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2024-12-13T11:10:44.926+01:00  INFO 45416 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-13T11:10:44.985+01:00  INFO 45416 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 10 JPA repository interfaces.
+2024-12-13T11:10:45.377+01:00  INFO 45416 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-12-13T11:10:45.393+01:00  INFO 45416 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-13T11:10:45.393+01:00  INFO 45416 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-12-13T11:10:45.440+01:00  INFO 45416 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-13T11:10:45.440+01:00  INFO 45416 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1789 ms
+2024-12-13T11:10:45.518+01:00  INFO 45416 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-13T11:10:45.708+01:00  INFO 45416 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@147e0734
+2024-12-13T11:10:45.710+01:00  INFO 45416 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-13T11:10:45.785+01:00  INFO 45416 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-13T11:10:45.851+01:00  INFO 45416 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-12-13T11:10:45.896+01:00  INFO 45416 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-13T11:10:46.122+01:00  INFO 45416 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-13T11:10:47.008+01:00  INFO 45416 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-13T11:10:47.209+01:00  INFO 45416 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-13T11:10:47.918+01:00  WARN 45416 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-13T11:10:48.122+01:00  INFO 45416 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@77c41838, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1872a7fe, org.springframework.security.web.context.SecurityContextHolderFilter@1f40bb80, org.springframework.security.web.header.HeaderWriterFilter@4ed94e6a, org.springframework.web.filter.CorsFilter@70720b78, org.springframework.security.web.authentication.logout.LogoutFilter@92fa950, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@70c2a046, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3803bc1a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@628f642d, org.springframework.security.web.session.SessionManagementFilter@76ecbfbf, org.springframework.security.web.access.ExceptionTranslationFilter@54d62c35, org.springframework.security.web.access.intercept.AuthorizationFilter@79122f5f]
+2024-12-13T11:10:48.280+01:00  INFO 45416 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-12-13T11:10:48.280+01:00  INFO 45416 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 414.929 seconds (process running for 417.401)
+2024-12-13T14:21:05.894+01:00  WARN 45416 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h32m18s456ms317µs).
+2024-12-13T17:03:33.790+01:00  INFO 45416 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-13T17:03:33.790+01:00  INFO 45416 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-13T17:03:33.837+01:00  INFO 45416 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 47 ms
+2024-12-13T17:04:12.460+01:00  INFO 45416 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-13T17:04:12.460+01:00  INFO 45416 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-13T17:04:12.471+01:00  INFO 45416 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
