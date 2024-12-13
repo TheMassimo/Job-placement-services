@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import JobOffersAPI from "../api/crm/JobOffersAPI.js"; // Assicurati di avere una API per le job offers
 import { useLocation } from 'react-router-dom';
+import PopupSkills from './PopupSkills'; // Importa il componente PopUpSkills
 
 function AddJobOffer(props) {
 
@@ -10,20 +11,29 @@ function AddJobOffer(props) {
     //USE PARAMS
     const { contact, customerId } = location.state || {}; // Recupera il contatto e customerId
 
-    // Aggiungi delle stampe per vedere i dati
-    console.log("Dati ricevuti nella pagina AddJobOffer:");
-    console.log("Contatto:", contact);
-    console.log("Customer ID:", customerId);
-
-
     const [formData, setFormData] = useState({
         description: '',
         offerValue: '',
         duration: '',
         notes: '',
-        requiredSkills: '',
+        requiredSkills: [], // Stato per le skills richieste
         status: 'CREATED'
     });
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [selectedSkills, setSelectedSkills] = useState([]);
+
+
+
+    // Funzione per nascondere il PopUp
+    const handleClosePopUp = () => setShowPopUp(false);
+
+    // Funzione per aggiornare le skills selezionate
+    const handleSkillsSelect = (skills) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            requiredSkills: skills
+        }));
+    };
 
     // Gestione dei cambiamenti nei campi del form
     const handleChange = (e) => {
@@ -38,7 +48,6 @@ function AddJobOffer(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Prepara i dati da inviare (potresti fare delle conversioni qui se necessario)
         const { offerValue, duration } = formData;
         const offerValueNumber = parseFloat(offerValue); // Assicurati che sia un numero
         const durationNumber = parseFloat(duration); // Assicurati che sia un numero
@@ -65,6 +74,8 @@ function AddJobOffer(props) {
             console.log('Error adding job offer:', err);
         }
     };
+
+    const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
     return (
         <div className="container mt-4" style={{ paddingTop: '90px' }}>
@@ -165,17 +176,25 @@ function AddJobOffer(props) {
                 {/* Required Skills */}
                 <Row className="mb-3">
                     <Col md={8}>
-                        <Form.Group controlId="formRequiredSkills" className="text-start">
-                            <Form.Label>Required Skills</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={3}
-                                name="requiredSkills"
-                                placeholder="Enter Required Skills"
-                                value={formData.requiredSkills}
-                                onChange={handleChange}
-                                className="form-control-sm"
-                            />
+                        <Form.Group controlId="formSkills" className="text-start">
+                            <div className="d-flex align-items-start justify-content-between">
+                                {/* Bottone per aprire il popup */}
+                                <Button className="custom-button m-3" onClick={togglePopup}>
+                                    Select Skills
+                                </Button>
+
+                                {/* Mostra le skill selezionate */}
+                                {selectedSkills.length > 0 && (
+                                    <div className="mt-3 ms-3" style={{ flexGrow: 1 }}>
+                                        <strong>Selected skills:</strong>
+                                        <ul className="mb-0">
+                                            {selectedSkills.map((skill, index) => (
+                                                <li key={index}>{skill.skill}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
                         </Form.Group>
                     </Col>
                 </Row>
@@ -185,6 +204,18 @@ function AddJobOffer(props) {
                     Save
                 </Button>
             </form>
+
+            {/* PopUpSkills per la selezione delle skills */}
+            {isPopupOpen && (
+                <PopupSkills
+                    isOpen={isPopupOpen}
+                    onClose={togglePopup}
+                    onConfirm={(skills) => {
+                        setSelectedSkills(skills); // Salva le skill selezionate
+                        togglePopup(); // Chiudi il popup
+                    }}
+                />
+            )}
         </div>
     );
 }
