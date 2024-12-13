@@ -325,4 +325,4 @@ function PopupContact(props) {
     );
 };
 
-export default PopUp;
+export default PopupContact;
