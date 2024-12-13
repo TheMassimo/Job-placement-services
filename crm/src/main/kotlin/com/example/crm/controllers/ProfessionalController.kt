@@ -38,16 +38,36 @@ class ProfessionalController(private val professionalServices : ProfessionalServ
         return professionalServices.addNote(id, note)
     }
 
+    @DeleteMapping("/{id}")
+    //@PreAuthorize("hasAnyRole('ROLE_operator', 'ROLE_manager', 'ROLE_recruiter')")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteProfessional(
+        @PathVariable("id", required = true) professionalId: Long
+    ) {
+        professionalServices.deleteProfessional(professionalId)
+    }
+
     @PostMapping("/{id}/skill", "/{id}/skill/")
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadProfessionalSkill(
         @PathVariable id : Long,
-        @RequestParam skill: String,
+        @RequestBody skill: String,
     ): ProfessionalDTO {
         return professionalServices.addSkill(id, skill)
     }
 
-    @DeleteMapping("/{id}/skill/{skillId}", "/{id}/email/{skillId}/")
+    @PutMapping("/{id}", "/{id}/")
+    @ResponseStatus(HttpStatus.OK)
+    fun updateProfessional(
+        @PathVariable id: Long,
+        @RequestBody dto: ProfessionalCreateDTO
+    ): ProfessionalDTO{
+
+        return professionalServices.updateProfessional(id, dto)
+    }
+
+    @DeleteMapping("/{id}/skill/{skillId}", "/{id}/skill/{skillId}/")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun deleteProfessionalSkill(
         @PathVariable id: Long,
         @PathVariable skillId: Long
@@ -60,7 +80,7 @@ class ProfessionalController(private val professionalServices : ProfessionalServ
     fun updateProfessionalSkill(
         @PathVariable id : Long,
         @PathVariable skillId : Long,
-        @RequestParam skill: String
+        @RequestBody skill: String
     ): ProfessionalDTO {
         return professionalServices.updateSkill(id, skillId, skill)
     }

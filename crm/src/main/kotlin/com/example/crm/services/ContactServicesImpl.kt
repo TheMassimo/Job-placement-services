@@ -158,8 +158,6 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             predicates.add(cb.like(cb.lower(joinWithProfessional.get<String>("geographicalInfo")), "${geographicalInfo.lowercase()}%"))
         }
 
-
-
         // Combine all filters
         if (predicates.isNotEmpty()) {
             cqContact.where(*predicates.toTypedArray())
@@ -182,146 +180,11 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         }
     }
 
-    override fun getContactsAreCustomer(
-        name:String?,
-        surname:String?,
-        category:Category?,
-        email:String?,
-        address:String?,
-        ssn:String?,
-        telephone:String?,
-        jobOffers:Int?,
-        page: Int,
-        limit: Int
-        ): List<CustomerDetailDTO>{
-
-        val cb: CriteriaBuilder = entityManager.criteriaBuilder
-        val cqContact: CriteriaQuery<Contact> = cb.createQuery(Contact::class.java)
-        val rootContact: Root<Contact> = cqContact.from(Contact::class.java)
-
-        //prepare predicates list
-        val predicates = mutableListOf<Predicate>()
-
-        if (!name.isNullOrBlank()) {
-            predicates.add(cb.like(cb.lower(rootContact.get<String>("name")), "${name.lowercase()}%"))
-        }
-        if (!surname.isNullOrBlank()) {
-            predicates.add(cb.like(cb.lower(rootContact.get<String>("surname")), "${surname.lowercase()}%"))
-        }
-        if (!ssn.isNullOrBlank()) {
-            predicates.add(cb.like(cb.lower(rootContact.get<String>("ssn")), "${ssn.lowercase()}%"))
-        }
-        if (category != null) {
-            val categoryPredicates = when (category) {
-                Category.Customer -> listOf(
-                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.Customer),
-                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.CustomerProfessional)
-                )
-                Category.Professional -> listOf(
-                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.Professional),
-                    cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.CustomerProfessional)
-                )
-                Category.Unknown -> listOf(cb.equal(rootContact.get<SmallIntJdbcType>("category"), Category.Unknown))
-                Category.CustomerProfessional -> listOf(
-                    cb.equal(
-                        rootContact.get<SmallIntJdbcType>("category"),
-                        Category.CustomerProfessional
-                    )
-                )
-            }
-            // Combine all filters in OR
-            predicates.add(cb.or(*categoryPredicates.toTypedArray()))
-        }
-        if (!address.isNullOrBlank()) {
-            val joinWithAddress: Join<Contact, Address> = rootContact.join("address", JoinType.INNER)
-            predicates.add(cb.like(cb.lower(joinWithAddress.get<String>("address")), "${address.lowercase()}%"))
-            //predicates.add(cb.equal(joinWithAddress.get<String>("address"), address))
-        }
-        if (!email.isNullOrBlank()) {
-            val joinWithEmail: Join<Contact, Email> = rootContact.join("email", JoinType.INNER)
-            predicates.add(cb.like(cb.lower(joinWithEmail.get<String>("email")), "${email.lowercase()}%"))
-            //predicates.add(cb.equal(joinWithEmail.get<String>("email"), email))
-        }
-        if (!telephone.isNullOrBlank()) {
-            val joinWithTelephone: Join<Contact, Telephone> = rootContact.join("telephone", JoinType.INNER)
-            predicates.add(cb.like(cb.lower(joinWithTelephone.get<String>("telephone")), "${telephone.lowercase()}%"))
-            //predicates.add(cb.equal(joinWithTelephone.get<String>("telephoneNumber"), telephone))
-        }
-
-        // Combine all filters
-        if (predicates.isNotEmpty()) {
-            cqContact.where(*predicates.toTypedArray())
-        }
-
-        // Set order
-        cqContact.orderBy(cb.asc(rootContact.get<Long>("contactId")))
-
-        // Create the query
-        val query = entityManager.createQuery(cqContact)
-        query.firstResult = page * limit
-        query.maxResults = limit  // Limitiamo il numero di risultati
-
-        // execute the query anf get results
-        val resultList = query.resultList
-
-        return resultList.map { contact ->
-            // Creazione manuale del DTO
-            val tmpDTO = CustomerDetailDTO(
-                contactId =  contact.contactId,
-                name = contact.name,
-                surname = contact.surname,
-                category = contact.category,
-                email = contact.email.map { it.toDto() },
-                address = contact.address.map{ it.toDto()},
-                ssn = contact.ssn,
-                telephone = contact.telephone.map { it.toDto() },
-                notes = contact.customer?.notes ?: "No notes", // Gestisce il caso in cui `customer` sia null
-                jobOffers = contact.customer?.jobOffers?.map { it.toDto() } ?: emptyList() // Gestisce se `customer` è null
-            )
-            tmpDTO
-        }
-
-
-    }
-
-    override fun getContactsAreProfessional(page: Int,
-                                        limit: Int): List<ProfessionalDetailDTO>{
-
-        val pageable = PageRequest.of(page, limit)
-        val contacts = contactRepository.findByProfessionalIsNotNull(pageable)
-
-
-        // Lista per contenere i DTO creati
-        val ritorno: List<ProfessionalDetailDTO> = contacts.content.map { contact ->
-            // Creazione manuale del DTO
-            val tmpDTO = ProfessionalDetailDTO(
-                contactId =  contact.contactId,
-                name = contact.name,
-                surname = contact.surname,
-                category = contact.category,
-                email = contact.email.map { it.toDto() },
-                address = contact.address.map{ it.toDto()},
-                ssn = contact.ssn,
-                telephone = contact.telephone.map { it.toDto() },
-                employment = contact.professional?.employment ?: ProfessionalEmployment.UNEMPLOYED,
-                dailyRate = contact.professional?.dailyRate ?: 0.0,
-                skills = contact.professional?.skills?.map { it.toDto() } ?: emptyList(),
-                notes = contact.professional?.notes ?: "No notes", // Gestisce il caso in cui `customer` sia null
-            )
-            tmpDTO
-        }
-
-
-        logger.info("Contacts that are also Professional fetched successfully")
-        return ritorno
-    }
-
-
-    override fun getContactById(id: Long): ContactDTO {
+    override fun getContactById(id: Long): ContactDetailsDTO {
         val contact = contactRepository.findByIdOrNull(id)
             ?: throw ContactNotFoundException("Contact not found")
         logger.info("Contact fetched successfully")
-        return contact.toDto()
+        return contact.toDetailsDto()
     }
 
     override fun create(
@@ -506,6 +369,34 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         return contactRepository.save(existingContact).toDto()
     }
 
+    override fun downgradeCategory(id: Long, category:Category): ContactDTO{
+        val existingContact = contactRepository.findById(id)
+            .orElseThrow{
+                logger.error("Contact not found")
+                throw ContactNotFoundException("Contact not found")
+            }
+
+        if(category == Category.Customer){
+            if(existingContact.category == Category.CustomerProfessional){
+                existingContact.category = Category.Professional;
+            }else{
+                existingContact.category = Category.Unknown;
+            }
+        }
+
+        if(category == Category.Professional){
+            if(existingContact.category == Category.CustomerProfessional){
+                existingContact.category = Category.Customer;
+            }else{
+                existingContact.category = Category.Unknown;
+            }
+        }
+
+        logger.info("Contact category modified successfully")
+
+        return contactRepository.save(existingContact).toDto()
+    }
+
     override fun deleteEmail (contactId: Long, emailId: Long ){
         //check if contact exist
         val eContact = contactRepository.findByIdOrNull(contactId)
@@ -567,6 +458,23 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         contactRepository.save(eContact)
 
         logger.info("Telephone successfully deleted from the contact")
+    }
+
+    override fun updateContact(contactId:Long, dto: ContactCreateDTO): ContactDTO{
+        logger.info("Updating contact with ID $contactId")
+
+        val contact = contactRepository.findById(contactId)
+            .orElseThrow { ContactNotFoundException("Contact with id $contactId not found") }
+
+        contact.name = dto.name
+        contact.surname = dto.surname
+        contact.ssn = dto.ssn ?: ""
+
+        val savedContact = contactRepository.save(contact)
+
+        logger.info("Contact updated successfully")
+
+        return savedContact.toDto()
     }
 
     @Transactional

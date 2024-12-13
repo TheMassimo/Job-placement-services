@@ -2,9 +2,25 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button, Card } from "react-bootstrap";
 import SkillAPI from "../api/crm/SkillAPI.js";
 
-const PopupSkills = ({ isOpen, onClose, onConfirm }) => {
+const PopupSkills = ({ isOpen, onClose, onConfirm, preSelectedSkills = [] }) => {
     const [selectedValues, setSelectedValues] = useState([]); // Tiene traccia delle selezioni
     const [skills, setSkills] = useState([]); // Tiene traccia delle skill disponibili
+
+    // Aggiorna i selectedValues con le skill pre-selezionate
+    useEffect(() => {
+        if (preSelectedSkills.length > 0) {
+            setSelectedValues(preSelectedSkills);
+        }
+    }, [preSelectedSkills]);
+
+    // Recupera le skill dall'API quando il componente viene montato
+    useEffect(() => {
+        SkillAPI.GetSkills()
+            .then((res) => {
+                setSkills(res);
+            })
+            .catch((err) => console.log(err));
+    }, []);
 
     // Funzione per aggiungere/rimuovere una selezione
     const toggleSelection = (skill) => {
@@ -19,15 +35,6 @@ const PopupSkills = ({ isOpen, onClose, onConfirm }) => {
             }
         });
     };
-
-    // Recupera le skill dall'API quando il componente viene montato
-    useEffect(() => {
-        SkillAPI.GetSkills()
-            .then((res) => {
-                setSkills(res);
-            })
-            .catch((err) => console.log(err));
-    }, []);
 
     return (
         <Modal show={isOpen} onHide={onClose}>
@@ -65,5 +72,6 @@ const PopupSkills = ({ isOpen, onClose, onConfirm }) => {
         </Modal>
     );
 };
+
 
 export default PopupSkills;

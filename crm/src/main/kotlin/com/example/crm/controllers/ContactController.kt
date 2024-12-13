@@ -55,46 +55,8 @@ class ContactController(private val contactServices: ContactServices) {
         return ResponseEntity.ok(contacts)
     }
 
-    @GetMapping("/customers", "/customers/")
-    fun getContactsAreCustomer(
-        @RequestParam("name", required = false) name: String?,
-        @RequestParam("surname", required = false) surname: String?,
-        @RequestParam("category", required = false) category: Category?,
-        @RequestParam("email", required = false) email: String?,
-        @RequestParam("address", required = false) address: String?,
-        @RequestParam("ssn", required = false) ssn: String?,
-        @RequestParam("telephone", required = false) telephone: String?,
-        @RequestParam("jobOffers", required = false) jobOffers: Int?,
-        @RequestParam("page", defaultValue = "0")  @Min(value = 0) page: Int,
-        @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int
-    ) : ResponseEntity<List<CustomerDetailDTO>> {
-        //println("Entrando");
-        val contacts = contactServices.getContactsAreCustomer(
-            name,
-            surname,
-            category,
-            email,
-            address,
-            ssn,
-            telephone,
-            jobOffers,
-            page,
-            limit
-        )
-        return ResponseEntity.ok(contacts)
-    }
-
-
-    @GetMapping("/professionals", "/professionals/")
-    fun getContactsAreProfessional(@RequestParam("page", defaultValue = "0")  @Min(value = 0) page: Int,
-                               @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int
-    ) : ResponseEntity<List<ProfessionalDetailDTO>> {
-        val contacts = contactServices.getContactsAreProfessional(page, limit)
-        return ResponseEntity.ok(contacts)
-    }
-
     @GetMapping("/{id}", "/{id}/")
-    fun getContactById(@PathVariable @Positive id: Long): ResponseEntity<ContactDTO>{
+    fun getContactById(@PathVariable @Positive id: Long): ResponseEntity<ContactDetailsDTO>{
         val document = contactServices.getContactById(id)
         return ResponseEntity.ok(document)
     }
@@ -112,7 +74,7 @@ class ContactController(private val contactServices: ContactServices) {
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadContactEmail(
         @PathVariable contactId : Long,
-        @RequestParam email: String,
+        @RequestBody email: String,
     ): EmailDTO {
         return contactServices.uploadEmail(
             contactId,
@@ -124,7 +86,7 @@ class ContactController(private val contactServices: ContactServices) {
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadContactAddress(
         @PathVariable contactId : Long,
-        @RequestParam address: String,
+        @RequestBody address: String,
     ): AddressDTO {
         return contactServices.uploadAddress(
             contactId,
@@ -136,12 +98,21 @@ class ContactController(private val contactServices: ContactServices) {
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadContactTelephone(
         @PathVariable contactId : Long,
-        @RequestParam telephone: String,
+        @RequestBody telephone: String,
     ): TelephoneDTO {
         return contactServices.uploadTelephone(
             contactId,
             telephone
         )
+    }
+
+    @PutMapping("/{contactId}", "/{contactId}/")
+    @ResponseStatus(HttpStatus.OK)
+    fun updateContact(
+        @PathVariable contactId : Long,
+        @RequestBody dto: ContactCreateDTO
+    ):ContactDTO{
+        return contactServices.updateContact(contactId, dto)
     }
 
     @PutMapping("/{contactId}/category", "/{contactId}/category/")
@@ -176,7 +147,7 @@ class ContactController(private val contactServices: ContactServices) {
     fun updateContactEmail(
         @PathVariable contactId : Long,
         @PathVariable emailId : Long,
-        @RequestParam email: String
+        @RequestBody email: String
     ): EmailDTO {
         return contactServices.updateEmail(
             contactId,
@@ -190,7 +161,7 @@ class ContactController(private val contactServices: ContactServices) {
     fun updateContactAddress(
         @PathVariable contactId : Long,
         @PathVariable addressId : Long,
-        @RequestParam address: String
+        @RequestBody address: String
     ): AddressDTO    {
         return contactServices.updateAddress(
             contactId,
@@ -204,7 +175,7 @@ class ContactController(private val contactServices: ContactServices) {
     fun updateContactTelephone(
         @PathVariable contactId : Long,
         @PathVariable telephoneId : Long,
-        @RequestParam telephone: String
+        @RequestBody telephone: String
     ): TelephoneDTO    {
         return contactServices.updateTelephone(
             contactId,

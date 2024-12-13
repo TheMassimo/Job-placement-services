@@ -8,8 +8,12 @@ import {ContactFilter} from "../api/crm/filters/ContactFilter.ts";
 import {Card, Badge, Dropdown, ListGroup, ListGroupItem} from "react-bootstrap";
 import {Row, Col} from "react-bootstrap"
 import {Pagination} from "../api/utils/Pagination.ts";
+import PopupContact from "./PopupContact";
+import PopupConfirmation from "./PopupConfirmation";
 import ContactAPI from "../api/crm/ContactAPI.js";
+import ProfessionalAPI from "../api/crm/ProfessionalAPI.js";
 import SkillAPI from "../api/crm/SkillAPI.js";
+import { useNotification } from '../contexts/NotificationProvider';
 
 function Filters(props) {
     const setFilters = props.setFilters;
@@ -58,11 +62,10 @@ function Filters(props) {
         const tmpFilter = new ContactFilter(null, null, null, null, null, null, mode, null, null, null, null)
         setFormFilters(tmpFilter);
         setFilters(tmpFilter);
-        console.log("ripulisco")
     }
 
     return (
-        <>
+        <Form>
             <h4 className={"filtersTitle"}>Filters</h4>
             <Form.Group controlId="filterName" className="mb-2">
                 <Form.Label>Filter by Name</Form.Label>
@@ -192,7 +195,7 @@ function Filters(props) {
                     Find
                 </Button>
             </div>
-        </>
+        </Form>
     );
 }
 
@@ -230,7 +233,18 @@ function ContactCard(props) {
             </Card.Header>
             <Card.Body>
                 <Row>
-                    {/* Prima colonna - Email */}
+                    {/* Prima colonna - Numeri di telefono */}
+                    <Col xs={12} md={4}>
+                        <h6>Telephone</h6>
+                        {contact.telephone
+                            .slice() // Copia l'array
+                            .sort((a, b) => a.telephone.localeCompare(b.telephone)) // Ordina alfabeticamente
+                            .map((telephoneObj) => (
+                                <div key={telephoneObj.telephoneId}>{telephoneObj.telephone}</div>
+                            ))}
+                    </Col>
+
+                    {/* Seconda colonna - Email */}
                     <Col xs={12} md={4}>
                         <h6>Email</h6>
                         {contact.email
@@ -241,7 +255,7 @@ function ContactCard(props) {
                             ))}
                     </Col>
 
-                    {/* Seconda colonna - Indirizzi */}
+                    {/* Terza colonna - Indirizzi */}
                     <Col xs={12} md={4}>
                         <h6>Addresses</h6>
                         {contact.address
@@ -249,17 +263,6 @@ function ContactCard(props) {
                             .sort((a, b) => a.address.localeCompare(b.address)) // Ordina alfabeticamente
                             .map((addressObj) => (
                                 <div key={addressObj.addressId}>{addressObj.address}</div>
-                            ))}
-                    </Col>
-
-                    {/* Terza colonna - Numeri di telefono */}
-                    <Col xs={12} md={4}>
-                        <h6>Telephone</h6>
-                        {contact.telephone
-                            .slice() // Copia l'array
-                            .sort((a, b) => a.telephone.localeCompare(b.telephone)) // Ordina alfabeticamente
-                            .map((telephoneObj) => (
-                                <div key={telephoneObj.telephoneId}>{telephoneObj.telephone}</div>
                             ))}
                     </Col>
                 </Row>
@@ -271,20 +274,20 @@ function ContactCard(props) {
 function CustomerCard(props) {
     const contact = props.contact;
 
-    return(
-        <Card  className="p-0 m-1">
+    return (
+        <Card className="p-0 m-1" style={{ height: '100px' }}>
             <Card.Body>
                 <Row>
                     <Col className="text-start" xs={4}>
-                        <Card.Title className="">{contact.name} {contact.surname}</Card.Title>
+                        <Card.Title>{contact.name} {contact.surname}</Card.Title>
                     </Col>
                     <Col className="text-center" xs={4}>
-                        <span className="custom-text">
-                            <Card.Title>ssn: {contact.ssn}</Card.Title>
-                        </span>
+                    <span className="custom-text">
+                        <Card.Title>ssn: {contact.ssn}</Card.Title>
+                    </span>
                     </Col>
                     <Col className="text-center" xs={4}>
-                        <span>{contact.customer?.jobOffers?.length | 0} job offers</span>
+                        <span>{contact.customer?.jobOffers?.length || 0} job offers</span>
                     </Col>
                 </Row>
             </Card.Body>
@@ -352,29 +355,39 @@ function ProfessionalCard(props) {
 
 function ViewContacts(props) {
     const navigate = useNavigate();
+    const { handleError, handleSuccess } = useNotification();
     const [contacts, setContacts] = useState([]);
     const [filters, setFilters] = useState(new ContactFilter());
     const [currentPage, setCurrentPage] = useState(0);
     const [pageSize, setPageSize] = useState(5);
     const [mode, setMode] = useState(null);
+    const [operation, setOperation] = useState(null);
     const [skills, setSkills] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [isOpenConfirmation, setIsOpenConfirmation] = useState(false);
+    const [contactToDelete, setContactToDelete] = useState(null);
+    const [refreshContact, setRefreshContact] = useState(0);
+
+    //Per gestione modal
+    const handleModalClose = () => setShowModal(false);
+    const handleModalShow = () => setShowModal(true);
 
     //USE Effect
     useEffect(() => {
-        console.log("pagina corrente:  page size", currentPage, pageSize);
+        //console.log("pagina corrente:  page size", currentPage, pageSize);
         ContactAPI.GetContacts(filters, new Pagination(currentPage, pageSize)).then((res) => {
             //get data
             setContacts(res);
-            console.log("CONTACTS ",res);
+            //console.log("CONTACTS ",res);
         }).catch((err) => console.log(err))
-    }, [filters, currentPage, pageSize]);
+    }, [filters, currentPage, pageSize, refreshContact]);
 
     useEffect(() => {
         SkillAPI.GetSkills()
             .then((res) => {
                 // Setta le skills
                 setSkills(res);
-                console.log("skills", res);
+                //console.log("skills", res);
             })
             .catch((err) => console.log(err));
     }, []); // Esegui solo una volta quando il componente viene montato
@@ -394,6 +407,34 @@ function ViewContacts(props) {
         //reset page
         setCurrentPage(0);
     };
+
+    const handleConfirmContact = (contact) => {
+        navigate(`/${mode.toLowerCase()}/add/${contact.contactId}`);
+    }
+
+    const onCloseConfirmation = () => {
+        setIsOpenConfirmation(false);
+        setContactToDelete(null)
+    }
+
+    const onConfirmConfirmation = async () => {
+        try {
+            if (mode === "Customer") {
+                // Aggiungi il codice per gestire la logica per "Customer" se necessario
+            } else if (mode === "Professional") {
+                await ProfessionalAPI.DeleteProfessional(contactToDelete.professional.professionalId); // Chiamata asincrona
+                handleSuccess('Professional successfully deleted!');
+                setIsOpenConfirmation(false);
+                setRefreshContact(prev => prev + 1);
+            } else {
+                // Gestisci altri casi
+            }
+        } catch (error) {
+            console.error("Errore durante la conferma:", error);
+            handleError(error);
+        }
+    };
+
 
     return (
         <div style={{paddingTop: '90px', display: 'flex', flexDirection: 'row'}}>
@@ -427,9 +468,25 @@ function ViewContacts(props) {
                         Professionals
                     </Button>
                 </div>
+                {/*Pop up per contatti*/}
+                <PopupContact
+                    mode={mode}
+                    showModal={showModal}
+                    handleModalClose={handleModalClose}
+                    toLoad={"Contacts"}
+                    handleConfirmContact={handleConfirmContact}
+                />
+                {/* Popup per confermare*/}
+                <PopupConfirmation
+                    isOpen={isOpenConfirmation}
+                    onClose={onCloseConfirmation}
+                    onConfirm={onConfirmConfirmation}
+                    title="Confirm"
+                    message={"Are you sure you want to proceed?"}
+                />
 
                 {/*Title of list*/}
-                <h2>{mode === null ? "Contacts" : mode+"s"} list:</h2>
+                <h2>{mode === null ? "Contacts" : mode + "s"} list:</h2>
                 <Row className="d-flex align-items-center">
                     <Col>
                         <Dropdown onSelect={handleSelect}>
@@ -445,20 +502,31 @@ function ViewContacts(props) {
                         </Dropdown>
                     </Col>
                     <Col>
+                        {mode === null && (
                         <Button className="m-2"
                                 variant="success"
-                                onClick={() => navigate(`/contacts/add`, { state: {
-                                    mode: "edit",
-                                    contact: contacts[14]
-                                    //user: { nome: "massimo", cognome: "porcheddu" }
-                        } })}>
-
-                            {mode === "Customer"
-                                ? "Create new Customer"
-                                : mode === "Professional"
-                                ? "Create new Professional"
-                                : "Create new Contact"}
+                                onClick={() => navigate(`/contacts/add`, {
+                                    state: {
+                                        mode: mode,
+                                        operation: "add",
+                                    }
+                                })}>
+                            <i className="bi bi-plus-circle p-1"></i>
+                            {"Create new Contact"}
                         </Button>
+                        )}
+                        {mode !== null && (
+                            <Button className="m-2"
+                                    variant="success"
+                                    onClick={() => setShowModal(true)}>
+                                <i className="bi bi-plus-circle p-1"></i>
+                                {mode === "Customer"
+                                    ? "Create new Customer"
+                                    : mode === "Professional"
+                                        ? "Create new Professional"
+                                        : "Create new Contact"}
+                            </Button>
+                        )}
                     </Col>
                 </Row>
 
@@ -466,36 +534,75 @@ function ViewContacts(props) {
                 {contacts.length > 0 ?
                     <>
                         {contacts.map((contact) => {
-                            if (mode === "Customer") {
-                                return <CustomerCard key={contact.contactId} contact={contact} />;
-                            } else if (mode === "Professional") {
-                                return <ProfessionalCard key={contact.contactId} contact={contact} />;
-                            } else {
-                                return <ContactCard key={contact.contactId} contact={contact} />;
-                            }
+                            return (
+                                <div key={contact.contactId} className="d-flex w-100 position-relative">
+                                    {/* Contenitore card con padding per lasciare spazio ai tasti */}
+                                    <div className="flex-grow-1" style={{ paddingRight: "50px" }}>
+                                        {mode === "Customer" ? (
+                                            <CustomerCard contact={contact} />
+                                        ) : mode === "Professional" ? (
+                                            <ProfessionalCard contact={contact} />
+                                        ) : (
+                                            <ContactCard contact={contact} />
+                                        )}
+                                    </div>
+
+                                    {/* Contenitore dei tasti, con larghezza fissa per evitare sovrapposizioni */}
+                                    <div
+                                        className="position-absolute top-50 end-0 translate-middle-y d-flex flex-column align-items-center"
+                                        style={{ width: "50px" }} // larghezza fissa per i tasti
+                                    >
+                                        <button
+                                            className="btn btn-primary mb-2"
+                                            style={{ width: "40px", height: "40px" }}
+                                            onClick={() => {
+                                                const path = mode ? mode.toLowerCase() : "contacts";
+                                                navigate(`/${path}/edit/${contact.contactId}`);
+                                            }}
+                                        >
+                                            <i className="bi bi-pencil"></i>
+                                        </button>
+                                        <button
+                                            className="btn btn-danger"
+                                            style={{ width: "40px", height: "40px" }}
+                                            onClick={() => {
+                                                setIsOpenConfirmation(true);
+                                                setContactToDelete(contact)
+                                            }}
+                                        >
+                                            <i className="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            );
                         })}
-                        <div className="d-flex justify-content-between mt-3">
-                            <Button
-                                className="m-3"
-                                variant="outline-primary"
-                                onClick={() => {setCurrentPage(currentPage - 1);}}
-                                disabled={currentPage === 0}
-                            >
-                                Previous
-                            </Button>
-                            <span>Page {currentPage+1}</span>
-                            <Button
-                                className="m-3"
-                                variant="outline-primary"
-                                onClick={() => {setCurrentPage(currentPage + 1);}}
-                                disabled={contacts.length < pageSize}
-                            >
-                                Next
-                            </Button>
-                        </div>
                     </>
+
                     :
                     <div> No data available </div>}
+                <div className="d-flex justify-content-between mt-3">
+                    <Button
+                        className="m-3"
+                        variant="outline-primary"
+                        onClick={() => {
+                            setCurrentPage(currentPage - 1);
+                        }}
+                        disabled={currentPage === 0}
+                    >
+                        Previous
+                    </Button>
+                    <span>Page {currentPage + 1}</span>
+                    <Button
+                        className="m-3"
+                        variant="outline-primary"
+                        onClick={() => {
+                            setCurrentPage(currentPage + 1);
+                        }}
+                        disabled={contacts.length < pageSize}
+                    >
+                        Next
+                    </Button>
+                </div>
             </div>
         </div>
     );

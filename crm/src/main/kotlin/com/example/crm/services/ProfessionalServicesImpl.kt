@@ -1,16 +1,11 @@
 package com.example.crm.services
 
-import com.example.crm.dtos.ProfessionalCreateDTO
-import com.example.crm.dtos.ProfessionalDTO
-import com.example.crm.dtos.SkillDTO
-import com.example.crm.dtos.toDto
+import com.example.crm.dtos.*
 import com.example.crm.entities.Category
 import com.example.crm.entities.Professional
 import com.example.crm.entities.ProfessionalEmployment
 import com.example.crm.entities.Skill
-import com.example.crm.exeptions.BadParameterException
-import com.example.crm.exeptions.ElementNotFoundException
-import com.example.crm.exeptions.ProfessionalNotFoundException
+import com.example.crm.exeptions.*
 import com.example.crm.repositories.ContactRepository
 import com.example.crm.repositories.ProfessionalRepository
 import com.example.crm.repositories.SkillRepository
@@ -19,6 +14,9 @@ import org.slf4j.LoggerFactory
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import org.hibernate.exception.ConstraintViolationException
+import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ProfessionalServicesImpl(private val professionalRepository: ProfessionalRepository,
@@ -105,6 +103,54 @@ class ProfessionalServicesImpl(private val professionalRepository: ProfessionalR
 
             return pDTO
         }
+    }
+
+    @Transactional
+    override fun deleteProfessional(professionalId:Long){
+        val professional =
+            professionalRepository.findById(professionalId)
+                .orElseThrow { ProfessionalNotFoundException("professional not found") }
+
+        // Rimuovo la relazione 'professional' dalle skill a cui è associato
+        professional.skills.forEach { skill ->
+            skill.professional.remove(professional) // Rimuovo il professionista dalla skill
+        }
+
+        // Se il contatto esiste, aggiorno la categoria e rimuovo la relazione con il professionista
+        professional.contact?.let { contact ->
+            contact.professional = null // Rimuovo il collegamento tra contatto e professionista
+            contactServices.downgradeCategory(contact.contactId, Category.Professional) // Rimuovo anche la categoria, se necessario
+        }
+
+        try {
+            professionalRepository.delete(professional)
+        } catch (e: DataIntegrityViolationException) {
+            if (e.cause is ConstraintViolationException) {
+                throw ProfessionalProcessingException("Delete of a professional is only permitted if the professional is not associated with any job offer")
+            } else {
+                throw e
+            }
+        } catch (e: Exception) {
+            throw ProfessionalProcessingException("Error occurred while deleting professional with ID $professionalId")
+        }
+    }
+
+
+    override fun updateProfessional(professionalId:Long, dto: ProfessionalCreateDTO): ProfessionalDTO {
+        logger.info("Updating professional with ID $professionalId")
+
+        val professional = professionalRepository.findById(professionalId)
+            .orElseThrow { ContactNotFoundException("Contact with id $professionalId not found") }
+
+
+        professional.geographicalInfo = dto.geographicalInfo
+        professional.dailyRate = dto.dailyRate
+        professional.notes = dto.notes ?: ""
+
+        val savedProfessional = professionalRepository.save(professional)
+        logger.info("Professional updated successfully")
+
+        return savedProfessional.toDto()
     }
 
     override fun addNote(id: Long, note: String): ProfessionalDTO {

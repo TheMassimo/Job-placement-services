@@ -29,8 +29,13 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomeLayout />} />
 
+                        {/* action= add/edit */}
                         <Route path="/contacts" element={<ViewContacts />} />
-                        <Route path="/contacts/add" element={<ContactForm />} />
+                        <Route path="/contacts/:action/" element={<ContactForm mode={null} />} />
+                        <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} />} />
+                        <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"} />} />
+                        <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
+
 
                         <Route path="/jobOffers" element={<ViewJobOffers />} />
                         <Route path="/jobOffer/add" element={<AddJobOffer />} />

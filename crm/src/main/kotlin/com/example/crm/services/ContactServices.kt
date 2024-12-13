@@ -2,6 +2,7 @@ package com.example.crm.services
 
 import com.example.crm.dtos.*
 import com.example.crm.entities.Category
+import com.example.crm.entities.Contact
 import com.example.crm.entities.ProfessionalEmployment
 
 
@@ -23,22 +24,7 @@ interface ContactServices {
         pageSize: Int
     ): List<ContactDetailsDTO>
 
-    fun getContactsAreCustomer(
-        name:String?,
-        surname:String?,
-        category:Category?,
-        email:String?,
-        address:String?,
-        ssn:String?,
-        telephone:String?,
-        jobOffers:Int?,
-        page: Int,
-        limit: Int
-    ): List<CustomerDetailDTO>
-
-    fun getContactsAreProfessional(page: Int, limit: Int): List<ProfessionalDetailDTO>
-
-    fun getContactById(id: Long): ContactDTO
+    fun getContactById(id: Long): ContactDetailsDTO
 
     fun create(dto: ContactCreateDTO): ContactDTO
 
@@ -50,11 +36,15 @@ interface ContactServices {
 
     fun updateCategory(id: Long, category:Category): ContactDTO
 
+    fun downgradeCategory(id: Long, category:Category): ContactDTO
+
     fun deleteEmail(contactId: Long, emailId: Long)
 
     fun deleteAddress(contactId: Long, addressId: Long)
 
     fun deleteTelephone(contactId: Long, telephoneId: Long)
+
+    fun updateContact(contactId:Long, dto: ContactCreateDTO): ContactDTO
 
     fun updateEmail(contactId: Long, emailId: Long, email: String): EmailDTO
 

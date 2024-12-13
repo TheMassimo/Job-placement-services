@@ -1,5 +1,6 @@
 package com.example.crm.services
 
+import com.example.crm.dtos.ContactDTO
 import com.example.crm.dtos.JobOfferCreateDTO
 import com.example.crm.dtos.JobOfferDTO
 import com.example.crm.entities.JobStatus

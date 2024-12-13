@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal, Form, ListGroup, Dropdown } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 import ContactAPI from "../api/crm/ContactAPI.js";
@@ -9,7 +9,7 @@ import '../App.css';  // Importa il file CSS
 
 function Filters(props) {
     const setFilters = props.setFilters;
-    const mode = props.mode;
+    const toLoad = props.toLoad;
     const setCurrentPage = props.setCurrentPage;
     const [formFilters, setFormFilters] = useState(new ContactFilter(null, null, null, null, null, null, null, 0, null, null, null));
 
@@ -25,7 +25,7 @@ function Filters(props) {
             formFilters.email,
             formFilters.address,
             formFilters.telephone,
-            mode, //category
+            toLoad, //category
             formFilters.jobOffers,
             formFilters.skills,
             formFilters.status,
@@ -54,7 +54,7 @@ function Filters(props) {
     }
 
     return (
-        <>
+        <Form>
             <h4 className={"filtersTitle"}>Filters</h4>
             <Form.Group controlId="filterName" className="mb-2">
                 <Form.Label>Filter by Name</Form.Label>
@@ -86,7 +86,7 @@ function Filters(props) {
                     onChange={handleFilterChange}
                 />
             </Form.Group>
-            {mode===null && (
+            {toLoad === "Contacts" && (
                 <>
                     <Form.Group controlId="filterEmail" className="mb-2">
                         <Form.Label>Filter by Email</Form.Label>
@@ -120,7 +120,7 @@ function Filters(props) {
                     </Form.Group>
                 </>
             )}
-            {mode==="Customer" && (
+            {toLoad === "Customers" && (
                 <Form.Group controlId="filterJobOffer" className="mb-2">
                     <Form.Label>Filter by Job Offer</Form.Label>
                     <Form.Control
@@ -132,7 +132,7 @@ function Filters(props) {
                     />
                 </Form.Group>
             )}
-            {mode==="Professional" && (
+            {toLoad === "Professionals" && (
                 <>
                     <Form.Group controlId="filterSkill" className="mb-2">
                         <Form.Label>Filter by Skill</Form.Label>
@@ -175,26 +175,106 @@ function Filters(props) {
                     Find
                 </Button>
             </div>
-        </>
+        </Form>
     );
 }
 
-const CustomerTable = ({ contacts, onSelectCustomer }) => {
+const ContactTable = ({contacts, setSelectedContact, mode}) => {
+    const [selectedPerson, setSelectedPerson] = useState(null);
+
+    const handleRowClick = (contact) => {
+        //update select to color in green
+        setSelectedPerson(contact.contactId);
+        //call external function
+        if (setSelectedContact) {
+            setSelectedContact(contact); // Comunica al genitore il cliente selezionato
+        }
+    };
+    useEffect(() => {
+        setSelectedPerson(null)
+    }, [contacts]);
+
+    return (
+        <Form>
+            <Table striped bordered hover>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>SSN</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Telephone</th>
+                </tr>
+                </thead>
+                <tbody>
+                {contacts.map((contact, index) => {
+                    const rowProps = (contact.category === mode || contact.category==="CustomerProfessional")
+                        ? {
+                            className: "table-danger", // Classe speciale se la categoria corrisponde al mode
+                        }
+                        : {
+                            onClick: () => handleRowClick(contact),
+                            className: String(selectedPerson) === String(contact.contactId) ? "table-success" : null,
+                        };
+                    return (<tr
+                            key={index}
+                            {...rowProps} // Applica le proprietà calcolate
+                            >
+
+                            <td>{contact.contactId}</td>
+                            <td>{contact.name}</td>
+                            <td>{contact.surname}</td>
+                            <td>{contact.ssn}</td>
+                            <td>{Array.isArray(contact.customer?.jobOffers)
+                                ? contact.customer.jobOffers.length
+                                : 0}</td>
+                            <td>{contact.email
+                                .slice() // Copia l'array
+                                .sort((a, b) => a.email.localeCompare(b.email)) // Ordina alfabeticamente
+                                .map((emailObj) => (
+                                    <span key={emailObj.emailId}>{emailObj.email}<br/></span>
+                                ))}</td>
+                            <td>{contact.address
+                                .slice() // Copia l'array
+                                .sort((a, b) => a.address.localeCompare(b.address)) // Ordina alfabeticamente
+                                .map((addressObj) => (
+                                    <div key={addressObj.addressId}>{addressObj.address}<br/></div>
+                                ))}</td>
+                            <td>{contact.telephone
+                                .slice() // Copia l'array
+                                .sort((a, b) => a.telephone.localeCompare(b.telephone)) // Ordina alfabeticamente
+                                .map((telephoneObj) => (
+                                    <div key={telephoneObj.telephoneId}>{telephoneObj.telephone}<br/></div>
+                                ))}</td>
+                        </tr>
+                    );
+                })}
+                </tbody>
+            </Table>
+        </Form>
+    );
+};
+
+const CustomerTable = ({contacts, setSelectedContact}) => {
     const [selectedPerson, setSelectedPerson] = useState("");
 
-    const handleRowClick = (customerId) => {
-        console.log("Selected Customer ID:", customerId); // Log dell'ID selezionato
-        setSelectedPerson(customerId);
-        console.log("selectedPerson dopo setState:", customerId);
-        if (onSelectCustomer) {
-            onSelectCustomer(customerId); // Comunica al genitore il cliente selezionato
+    const handleRowClick = (contact) => {
+        //update select to color in green
+        setSelectedPerson(contact.contactId);
+        //call external function
+        if (setSelectedContact) {
+            setSelectedContact(contact); // Comunica al genitore il cliente selezionato
         }
     };
 
-    return (
-        <div>
-            <h4>Select a customer:</h4>
+    useEffect(() => {
+        setSelectedPerson(null)
+    }, [contacts]);
 
+    return (
+        <Form>
             <Table striped bordered hover>
                 <thead>
                 <tr>
@@ -209,113 +289,152 @@ const CustomerTable = ({ contacts, onSelectCustomer }) => {
                 {contacts.map((contact, index) => {
 
                     return (<tr
-                        key={index}
-                        onClick={() => {
-                            console.log("Valore passato al callback:", contact.customer.customerId);
-                            console.log("ID della riga cliccata customerId:", contact.customer.customerId);
-                            console.log("ID selezionato (selectedPerson):", selectedPerson);
-                            handleRowClick(contact.customer?.customerId);
-                        }}
-                        style={{
-                            cursor: "pointer",
-                            backgroundColor:
-                                String(selectedPerson) === String(contact.customer?.customerId)
-                                    ? "lightgreen"
-                                    : "white",
-                        }}
-
-                    >
-                        <td>{index + 1}</td>
-                        <td>{contact.name}</td>
-                        <td>{contact.surname}</td>
-                        <td>{contact.ssn}</td>
-                        <td>{Array.isArray(contact.customer?.jobOffers)
-                            ? contact.customer.jobOffers.length
-                            : 0}</td>
-                    </tr>
+                            key={index}
+                            onClick={() => {
+                                handleRowClick(contact);
+                            }}
+                            className={String(selectedPerson) === String(contact.contactId) ? "table-success" : null}
+                        >
+                            <td>{contact.contactId}</td>
+                            <td>{contact.name}</td>
+                            <td>{contact.surname}</td>
+                            <td>{contact.ssn}</td>
+                            <td>{Array.isArray(contact.customer?.jobOffers)
+                                ? contact.customer.jobOffers.length
+                                : 0}</td>
+                        </tr>
                     );
                 })}
                 </tbody>
             </Table>
-        </div>
+        </Form>
     );
 };
 
 function PopupContact(props) {
-    const [selectedPerson, setSelectedPerson] = useState(""); // Per memorizzare il cliente selezionato
+    const [selectedContact, setSelectedContact] = useState(null);
     const navigate = useNavigate(); // Per navigare a un'altra pagina
     const [contacts, setContacts] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const showModal = props.showModal;
     const handleModalClose = props.handleModalClose;
-    const pageSize = 10;
     const mode = props.mode;
-    const [filter, setFilter] = useState(new ContactFilter(null, null, null, null, null, null, mode, null, null, null, null));
+    const toLoad = props.toLoad;
+    const handleConfirmContact = props.handleConfirmContact;
+    const [pageSize, setPageSize] = useState(5);
+    const [filters, setFilters] = useState(new ContactFilter(null, null, null, null, null, null, toLoad, null, null, null, null));
 
 
     //USE Effect
     useEffect(() => {
-        ContactAPI.GetContacts(filter, new Pagination(currentPage, pageSize)).then((res) => {
+        ContactAPI.GetContacts(filters, new Pagination(currentPage, pageSize)).then((res) => {
             setContacts(res);
-            console.log("Massimo");
         }).catch((err) => console.log(err))
-    }, [filter, currentPage]);
+    }, [filters, currentPage]);
 
-    const handlePersonSelection = () => {
-        if (selectedPerson) {
-            // Trova il contatto selezionato dai dati
-            const selectedContact = contacts.find(contact => contact.customer?.customerId === selectedPerson);
-
-            if (selectedContact) {
-                // Aggiungi una stampa per vedere il contatto selezionato
-                console.log("Dati del contatto selezionato:", selectedContact);
-                console.log("ID del contatto selezionato:", selectedContact.customer?.customerId);
-
-                // Passa il contatto completo alla pagina successiva
-                navigate('/jobOffer/add', {
-                    state: {
-                        contact: selectedContact,  // Passa l'intero oggetto contatto
-                        customerId: selectedContact.customer?.customerId // Passa anche l'ID del customer
-                    }
-                });
-            } else {
-                console.log("Contatto non trovato con ID:", selectedPerson);
-            }
+    const handleContinue = () => {
+        if (selectedContact) {
+            //richiamo l'evento esterno passandogli il contatto selezionato
+            handleConfirmContact(selectedContact);
         } else {
             console.log("Nessun contatto selezionato.");
         }
     };
 
+    const handleSelect = (eventKey) => {
+        const parsedValue = parseInt(eventKey, 10); // Converte l'eventKey in un numero intero
+        setPageSize(parsedValue);
+        //reset page
+        setCurrentPage(0);
+    };
+
+    const localOnHide = (event) => {
+        //reset page
+        setCurrentPage(0);
+        //call external on hide
+        handleModalClose(event);
+    };
+
     return (
         <>
             {/* Modale */}
-            <Modal show={showModal} onHide={handleModalClose} centered>
+            <Modal show={showModal} onHide={localOnHide} centered size="lg">
                 <Modal.Header closeButton>
-                    <Modal.Title>Choose Customer</Modal.Title>
+                    <Modal.Title>{ toLoad === "Professionals"
+                                   ? "Choose Professional"
+                                   : toLoad === "Customer"
+                                     ? "Choose Customer"
+                                     : "Choose Contacts"
+                    }</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
-                        <Filters mode = {mode} setFilter={setFilter} currentPage={currentPage} />
-                        {mode === "Customer" && (
-                            <CustomerTable
-                                contacts={contacts}
-                                onSelectCustomer={(customerId) => {
-                                    console.log("Valore passato dal CustomerTable:", customerId);
-                                    setSelectedPerson(customerId);
-                                }}
-                            />
-                        )}
+                    <Filters toLoad={toLoad} setFilters={setFilters} setCurrentPage={setCurrentPage} />
+                    <h4>{ toLoad === "Professionals"
+                        ? "Select Professional:"
+                        : toLoad === "Customer"
+                            ? "Select Customer:"
+                            : "Select Contacts:"
+                    }</h4>
+                    <Dropdown onSelect={handleSelect}>
+                        <Dropdown.Toggle className="custom-button m-2" id="dropdown-basic">
+                            {pageSize ? `${pageSize} items` : "Select an option"}
+                        </Dropdown.Toggle>
 
-                    </Form>
+                        <Dropdown.Menu>
+                            <Dropdown.Item eventKey="5">5 items</Dropdown.Item>
+                            <Dropdown.Item eventKey="10">10 items</Dropdown.Item>
+                            <Dropdown.Item eventKey="20">20 items</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    {toLoad === "Contacts" && (
+                        <ContactTable
+                            contacts={contacts}
+                            setSelectedContact={setSelectedContact}
+                            mode={mode}
+                        />
+                    )}
+                    {toLoad === "Customers" && (
+                        <CustomerTable
+                            contacts={contacts}
+                            setSelectedContact={setSelectedContact}
+                        />
+                    )}
+                    <div className="d-flex justify-content-between align-items-center mt-3">
+                        <Button
+                            className="m-3"
+                            variant="outline-primary"
+                            onClick={() => {
+                                setCurrentPage(currentPage - 1);
+                                setSelectedContact(null);
+                            }}
+                            disabled={currentPage === 0}
+                        >
+                            Previous
+                        </Button>
+                        <div className="d-flex justify-content-center align-items-center flex-grow-1">
+                            <span>Page {currentPage + 1}</span>
+                        </div>
+                        <Button
+                            className="m-3"
+                            variant="outline-primary"
+                            onClick={() => {
+                                setCurrentPage(currentPage + 1);
+                                setSelectedContact(null);
+                            }}
+                            disabled={contacts.length < pageSize}
+                        >
+                            Next
+                        </Button>
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalClose}>
+                    <Button variant="danger"  onClick={handleModalClose}>
                         Cancel
                     </Button>
                     <Button
-                        variant="primary"
-                        onClick={handlePersonSelection}
-                        disabled={!selectedPerson}
+                        className="custom-button"
+                        onClick={handleContinue}
+                        disabled={!selectedContact}
                     >
                         Continue
                     </Button>

@@ -7,11 +7,11 @@ import {Email} from "./entities/Email.ts"
 import {Telephone} from "./entities/Telephone.ts"
 
 
-const URL_CONTACTS = 'http://localhost:8082/API/customers'
+const URL_CUSTOMER = 'http://localhost:8082/API/customers'
 
 async function AddCustomer(customer){
     const response = await fetch(
-        generateUrl(`${URL_CONTACTS}`, null, null), {
+        generateUrl(`${URL_CUSTOMER}`, null, null), {
             method: 'POST',
             credentials: 'include',
             headers: {'Content-Type': 'application/json'/*, 'X-XSRF-TOKEN': xsrfToken*/},
@@ -27,9 +27,29 @@ async function AddCustomer(customer){
     }
 }
 
+async function UpdateNotes(customerId, note) {
+    const response = await fetch(
+        generateUrl(`${URL_CUSTOMER}/note/${customerId}`, null, null), {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'}, //'X-XSRF-TOKEN': xsrfToken
+            body: note //JSON.stringify(note)
+        })
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return Customer.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
+
 
 const CustomerAPI = {
     AddCustomer,
+    UpdateNotes,
 }
 
 export default CustomerAPI

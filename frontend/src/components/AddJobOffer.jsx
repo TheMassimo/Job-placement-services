@@ -7,6 +7,8 @@ import PopupSkills from './PopupSkills'; // Importa il componente PopUpSkills
 function AddJobOffer(props) {
 
     const location = useLocation();
+
+    //USE PARAMS
     const { contact, customerId } = location.state || {}; // Recupera il contatto e customerId
 
     const [formData, setFormData] = useState({
