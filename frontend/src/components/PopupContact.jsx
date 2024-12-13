@@ -11,7 +11,7 @@ function Filters(props) {
     const setFilters = props.setFilters;
     const toLoad = props.toLoad;
     const setCurrentPage = props.setCurrentPage;
-    const [formFilters, setFormFilters] = useState(new ContactFilter(null, null, null, null, null, null, null, 0, null, null, null));
+    const [formFilters, setFormFilters] = useState(new ContactFilter(null, null, null, null, null, null, toLoad, null, null, null, null));
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -49,8 +49,9 @@ function Filters(props) {
     }
 
     const handleClear = (event) => {
-        setFormFilters(new ContactFilter(null, null, null, null, null, null, null, 0, null, null, null));
-        setFilters(null);
+        const tmpFilter = new ContactFilter(null, null, null, null, null, null, toLoad, null, null, null, null)
+        setFormFilters(tmpFilter);
+        setFilters(tmpFilter);
     }
 
     return (
@@ -120,14 +121,14 @@ function Filters(props) {
                     </Form.Group>
                 </>
             )}
-            {toLoad === "Customers" && (
-                <Form.Group controlId="filterJobOffer" className="mb-2">
+            {toLoad === "Customer" && (
+                <Form.Group controlId="filterJobOffers" className="mb-2">
                     <Form.Label>Filter by Job Offer</Form.Label>
                     <Form.Control
                         type="number"
-                        name="jobOffer"
+                        name="jobOffers"
                         placeholder="Enter Job Offer Number"
-                        value={formFilters.JobOffer}
+                        value={formFilters.jobOffers === null ? 0 : formFilters.jobOffers}
                         onChange={handleFilterChange}
                     />
                 </Form.Group>
@@ -393,7 +394,7 @@ function PopupContact(props) {
                             mode={mode}
                         />
                     )}
-                    {toLoad === "Customers" && (
+                    {toLoad === "Customer" && (
                         <CustomerTable
                             contacts={contacts}
                             setSelectedContact={setSelectedContact}

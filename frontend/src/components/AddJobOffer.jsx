@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import JobOffersAPI from "../api/crm/JobOffersAPI.js"; // Assicurati di avere una API per le job offers
 import { useLocation } from 'react-router-dom';
+import {useNavigate, useParams} from "react-router-dom";
+import { useNotification } from '../contexts/NotificationProvider';
 import PopupSkills from './PopupSkills'; // Importa il componente PopUpSkills
+import ContactAPI from "../api/crm/ContactAPI.js"; // Assicurati di avere una API per le job offers
+import JobOffersAPI from "../api/crm/JobOffersAPI.js"; // Assicurati di avere una API per le job offers
+
 
 function AddJobOffer(props) {
-
+    const { action } = useParams();
+    const { contactId } = useParams();
+    const { jobOfferId } = useParams();
+    const navigate = useNavigate();
+    const { handleError, handleSuccess } = useNotification();
     const location = useLocation();
-
-    //USE PARAMS
-    const { contact, customerId } = location.state || {}; // Recupera il contatto e customerId
-
+    const [contact, setContact] = useState({});
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [selectedSkills, setSelectedSkills] = useState([]);
+    const [submitButton, setSubmitButton] = useState(false);
     const [formData, setFormData] = useState({
         description: '',
         offerValue: '',
@@ -19,9 +27,14 @@ function AddJobOffer(props) {
         requiredSkills: [], // Stato per le skills richieste
         status: 'CREATED'
     });
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [selectedSkills, setSelectedSkills] = useState([]);
 
+    //USE Effect
+    useEffect(() => {
+        ContactAPI.GetContactById(contactId).then((res) => {
+            setContact(res);
+            console.log("Contact res =>", res);
+        }).catch((err) => console.log(err))
+    }, []);
 
 
     // Funzione per nascondere il PopUp
@@ -44,34 +57,39 @@ function AddJobOffer(props) {
         }));
     };
 
-    // Funzione per inviare i dati del form
+    //Gestione invio form
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitButton(true);
 
-        const { offerValue, duration } = formData;
-        const offerValueNumber = parseFloat(offerValue); // Assicurati che sia un numero
-        const durationNumber = parseFloat(duration); // Assicurati che sia un numero
-
-        if (isNaN(offerValueNumber) || isNaN(durationNumber)) {
-            alert('Offer value and duration must be valid numbers.');
-            return;
+        if (action === "add") {
+            handleAdd(e);
+        } else if (action === "edit") {
+            handleEdit(e);
         }
 
-        const dataToSubmit = {
-            customerId: customerId,
-            description: formData.description,
-            offerValue: offerValueNumber,
-            duration: durationNumber,
-            notes: formData.notes,
-            requiredSkills: formData.requiredSkills,
-            status: "CREATED"
-        };
-
+        setSubmitButton(false);
+    };
+    const handleAdd = async (e) => {
         try {
-            const res = await JobOffersAPI.AddJobOffer(dataToSubmit); // Chiamata API per aggiungere la job offer
-            console.log('Job offer added successfully:', res);
+            // prendo solo gli id delle skill
+            const tmpSkills = formData.requiredSkills.map((skill) => skill.skillId);
+
+            const tmpJobOffer = {
+                description:formData.description,
+                notes: formData.notes,
+                duration:formData.duration,
+                offerValue: formData.offerValue,
+                requiredSkills: tmpSkills,
+            };
+            const resAddJobOffer = await JobOffersAPI.AddJobOffer(contactId, tmpJobOffer);
+            handleSuccess('Job Offer added successfully!');
+
+            //if all is right go back to contacts
+            navigate(`/jobOffers`)
         } catch (err) {
-            console.log('Error adding job offer:', err);
+            console.error("Errore durante l'elaborazione:", err);
+            handleError(err);
         }
     };
 
@@ -100,9 +118,9 @@ function AddJobOffer(props) {
             )}
 
             <form onSubmit={handleSubmit} className="filterBox">
-                {/* Descrizione */}
+                {/* Descrizione and notes */}
                 <Row className="mb-3">
-                    <Col>
+                    <Col md={8}>
                         <Form.Group controlId="formDescription" className="text-start">
                             <Form.Label>Description</Form.Label>
                             <Form.Control
@@ -117,47 +135,7 @@ function AddJobOffer(props) {
                             />
                         </Form.Group>
                     </Col>
-                </Row>
-
-                {/* Offer Value */}
-                <Row className="mb-3">
-                    <Col>
-                        <Form.Group controlId="formOfferValue" className="text-start">
-                            <Form.Label>Offer Value</Form.Label>
-                            <Form.Control
-                                type="number"
-                                name="offerValue"
-                                placeholder="Enter Offer Value"
-                                value={formData.offerValue}
-                                onChange={handleChange}
-                                required
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-                    </Col>
-                </Row>
-
-                {/* Duration */}
-                <Row className="mb-3">
-                    <Col>
-                        <Form.Group controlId="formDuration" className="text-start">
-                            <Form.Label>Duration (in months)</Form.Label>
-                            <Form.Control
-                                type="number"
-                                name="duration"
-                                placeholder="Enter Duration"
-                                value={formData.duration}
-                                onChange={handleChange}
-                                required
-                                className="form-control-sm"
-                            />
-                        </Form.Group>
-                    </Col>
-                </Row>
-
-                {/* Notes */}
-                <Row className="mb-3">
-                    <Col md={8}>
+                    <Col md={4}>
                         <Form.Group controlId="formNotes" className="text-start">
                             <Form.Label>Notes</Form.Label>
                             <Form.Control
@@ -173,24 +151,61 @@ function AddJobOffer(props) {
                     </Col>
                 </Row>
 
-                {/* Required Skills */}
                 <Row className="mb-3">
-                    <Col md={8}>
+                    {/* Duration */}
+                    <Col>
+                        <Form.Group controlId="formDuration" className="text-start">
+                            <Form.Label>Duration (in months)</Form.Label>
+                            <Form.Control
+                                type="number"
+                                name="duration"
+                                placeholder="Enter Duration"
+                                value={formData.duration}
+                                onChange={handleChange}
+                                required
+                                className="form-control-sm"
+                            />
+                        </Form.Group>
+                    </Col>
+                    {/* Offer Value */}
+                    <Col>
+                        <Form.Group controlId="formOfferValue" className="text-start">
+                            <Form.Label>Offer Value</Form.Label>
+                            <Form.Control
+                                type="number"
+                                name="offerValue"
+                                placeholder="Enter Offer Value"
+                                value={formData.offerValue}
+                                onChange={handleChange}
+                                required
+                                className="form-control-sm"
+                            />
+                        </Form.Group>
+                    </Col>
+                    {/* Required Skills */}
+                    <Col>
                         <Form.Group controlId="formSkills" className="text-start">
+                            <Form.Label>Select required skills</Form.Label>
                             <div className="d-flex align-items-start justify-content-between">
                                 {/* Bottone per aprire il popup */}
-                                <Button className="custom-button m-3" onClick={togglePopup}>
+                                <Button
+                                    className="custom-button m-3"
+                                    onClick={togglePopup}
+                                >
                                     Select Skills
                                 </Button>
 
                                 {/* Mostra le skill selezionate */}
-                                {selectedSkills.length > 0 && (
+                                {formData.requiredSkills && formData.requiredSkills.length > 0 && (
                                     <div className="mt-3 ms-3" style={{ flexGrow: 1 }}>
                                         <strong>Selected skills:</strong>
                                         <ul className="mb-0">
-                                            {selectedSkills.map((skill, index) => (
-                                                <li key={index}>{skill.skill}</li>
-                                            ))}
+                                            {formData.requiredSkills
+                                                .slice() // Creare una copia per non modificare l'array originale
+                                                .sort((a, b) => a.skill.localeCompare(b.skill)) // Ordinare alfabeticamente
+                                                .map((skill, index) => (
+                                                    <li key={index}>{skill.skill}</li>
+                                                ))}
                                         </ul>
                                     </div>
                                 )}
@@ -198,9 +213,13 @@ function AddJobOffer(props) {
                         </Form.Group>
                     </Col>
                 </Row>
-
                 {/* Submit Button */}
-                <Button variant="primary" type="submit" className="custom-button">
+                <Button
+                    variant="primary"
+                    type="submit"
+                    className="custom-button"
+                    disabled={submitButton}
+                >
                     Save
                 </Button>
             </form>
@@ -210,8 +229,12 @@ function AddJobOffer(props) {
                 <PopupSkills
                     isOpen={isPopupOpen}
                     onClose={togglePopup}
+                    preSelectedSkills={formData.requiredSkills}
                     onConfirm={(skills) => {
-                        setSelectedSkills(skills); // Salva le skill selezionate
+                        setFormData((prevFormData) => ({
+                            ...prevFormData,
+                            requiredSkills: skills, // Aggiorna il campo skills direttamente
+                        }));
                         togglePopup(); // Chiudi il popup
                     }}
                 />

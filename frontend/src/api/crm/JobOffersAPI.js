@@ -28,9 +28,28 @@ async function GetJobOffers(filters, pagination){
     }
 }
 
+async function AddJobOffer(contactId, jobOffer) {
+    const response = await fetch(
+        generateUrl(`${URL_JOBOFFERS}/${contactId}`, null, null), {
+            method: 'POST',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'/*, 'X-XSRF-TOKEN': xsrfToken*/},
+            body: JSON.stringify(jobOffer)
+        }
+    )
+    const obj = await response.json()
+
+    if (response.ok) {
+        return JobOffer.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
 
 const JobOffersAPI = {
     GetJobOffers,
+    AddJobOffer,
 }
 
 export default JobOffersAPI

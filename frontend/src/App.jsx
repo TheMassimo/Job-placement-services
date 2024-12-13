@@ -35,7 +35,8 @@ function App() {
                         <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
 
                         <Route path="/jobOffers" element={<ViewJobOffers />} />
-                        <Route path="/jobOffer/add" element={<AddJobOffer />} />
+                        <Route path="/jobOffer/:action/:contactId" element={<AddJobOffer />} />
+                        <Route path="/jobOffer/:action/:contactId/:jobOfferId" element={<AddJobOffer />} />
 
                         <Route path='*' element={<NotFoundPage />} />
                     </Routes>

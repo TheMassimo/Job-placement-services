@@ -15,6 +15,10 @@ function ContactForm(props) {
     const navigate = useNavigate();
     const { handleError, handleSuccess } = useNotification();
     const [contact, setContact] = useState({});
+    const [customerChecked, setCustomerChecked] = useState(false);
+    const [professionalChecked, setProfessionalChecked] = useState(false);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [submitButton, setSubmitButton] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         surname: '',
@@ -30,11 +34,6 @@ function ContactForm(props) {
         skills: [],
         professionalNotes: '',
     });
-
-    const [customerChecked, setCustomerChecked] = useState(false);
-    const [professionalChecked, setProfessionalChecked] = useState(false);
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [submitButton, setSubmitButton] = useState(false);
 
     useEffect(() => {
         if (contact) {
@@ -90,6 +89,7 @@ function ContactForm(props) {
 
         setSubmitButton(false);
     };
+
     const handleAdd = async (e) => {
         try {
             // La logica rimane la stessa, ora usi solo formData.skills

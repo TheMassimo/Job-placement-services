@@ -9,6 +9,7 @@ import {Pagination} from "../api/utils/Pagination.ts";
 import {Card, Badge, Dropdown, ListGroup, ListGroupItem} from "react-bootstrap";
 import SkillAPI from "../api/crm/SkillAPI.js";
 import JobOffersAPI from "../api/crm/JobOffersAPI.js";
+import { Row, Col, Toast } from 'react-bootstrap';
 
 function Filters(props) {
     const setFilters = props.setFilters;
@@ -183,7 +184,10 @@ const ViewJobOffers = () => {
 
             {/* Main Content - Job Offers */}
             <div style={{flex: 1, padding: '20px'}}>
-                <PopupContact showModal={showModal} handleModalClose={handleModalClose} toLoad={"Customers"} handleConfirmContact={handleConfirmContact}/>
+                <PopupContact showModal={showModal}
+                              handleModalClose={handleModalClose}
+                              toLoad={"Customer"}
+                              handleConfirmContact={handleConfirmContact}/>
 
                 <Button variant="success" className="float-end" onClick={() => setShowModal(true)}>
                     <i className="bi bi-plus-circle"></i> Add new job offer
@@ -205,32 +209,53 @@ const ViewJobOffers = () => {
                 {/* Job Offer Boxes */}
                 <div className="offersContainer">
                     {jobOffers.map((offer) => (
-                        <div key={offer.jobOfferId} className="offerBox">
-                            <h3 className="offerTitle">{offer.description}</h3>
-                            <div className="offerDetails">
-                                <div><strong>Duration:</strong> {offer.duration}</div>
-                                <div><strong>Description:</strong> {offer.description}</div>
-                                <div><strong>Value:</strong> € {offer.offerValue}</div>
-                                <div><strong>Status:</strong> {offer.status}</div>
-                                <div><strong>Required Skills:</strong> {offer.requiredSkills?.map(skill => skill.skill).join(', ')}</div>
-                                <div><strong>Notes:</strong> {offer.notes}</div>
-                            </div>
-                        </div>
-                        ))}
+                        <Card key={offer.jobOfferId} className="mb-4" style={{backgroundColor: '#f8f9fa'}}>
+                            <Card.Body className="p-1">
+                                <Card.Title>{offer.description}</Card.Title>
+                                <Row>
+                                    {/* Left Column */}
+                                    <Col md={6}>
+                                        <div><strong>Duration:</strong> {offer.duration}</div>
+                                        <div><strong>Status:</strong> {offer.status}</div>
+                                    </Col>
+                                    {/* Right Column */}
+                                    <Col md={6}>
+                                        <div><strong>Value:</strong> € {offer.offerValue}</div>
+                                        <div>
+                                            <strong>Required
+                                                Skills:</strong> {offer.requiredSkills?.map(skill => skill.skill).join(', ')}
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <Row className="mt-3">
+                                    <Col className="text-center">
+                                        <Button variant="primary">Apply Now</Button>
+                                    </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                    ))}
                 </div>
+
                 <div className="d-flex justify-content-between mt-3">
                     <Button
-                        variant="outline-secondary"
-                        onClick={() => changePage("prev")}
-                        disabled={currentPage === 1}
+                        className="m-3"
+                        variant="outline-primary"
+                        onClick={() => {
+                            setCurrentPage(currentPage - 1);
+                        }}
+                        disabled={currentPage === 0}
                     >
                         Previous
                     </Button>
-                    <span>Page {currentPage+1}</span>
+                    <span>Page {currentPage + 1}</span>
                     <Button
-                        variant="outline-secondary"
-                        onClick={() => changePage("next")}
-                        disabled={(currentPage) * pageSize >= jobOffers.length}
+                        className="m-3"
+                        variant="outline-primary"
+                        onClick={() => {
+                            setCurrentPage(currentPage + 1);
+                        }}
+                        disabled={jobOffers.length < pageSize}
                     >
                         Next
                     </Button>

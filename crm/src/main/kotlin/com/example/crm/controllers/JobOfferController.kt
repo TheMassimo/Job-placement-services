@@ -39,13 +39,34 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
     }
 
     @GetMapping("", "/")
-    fun getJobOffers(@RequestParam("page", defaultValue = "0")  @Min(value = 0) page: Int,
-                             @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int,
-                             @RequestParam(required = false) customerId: Long?,
-                             @RequestParam(required = false) professionalId: Long?,
-                             @RequestParam(required = false) status: JobStatus?,
-                            ): ResponseEntity<List<JobOfferDTO>>{
-        val jobOffers = jobOfferServices.getJobOffers(page, limit, customerId, professionalId, status)
+    fun getJobOffers(
+        @RequestParam(required = false) customerId: Long?,
+        @RequestParam(required = false) professionalId: Long?,
+        @RequestParam(required = false) status: JobStatus?,
+        @RequestParam(required = false) description: String?,
+        @RequestParam(required = false) duration: Int?,
+        @RequestParam(required = false) offerValue: Int?,
+        @RequestParam(required = false) requiredSkills: String?,
+        @RequestParam("pageNumber", required = false) @Min(
+            value = 0,
+            message = "Page number not valid, value must be great or equal to 0"
+        ) pageNumber: Int = 0,
+        @RequestParam("pageSize", required = false) @Min(
+            value = 1,
+            message = "Page size not valid, value must be great or equal to 1"
+        ) pageSize: Int = 20,
+    ): ResponseEntity<List<JobOfferDTO>>{
+        val jobOffers = jobOfferServices.getJobOffers(
+            customerId,
+            professionalId,
+            status,
+            description,
+            duration,
+            offerValue,
+            requiredSkills,
+            pageNumber,
+            pageSize,
+        );
 
         return ResponseEntity.ok(jobOffers)
     }
@@ -66,8 +87,8 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
     @PostMapping("/{contactId}", "/{contactId}/")
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadJobOffer(
-        @RequestBody dto: JobOfferCreateDTO,
-        @PathVariable @Positive contactId: Long
+        @PathVariable @Positive contactId: Long,
+        @RequestBody dto: JobOfferCreateDTO
     ):JobOfferDTO{
         return jobOfferServices.create(dto, contactId)
     }

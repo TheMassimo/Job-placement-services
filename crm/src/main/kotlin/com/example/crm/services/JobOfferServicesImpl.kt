@@ -166,7 +166,7 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
 
         j.description = dto.description
         j.status = JobStatus.CREATED
-        j.notes = dto.notes
+        j.notes = dto.notes ?: ""
         j.duration = dto.duration
         j.offerValue = dto.offerValue
 
