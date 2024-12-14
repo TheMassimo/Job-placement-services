@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
-import { ToastContainer } from 'react-toastify';
+import {useState} from 'react';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Container} from 'react-bootstrap';
+import {ToastContainer} from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import dei componenti
@@ -16,35 +16,37 @@ import AddProfessional from "./components/AddProfessional";
 import AddJobOffer from "./components/AddJobOffer";
 
 // Import del provider di errore
-import { NotificationProvider } from './contexts/NotificationProvider';
+import {NotificationProvider} from './contexts/NotificationProvider';
 
 function App() {
     return (
         <NotificationProvider>
-            <BrowserRouter>
+            <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
                 <Container fluid>
-                    <NavbarComponent />
+                    <NavbarComponent/>
                     <Routes>
-                        <Route path="/" element={<HomeLayout />} />
+                        <Route path="/" element={<HomeLayout/>}/>
 
                         {/* action= add/edit */}
-                        <Route path="/contacts" element={<ViewContacts />} />
-                        <Route path="/contacts/:action/" element={<ContactForm mode={null} />} />
-                        <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} />} />
-                        <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"} />} />
-                        <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
+                        <Route path="/contacts" element={<ViewContacts/>}/>
+                        <Route path="/contacts/:action/" element={<ContactForm mode={null}/>}/>
+                        <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null}/>}/>
 
-                        <Route path="/jobOffers" element={<ViewJobOffers />} />
-                        <Route path="/jobOffer/:action/:contactId" element={<AddJobOffer />} />
-                        <Route path="/jobOffer/:action/:contactId/:jobOfferId" element={<AddJobOffer />} />
+                        <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"}/>}/>
+                        <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"}/>}/>
 
-                        <Route path='*' element={<NotFoundPage />} />
+                        <Route path="/jobOffers" element={<ViewJobOffers/>}/>
+                        <Route path="/jobOffers/add/:contactId" element={<AddJobOffer />} />
+                        <Route path="/jobOffers/edit/:jobOfferId" element={<AddJobOffer />} />
+
+                        <Route path="*" element={<NotFoundPage/>}/>
                     </Routes>
                 </Container>
-                <ToastContainer />
+                <ToastContainer/>
             </BrowserRouter>
         </NotificationProvider>
     );
 }
+
 
 export default App;

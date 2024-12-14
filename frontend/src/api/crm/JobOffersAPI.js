@@ -28,6 +28,22 @@ async function GetJobOffers(filters, pagination){
     }
 }
 
+async function GetJobOffersContactId(jobOfferId){
+    const response = await fetch(
+        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/contact_id`, null, null), {
+            method: 'GET',
+            credentials: 'include'
+        }
+    )
+    const obj = await response.json()
+
+    if (response.ok) {
+        return obj
+    } else {
+        throw obj
+    }
+}
+
 async function AddJobOffer(contactId, jobOffer) {
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${contactId}`, null, null), {
@@ -49,6 +65,7 @@ async function AddJobOffer(contactId, jobOffer) {
 
 const JobOffersAPI = {
     GetJobOffers,
+    GetJobOffersContactId,
     AddJobOffer,
 }
 

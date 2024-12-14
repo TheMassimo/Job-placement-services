@@ -167,7 +167,7 @@ const ViewJobOffers = () => {
     const handleModalShow = () => setShowModal(true);
 
     const handleConfirmContact = (contact) => {
-        navigate(`/jobOffer/add/${contact.contactId}`);
+        navigate(`/jobOffers/add/${contact.contactId}`);
     }
 
     const handleSelect = (eventKey) => {
@@ -229,7 +229,14 @@ const ViewJobOffers = () => {
                                 </Row>
                                 <Row className="mt-3">
                                     <Col className="text-center">
-                                        <Button variant="primary">Apply Now</Button>
+                                        <Button
+                                            variant="primary"
+                                            onClick={() => {
+                                                navigate(`/jobOffers/edit/${offer.jobOfferId}`);
+                                            }}
+                                        >
+                                            Apply Now
+                                        </Button>
                                     </Col>
                                 </Row>
                             </Card.Body>

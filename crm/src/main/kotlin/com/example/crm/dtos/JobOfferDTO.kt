@@ -13,7 +13,7 @@ data class JobOfferDTO (
     val requiredSkills: MutableSet<Skill>,
     val duration: Double,
     val offerValue: Double,
-    val notes: String?,
+    val notes: String?
 )
 
 fun JobOffer.toDto(): JobOfferDTO =
@@ -24,7 +24,7 @@ fun JobOffer.toDto(): JobOfferDTO =
         this.requiredSkills,
         this.duration,
         this.offerValue,
-        this.notes,
+        this.notes
     )
 
 

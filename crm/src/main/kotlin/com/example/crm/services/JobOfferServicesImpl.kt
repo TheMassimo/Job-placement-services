@@ -195,6 +195,11 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         return jDTO
     }
 
+    override fun getContactIdByJobOfferId(jobOfferId: Long): Long? {
+        val jobOffer = jobOfferRepository.findByJobOfferId(jobOfferId)
+        return jobOffer?.currentCustomer?.contact?.contactId
+    }
+
     override fun updateJobOfferStatus(jobOfferId: Long, status: String, professionalId: Long?): JobOfferDTO {
         val jobOffer = jobOfferRepository.findByIdOrNull(jobOfferId)
             ?: throw ElementNotFoundException("JobOffer not found")

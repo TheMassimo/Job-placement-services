@@ -26,6 +26,8 @@ interface JobOfferServices {
 
     fun create(dto: JobOfferCreateDTO, contactId: Long): JobOfferDTO
 
+    fun getContactIdByJobOfferId(jobOfferId: Long): Long?
+
     fun updateJobOfferStatus(jobOfferId: Long, status: String, professionalId: Long?): JobOfferDTO
 
     fun getJobOfferValue(jobOfferId: Long): Double

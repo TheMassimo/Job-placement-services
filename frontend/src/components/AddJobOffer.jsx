@@ -9,9 +9,8 @@ import JobOffersAPI from "../api/crm/JobOffersAPI.js"; // Assicurati di avere un
 
 
 function AddJobOffer(props) {
-    const { action } = useParams();
-    const { contactId } = useParams();
-    const { jobOfferId } = useParams();
+    const { contactId, jobOfferId } = useParams();
+    const isEditMode = !!jobOfferId; // Modalità 'edit' se jobOfferId è presente
     const navigate = useNavigate();
     const { handleError, handleSuccess } = useNotification();
     const location = useLocation();
@@ -30,11 +29,24 @@ function AddJobOffer(props) {
 
     //USE Effect
     useEffect(() => {
-        ContactAPI.GetContactById(contactId).then((res) => {
-            setContact(res);
-            console.log("Contact res =>", res);
-        }).catch((err) => console.log(err))
-    }, []);
+        const fetchData = async () => {
+            try {
+                let contactIdToUse = contactId;
+
+                if (isEditMode) {
+                    const response = await JobOffersAPI.GetJobOffersContactId(jobOfferId);
+                    contactIdToUse = response;
+                }
+
+                const res = await ContactAPI.GetContactById(contactIdToUse);
+                setContact(res);
+                console.log("Contact res =>", res);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        fetchData();
+    }, [jobOfferId, contactId]);
 
 
     // Funzione per nascondere il PopUp
@@ -62,10 +74,10 @@ function AddJobOffer(props) {
         e.preventDefault();
         setSubmitButton(true);
 
-        if (action === "add") {
-            handleAdd(e);
-        } else if (action === "edit") {
+        if (isEditMode) {
             handleEdit(e);
+        } else {
+            handleAdd(e);
         }
 
         setSubmitButton(false);

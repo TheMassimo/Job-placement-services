@@ -38,6 +38,11 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
         return ResponseEntity.ok(jobOffers)
     }
 
+    @GetMapping("/{jobOfferId}/contact_id", "/{jobOfferId}/contact_id")
+    fun getContactId(@PathVariable jobOfferId: Long): Long? {
+        return jobOfferServices.getContactIdByJobOfferId(jobOfferId)
+    }
+
     @GetMapping("", "/")
     fun getJobOffers(
         @RequestParam(required = false) customerId: Long?,
