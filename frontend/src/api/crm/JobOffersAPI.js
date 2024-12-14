@@ -28,6 +28,41 @@ async function GetJobOffers(filters, pagination){
     }
 }
 
+async function GetJobOfferById(jobOfferId){
+    const response = await fetch(
+        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}`, null, null), {
+            method: 'GET',
+            credentials: 'include'
+        }
+    )
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return JobOffer.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
+async function UpdateJobOffer(jobOfferId, jobOffer) {
+    const response = await fetch(
+        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}`, null, null), {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(jobOffer)
+        })
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return JobOffer.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
 async function GetJobOffersContactId(jobOfferId){
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/contact_id`, null, null), {
@@ -65,6 +100,8 @@ async function AddJobOffer(contactId, jobOffer) {
 
 const JobOffersAPI = {
     GetJobOffers,
+    GetJobOfferById,
+    UpdateJobOffer,
     GetJobOffersContactId,
     AddJobOffer,
 }

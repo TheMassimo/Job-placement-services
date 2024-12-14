@@ -137,7 +137,6 @@ const ViewJobOffers = () => {
     useEffect(() => {
         JobOffersAPI.GetJobOffers(filters, new Pagination(currentPage, pageSize)).then((res) => {
             setJobOffers(res);
-            console.log("Massimo", res);
         }).catch((err) => console.log(err))
     }, [filters, currentPage, pageSize, refreshContact]);
 
@@ -226,7 +225,14 @@ const ViewJobOffers = () => {
                                     <Col className="text-center">
                                         <Button variant="danger" className="bi bi-trash me-2"> </Button>
 
-                                        <Button variant="warning" className="bi bi-pencil text-white"> </Button>
+                                        <Button
+                                            variant="warning"
+                                            className="bi bi-pencil
+                                            text-white"
+                                            onClick={() => {
+                                                navigate(`/jobOffers/edit/${offer.jobOfferId}`);
+                                            }}
+                                        > </Button>
                                     </Col>
                                 </Row>
                             </Card.Body>

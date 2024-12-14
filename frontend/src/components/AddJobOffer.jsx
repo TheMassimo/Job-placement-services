@@ -34,13 +34,23 @@ function AddJobOffer(props) {
                 let contactIdToUse = contactId;
 
                 if (isEditMode) {
+                    //get the contact id if needed
                     const response = await JobOffersAPI.GetJobOffersContactId(jobOfferId);
                     contactIdToUse = response;
+                    //get old job offer data
+                    const oldOffer = await JobOffersAPI.GetJobOfferById(jobOfferId);
+                    setFormData({
+                        description: oldOffer.description,
+                        notes: oldOffer.notes,
+                        duration: oldOffer.duration,
+                        offerValue: oldOffer.offerValue,
+                        requiredSkills: oldOffer.requiredSkills || [],
+                    });
                 }
 
                 const res = await ContactAPI.GetContactById(contactIdToUse);
                 setContact(res);
-                console.log("Contact res =>", res);
+
             } catch (err) {
                 console.error(err);
             }
@@ -51,14 +61,6 @@ function AddJobOffer(props) {
 
     // Funzione per nascondere il PopUp
     const handleClosePopUp = () => setShowPopUp(false);
-
-    // Funzione per aggiornare le skills selezionate
-    const handleSkillsSelect = (skills) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            requiredSkills: skills
-        }));
-    };
 
     // Gestione dei cambiamenti nei campi del form
     const handleChange = (e) => {
@@ -104,6 +106,30 @@ function AddJobOffer(props) {
             handleError(err);
         }
     };
+    const handleEdit = async (e) => {
+        try {
+            // prendo solo gli id delle skill
+            const tmpSkills = formData.requiredSkills.map((skill) => skill.skillId);
+
+            const tmpJobOffer = {
+                description:formData.description,
+                notes: formData.notes,
+                duration:formData.duration,
+                offerValue: formData.offerValue,
+                //requiredSkills: tmpSkills,
+            };
+            const resUpdateJobOffer = await JobOffersAPI.UpdateJobOffer(jobOfferId, tmpJobOffer);
+            handleSuccess('Job Offer successfully updated!');
+
+            //if all is right go back to contacts
+            navigate(`/jobOffers`)
+        } catch (err) {
+            console.error("Errore durante l'elaborazione:", err);
+            handleError(err);
+        }
+    };
+
+
 
     const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
@@ -247,6 +273,7 @@ function AddJobOffer(props) {
                             ...prevFormData,
                             requiredSkills: skills, // Aggiorna il campo skills direttamente
                         }));
+                        console.log("===>", formData);
                         togglePopup(); // Chiudi il popup
                     }}
                 />

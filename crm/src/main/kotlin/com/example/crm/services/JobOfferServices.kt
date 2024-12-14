@@ -40,4 +40,6 @@ interface JobOfferServices {
 
     fun getJobOfferById(jobOfferId: Long): JobOfferDTO
 
+    fun updateJobOffer(jobOfferId: Long, dto:JobOfferCreateDTO): JobOfferDTO
+
 }

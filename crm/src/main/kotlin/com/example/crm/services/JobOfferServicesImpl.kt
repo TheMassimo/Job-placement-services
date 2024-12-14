@@ -382,4 +382,24 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         return jobOffer.toDto()
     }
 
+    override fun updateJobOffer(
+        jobOfferId: Long,
+        dto:JobOfferCreateDTO
+    ): JobOfferDTO{
+        logger.info("Updating jobOffer with ID $jobOfferId")
+
+        val jobOffer = jobOfferRepository.findById(jobOfferId)
+            .orElseThrow { ContactNotFoundException("JobOffer with id $jobOfferId not found") }
+
+        jobOffer.description = dto.description
+        jobOffer.notes = dto.notes ?: ""
+        jobOffer.duration = dto.duration
+        jobOffer.offerValue = dto.offerValue
+
+        val savedJobOffer = jobOfferRepository.save(jobOffer)
+        logger.info("JobOffer updated successfully")
+
+        return savedJobOffer.toDto()
+    }
+
 }

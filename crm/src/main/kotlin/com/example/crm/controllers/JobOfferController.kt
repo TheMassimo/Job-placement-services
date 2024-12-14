@@ -76,7 +76,22 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
         return ResponseEntity.ok(jobOffers)
     }
 
-    @PutMapping("/{joboffersId}", "/{joboffersId}/")
+    @GetMapping("/{jobOfferId}", "/{jobOfferId}/")
+    fun getJobOfferById(
+        @PathVariable jobOfferId: Long
+    ):JobOfferDTO{
+        return jobOfferServices.getJobOfferById(jobOfferId);
+    }
+
+    @PutMapping("/{jobOfferId}", "/{jobOfferId}/")
+    fun updateJobOffer(
+        @PathVariable jobOfferId: Long,
+        @RequestBody dto: JobOfferCreateDTO
+    ): JobOfferDTO {
+        return jobOfferServices.updateJobOffer(jobOfferId, dto);
+    }
+
+    @PutMapping("/{joboffersId}/status", "/{joboffersId}/status/")
     fun updateJobOfferStatus(@PathVariable @Positive joboffersId: Long,
                              @RequestParam status: String,
                              @RequestParam(required = false) professionalId: Long?): JobOfferDTO{
