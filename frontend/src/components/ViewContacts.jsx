@@ -273,13 +273,19 @@ function ContactCard(props) {
 
 function CustomerCard(props) {
     const contact = props.contact;
+    const navigate = useNavigate(); // Hook per navigare
+
+    const handleNavigate = () => {
+        navigate(`/customerDetails/${contact.contactId}`);
+    };
 
     return (
         <Card className="p-0 m-1" style={{ height: '100px' }}>
             <Card.Body>
                 <Row>
                     <Col className="text-start" xs={4}>
-                        <Card.Title>{contact.name} {contact.surname}</Card.Title>
+                        <Card.Title className="hover-underline cursor-pointer"
+                                    onClick={handleNavigate}> {contact.name} {contact.surname}</Card.Title>
                     </Col>
                     <Col className="text-center" xs={4}>
                     <span className="custom-text">
