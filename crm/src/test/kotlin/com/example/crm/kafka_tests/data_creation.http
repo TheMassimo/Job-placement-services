@@ -1,0 +1,85 @@
+
+//@no-log
+GET http://localhost:8082/API/contacts
+
+### Add contacts
+
+//@no-log
+POST http://localhost:8082/API/contacts
+Content-Type: application/json
+
+{
+  "name": "Luca",
+  "surname": "Sturaro",
+  "ssn": "LLSS5",
+  "category": "Unknown",
+  "address": ["Via Michelangelo"],
+  "email": ["luca@gmail.com"],
+  "telephone": ["3882222222"]
+}
+
+### Add customer
+
+//@no-log
+POST http://localhost:8082/API/customers
+Content-Type: application/json
+
+{
+  "contactId": 52,
+  "notes": "Some note"
+}
+
+### check existing skills
+
+//@no-log
+GET http://localhost:8082/API/skills
+
+### Add skills
+
+//@no-log
+POST http://localhost:8082/API/skills
+Content-Type: application/json
+
+{
+  "skill": "skill_4"
+}
+
+### Add job offer for customer
+
+//@no-log
+POST http://localhost:8082/API/joboffers/2
+Content-Type: application/json
+
+{
+  "description": "Description job 1",
+  "requiredSkills": [1],
+  "notes": "note job 11",
+  "duration": 9.0,
+  "offerValue": 55.0
+}
+
+###Connect professional
+
+POST http://localhost:8082/API/professionals
+Content-Type: application/json
+
+{
+  "contactId": 2,
+  "geographicalInfo": "Turin",
+  "dailyRate": 80.0,
+  "notes": "Some note",
+  "skills": [1, 2]
+}
+
+### Change emplyment state
+
+//@no-log
+PUT http://localhost:8082/API/professionals/1/state
+Content-Type: application/x-www-form-urlencoded
+
+state=BUSY
+
+
+
+
+
