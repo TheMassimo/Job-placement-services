@@ -9,9 +9,8 @@ import JobOffersAPI from "../api/crm/JobOffersAPI.js"; // Assicurati di avere un
 
 
 function AddJobOffer(props) {
-    const { action } = useParams();
-    const { contactId } = useParams();
-    const { jobOfferId } = useParams();
+    const { contactId, jobOfferId } = useParams();
+    const isEditMode = !!jobOfferId; // Modalità 'edit' se jobOfferId è presente
     const navigate = useNavigate();
     const { handleError, handleSuccess } = useNotification();
     const location = useLocation();
@@ -30,23 +29,38 @@ function AddJobOffer(props) {
 
     //USE Effect
     useEffect(() => {
-        ContactAPI.GetContactById(contactId).then((res) => {
-            setContact(res);
-            console.log("Contact res =>", res);
-        }).catch((err) => console.log(err))
-    }, []);
+        const fetchData = async () => {
+            try {
+                let contactIdToUse = contactId;
+
+                if (isEditMode) {
+                    //get the contact id if needed
+                    const response = await JobOffersAPI.GetJobOffersContactId(jobOfferId);
+                    contactIdToUse = response;
+                    //get old job offer data
+                    const oldOffer = await JobOffersAPI.GetJobOfferById(jobOfferId);
+                    setFormData({
+                        description: oldOffer.description,
+                        notes: oldOffer.notes,
+                        duration: oldOffer.duration,
+                        offerValue: oldOffer.offerValue,
+                        requiredSkills: oldOffer.requiredSkills || [],
+                    });
+                }
+
+                const res = await ContactAPI.GetContactById(contactIdToUse);
+                setContact(res);
+
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        fetchData();
+    }, [jobOfferId, contactId]);
 
 
     // Funzione per nascondere il PopUp
     const handleClosePopUp = () => setShowPopUp(false);
-
-    // Funzione per aggiornare le skills selezionate
-    const handleSkillsSelect = (skills) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            requiredSkills: skills
-        }));
-    };
 
     // Gestione dei cambiamenti nei campi del form
     const handleChange = (e) => {
@@ -62,10 +76,10 @@ function AddJobOffer(props) {
         e.preventDefault();
         setSubmitButton(true);
 
-        if (action === "add") {
-            handleAdd(e);
-        } else if (action === "edit") {
+        if (isEditMode) {
             handleEdit(e);
+        } else {
+            handleAdd(e);
         }
 
         setSubmitButton(false);
@@ -92,6 +106,58 @@ function AddJobOffer(props) {
             handleError(err);
         }
     };
+    const handleEdit = async (e) => {
+        try {
+            // prendo solo gli id delle skill
+            const tmpSkills = formData.requiredSkills.map((skill) => skill.skillId);
+
+            const tmpJobOffer = {
+                description:formData.description,
+                notes: formData.notes,
+                duration:formData.duration,
+                offerValue: formData.offerValue,
+                //requiredSkills: tmpSkills,
+            };
+            const resUpdateJobOffer = await JobOffersAPI.UpdateJobOffer(jobOfferId, tmpJobOffer);
+            processJobOfferRequiredSkillsChanges(resUpdateJobOffer, formData)
+            handleSuccess('Job Offer successfully updated!');
+
+            //if all is right go back to contacts
+            navigate(`/jobOffers`)
+        } catch (err) {
+            console.error("Errore durante l'elaborazione:", err);
+            handleError(err);
+        }
+    };
+
+    const processJobOfferRequiredSkillsChanges = (jobOffer, formData) => {
+        const jobOfferField = jobOffer.requiredSkills || [];
+        const formDataField = formData.requiredSkills || [];
+
+        // Mappa i dati di origine in oggetti chiave-valore
+        const jobOfferMap = new Map(jobOfferField.map(item => [item.skillId, item.skill]));
+        const formDataMap = new Map(formDataField.map(item => [item.skillId, item.skill]));
+
+        // Gestisci eliminazioni
+        for (let id of jobOfferMap.keys()) {
+            if (!formDataMap.has(id)) {
+                JobOffersAPI.DeleteRequiredSkillToJobOffer(jobOfferId, id);
+            }
+        }
+
+        // Gestisci aggiunte e aggiornamenti
+        for (let [id, value] of formDataMap.entries()) {
+            if (jobOfferMap.has(id)) {
+                if (jobOfferMap.get(id) !== value) {
+                    JobOffersAPI.UpdateRequiredSkillToJobOffer(jobOfferId, id, value);
+                }
+            } else {
+                JobOffersAPI.AddRequiredSkillToJobOffer(jobOfferId, value);
+            }
+        }
+    };
+
+
 
     const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
@@ -235,6 +301,7 @@ function AddJobOffer(props) {
                             ...prevFormData,
                             requiredSkills: skills, // Aggiorna il campo skills direttamente
                         }));
+                        console.log("===>", formData);
                         togglePopup(); // Chiudi il popup
                     }}
                 />

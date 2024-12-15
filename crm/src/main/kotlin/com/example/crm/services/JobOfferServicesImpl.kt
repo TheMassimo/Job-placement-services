@@ -195,6 +195,11 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         return jDTO
     }
 
+    override fun getContactIdByJobOfferId(jobOfferId: Long): Long? {
+        val jobOffer = jobOfferRepository.findByJobOfferId(jobOfferId)
+        return jobOffer?.currentCustomer?.contact?.contactId
+    }
+
     override fun updateJobOfferStatus(jobOfferId: Long, status: String, professionalId: Long?): JobOfferDTO {
         val jobOffer = jobOfferRepository.findByIdOrNull(jobOfferId)
             ?: throw ElementNotFoundException("JobOffer not found")
@@ -335,6 +340,13 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
             p.employment = ProfessionalEmployment.UNEMPLOYED
         }
 
+        // Rimuovere tutte le associazioni con le Skill
+        jobOffer.requiredSkills.forEach { skill ->
+            skill.jobOffer.remove(jobOffer)
+        }
+        jobOffer.requiredSkills.clear()
+
+
         jobOfferRepository.delete(jobOffer)
         logger.info("JobOffer successfully deleted")
     }
@@ -375,6 +387,82 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         val jobOffer = jobOfferRepository.findByIdOrNull(jobOfferId)
             ?: throw ElementNotFoundException("JobOffer not found")
         return jobOffer.toDto()
+    }
+
+    override fun updateJobOffer(
+        jobOfferId: Long,
+        dto:JobOfferCreateDTO
+    ): JobOfferDTO{
+        logger.info("Updating jobOffer with ID $jobOfferId")
+
+        val jobOffer = jobOfferRepository.findById(jobOfferId)
+            .orElseThrow { ContactNotFoundException("JobOffer with id $jobOfferId not found") }
+
+        jobOffer.description = dto.description
+        jobOffer.notes = dto.notes ?: ""
+        jobOffer.duration = dto.duration
+        jobOffer.offerValue = dto.offerValue
+
+        val savedJobOffer = jobOfferRepository.save(jobOffer)
+        logger.info("JobOffer updated successfully")
+
+        return savedJobOffer.toDto()
+    }
+
+    override fun addSkill(id: Long, skill: String): JobOfferDTO {
+
+        //check if contact exists
+        val jobOffer = jobOfferRepository.findByIdOrNull(id)
+            ?: throw ProfessionalNotFoundException("jobOfferId not found")
+
+        //normalize skill name to avoid repetitions in the db
+        val skillName = skill.lowercase()
+
+        //check if the skill already exists, if not create it
+        var eSkill = skillRepository.findIdBySkill(skillName)
+        if(eSkill == null){
+            eSkill = Skill()
+            eSkill.skill = skillName
+            skillRepository.save(eSkill)
+            logger.info("New skill created")
+        }else{
+            logger.info("Skill already exist")
+        }
+
+        //add the new skill
+        jobOffer.addSkill(eSkill)
+        jobOfferRepository.save(jobOffer)
+
+        logger.info("Skill added")
+        return jobOffer.toDto()
+    }
+
+    override fun deleteSkill(id: Long, skillId: Long) {
+        //check if professional exist
+        val jobOffer = jobOfferRepository.findByIdOrNull(id)
+            ?: throw BadParameterException("JobOffer id not found")
+
+        //check if skill exist
+        val skill = skillRepository.findByIdOrNull(skillId)
+            ?: throw BadParameterException("skill id not found")
+
+        //check if the contact has that skill
+        if(!jobOffer.requiredSkills.contains(skill)){
+            throw BadParameterException("The JobOffer $id does not have the requiredSkill $skillId")
+        }
+
+        //delete the skill from the contact
+        jobOffer.removeSkill(skill)
+        jobOfferRepository.save(jobOffer)
+
+        logger.info("Skill successfully deleted from the jobOffer")
+    }
+
+    override fun updateSkill(id: Long, skillId: Long, skill: String): JobOfferDTO {
+        //delete the skill from the professional (checks are already performed inside the delete fun)
+        deleteSkill(id, skillId)
+        //add the new skill
+        return addSkill(id, skill)
     }
 
 }

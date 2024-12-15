@@ -17,37 +17,38 @@ import AddJobOffer from "./components/AddJobOffer";
 import ViewCustomerDetails from "./components/ViewCustomerDetails";
 
 // Import del provider di errore
-import { NotificationProvider } from './contexts/NotificationProvider';
+import {NotificationProvider} from './contexts/NotificationProvider';
 
 function App() {
     return (
         <NotificationProvider>
-            <BrowserRouter>
+            <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
                 <Container fluid>
-                    <NavbarComponent />
+                    <NavbarComponent/>
                     <Routes>
-                        <Route path="/" element={<HomeLayout />} />
+                        <Route path="/" element={<HomeLayout/>}/>
 
                         {/* action= add/edit */}
                         <Route path="/contacts" element={<ViewContacts />} />
                         <Route path="/contacts/:action/" element={<ContactForm mode={null} />} />
                         <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} />} />
+
                         <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"} />} />
                         <Route path="/customerDetails/:contactId" element={<ViewCustomerDetails />} />
-
                         <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
 
-                        <Route path="/jobOffers" element={<ViewJobOffers />} />
-                        <Route path="/jobOffer/:action/:contactId" element={<AddJobOffer />} />
-                        <Route path="/jobOffer/:action/:contactId/:jobOfferId" element={<AddJobOffer />} />
+                        <Route path="/jobOffers" element={<ViewJobOffers/>}/>
+                        <Route path="/jobOffers/add/:contactId" element={<AddJobOffer />} />
+                        <Route path="/jobOffers/edit/:jobOfferId" element={<AddJobOffer />} />
 
-                        <Route path='*' element={<NotFoundPage />} />
+                        <Route path="*" element={<NotFoundPage/>}/>
                     </Routes>
                 </Container>
-                <ToastContainer />
+                <ToastContainer/>
             </BrowserRouter>
         </NotificationProvider>
     );
 }
+
 
 export default App;

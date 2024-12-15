@@ -38,6 +38,11 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
         return ResponseEntity.ok(jobOffers)
     }
 
+    @GetMapping("/{jobOfferId}/contact_id", "/{jobOfferId}/contact_id")
+    fun getContactId(@PathVariable jobOfferId: Long): Long? {
+        return jobOfferServices.getContactIdByJobOfferId(jobOfferId)
+    }
+
     @GetMapping("", "/")
     fun getJobOffers(
         @RequestParam(required = false) customerId: Long?,
@@ -71,7 +76,22 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
         return ResponseEntity.ok(jobOffers)
     }
 
-    @PutMapping("/{joboffersId}", "/{joboffersId}/")
+    @GetMapping("/{jobOfferId}", "/{jobOfferId}/")
+    fun getJobOfferById(
+        @PathVariable jobOfferId: Long
+    ):JobOfferDTO{
+        return jobOfferServices.getJobOfferById(jobOfferId);
+    }
+
+    @PutMapping("/{jobOfferId}", "/{jobOfferId}/")
+    fun updateJobOffer(
+        @PathVariable jobOfferId: Long,
+        @RequestBody dto: JobOfferCreateDTO
+    ): JobOfferDTO {
+        return jobOfferServices.updateJobOffer(jobOfferId, dto);
+    }
+
+    @PutMapping("/{joboffersId}/status", "/{joboffersId}/status/")
     fun updateJobOfferStatus(@PathVariable @Positive joboffersId: Long,
                              @RequestParam status: String,
                              @RequestParam(required = false) professionalId: Long?): JobOfferDTO{
@@ -108,6 +128,34 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
     fun addNotes(@PathVariable @Positive joboffersId: Long,  @RequestParam notes: String): JobOfferDTO {
         val jobOffer = jobOfferServices.addNotes(joboffersId, notes)
         return jobOffer
+    }
+
+    @PostMapping("/{id}/requiredSkills", "/{id}/requiredSkills/")
+    @ResponseStatus(HttpStatus.CREATED)
+    fun uploadJobOfferRequiredSkills(
+        @PathVariable id : Long,
+        @RequestBody skill: String,
+    ): JobOfferDTO {
+        return jobOfferServices.addSkill(id, skill)
+    }
+
+    @DeleteMapping("/{id}/requiredSkills/{skillId}", "/{id}/requiredSkills/{skillId}/")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteJobOfferRequiredSkills(
+        @PathVariable id: Long,
+        @PathVariable skillId: Long
+    ) {
+        jobOfferServices.deleteSkill(id, skillId)
+    }
+
+    @PutMapping("/{id}/requiredSkills/{skillId}", "/{id}/requiredSkills/{skillId}/")
+    @ResponseStatus(HttpStatus.OK)
+    fun updateJobOfferRequiredSkills(
+        @PathVariable id : Long,
+        @PathVariable skillId : Long,
+        @RequestBody skill: String
+    ): JobOfferDTO {
+        return jobOfferServices.updateSkill(id, skillId, skill)
     }
 
 }

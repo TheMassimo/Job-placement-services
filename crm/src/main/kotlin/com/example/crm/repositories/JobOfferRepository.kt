@@ -19,6 +19,8 @@ interface JobOfferRepository: JpaRepository<JobOffer, Long> {
 
     fun findByStatusIn(status: List<JobStatus>, pageable: Pageable): Page<JobOffer>
 
+    fun findByJobOfferId(jobOfferId: Long): JobOffer?
+
     fun findByCurrentCustomerAndProfessionalAndStatus(customer: Customer, professional: Professional, status: JobStatus, pageable: Pageable): Page<JobOffer>
 
     fun findByCurrentCustomerAndProfessional(customer: Customer, professional: Professional, pageable: Pageable): Page<JobOffer>

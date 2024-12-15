@@ -1,589 +1,117 @@
-2024-12-13T00:40:33.409+01:00  INFO 14000 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T00:40:34.218+01:00  INFO 14000 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T00:40:34.269+01:00  INFO 14000 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T10:00:52.188+01:00  INFO 13476 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 13476 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T10:00:52.188+01:00 DEBUG 13476 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T10:00:52.188+01:00  INFO 13476 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T10:00:52.275+01:00  INFO 13476 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T10:00:56.070+01:00  INFO 13476 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T10:00:56.082+01:00  INFO 13476 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T10:00:58.322+01:00  INFO 13476 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T10:00:58.322+01:00  INFO 13476 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T10:00:58.838+01:00  INFO 13476 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T10:01:01.619+01:00  INFO 13476 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T10:01:01.737+01:00  INFO 13476 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 108 ms. Found 10 JPA repository interfaces.
-2024-12-13T10:01:02.391+01:00  INFO 13476 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T10:01:02.407+01:00  INFO 13476 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T10:01:02.407+01:00  INFO 13476 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T10:01:02.488+01:00  INFO 13476 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T10:01:02.502+01:00  INFO 13476 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2797 ms
-2024-12-13T10:01:02.613+01:00  INFO 13476 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T10:01:02.833+01:00  INFO 13476 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1cee2e10
-2024-12-13T10:01:02.835+01:00  INFO 13476 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T10:01:02.960+01:00  INFO 13476 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T10:01:03.063+01:00  INFO 13476 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T10:01:03.122+01:00  INFO 13476 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T10:01:03.463+01:00  INFO 13476 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T10:01:04.857+01:00  INFO 13476 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T10:01:05.112+01:00  INFO 13476 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T10:01:06.235+01:00  WARN 13476 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T10:01:06.553+01:00  INFO 13476 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2926144f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1df8ea34, org.springframework.security.web.context.SecurityContextHolderFilter@6dccdc50, org.springframework.security.web.header.HeaderWriterFilter@41acf2f1, org.springframework.web.filter.CorsFilter@6b0636d9, org.springframework.security.web.authentication.logout.LogoutFilter@31e3b882, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7a8dbbf1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@71ad1d0b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@63893cf6, org.springframework.security.web.session.SessionManagementFilter@22495f2f, org.springframework.security.web.access.ExceptionTranslationFilter@1fae388c, org.springframework.security.web.access.intercept.AuthorizationFilter@75707f05]
-2024-12-13T10:01:06.791+01:00  INFO 13476 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T10:01:06.799+01:00  INFO 13476 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 15.223 seconds (process running for 16.108)
-2024-12-13T10:02:55.478+01:00  INFO 13476 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T10:02:55.484+01:00  INFO 13476 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T10:02:55.486+01:00  INFO 13476 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-12-13T10:03:05.167+01:00  INFO 13476 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T10:03:05.194+01:00  INFO 13476 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T11:09:04.250+01:00  INFO 13476 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T11:09:04.274+01:00  INFO 13476 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T12:29:45.272+01:00  INFO 13476 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T12:29:45.349+01:00  INFO 13476 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T12:29:45.373+01:00  INFO 13476 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T12:30:11.884+01:00  INFO 25364 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 25364 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T12:30:11.886+01:00 DEBUG 25364 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T12:30:11.887+01:00  INFO 25364 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T12:30:11.987+01:00  INFO 25364 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T12:30:14.131+01:00  INFO 25364 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T12:30:14.140+01:00  INFO 25364 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T12:30:15.800+01:00  INFO 25364 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T12:30:15.801+01:00  INFO 25364 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T12:30:16.318+01:00  INFO 25364 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T12:30:17.984+01:00  INFO 25364 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T12:30:18.078+01:00  INFO 25364 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 10 JPA repository interfaces.
-2024-12-13T12:30:18.665+01:00  INFO 25364 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T12:30:18.677+01:00  INFO 25364 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T12:30:18.677+01:00  INFO 25364 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T12:30:18.748+01:00  INFO 25364 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T12:30:18.749+01:00  INFO 25364 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1549 ms
-2024-12-13T12:30:18.842+01:00  INFO 25364 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T12:30:19.127+01:00  INFO 25364 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@401788d5
-2024-12-13T12:30:19.129+01:00  INFO 25364 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T12:30:19.218+01:00  INFO 25364 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T12:30:19.309+01:00  INFO 25364 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T12:30:19.356+01:00  INFO 25364 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T12:30:19.667+01:00  INFO 25364 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T12:30:20.971+01:00  INFO 25364 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T12:30:21.252+01:00  INFO 25364 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T12:30:22.224+01:00  WARN 25364 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T12:30:22.508+01:00  INFO 25364 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@be56353, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c815478, org.springframework.security.web.context.SecurityContextHolderFilter@37e0614e, org.springframework.security.web.header.HeaderWriterFilter@39d62e47, org.springframework.web.filter.CorsFilter@1efa258e, org.springframework.security.web.authentication.logout.LogoutFilter@2b26d289, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@741f8cf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2926144f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ccd3cf1, org.springframework.security.web.session.SessionManagementFilter@6f45a2fd, org.springframework.security.web.access.ExceptionTranslationFilter@138a51d5, org.springframework.security.web.access.intercept.AuthorizationFilter@65e4eba5]
-2024-12-13T12:30:22.745+01:00  INFO 25364 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T12:30:22.752+01:00  INFO 25364 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 11.442 seconds (process running for 12.258)
-2024-12-13T12:31:01.438+01:00  INFO 25364 --- [crm] [http-nio-8082-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T12:31:01.438+01:00  INFO 25364 --- [crm] [http-nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T12:31:01.438+01:00  INFO 25364 --- [crm] [http-nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-12-13T12:31:45.465+01:00  INFO 25364 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T12:31:45.470+01:00  INFO 25364 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T12:31:45.473+01:00  INFO 25364 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T12:31:57.961+01:00  INFO 19412 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 19412 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T12:31:57.963+01:00 DEBUG 19412 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T12:31:57.963+01:00  INFO 19412 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T12:31:58.069+01:00  INFO 19412 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T12:32:00.756+01:00  INFO 19412 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T12:32:00.768+01:00  INFO 19412 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T12:32:02.429+01:00  INFO 19412 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T12:32:02.430+01:00  INFO 19412 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T12:32:02.955+01:00  INFO 19412 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T12:32:04.617+01:00  INFO 19412 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T12:32:04.725+01:00  INFO 19412 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98 ms. Found 10 JPA repository interfaces.
-2024-12-13T12:32:05.310+01:00  INFO 19412 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T12:32:05.323+01:00  INFO 19412 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T12:32:05.323+01:00  INFO 19412 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T12:32:05.391+01:00  INFO 19412 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T12:32:05.391+01:00  INFO 19412 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1597 ms
-2024-12-13T12:32:05.485+01:00  INFO 19412 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T12:32:05.705+01:00  INFO 19412 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@401788d5
-2024-12-13T12:32:05.706+01:00  INFO 19412 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T12:32:05.800+01:00  INFO 19412 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T12:32:05.887+01:00  INFO 19412 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T12:32:05.945+01:00  INFO 19412 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T12:32:06.261+01:00  INFO 19412 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T12:32:07.541+01:00  INFO 19412 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T12:32:07.910+01:00  INFO 19412 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T12:32:08.896+01:00  WARN 19412 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T12:32:09.174+01:00  INFO 19412 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3b9d85c2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@65e4eba5, org.springframework.security.web.context.SecurityContextHolderFilter@6f45a2fd, org.springframework.security.web.header.HeaderWriterFilter@4f5d587c, org.springframework.web.filter.CorsFilter@77eb76f, org.springframework.security.web.authentication.logout.LogoutFilter@6aa7d7a0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1027cdcd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@37e0614e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@be56353, org.springframework.security.web.session.SessionManagementFilter@6a4c4261, org.springframework.security.web.access.ExceptionTranslationFilter@46c28400, org.springframework.security.web.access.intercept.AuthorizationFilter@303a484e]
-2024-12-13T12:32:09.410+01:00  INFO 19412 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T12:32:09.417+01:00  INFO 19412 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 11.988 seconds (process running for 12.74)
-2024-12-13T12:37:19.562+01:00  INFO 19412 --- [crm] [http-nio-8082-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T12:37:19.564+01:00  INFO 19412 --- [crm] [http-nio-8082-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T12:37:19.567+01:00  INFO 19412 --- [crm] [http-nio-8082-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2024-12-13T12:38:26.199+01:00  INFO 19412 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T12:38:26.307+01:00  INFO 19412 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T12:38:26.331+01:00  INFO 19412 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T12:38:40.119+01:00  INFO 27128 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 27128 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T12:38:40.121+01:00 DEBUG 27128 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T12:38:40.122+01:00  INFO 27128 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T12:38:40.216+01:00  INFO 27128 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T12:38:42.547+01:00  INFO 27128 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T12:38:42.559+01:00  INFO 27128 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T12:38:44.125+01:00  INFO 27128 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T12:38:44.126+01:00  INFO 27128 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T12:38:44.640+01:00  INFO 27128 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T12:38:46.392+01:00  INFO 27128 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T12:38:46.489+01:00  INFO 27128 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 87 ms. Found 10 JPA repository interfaces.
-2024-12-13T12:38:47.072+01:00  INFO 27128 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T12:38:47.084+01:00  INFO 27128 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T12:38:47.084+01:00  INFO 27128 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T12:38:47.153+01:00  INFO 27128 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T12:38:47.153+01:00  INFO 27128 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1626 ms
-2024-12-13T12:38:47.244+01:00  INFO 27128 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T12:38:47.501+01:00  INFO 27128 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@401788d5
-2024-12-13T12:38:47.503+01:00  INFO 27128 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T12:38:47.600+01:00  INFO 27128 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T12:38:47.689+01:00  INFO 27128 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T12:38:47.736+01:00  INFO 27128 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T12:38:48.032+01:00  INFO 27128 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T12:38:49.303+01:00  INFO 27128 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T12:38:49.564+01:00  INFO 27128 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T12:38:50.537+01:00  WARN 27128 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T12:38:50.817+01:00  INFO 27128 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@be56353, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c815478, org.springframework.security.web.context.SecurityContextHolderFilter@37e0614e, org.springframework.security.web.header.HeaderWriterFilter@39d62e47, org.springframework.web.filter.CorsFilter@1efa258e, org.springframework.security.web.authentication.logout.LogoutFilter@2b26d289, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@741f8cf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2926144f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ccd3cf1, org.springframework.security.web.session.SessionManagementFilter@6f45a2fd, org.springframework.security.web.access.ExceptionTranslationFilter@138a51d5, org.springframework.security.web.access.intercept.AuthorizationFilter@65e4eba5]
-2024-12-13T12:38:51.051+01:00  INFO 27128 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T12:38:51.057+01:00  INFO 27128 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 11.465 seconds (process running for 12.317)
-2024-12-13T12:38:57.861+01:00  INFO 27128 --- [crm] [http-nio-8082-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T12:38:57.861+01:00  INFO 27128 --- [crm] [http-nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T12:38:57.861+01:00  INFO 27128 --- [crm] [http-nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-12-13T12:38:58.009+01:00  INFO 27128 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Sei qui
-2024-12-13T12:38:58.292+01:00  INFO 27128 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Sei qui
-2024-12-13T12:43:10.932+01:00  INFO 27128 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Sei qui
-2024-12-13T12:43:11.043+01:00  INFO 27128 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Sei qui
-2024-12-13T12:43:14.411+01:00  INFO 27128 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T12:43:14.441+01:00  INFO 27128 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T12:43:14.461+01:00  INFO 27128 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T12:43:28.184+01:00  INFO 24920 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 24920 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T12:43:28.185+01:00 DEBUG 24920 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T12:43:28.186+01:00  INFO 24920 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T12:43:28.288+01:00  INFO 24920 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T12:43:30.610+01:00  INFO 24920 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T12:43:30.622+01:00  INFO 24920 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T12:43:32.170+01:00  INFO 24920 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T12:43:32.171+01:00  INFO 24920 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T12:43:32.685+01:00  INFO 24920 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T12:43:34.385+01:00  INFO 24920 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T12:43:34.489+01:00  INFO 24920 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94 ms. Found 10 JPA repository interfaces.
-2024-12-13T12:43:35.070+01:00  INFO 24920 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T12:43:35.082+01:00  INFO 24920 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T12:43:35.083+01:00  INFO 24920 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T12:43:35.144+01:00  INFO 24920 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T12:43:35.144+01:00  INFO 24920 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1563 ms
-2024-12-13T12:43:35.248+01:00  INFO 24920 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T12:43:35.489+01:00  INFO 24920 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@448cdb47
-2024-12-13T12:43:35.491+01:00  INFO 24920 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T12:43:35.582+01:00  INFO 24920 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T12:43:35.667+01:00  INFO 24920 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T12:43:35.712+01:00  INFO 24920 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T12:43:36.019+01:00  INFO 24920 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T12:43:37.291+01:00  INFO 24920 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T12:43:37.603+01:00  INFO 24920 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T12:43:38.637+01:00  WARN 24920 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T12:43:38.931+01:00  INFO 24920 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@21143041, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@727b3b0, org.springframework.security.web.context.SecurityContextHolderFilter@509bf2d5, org.springframework.security.web.header.HeaderWriterFilter@75707f05, org.springframework.web.filter.CorsFilter@611f28f5, org.springframework.security.web.authentication.logout.LogoutFilter@6ccd3cf1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4b4b02d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1dd01876, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7806db3f, org.springframework.security.web.session.SessionManagementFilter@4f78adf, org.springframework.security.web.access.ExceptionTranslationFilter@1027cdcd, org.springframework.security.web.access.intercept.AuthorizationFilter@6971f5f4]
-2024-12-13T12:43:39.175+01:00  INFO 24920 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T12:43:39.181+01:00  INFO 24920 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 11.527 seconds (process running for 12.229)
-2024-12-13T12:45:19.934+01:00  INFO 24920 --- [crm] [http-nio-8082-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T12:45:19.936+01:00  INFO 24920 --- [crm] [http-nio-8082-exec-6] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T12:45:19.941+01:00  INFO 24920 --- [crm] [http-nio-8082-exec-6] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2024-12-13T12:45:20.229+01:00  INFO 24920 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Sei qui
-2024-12-13T12:45:20.395+01:00  INFO 24920 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Sei qui
-2024-12-13T12:48:13.467+01:00  INFO 24920 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T12:48:13.603+01:00  INFO 24920 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T12:48:13.671+01:00  INFO 24920 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T16:21:43.302+01:00  INFO 5900 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 5900 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T16:21:43.304+01:00 DEBUG 5900 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T16:21:43.304+01:00  INFO 5900 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T16:21:43.392+01:00  INFO 5900 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T16:21:46.911+01:00  INFO 5900 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T16:21:46.924+01:00  INFO 5900 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T16:21:48.926+01:00  INFO 5900 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T16:21:48.926+01:00  INFO 5900 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T16:21:49.448+01:00  INFO 5900 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T16:21:51.124+01:00  INFO 5900 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T16:21:51.220+01:00  INFO 5900 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 10 JPA repository interfaces.
-2024-12-13T16:21:51.815+01:00  INFO 5900 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T16:21:51.829+01:00  INFO 5900 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T16:21:51.830+01:00  INFO 5900 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T16:21:51.893+01:00  INFO 5900 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T16:21:51.894+01:00  INFO 5900 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1604 ms
-2024-12-13T16:21:51.988+01:00  INFO 5900 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T16:21:52.188+01:00  INFO 5900 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@10fb4575
-2024-12-13T16:21:52.189+01:00  INFO 5900 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T16:21:52.289+01:00  INFO 5900 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T16:21:52.378+01:00  INFO 5900 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T16:21:52.429+01:00  INFO 5900 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T16:21:52.742+01:00  INFO 5900 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T16:21:53.997+01:00  INFO 5900 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T16:21:54.245+01:00  INFO 5900 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T16:21:55.210+01:00  WARN 5900 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T16:21:55.490+01:00  INFO 5900 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@68823b6b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4b4b02d, org.springframework.security.web.context.SecurityContextHolderFilter@5c2f5dc, org.springframework.security.web.header.HeaderWriterFilter@59fa5a39, org.springframework.web.filter.CorsFilter@1dd01876, org.springframework.security.web.authentication.logout.LogoutFilter@1df8ea34, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7a925ac4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3b09582d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@12d24c43, org.springframework.security.web.session.SessionManagementFilter@2eef43f5, org.springframework.security.web.access.ExceptionTranslationFilter@22495f2f, org.springframework.security.web.access.intercept.AuthorizationFilter@31d51518]
-2024-12-13T16:21:55.722+01:00  INFO 5900 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T16:21:55.742+01:00  INFO 5900 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 13.029 seconds (process running for 13.815)
-2024-12-13T16:22:32.531+01:00  INFO 5900 --- [crm] [http-nio-8082-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T16:22:32.531+01:00  INFO 5900 --- [crm] [http-nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T16:22:32.533+01:00  INFO 5900 --- [crm] [http-nio-8082-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-12-13T16:26:38.497+01:00  INFO 5900 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T16:26:38.650+01:00  INFO 5900 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T16:26:38.726+01:00  INFO 5900 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T16:26:58.624+01:00  INFO 21688 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 21688 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T16:26:58.626+01:00 DEBUG 21688 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T16:26:58.627+01:00  INFO 21688 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T16:26:58.727+01:00  INFO 21688 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T16:27:01.250+01:00  INFO 21688 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T16:27:01.268+01:00  INFO 21688 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T16:27:02.973+01:00  INFO 21688 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T16:27:02.974+01:00  INFO 21688 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T16:27:03.502+01:00  INFO 21688 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T16:27:05.125+01:00  INFO 21688 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T16:27:05.228+01:00  INFO 21688 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94 ms. Found 10 JPA repository interfaces.
-2024-12-13T16:27:05.815+01:00  INFO 21688 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T16:27:05.827+01:00  INFO 21688 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T16:27:05.827+01:00  INFO 21688 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T16:27:05.894+01:00  INFO 21688 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T16:27:05.894+01:00  INFO 21688 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1547 ms
-2024-12-13T16:27:05.989+01:00  INFO 21688 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T16:27:06.208+01:00  INFO 21688 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@23648d2d
-2024-12-13T16:27:06.210+01:00  INFO 21688 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T16:27:06.306+01:00  INFO 21688 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T16:27:06.400+01:00  INFO 21688 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T16:27:06.446+01:00  INFO 21688 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T16:27:06.752+01:00  INFO 21688 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T16:27:08.074+01:00  INFO 21688 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T16:27:08.344+01:00  INFO 21688 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T16:27:09.326+01:00  WARN 21688 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T16:27:09.616+01:00  INFO 21688 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6aa7d7a0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4c3125ff, org.springframework.security.web.context.SecurityContextHolderFilter@413a2520, org.springframework.security.web.header.HeaderWriterFilter@2eef43f5, org.springframework.web.filter.CorsFilter@d2ca3a9, org.springframework.security.web.authentication.logout.LogoutFilter@509bf2d5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1ced1fb9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5d28e108, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2b26d289, org.springframework.security.web.session.SessionManagementFilter@2d6abfc7, org.springframework.security.web.access.ExceptionTranslationFilter@5702e6f3, org.springframework.security.web.access.intercept.AuthorizationFilter@4700db93]
-2024-12-13T16:27:09.850+01:00  INFO 21688 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T16:27:09.856+01:00  INFO 21688 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 11.806 seconds (process running for 12.64)
-2024-12-13T16:28:40.051+01:00  INFO 21688 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T16:28:40.059+01:00  INFO 21688 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T16:28:40.061+01:00  INFO 21688 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-12-13T16:54:53.830+01:00  INFO 21688 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T16:54:54.073+01:00  INFO 21688 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T16:54:54.192+01:00  INFO 21688 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T16:55:08.804+01:00  INFO 21788 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 21788 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T16:55:08.806+01:00 DEBUG 21788 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T16:55:08.807+01:00  INFO 21788 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T16:55:08.895+01:00  INFO 21788 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T16:55:10.898+01:00  INFO 21788 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T16:55:10.909+01:00  INFO 21788 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T16:55:12.439+01:00  INFO 21788 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T16:55:12.440+01:00  INFO 21788 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T16:55:12.959+01:00  INFO 21788 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T16:55:14.607+01:00  INFO 21788 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T16:55:14.708+01:00  INFO 21788 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 90 ms. Found 10 JPA repository interfaces.
-2024-12-13T16:55:15.309+01:00  INFO 21788 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T16:55:15.321+01:00  INFO 21788 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T16:55:15.322+01:00  INFO 21788 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T16:55:15.392+01:00  INFO 21788 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T16:55:15.393+01:00  INFO 21788 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1630 ms
-2024-12-13T16:55:15.494+01:00  INFO 21788 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T16:55:15.698+01:00  INFO 21788 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@221ca495
-2024-12-13T16:55:15.700+01:00  INFO 21788 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T16:55:15.789+01:00  INFO 21788 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T16:55:15.881+01:00  INFO 21788 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T16:55:15.937+01:00  INFO 21788 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T16:55:16.242+01:00  INFO 21788 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T16:55:17.567+01:00  INFO 21788 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T16:55:17.839+01:00  INFO 21788 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T16:55:18.846+01:00  WARN 21788 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T16:55:19.122+01:00  INFO 21788 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7f680a9a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a33d655, org.springframework.security.web.context.SecurityContextHolderFilter@4d2bcca8, org.springframework.security.web.header.HeaderWriterFilter@5166fe7a, org.springframework.web.filter.CorsFilter@526a1b51, org.springframework.security.web.authentication.logout.LogoutFilter@12d24c43, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@31e3b882, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2b592f17, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f45290f, org.springframework.security.web.session.SessionManagementFilter@39d62e47, org.springframework.security.web.access.ExceptionTranslationFilter@6c65a7fc, org.springframework.security.web.access.intercept.AuthorizationFilter@d2ca3a9]
-2024-12-13T16:55:19.348+01:00  INFO 21788 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T16:55:19.355+01:00  INFO 21788 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 11.085 seconds (process running for 11.888)
-2024-12-13T16:56:30.016+01:00  INFO 21788 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T16:56:30.016+01:00  INFO 21788 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T16:56:30.021+01:00  INFO 21788 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2024-12-13T17:00:41.431+01:00  INFO 21788 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T17:00:41.497+01:00  INFO 21788 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T17:00:41.519+01:00  INFO 21788 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T17:00:56.791+01:00  INFO 25004 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 25004 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T17:00:56.793+01:00 DEBUG 25004 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T17:00:56.794+01:00  INFO 25004 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T17:00:56.882+01:00  INFO 25004 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T17:00:59.420+01:00  INFO 25004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T17:00:59.430+01:00  INFO 25004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T17:01:00.902+01:00  INFO 25004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T17:01:00.902+01:00  INFO 25004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T17:01:01.421+01:00  INFO 25004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T17:01:02.970+01:00  INFO 25004 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T17:01:03.057+01:00  INFO 25004 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 10 JPA repository interfaces.
-2024-12-13T17:01:03.621+01:00  INFO 25004 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T17:01:03.634+01:00  INFO 25004 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T17:01:03.634+01:00  INFO 25004 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T17:01:03.703+01:00  INFO 25004 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T17:01:03.703+01:00  INFO 25004 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1477 ms
-2024-12-13T17:01:03.793+01:00  INFO 25004 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T17:01:04.004+01:00  INFO 25004 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@537b3b2e
-2024-12-13T17:01:04.005+01:00  INFO 25004 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T17:01:04.099+01:00  INFO 25004 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T17:01:04.191+01:00  INFO 25004 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T17:01:04.242+01:00  INFO 25004 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T17:01:04.539+01:00  INFO 25004 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T17:01:05.777+01:00  INFO 25004 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T17:01:06.018+01:00  INFO 25004 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T17:01:07.006+01:00  WARN 25004 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T17:01:07.273+01:00  INFO 25004 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b26d289, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f680a9a, org.springframework.security.web.context.SecurityContextHolderFilter@5d28e108, org.springframework.security.web.header.HeaderWriterFilter@5c2f5dc, org.springframework.web.filter.CorsFilter@3a33d655, org.springframework.security.web.authentication.logout.LogoutFilter@1dd01876, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4587675c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31e3b882, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@526a1b51, org.springframework.security.web.session.SessionManagementFilter@413a2520, org.springframework.security.web.access.ExceptionTranslationFilter@2c10f9f3, org.springframework.security.web.access.intercept.AuthorizationFilter@4c3125ff]
-2024-12-13T17:01:07.498+01:00  INFO 25004 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T17:01:07.505+01:00  INFO 25004 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 11.329 seconds (process running for 12.697)
-2024-12-13T17:01:37.292+01:00  INFO 25004 --- [crm] [http-nio-8082-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T17:01:37.292+01:00  INFO 25004 --- [crm] [http-nio-8082-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T17:01:37.294+01:00  INFO 25004 --- [crm] [http-nio-8082-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-12-13T17:06:25.431+01:00  INFO 25004 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T17:06:25.495+01:00  INFO 25004 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T17:06:25.518+01:00  INFO 25004 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T17:19:24.195+01:00  INFO 26484 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 26484 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T17:19:24.197+01:00 DEBUG 26484 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T17:19:24.198+01:00  INFO 26484 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T17:19:24.304+01:00  INFO 26484 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T17:19:26.569+01:00  INFO 26484 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T17:19:26.582+01:00  INFO 26484 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T17:19:28.460+01:00  INFO 26484 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T17:19:28.460+01:00  INFO 26484 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T17:19:28.982+01:00  INFO 26484 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T17:19:30.742+01:00  INFO 26484 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T17:19:30.843+01:00  INFO 26484 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 92 ms. Found 10 JPA repository interfaces.
-2024-12-13T17:19:31.453+01:00  INFO 26484 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T17:19:31.466+01:00  INFO 26484 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T17:19:31.466+01:00  INFO 26484 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T17:19:31.538+01:00  INFO 26484 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T17:19:31.539+01:00  INFO 26484 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1643 ms
-2024-12-13T17:19:31.634+01:00  INFO 26484 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T17:19:31.865+01:00  INFO 26484 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@773eca84
-2024-12-13T17:19:31.866+01:00  INFO 26484 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T17:19:31.957+01:00  INFO 26484 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T17:19:32.049+01:00  INFO 26484 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T17:19:32.107+01:00  INFO 26484 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T17:19:32.451+01:00  INFO 26484 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T17:19:33.879+01:00  INFO 26484 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T17:19:34.179+01:00  INFO 26484 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T17:19:35.533+01:00  WARN 26484 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T17:19:35.927+01:00  INFO 26484 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@303a484e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@760f4310, org.springframework.security.web.context.SecurityContextHolderFilter@88fe9a8, org.springframework.security.web.header.HeaderWriterFilter@46c28400, org.springframework.web.filter.CorsFilter@3b9d85c2, org.springframework.security.web.authentication.logout.LogoutFilter@4700db93, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f45a2fd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6792aa3e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65e4eba5, org.springframework.security.web.session.SessionManagementFilter@3884e858, org.springframework.security.web.access.ExceptionTranslationFilter@27a8bfa1, org.springframework.security.web.access.intercept.AuthorizationFilter@54632794]
-2024-12-13T17:19:36.177+01:00  INFO 26484 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T17:19:36.183+01:00  INFO 26484 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 12.549 seconds (process running for 13.304)
-2024-12-13T17:19:46.866+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T17:19:46.866+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T17:19:46.867+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-12-13T17:33:34.823+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact created with success
-2024-12-13T17:55:54.365+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T17:55:54.639+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:01:29.868+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:01:29.892+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:10:11.192+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:10:30.945+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:14:55.973+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:17:51.971+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:18:10.968+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:25:48.179+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:25:48.244+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:25:51.370+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:25:51.404+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:26:19.944+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:26:25.937+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:26:25.964+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:28:30.929+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:28:54.976+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:30:44.920+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T18:31:29.922+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:03:57.422+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:03:57.562+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:04:13.934+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:04:48.980+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:33:27.407+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:33:56.942+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:35:44.950+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:35:59.935+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:38:21.256+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:38:40.972+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:39:18.960+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:39:58.942+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:40:39.963+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:41:04.923+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:41:19.111+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:41:19.134+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:41:31.480+01:00  WARN 26484 --- [crm] [http-nio-8082-exec-7] o.s.web.servlet.PageNotFound             : Request method 'POST' is not supported
-2024-12-13T19:45:28.460+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:46:02.935+01:00  INFO 26484 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:46:09.206+01:00  INFO 26484 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T19:46:09.292+01:00  INFO 26484 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T19:46:09.330+01:00  INFO 26484 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-13T19:46:36.595+01:00  INFO 26224 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 26224 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2024-12-13T19:46:36.597+01:00 DEBUG 26224 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-12-13T19:46:36.597+01:00  INFO 26224 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2024-12-13T19:46:36.690+01:00  INFO 26224 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2024-12-13T19:46:39.496+01:00  INFO 26224 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2024-12-13T19:46:39.517+01:00  INFO 26224 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2024-12-13T19:46:41.589+01:00  INFO 26224 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2024-12-13T19:46:41.589+01:00  INFO 26224 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2024-12-13T19:46:42.107+01:00  INFO 26224 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2024-12-13T19:46:43.767+01:00  INFO 26224 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-13T19:46:43.869+01:00  INFO 26224 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95 ms. Found 10 JPA repository interfaces.
-2024-12-13T19:46:44.445+01:00  INFO 26224 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2024-12-13T19:46:44.459+01:00  INFO 26224 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-13T19:46:44.459+01:00  INFO 26224 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-12-13T19:46:44.532+01:00  INFO 26224 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-13T19:46:44.533+01:00  INFO 26224 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1549 ms
-2024-12-13T19:46:44.628+01:00  INFO 26224 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-13T19:46:44.885+01:00  INFO 26224 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@773eca84
-2024-12-13T19:46:44.887+01:00  INFO 26224 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-13T19:46:44.976+01:00  INFO 26224 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-13T19:46:45.060+01:00  INFO 26224 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-12-13T19:46:45.109+01:00  INFO 26224 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-13T19:46:45.417+01:00  INFO 26224 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-13T19:46:46.791+01:00  INFO 26224 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-13T19:46:47.176+01:00  INFO 26224 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T19:46:48.136+01:00  WARN 26224 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-13T19:46:48.429+01:00  INFO 26224 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@760f4310, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b9d85c2, org.springframework.security.web.context.SecurityContextHolderFilter@17d606c9, org.springframework.security.web.header.HeaderWriterFilter@2d6abfc7, org.springframework.web.filter.CorsFilter@65e4eba5, org.springframework.security.web.authentication.logout.LogoutFilter@560e1459, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6792aa3e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1027cdcd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77eb76f, org.springframework.security.web.session.SessionManagementFilter@46c7c593, org.springframework.security.web.access.ExceptionTranslationFilter@56114349, org.springframework.security.web.access.intercept.AuthorizationFilter@56511eda]
-2024-12-13T19:46:48.660+01:00  INFO 26224 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2024-12-13T19:46:48.665+01:00  INFO 26224 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 12.656 seconds (process running for 13.583)
-2024-12-13T19:49:00.953+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-13T19:49:00.953+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-13T19:49:00.953+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-12-13T19:49:09.417+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:49:09.457+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:49:31.096+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : skill added
-2024-12-13T19:49:31.179+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Job offer successfully created and associated
-2024-12-13T19:49:49.919+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:49:52.592+01:00 ERROR 26224 --- [crm] [http-nio-8082-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "java.lang.Number.longValue()" because "element$iv" is null] with root cause
-
-java.lang.NullPointerException: Cannot invoke "java.lang.Number.longValue()" because "element$iv" is null
-	at com.example.crm.services.JobOfferServicesImpl.create(JobOfferServicesImpl.kt:406) ~[main/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351) ~[spring-aop-6.1.5.jar:6.1.5]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.5.jar:6.1.5]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.5.jar:6.1.5]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765) ~[spring-aop-6.1.5.jar:6.1.5]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.1.5.jar:6.1.5]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:392) ~[spring-tx-6.1.5.jar:6.1.5]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.5.jar:6.1.5]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.5.jar:6.1.5]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765) ~[spring-aop-6.1.5.jar:6.1.5]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:717) ~[spring-aop-6.1.5.jar:6.1.5]
-	at com.example.crm.services.JobOfferServicesImpl$$SpringCGLIB$$0.create(<generated>) ~[main/:na]
-	at com.example.crm.controllers.JobOfferController.uploadJobOffer(JobOfferController.kt:93) ~[main/:na]
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
-	at kotlin.reflect.jvm.internal.calls.CallerImpl$Method.callMethod(CallerImpl.kt:97) ~[kotlin-reflect-1.9.23.jar:1.9.23-release-779]
-	at kotlin.reflect.jvm.internal.calls.CallerImpl$Method$Instance.call(CallerImpl.kt:113) ~[kotlin-reflect-1.9.23.jar:1.9.23-release-779]
-	at kotlin.reflect.jvm.internal.KCallableImpl.callDefaultMethod$kotlin_reflection(KCallableImpl.kt:207) ~[kotlin-reflect-1.9.23.jar:1.9.23-release-779]
-	at kotlin.reflect.jvm.internal.KCallableImpl.callBy(KCallableImpl.kt:112) ~[kotlin-reflect-1.9.23.jar:1.9.23-release-779]
-	at org.springframework.web.method.support.InvocableHandlerMethod$KotlinDelegate.invokeFunction(InvocableHandlerMethod.java:332) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.5.jar:6.1.5]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:925) ~[spring-webmvc-6.1.5.jar:6.1.5]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:830) ~[spring-webmvc-6.1.5.jar:6.1.5]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.5.jar:6.1.5]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.5.jar:6.1.5]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.5.jar:6.1.5]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.5.jar:6.1.5]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.5.jar:6.1.5]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.19.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.5.jar:6.1.5]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.19.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.3.jar:6.2.3]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.5.jar:6.1.5]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.2.3.jar:6.2.3]
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
-	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
-
-2024-12-13T19:50:38.026+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:50:38.085+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:50:40.878+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:50:40.938+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:50:50.543+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Job offer successfully created and associated
-2024-12-13T19:51:01.551+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:51:01.587+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:53:32.137+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:53:32.204+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:53:36.487+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:53:36.535+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T19:53:51.345+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : skill added
-2024-12-13T19:53:51.422+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : skill added
-2024-12-13T19:53:51.565+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Job offer successfully created and associated
-2024-12-13T20:03:38.290+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T20:03:38.321+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T20:03:52.024+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : skill added
-2024-12-13T20:03:52.046+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Job offer successfully created and associated
-2024-12-13T20:04:28.657+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T20:04:28.675+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T20:04:44.194+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Job offer successfully created and associated
-2024-12-13T20:13:07.585+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T20:13:07.644+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2024-12-13T20:13:48.392+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : skill added
-2024-12-13T20:13:48.455+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : skill added
-2024-12-13T20:13:48.466+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : skill added
-2024-12-13T20:13:48.486+01:00  INFO 26224 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Job offer successfully created and associated
-2024-12-13T20:33:51.824+01:00  INFO 26224 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-13T20:33:51.990+01:00  INFO 26224 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-13T20:33:52.061+01:00  INFO 26224 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-14T09:53:24.094+01:00  WARN 3976 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11h3m50s332ms98µs100ns).
+2024-12-14T09:54:32.025+01:00  INFO 3976 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14T09:54:32.218+01:00  INFO 3976 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-14T09:54:32.294+01:00  INFO 3976 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-14T09:55:06.487+01:00  INFO 9392 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 9392 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2024-12-14T09:55:06.488+01:00 DEBUG 9392 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-12-14T09:55:06.488+01:00  INFO 9392 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2024-12-14T09:55:06.588+01:00  INFO 9392 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2024-12-14T09:55:09.173+01:00  INFO 9392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2024-12-14T09:55:09.189+01:00  INFO 9392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2024-12-14T09:55:12.709+01:00  INFO 9392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2024-12-14T09:55:12.709+01:00  INFO 9392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2024-12-14T09:55:13.763+01:00  INFO 9392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2024-12-14T09:55:15.894+01:00  INFO 9392 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-14T09:55:16.005+01:00  INFO 9392 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106 ms. Found 10 JPA repository interfaces.
+2024-12-14T09:55:16.640+01:00  INFO 9392 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-12-14T09:55:16.656+01:00  INFO 9392 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-14T09:55:16.656+01:00  INFO 9392 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-12-14T09:55:16.737+01:00  INFO 9392 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-14T09:55:16.737+01:00  INFO 9392 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2013 ms
+2024-12-14T09:55:16.846+01:00  INFO 9392 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-14T09:55:17.119+01:00  INFO 9392 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3ccb12d
+2024-12-14T09:55:17.121+01:00  INFO 9392 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-14T09:55:17.239+01:00  INFO 9392 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-14T09:55:17.349+01:00  INFO 9392 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-12-14T09:55:17.399+01:00  INFO 9392 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-14T09:55:17.750+01:00  INFO 9392 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-14T09:55:19.176+01:00  INFO 9392 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-14T09:55:19.453+01:00  INFO 9392 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14T09:55:20.601+01:00  WARN 9392 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-14T09:55:20.934+01:00  INFO 9392 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@70c6c6a7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@54632794, org.springframework.security.web.context.SecurityContextHolderFilter@3884e858, org.springframework.security.web.header.HeaderWriterFilter@4f8488ef, org.springframework.web.filter.CorsFilter@56511eda, org.springframework.security.web.authentication.logout.LogoutFilter@57d8d8e2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6a4c4261, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@88fe9a8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@303a484e, org.springframework.security.web.session.SessionManagementFilter@4587675c, org.springframework.security.web.access.ExceptionTranslationFilter@3b09582d, org.springframework.security.web.access.intercept.AuthorizationFilter@526a1b51]
+2024-12-14T09:55:21.266+01:00  INFO 9392 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-12-14T09:55:21.282+01:00  INFO 9392 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 15.366 seconds (process running for 16.04)
+2024-12-14T09:59:23.979+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-14T09:59:23.979+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-14T09:59:23.979+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-14T10:22:27.630+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:22:27.722+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:22:37.859+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:22:37.891+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:22:46.368+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:22:46.402+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:45:59.440+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:46:02.070+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:46:02.105+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:46:14.898+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:46:14.935+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T10:46:27.325+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T13:40:01.834+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T13:40:01.957+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T13:40:08.257+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T13:40:08.285+01:00  INFO 9392 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T13:40:47.150+01:00  INFO 9392 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14T13:40:47.213+01:00  INFO 9392 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-14T13:40:47.251+01:00  INFO 9392 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-14T13:41:12.203+01:00  INFO 4432 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 4432 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2024-12-14T13:41:12.205+01:00 DEBUG 4432 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-12-14T13:41:12.206+01:00  INFO 4432 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2024-12-14T13:41:12.295+01:00  INFO 4432 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2024-12-14T13:41:14.371+01:00  INFO 4432 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network crm_default  Creating
+2024-12-14T13:41:14.511+01:00  INFO 4432 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network crm_default  Created
+2024-12-14T13:41:14.515+01:00  INFO 4432 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Creating
+2024-12-14T13:41:14.803+01:00  INFO 4432 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2024-12-14T13:41:14.815+01:00  INFO 4432 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2024-12-14T13:41:16.520+01:00  INFO 4432 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2024-12-14T13:41:16.520+01:00  INFO 4432 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2024-12-14T13:41:17.063+01:00  INFO 4432 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2024-12-14T13:41:21.496+01:00  INFO 4432 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-14T13:41:21.590+01:00  INFO 4432 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 10 JPA repository interfaces.
+2024-12-14T13:41:22.138+01:00  INFO 4432 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-12-14T13:41:22.150+01:00  INFO 4432 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-14T13:41:22.151+01:00  INFO 4432 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-12-14T13:41:22.221+01:00  INFO 4432 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-14T13:41:22.221+01:00  INFO 4432 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2292 ms
+2024-12-14T13:41:22.310+01:00  INFO 4432 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-14T13:41:22.470+01:00  INFO 4432 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@11e17893
+2024-12-14T13:41:22.472+01:00  INFO 4432 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-14T13:41:22.582+01:00  INFO 4432 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-14T13:41:22.677+01:00  INFO 4432 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-12-14T13:41:22.722+01:00  INFO 4432 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-14T13:41:23.019+01:00  INFO 4432 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-14T13:41:24.174+01:00  INFO 4432 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-14T13:41:24.353+01:00  WARN 4432 --- [crm] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-12-14T13:41:24.353+01:00  WARN 4432 --- [crm] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_is92n98sns4ow5vvyrojtkymg" of relation "customer" does not exist, skipping
+2024-12-14T13:41:24.363+01:00  WARN 4432 --- [crm] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-12-14T13:41:24.364+01:00  WARN 4432 --- [crm] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_lmmo9lgogaue32487cxrlid6r" of relation "professional" does not exist, skipping
+2024-12-14T13:41:24.374+01:00  WARN 4432 --- [crm] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2024-12-14T13:41:24.374+01:00  WARN 4432 --- [crm] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_ds9tewbu95kog6vhrnjapv6m7" of relation "professional" does not exist, skipping
+2024-12-14T13:41:24.482+01:00  INFO 4432 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14T13:41:25.477+01:00  WARN 4432 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-14T13:41:25.743+01:00  INFO 4432 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3884e858, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@46c7c593, org.springframework.security.web.context.SecurityContextHolderFilter@324afa73, org.springframework.security.web.header.HeaderWriterFilter@471b7c9c, org.springframework.web.filter.CorsFilter@6a4c4261, org.springframework.security.web.authentication.logout.LogoutFilter@56114349, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7df1fc5a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5444c63f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@88fe9a8, org.springframework.security.web.session.SessionManagementFilter@66f88fd3, org.springframework.security.web.access.ExceptionTranslationFilter@6bea0866, org.springframework.security.web.access.intercept.AuthorizationFilter@31e3b882]
+2024-12-14T13:41:25.983+01:00  INFO 4432 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-12-14T13:41:25.989+01:00  INFO 4432 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 14.366 seconds (process running for 15.284)
+2024-12-14T15:33:09.950+01:00  WARN 4432 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h41m16s491ms83µs500ns).
+2024-12-14T15:33:16.889+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-14T15:33:16.892+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-14T15:33:16.948+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 55 ms
+2024-12-14T15:33:24.282+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-14T15:33:42.257+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-14T15:33:42.350+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-14T15:33:42.361+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.CustomerServices  : Customer successfully created
+2024-12-14T15:33:55.159+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-14T15:33:55.185+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-14T15:33:55.191+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.CustomerServices  : Customer successfully created
+2024-12-14T15:34:06.153+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T15:34:06.186+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T15:34:20.800+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Job offer successfully created and associated
+2024-12-14T15:34:49.619+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-4] com.example.crm.services.SkillServices   : Skill successfully created with name 'skill_1'
+2024-12-14T15:34:51.702+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-9] com.example.crm.services.SkillServices   : Skill successfully created with name 'skill_2'
+2024-12-14T15:34:53.612+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-3] com.example.crm.services.SkillServices   : Skill successfully created with name 'skill_3'
+2024-12-14T15:35:01.620+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T15:35:01.660+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
+2024-12-14T15:35:13.662+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : skill added
+2024-12-14T15:35:13.700+01:00  INFO 4432 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Job offer successfully created and associated
+2024-12-14T15:35:42.570+01:00  INFO 4432 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14T15:35:42.580+01:00  INFO 4432 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-14T15:35:42.587+01:00  INFO 4432 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

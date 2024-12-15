@@ -4,12 +4,14 @@ import '../App.css';  // Importa il file CSS
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import PopupContact from "./PopupContact";
+import PopupConfirmation from "./PopupConfirmation";
 import {JobOffersFilter} from "../api/crm/filters/JobOffersFilter.ts";
 import {Pagination} from "../api/utils/Pagination.ts";
 import {Card, Badge, Dropdown, ListGroup, ListGroupItem} from "react-bootstrap";
 import SkillAPI from "../api/crm/SkillAPI.js";
 import JobOffersAPI from "../api/crm/JobOffersAPI.js";
 import { Row, Col, Toast } from 'react-bootstrap';
+import { useNotification } from '../contexts/NotificationProvider';
 
 function Filters(props) {
     const setFilters = props.setFilters;
@@ -17,6 +19,7 @@ function Filters(props) {
     const mode = props.mode;
     const skills = props.skills;
     const [formFilters, setFormFilters] = useState(new JobOffersFilter(null, null, 0, 0, null));
+    const [isOpenConfirmation, setIsOpenConfirmation] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -132,12 +135,14 @@ const ViewJobOffers = () => {
     const [showModal, setShowModal] = useState(false); // Per gestire la visibilità del modale
     const [skills, setSkills] = useState([]);
     const [refreshContact, setRefreshContact] = useState(0);
+    const [isOpenConfirmation, setIsOpenConfirmation] = useState(false);
+    const [jobOfferToDelete, setJobOfferToDelete] = useState(null);
+    const { handleError, handleSuccess } = useNotification();
 
     //USE Effect
     useEffect(() => {
         JobOffersAPI.GetJobOffers(filters, new Pagination(currentPage, pageSize)).then((res) => {
             setJobOffers(res);
-            console.log("Massimo", res);
         }).catch((err) => console.log(err))
     }, [filters, currentPage, pageSize, refreshContact]);
 
@@ -167,7 +172,7 @@ const ViewJobOffers = () => {
     const handleModalShow = () => setShowModal(true);
 
     const handleConfirmContact = (contact) => {
-        navigate(`/jobOffer/add/${contact.contactId}`);
+        navigate(`/jobOffers/add/${contact.contactId}`);
     }
 
     const handleSelect = (eventKey) => {
@@ -176,6 +181,24 @@ const ViewJobOffers = () => {
         //reset page
         setCurrentPage(0);
     };
+
+    const onCloseConfirmation = () => {
+        setIsOpenConfirmation(false);
+        setJobOfferToDelete(null)
+    }
+
+    const onConfirmConfirmation = async () => {
+        try {
+            await JobOffersAPI.DeleteJobOffer(jobOfferToDelete.jobOfferId); // Chiamata asincrona
+            handleSuccess('Customer successfully deleted!');
+            setIsOpenConfirmation(false);
+            setRefreshContact(prev => prev + 1);
+        } catch (error) {
+            console.error("Errore durante la conferma:", error);
+            handleError(error);
+        }
+    };
+
 
     return (
         <div style={{display: 'flex', paddingTop: '90px'}}>
@@ -188,6 +211,14 @@ const ViewJobOffers = () => {
                               handleModalClose={handleModalClose}
                               toLoad={"Customer"}
                               handleConfirmContact={handleConfirmContact}/>
+                {/* Popup per confermare*/}
+                <PopupConfirmation
+                    isOpen={isOpenConfirmation}
+                    onClose={onCloseConfirmation}
+                    onConfirm={onConfirmConfirmation}
+                    title="Confirm"
+                    message={"Are you sure you want to proceed?"}
+                />
 
                 <Button variant="success" className="float-end" onClick={() => setShowModal(true)}>
                     <i className="bi bi-plus-circle"></i> Add new job offer
@@ -229,13 +260,26 @@ const ViewJobOffers = () => {
                                 </div>
                                 <Row className="mt-3">
                                     <Col className="text-center">
-                                        <Button variant="danger" className="bi bi-trash me-2"> </Button>
+                                        <Button
+                                            variant="danger"
+                                            className="bi bi-trash me-2"
+                                            onClick={() => {
+                                                setIsOpenConfirmation(true);
+                                                setJobOfferToDelete(offer)
+                                            }}
+                                        > </Button>
 
-                                        <Button variant="warning" className="bi bi-pencil text-white"> </Button>
+                                        <Button
+                                            variant="warning"
+                                            className="bi bi-pencil
+                                            text-white"
+                                            onClick={() => {
+                                                navigate(`/jobOffers/edit/${offer.jobOfferId}`);
+                                            }}
+                                        > </Button>
                                     </Col>
                                 </Row>
                             </Card.Body>
-
                         </Card>
                     ))}
                 </div>
