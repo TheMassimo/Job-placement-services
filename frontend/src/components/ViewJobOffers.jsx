@@ -271,10 +271,17 @@ const ViewJobOffers = () => {
 
                                         <Button
                                             variant="warning"
-                                            className="bi bi-pencil
-                                            text-white"
+                                            className="bi bi-pencil text-white me-2"
                                             onClick={() => {
                                                 navigate(`/jobOffers/edit/${offer.jobOfferId}`);
+                                            }}
+                                        > </Button>
+
+                                        <Button
+                                            variant="success"
+                                            className="bi bi-bar-chart-steps me-2"
+                                            onClick={() => {
+                                                navigate(``);
                                             }}
                                         > </Button>
                                     </Col>
