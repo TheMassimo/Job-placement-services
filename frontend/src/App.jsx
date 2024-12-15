@@ -14,6 +14,7 @@ import MassimoTest from "./components/MassimoTest";
 import ContactForm from "./components/ContactForm";
 import AddProfessional from "./components/AddProfessional";
 import AddJobOffer from "./components/AddJobOffer";
+import ViewCustomerDetails from "./components/ViewCustomerDetails";
 
 // Import del provider di errore
 import { NotificationProvider } from './contexts/NotificationProvider';
@@ -32,6 +33,8 @@ function App() {
                         <Route path="/contacts/:action/" element={<ContactForm mode={null} />} />
                         <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} />} />
                         <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"} />} />
+                        <Route path="/customerDetails/:contactId" element={<ViewCustomerDetails />} />
+
                         <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
 
                         <Route path="/jobOffers" element={<ViewJobOffers />} />

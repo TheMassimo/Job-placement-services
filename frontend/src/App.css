@@ -184,11 +184,22 @@
   text-align: left; /* Allinea il testo a sinistra */
 }
 .card-title {
-  font-size: 1.5rem; /* Più grande */
+  font-size: 1.3rem; /* Più grande */
   font-weight: bold; /* In grassetto */
   margin-bottom: 16px; /* Spaziatura sotto il titolo */
   color: #002244;
   text-align: left;
+}
+
+
+/* manina che appare sul nome per cliccare per vedere i details */
+
+.hover-underline {
+  cursor: pointer; /* Mostra il cursore a forma di mano per indicare cliccabilità */
+}
+
+.hover-underline:hover {
+  text-decoration: underline; /* Aggiunge la sottolineatura al passaggio del mouse */
 }
 
 

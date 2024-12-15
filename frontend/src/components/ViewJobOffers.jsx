@@ -219,7 +219,12 @@ const ViewJobOffers = () => {
                                 <div className="card-content-row">
                                     <div><strong>Value:</strong> € {offer.offerValue}</div>
                                     <div>
-                                        <strong>Required Skills:</strong> {offer.requiredSkills?.map(skill => skill.skill).join(', ')}
+                                        <strong>Required Skills: </strong>
+                                        {offer.requiredSkills
+                                            ?.slice() // Crea una copia dell'array per evitare mutazioni in-place
+                                            .sort((a, b) => a.skill.localeCompare(b.skill)) // Ordina alfabeticamente
+                                            .map(skill => skill.skill)
+                                            .join(', ')}
                                     </div>
                                 </div>
                                 <Row className="mt-3">
