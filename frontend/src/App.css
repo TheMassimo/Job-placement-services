@@ -204,3 +204,100 @@
 
 
 
+
+
+/* Stile per la card principale */
+.view-customer-details-card {
+  border: 2px solid #003366;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header della card */
+.custom-card-header {
+  background-color: #003366;
+  color: white;
+  padding: 15px;
+  border-bottom: 2px solid #005599;
+  text-align: left;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* Titolo della card */
+.custom-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: white;
+  text-align: left;
+}
+
+/* Corpo della card */
+.custom-card-body {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Titoli delle sezioni */
+.section-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: #003366;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Testo vuoto */
+.empty-list {
+  color: #888;
+  font-style: italic;
+}
+
+/* Testo personalizzato */
+.custom-text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.notes-box {
+  border-radius: 5px; /* Imposta un raggio di curvatura per i bordi arrotondati */
+  padding: 9px; /* Imposta il padding interno */
+  border: 3px solid #ccc; /* Imposta un bordo sottile grigio */
+  font-size: 1rem; /* Imposta la dimensione del testo */
+  line-height: 1.5; /* Imposta l'altezza della linea */
+  margin-top: 10px; /* Distanza dall'elemento precedente */
+  background-color: #ffffff; /* Imposta lo sfondo bianco */
+}
+
+
+.job-offer-item {
+  border: 3px solid #ccc; /* Bordo spesso e uniforme */
+  border-radius: 10px; /* Arrotonda gli angoli */
+  padding: 15px; /* Spazio interno */
+  background-color: #f9f9f9; /* Sfondo chiaro */
+  margin-bottom: 20px; /* Spazio tra le job offer */
+}
+.list-group {
+  border: none; /* Rimuove il bordo predefinito del gruppo */
+  padding: 0; /* Evita padding indesiderato */
+  margin: 0; /* Elimina margini */
+}
+
+/* Ripristina il bordo superiore per tutti gli .list-group-item */
+.list-group-item {
+  border: 3px solid #ccc; /* Imposta il bordo superiore */
+}
+
+/* Se un .list-group-item è successivo a un altro, ripristina il bordo superiore */
+.list-group-item + .list-group-item {
+  border-top-width: 3px;
+}
+
+/* Evita di arrotondare gli angoli inferiori dell'ultimo item */
+.list-group-item:last-child {
+  border-bottom-right-radius: 0.375rem; /* Raggio dell'angolo inferiore */
+  border-bottom-left-radius: 0.375rem;  /* Raggio dell'angolo inferiore */
+}
+

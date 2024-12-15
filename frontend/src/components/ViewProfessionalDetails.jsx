@@ -5,7 +5,7 @@ import '../App.css'; // File CSS esistente
 
 import ContactAPI from "../api/crm/ContactAPI.js";
 
-function ViewCustomerDetails() {
+function ViewProfessionalDetails() {
     const [contact, setContact] = useState(null);
     const [isLoading, setIsLoading] = useState(true); // Stato per gestire il caricamento
     const { contactId } = useParams();
@@ -161,4 +161,4 @@ function ViewCustomerDetails() {
     );
 }
 
-export default ViewCustomerDetails;
+export default ViewProfessionalDetails;
