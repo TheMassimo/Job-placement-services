@@ -281,7 +281,7 @@ const ViewJobOffers = () => {
                                             variant="success"
                                             className="bi bi-bar-chart-steps me-2"
                                             onClick={() => {
-                                                navigate(``);
+                                                navigate(`/jobOffers/progress/${offer.jobOfferId}`);
                                             }}
                                         > </Button>
                                     </Col>

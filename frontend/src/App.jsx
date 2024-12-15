@@ -3,17 +3,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { ToastContainer } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 // Import dei componenti
 import NavbarComponent from './components/NavbarComponent';
 import NotFoundPage from './components/NotFoundPage';
 import HomeLayout from "./components/HomeLayout.jsx";
 import ViewContacts from './components/ViewContacts';
 import ViewJobOffers from './components/ViewJobOffers';
-import MassimoTest from "./components/MassimoTest";
 import ContactForm from "./components/ContactForm";
-import AddProfessional from "./components/AddProfessional";
 import AddJobOffer from "./components/AddJobOffer";
+import ProgressJobOffer from "./components/ProgressJobOffer";
 import ViewCustomerDetails from "./components/ViewCustomerDetails";
 
 // Import del provider di errore
@@ -40,6 +38,7 @@ function App() {
                         <Route path="/jobOffers" element={<ViewJobOffers/>}/>
                         <Route path="/jobOffers/add/:contactId" element={<AddJobOffer />} />
                         <Route path="/jobOffers/edit/:jobOfferId" element={<AddJobOffer />} />
+                        <Route path="/jobOffers/progress/:jobOfferId" element={<ProgressJobOffer />} />
 
                         <Route path="*" element={<NotFoundPage/>}/>
                     </Routes>
