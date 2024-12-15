@@ -402,4 +402,60 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         return savedJobOffer.toDto()
     }
 
+    override fun addSkill(id: Long, skill: String): JobOfferDTO {
+
+        //check if contact exists
+        val jobOffer = jobOfferRepository.findByIdOrNull(id)
+            ?: throw ProfessionalNotFoundException("jobOfferId not found")
+
+        //normalize skill name to avoid repetitions in the db
+        val skillName = skill.lowercase()
+
+        //check if the skill already exists, if not create it
+        var eSkill = skillRepository.findIdBySkill(skillName)
+        if(eSkill == null){
+            eSkill = Skill()
+            eSkill.skill = skillName
+            skillRepository.save(eSkill)
+            logger.info("New skill created")
+        }else{
+            logger.info("Skill already exist")
+        }
+
+        //add the new skill
+        jobOffer.addSkill(eSkill)
+        jobOfferRepository.save(jobOffer)
+
+        logger.info("Skill added")
+        return jobOffer.toDto()
+    }
+
+    override fun deleteSkill(id: Long, skillId: Long) {
+        //check if professional exist
+        val jobOffer = jobOfferRepository.findByIdOrNull(id)
+            ?: throw BadParameterException("JobOffer id not found")
+
+        //check if skill exist
+        val skill = skillRepository.findByIdOrNull(skillId)
+            ?: throw BadParameterException("skill id not found")
+
+        //check if the contact has that skill
+        if(!jobOffer.requiredSkills.contains(skill)){
+            throw BadParameterException("The JobOffer $id does not have the requiredSkill $skillId")
+        }
+
+        //delete the skill from the contact
+        jobOffer.removeSkill(skill)
+        jobOfferRepository.save(jobOffer)
+
+        logger.info("Skill successfully deleted from the jobOffer")
+    }
+
+    override fun updateSkill(id: Long, skillId: Long, skill: String): JobOfferDTO {
+        //delete the skill from the professional (checks are already performed inside the delete fun)
+        deleteSkill(id, skillId)
+        //add the new skill
+        return addSkill(id, skill)
+    }
+
 }
