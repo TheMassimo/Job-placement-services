@@ -13,6 +13,7 @@ import ContactForm from "./components/ContactForm";
 import AddJobOffer from "./components/AddJobOffer";
 import ProgressJobOffer from "./components/ProgressJobOffer";
 import ViewCustomerDetails from "./components/ViewCustomerDetails";
+import ViewProfessionalDetails from "./components/ViewProfessionalDetails";
 
 // Import del provider di errore
 import {NotificationProvider} from './contexts/NotificationProvider';
@@ -32,8 +33,12 @@ function App() {
                         <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} />} />
 
                         <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"} />} />
-                        <Route path="/customerDetails/:contactId" element={<ViewCustomerDetails />} />
+                        <Route path="/customer/:contactId/details" element={<ViewCustomerDetails />} />
+
+
                         <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
+                        <Route path="/professional/:contactId/details" element={<ViewProfessionalDetails />} />
+
 
                         <Route path="/jobOffers" element={<ViewJobOffers/>}/>
                         <Route path="/jobOffers/add/:contactId" element={<AddJobOffer />} />

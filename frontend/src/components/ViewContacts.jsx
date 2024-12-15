@@ -276,7 +276,7 @@ function CustomerCard(props) {
     const navigate = useNavigate(); // Hook per navigare
 
     const handleNavigate = () => {
-        navigate(`/customerDetails/${contact.contactId}`);
+        navigate(`/customer/${contact.contactId}/details`);
     };
 
     return (
