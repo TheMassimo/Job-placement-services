@@ -44,24 +44,6 @@ async function GetJobOfferById(jobOfferId){
     }
 }
 
-async function UpdateJobOffer(jobOfferId, jobOffer) {
-    const response = await fetch(
-        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}`, null, null), {
-            method: 'PUT',
-            credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(jobOffer)
-        })
-
-    const obj = await response.json()
-
-    if (response.ok) {
-        return JobOffer.fromJsonObject(obj)
-    } else {
-        throw obj
-    }
-}
-
 async function GetJobOffersContactId(jobOfferId){
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/contact_id`, null, null), {
@@ -93,6 +75,37 @@ async function AddJobOffer(contactId, jobOffer) {
         return JobOffer.fromJsonObject(obj)
     } else {
         throw obj
+    }
+}
+
+async function UpdateJobOffer(jobOfferId, jobOffer) {
+    const response = await fetch(
+        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}`, null, null), {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(jobOffer)
+        })
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return JobOffer.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
+async function DeleteJobOffer(jobOfferId) {
+    const response = await fetch(
+        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}`, null, null), {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+        })
+
+    if (!response.ok) {
+        throw "Error"
     }
 }
 
@@ -148,9 +161,10 @@ async function DeleteRequiredSkillToJobOffer(jobOfferId, skillId) {
 const JobOffersAPI = {
     GetJobOffers,
     GetJobOfferById,
-    UpdateJobOffer,
     GetJobOffersContactId,
     AddJobOffer,
+    UpdateJobOffer,
+    DeleteJobOffer,
     AddRequiredSkillToJobOffer,
     UpdateRequiredSkillToJobOffer,
     DeleteRequiredSkillToJobOffer,

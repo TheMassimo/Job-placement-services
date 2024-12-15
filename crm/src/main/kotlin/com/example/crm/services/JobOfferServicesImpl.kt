@@ -340,6 +340,13 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
             p.employment = ProfessionalEmployment.UNEMPLOYED
         }
 
+        // Rimuovere tutte le associazioni con le Skill
+        jobOffer.requiredSkills.forEach { skill ->
+            skill.jobOffer.remove(jobOffer)
+        }
+        jobOffer.requiredSkills.clear()
+
+
         jobOfferRepository.delete(jobOffer)
         logger.info("JobOffer successfully deleted")
     }
