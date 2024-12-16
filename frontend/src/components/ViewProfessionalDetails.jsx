@@ -34,7 +34,7 @@ function ViewProfessionalDetails() {
 
         <div style={{ paddingTop: '90px' }}>
             <Card className="view-customer-details-card m-3 ">
-                <h3>Customer details</h3>
+                <h3>Professional details</h3>
                 {/* Header */}
                 <Card.Header className="d-flex justify-content-between align-items-center custom-card-header">
                     <Card.Title className="custom-card-title">
@@ -44,7 +44,7 @@ function ViewProfessionalDetails() {
 
                 {/* Corpo */}
                 <Card.Body className="custom-card-body">
-                    <Row>
+                    <Row className="mt-4">
                         {/* Sezione Email */}
                         <Col xs={12} md={6}>
                             <h5 className="section-title">Email:</h5>
@@ -95,11 +95,43 @@ function ViewProfessionalDetails() {
                             </ListGroup>
                         </Col>
 
-                        {/* Sezione Note Cliente */}
+                        <Col xs={12} md={6}>
+                            <h5 className="section-title">SSN code:</h5>
+                            <div className="notes-box">
+                                {contact.ssn || "No ssn available"}
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row className="mt-4">
+
+                        {/* Sezione Note Professional */}
                         <Col xs={12} md={6}>
                             <h5 className="section-title">Customer Notes</h5>
                             <div className="notes-box">
-                                {contact.customer?.notes || "No notes available"}
+                                {contact.professional?.notes || "No notes available"}
+                            </div>
+                        </Col>
+                    </Row>
+
+
+                    <Row className="mt-4">
+                        <Col xs={9} md={4}>
+                            <h5 className="section-title">Employment:</h5>
+                            <div className="notes-box">
+                                {contact.professional?.employmenr || "No employment available"}
+                            </div>
+                        </Col>
+                        <Col xs={9} md={4}>
+                            <h5 className="section-title">Geographical info:</h5>
+                            <div className="notes-box">
+                                {contact.professional?.geographicalInfo || "No geographicalInfo available"}
+                            </div>
+                        </Col>
+
+                        <Col xs={9} md={4}>
+                            <h5 className="section-title">Daily rate:</h5>
+                            <div className="notes-box">
+                                {contact.professional?.dailyRate || "No daily rate available"}
                             </div>
                         </Col>
                     </Row>
@@ -107,10 +139,10 @@ function ViewProfessionalDetails() {
                     <Row className="mt-4">
                         {/* Sezione Job Offers */}
                         <Col xs={12}>
-                            <h5 className="section-title">Job Offers:</h5>
+                            <h5 className="section-title">Job offer proposal:</h5>
                             <ListGroup>
-                                {contact.customer?.jobOffers?.length ? (
-                                    contact.customer.jobOffers.map((jobOffer, index) => (
+                                {contact.professional?.jobOfferProposal?.length ? (
+                                    contact.professioanl.jobOfferProposal.map((jobOffer, index) => (
                                         <ListGroup.Item
                                             key={index}
                                             className=" job-offer-item"
@@ -139,22 +171,41 @@ function ViewProfessionalDetails() {
                     </Row>
 
                     <Row className="mt-4">
-                        {/* Sezione Replacement History */}
-                        <Col xs={12}>
-                            <h5 className="section-title">Replacement History:</h5>
+                        {/* Sezione Skills */}
+                        <Col xs={12} md={6}>
+                            <h5 className="section-title">Skills:</h5>
                             <ListGroup>
-                                {contact.replacementHistory?.length ? (
-                                    contact.replacementHistory.map((historyItem, index) => (
-                                        <ListGroup.Item key={index}>
-                                            {historyItem} {/* Dettagli specifici */}
-                                        </ListGroup.Item>
-                                    ))
-                                ) : (
-                                    <div className="empty-list">No replacement history available</div>
-                                )}
+                                {
+                                    contact.professional.skills?.map(skill => skill.skill).join(', ') ||
+                                    <div className="empty-list">No skills available</div>
+                                }
                             </ListGroup>
                         </Col>
-                    </Row>
+
+                        {/*
+                        <Col xs={12} md={6}>
+                        <h5 className="section-title">Job Offer:</h5>
+                            {contact.professional?.jobOffer ? (
+                                <div className="notes-box">
+                                    <Row className="text-start">
+                                        <Col xs={12} md={6}>
+                                            <strong>Description:</strong> {contact.professional.jobOffer.description} <br />
+                                            <strong>Status:</strong> {contact.professional.jobOffer.status} <br />
+                                            <strong>Duration:</strong> {contact.professional.jobOffer.duration}
+                                        </Col>
+                                        <Col xs={12} md={6}>
+                                            <strong>Value:</strong> {contact.professional.jobOffer.offerValue} <br />
+                                            <strong>Notes:</strong> {contact.professional.jobOffer.notes} <br />
+                                            <strong>Required Skills:</strong> {contact.professional.jobOffer.requiredSkills?.map(skill => skill.skill).join(', ') || "N/A"}
+                                        </Col>
+                                    </Row>
+                                </div>
+                            ) : (
+                                div className="empty-list">No job offer available</div>
+                            )}
+                    </Col> */}
+
+                </Row>
                 </Card.Body>
             </Card>
         </div>
