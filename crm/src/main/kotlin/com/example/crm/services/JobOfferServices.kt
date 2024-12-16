@@ -3,6 +3,7 @@ package com.example.crm.services
 import com.example.crm.dtos.ContactDTO
 import com.example.crm.dtos.JobOfferCreateDTO
 import com.example.crm.dtos.JobOfferDTO
+import com.example.crm.dtos.ProfessionalDTO
 import com.example.crm.entities.JobStatus
 
 interface JobOfferServices {
@@ -41,5 +42,11 @@ interface JobOfferServices {
     fun getJobOfferById(jobOfferId: Long): JobOfferDTO
 
     fun updateJobOffer(jobOfferId: Long, dto:JobOfferCreateDTO): JobOfferDTO
+
+    fun addSkill(id : Long, skill : String) : JobOfferDTO
+
+    fun deleteSkill(id : Long, skillId : Long)
+
+    fun updateSkill(id : Long, skillId : Long, skill : String) : JobOfferDTO
 
 }

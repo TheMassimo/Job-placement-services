@@ -130,4 +130,32 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
         return jobOffer
     }
 
+    @PostMapping("/{id}/requiredSkills", "/{id}/requiredSkills/")
+    @ResponseStatus(HttpStatus.CREATED)
+    fun uploadJobOfferRequiredSkills(
+        @PathVariable id : Long,
+        @RequestBody skill: String,
+    ): JobOfferDTO {
+        return jobOfferServices.addSkill(id, skill)
+    }
+
+    @DeleteMapping("/{id}/requiredSkills/{skillId}", "/{id}/requiredSkills/{skillId}/")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deleteJobOfferRequiredSkills(
+        @PathVariable id: Long,
+        @PathVariable skillId: Long
+    ) {
+        jobOfferServices.deleteSkill(id, skillId)
+    }
+
+    @PutMapping("/{id}/requiredSkills/{skillId}", "/{id}/requiredSkills/{skillId}/")
+    @ResponseStatus(HttpStatus.OK)
+    fun updateJobOfferRequiredSkills(
+        @PathVariable id : Long,
+        @PathVariable skillId : Long,
+        @RequestBody skill: String
+    ): JobOfferDTO {
+        return jobOfferServices.updateSkill(id, skillId, skill)
+    }
+
 }

@@ -47,15 +47,6 @@ class ProfessionalController(private val professionalServices : ProfessionalServ
         professionalServices.deleteProfessional(professionalId)
     }
 
-    @PostMapping("/{id}/skill", "/{id}/skill/")
-    @ResponseStatus(HttpStatus.CREATED)
-    fun uploadProfessionalSkill(
-        @PathVariable id : Long,
-        @RequestBody skill: String,
-    ): ProfessionalDTO {
-        return professionalServices.addSkill(id, skill)
-    }
-
     @PutMapping("/{id}", "/{id}/")
     @ResponseStatus(HttpStatus.OK)
     fun updateProfessional(
@@ -64,6 +55,15 @@ class ProfessionalController(private val professionalServices : ProfessionalServ
     ): ProfessionalDTO{
 
         return professionalServices.updateProfessional(id, dto)
+    }
+
+    @PostMapping("/{id}/skill", "/{id}/skill/")
+    @ResponseStatus(HttpStatus.CREATED)
+    fun uploadProfessionalSkill(
+        @PathVariable id : Long,
+        @RequestBody skill: String,
+    ): ProfessionalDTO {
+        return professionalServices.addSkill(id, skill)
     }
 
     @DeleteMapping("/{id}/skill/{skillId}", "/{id}/skill/{skillId}/")

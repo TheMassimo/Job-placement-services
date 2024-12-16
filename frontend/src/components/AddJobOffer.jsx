@@ -119,6 +119,7 @@ function AddJobOffer(props) {
                 //requiredSkills: tmpSkills,
             };
             const resUpdateJobOffer = await JobOffersAPI.UpdateJobOffer(jobOfferId, tmpJobOffer);
+            processJobOfferRequiredSkillsChanges(resUpdateJobOffer, formData)
             handleSuccess('Job Offer successfully updated!');
 
             //if all is right go back to contacts
@@ -126,6 +127,33 @@ function AddJobOffer(props) {
         } catch (err) {
             console.error("Errore durante l'elaborazione:", err);
             handleError(err);
+        }
+    };
+
+    const processJobOfferRequiredSkillsChanges = (jobOffer, formData) => {
+        const jobOfferField = jobOffer.requiredSkills || [];
+        const formDataField = formData.requiredSkills || [];
+
+        // Mappa i dati di origine in oggetti chiave-valore
+        const jobOfferMap = new Map(jobOfferField.map(item => [item.skillId, item.skill]));
+        const formDataMap = new Map(formDataField.map(item => [item.skillId, item.skill]));
+
+        // Gestisci eliminazioni
+        for (let id of jobOfferMap.keys()) {
+            if (!formDataMap.has(id)) {
+                JobOffersAPI.DeleteRequiredSkillToJobOffer(jobOfferId, id);
+            }
+        }
+
+        // Gestisci aggiunte e aggiornamenti
+        for (let [id, value] of formDataMap.entries()) {
+            if (jobOfferMap.has(id)) {
+                if (jobOfferMap.get(id) !== value) {
+                    JobOffersAPI.UpdateRequiredSkillToJobOffer(jobOfferId, id, value);
+                }
+            } else {
+                JobOffersAPI.AddRequiredSkillToJobOffer(jobOfferId, value);
+            }
         }
     };
 
