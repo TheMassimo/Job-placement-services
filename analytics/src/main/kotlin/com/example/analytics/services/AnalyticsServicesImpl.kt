@@ -1,26 +1,24 @@
 package com.example.analytics.services
 
-import com.example.analytics.analytics_dtos.JobOfferAnalyticsDTO
-import com.example.analytics.analytics_dtos.SkillOccurrenceDTO
-import com.example.analytics.analytics_dtos.SkillRepetitionsDTO
+import com.example.analytics.analytics_dtos.*
 import com.example.analytics.entities.JobOfferAnalytics
+import com.example.analytics.entities.Location
 import com.example.analytics.entities.SkillOccurrence
 import com.example.analytics.exeptions.BadParameterException
 import com.example.analytics.repositories.JobOfferAnalyticsRepository
+import com.example.analytics.repositories.LocationRepository
 import com.example.analytics.repositories.SkillOccurrenceRepository
 import jakarta.persistence.EntityManager
-import jakarta.persistence.criteria.CriteriaBuilder
-import jakarta.persistence.criteria.CriteriaQuery
-import jakarta.persistence.criteria.Predicate
-import jakarta.persistence.criteria.Root
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
 class AnalyticsServicesImpl(private val entityManager: EntityManager,
                             private val skillOccurrenceRepository: SkillOccurrenceRepository,
-                            private val jobOfferAnalyticsRepository: JobOfferAnalyticsRepository
+                            private val jobOfferAnalyticsRepository: JobOfferAnalyticsRepository,
+                            private val locationRepository: LocationRepository
 ): AnalyticsServices {
 
     private val logger: Logger = LoggerFactory.getLogger(AnalyticsServicesImpl::class.java)
@@ -32,7 +30,7 @@ class AnalyticsServicesImpl(private val entityManager: EntityManager,
     override fun addSkillRequirement(jobOfferId: Long, skill: String) {
 
         //check if a skill with the same name and jobOfferId already exists
-        if (skillOccurrenceRepository.existByJobOfferIdAndSkill(jobOfferId, skill)) {
+        if (skillOccurrenceRepository.findIdByJobOfferIdAndSkill(jobOfferId, skill) != null) {
             logger.error("skill '${skill}' already exists for job offer '${jobOfferId}'")
             throw BadParameterException("skill '${skill}' already exists for job offer '${jobOfferId}'")
         }
@@ -83,5 +81,35 @@ class AnalyticsServicesImpl(private val entityManager: EntityManager,
     override fun getAverageJobOfferDuration(): Double? {
         val count = jobOfferAnalyticsRepository.findAll().size
         return jobOfferAnalyticsRepository.findAll().sumOf { it.duration } / count
+    }
+
+    override fun storeLocation(location: String) {
+        // check if the given location already exists,
+        // if no add it with 1 professional, if yes, increase its professional field by 1
+        val locationId = locationRepository.findIdByLocation(location)
+        if (locationId == null){
+            val eLocation = Location()
+            eLocation.location = location
+            eLocation.professionals = 1
+
+            locationRepository.save(eLocation)
+            logger.info("new Location successfully created")
+        }
+        else{
+            val eLocation = Location()
+            eLocation.professionals += 1
+
+            locationRepository.save(eLocation)
+            logger.info("Location population successfully updated")
+
+            //temp
+            val locationsList = getLocationsList()
+            logger.info("currently these are the locations of professionals: $locationsList")
+        }
+    }
+
+    override fun getLocationsList(): List<LocationDTO> {
+        val locationsList = locationRepository.findAll().map { it.toDto() }.sortedBy { it.professionals }
+        return locationsList
     }
 }

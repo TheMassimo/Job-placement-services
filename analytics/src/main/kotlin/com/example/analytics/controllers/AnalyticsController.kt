@@ -1,5 +1,6 @@
 package com.example.analytics.controllers
 
+import com.example.analytics.analytics_dtos.LocationDTO
 import com.example.analytics.analytics_dtos.SkillOccurrenceDTO
 import com.example.analytics.analytics_dtos.SkillRepetitionsDTO
 import com.example.analytics.dtos.ContactDTO
@@ -26,5 +27,23 @@ class AnalyticsController(private val analyticsServices: AnalyticsServices) {
     fun getAverageJobOfferValue() : ResponseEntity<Double> {
         val averageValue = analyticsServices.getAverageJobOfferValue()
         return ResponseEntity.ok(averageValue)
+    }
+
+    @GetMapping("/JobOfferDuration", "/JobOfferDuration/")
+    fun getAverageJobOfferDuration() : ResponseEntity<Double> {
+        val averageDuration = analyticsServices.getAverageJobOfferDuration()
+        return ResponseEntity.ok(averageDuration)
+    }
+
+    @GetMapping("", "/")
+    fun testApi() : ResponseEntity<String> {
+        val response = "api test response"
+        return ResponseEntity.ok(response)
+    }
+
+    @GetMapping("/locations", "/locations/")
+    fun getLocations() : ResponseEntity<List<LocationDTO>> {
+        val locationsList = analyticsServices.getLocationsList()
+        return ResponseEntity.ok(locationsList)
     }
 }

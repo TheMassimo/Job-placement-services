@@ -1,0 +1,179 @@
+/// create connectors for kafka
+
+POST http://localhost:8083/connectors
+Content-Type: application/json
+
+{
+  "name": "contact_connector",
+  "config" : {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.user": "myuser",
+    "database.dbname": "mydatabase",
+    "database.hostname": "postgres",
+    "database.password": "secret",
+    "database.port": "5432",
+    "table.include.list": "public.contact",
+    "database.whitelist": "postgres",
+    "tasks.max": "1",
+    "database.history.kafka.bootstrap.servers": "kafka:29092",
+    "database.history.kafka.topic": "schema-changes.kafka",
+    "database.server.name": "postgres",
+    "plugin.name": "pgoutput",
+    "key.converter.schemas.enable": "false",
+    "topic.prefix": "kafka_postgres_",
+    "value.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "snapshot.mode": "initial"
+  }
+}
+
+###
+
+POST http://localhost:8083/connectors
+Content-Type: application/json
+
+{
+  "name": "skill_connector",
+  "config" : {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.user": "myuser",
+    "database.dbname": "mydatabase",
+    "database.hostname": "postgres",
+    "database.password": "secret",
+    "database.port": "5432",
+    "table.include.list": "public.skill",
+    "database.whitelist": "postgres",
+    "tasks.max": "1",
+    "database.history.kafka.bootstrap.servers": "kafka:29092",
+    "database.history.kafka.topic": "schema-changes.kafka",
+    "database.server.name": "postgres",
+    "plugin.name": "pgoutput",
+    "key.converter.schemas.enable": "false",
+    "topic.prefix": "kafka_postgres_",
+    "value.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "snapshot.mode": "initial"
+  }
+}
+
+###
+
+POST http://localhost:8083/connectors
+Content-Type: application/json
+
+{
+  "name": "professional_connector",
+  "config" : {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.user": "myuser",
+    "database.dbname": "mydatabase",
+    "database.hostname": "postgres",
+    "database.password": "secret",
+    "database.port": "5432",
+    "table.include.list": "public.professional",
+    "database.whitelist": "postgres",
+    "tasks.max": "1",
+    "database.history.kafka.bootstrap.servers": "kafka:29092",
+    "database.history.kafka.topic": "schema-changes.kafka",
+    "database.server.name": "postgres",
+    "plugin.name": "pgoutput",
+    "key.converter.schemas.enable": "false",
+    "topic.prefix": "kafka_postgres_",
+    "value.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "snapshot.mode": "initial"
+  }
+}
+
+###
+
+POST http://localhost:8083/connectors
+Content-Type: application/json
+
+{
+  "name": "jobOffer_connector",
+  "config" : {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.user": "myuser",
+    "database.dbname": "mydatabase",
+    "database.hostname": "postgres",
+    "database.password": "secret",
+    "database.port": "5432",
+    "table.include.list": "public.job_offer",
+    "database.whitelist": "postgres",
+    "tasks.max": "1",
+    "database.history.kafka.bootstrap.servers": "kafka:29092",
+    "database.history.kafka.topic": "schema-changes.kafka",
+    "database.server.name": "postgres",
+    "plugin.name": "pgoutput",
+    "key.converter.schemas.enable": "false",
+    "topic.prefix": "kafka_postgres_",
+    "value.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "snapshot.mode": "initial"
+  }
+}
+
+###
+
+POST http://localhost:8083/connectors
+Content-Type: application/json
+
+{
+  "name": "customer_connector",
+  "config" : {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.user": "myuser",
+    "database.dbname": "mydatabase",
+    "database.hostname": "postgres",
+    "database.password": "secret",
+    "database.port": "5432",
+    "table.include.list": "public.customer",
+    "database.whitelist": "postgres",
+    "tasks.max": "1",
+    "database.history.kafka.bootstrap.servers": "kafka:29092",
+    "database.history.kafka.topic": "schema-changes.kafka",
+    "database.server.name": "postgres",
+    "plugin.name": "pgoutput",
+    "key.converter.schemas.enable": "false",
+    "topic.prefix": "kafka_postgres_",
+    "value.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "snapshot.mode": "initial"
+  }
+}
+
+### single connector version
+
+POST http://localhost:8083/connectors
+Content-Type: application/json
+
+{
+  "name": "analytics_connector",
+  "config" : {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.user": "myuser",
+    "database.dbname": "mydatabase",
+    "database.hostname": "postgres",
+    "database.password": "secret",
+    "database.port": "5432",
+    "table.include.list": "public.contact, public.skill, public.professional, public.job_offer, public.customer",
+    "database.whitelist": "postgres",
+    "tasks.max": "1",
+    "database.history.kafka.bootstrap.servers": "kafka:29092",
+    "database.history.kafka.topic": "schema-changes.kafka",
+    "database.server.name": "postgres",
+    "plugin.name": "pgoutput",
+    "key.converter.schemas.enable": "false",
+    "topic.prefix": "kafka_postgres_",
+    "value.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "snapshot.mode": "initial"
+  }
+}

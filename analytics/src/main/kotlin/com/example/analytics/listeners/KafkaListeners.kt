@@ -13,6 +13,22 @@ import org.springframework.stereotype.Service
 class KafkaListeners(private val analyticsServices: AnalyticsServices) {
     private val logger: Logger = LoggerFactory.getLogger(KafkaListeners::class.java)
 
+    @KafkaListener(id = "contact_listener_id", topics = ["kafka_postgres_.public.contact"], groupId="analytics")
+    fun contactListener(message: String){
+        logger.info("kafka message for contact received")
+        logger.info(message)
+
+        val kafkaMessage: KafkaMessageDTO<ContactAnalyticsDTO> = jacksonObjectMapper().readValue(message)
+
+        if (kafkaMessage.op == "c") {
+            logger.info("new contact ${kafkaMessage.after} has been created, adding it to the analytics db")
+
+        }
+        if (kafkaMessage.op == "d") {
+            logger.info("contact has been deleted, adding it to the analytics db")
+        }
+    }
+
     @KafkaListener(id = "jobOffer_listener_id", topics = ["kafka_postgres_.public.job_offer"], groupId="analytics")
     fun jobOfferListener(message: String){
         logger.info("kafka message for job offer received")
@@ -64,7 +80,11 @@ class KafkaListeners(private val analyticsServices: AnalyticsServices) {
 
         if (operation == "c") {
             logger.info("new professional ${kafkaMessage.after} has been created, adding it to the analytics db")
+            if (kafkaMessage.after?.geographical_info != null) {
+                analyticsServices.storeLocation(kafkaMessage.after.geographical_info)
+            }
         }
+        
         if (operation == "d") {
             logger.info("professional has been deleted, removing it from the analytics db")
         }
