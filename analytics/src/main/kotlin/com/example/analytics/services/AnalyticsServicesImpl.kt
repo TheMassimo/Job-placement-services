@@ -101,10 +101,6 @@ class AnalyticsServicesImpl(private val entityManager: EntityManager,
 
             locationRepository.save(eLocation)
             logger.info("Location population successfully updated")
-
-            //temp
-            val locationsList = getLocationsList()
-            logger.info("currently these are the locations of professionals: $locationsList")
         }
     }
 

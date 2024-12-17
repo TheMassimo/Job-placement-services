@@ -1,6 +1,7 @@
+### Get contacts
 
 //@no-log
-GET http://localhost:8082/API/joboffers
+GET http://localhost:8082/API/contacts
 
 ### Add contacts
 
@@ -11,7 +12,7 @@ Content-Type: application/json
 {
   "name": "Luca",
   "surname": "Sturaro",
-  "ssn": "LLSS7",
+  "ssn": "LLSS9",
   "category": "Unknown",
   "address": ["Via Michelangelo"],
   "email": ["luca@gmail.com"],
@@ -25,7 +26,7 @@ POST http://localhost:8082/API/customers
 Content-Type: application/json
 
 {
-  "contactId": 2,
+  "contactId": 52,
   "notes": "Some note"
 }
 
@@ -47,15 +48,15 @@ Content-Type: application/json
 ### Add job offer for customer
 
 //@no-log
-POST http://localhost:8082/API/joboffers/1
+POST http://localhost:8082/API/joboffers/52
 Content-Type: application/json
 
 {
   "description": "Description job 2",
-  "requiredSkills": [1, 2],
+  "requiredSkills": [1, 2, 3],
   "notes": "note job 11",
-  "duration": 9.0,
-  "offerValue": 55.0
+  "duration": 12.0,
+  "offerValue": 100.0
 }
 
 ### check existing contacts to make into professionals
@@ -63,21 +64,21 @@ Content-Type: application/json
 //@no-log
 GET http://localhost:8082/API/contacts
 
-###Connect professional
+### Connect professional 1
 
 //@no-log
 POST http://localhost:8082/API/professionals
 Content-Type: application/json
 
 {
-  "contactId": 6,
+  "contactId": 53,
   "geographicalInfo": "Turin",
   "dailyRate": 80.0,
   "notes": "Some note",
   "skills": [1]
 }
 
-###
+### Connect professional 2
 
 //@no-log
 POST http://localhost:8082/API/professionals

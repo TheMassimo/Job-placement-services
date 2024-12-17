@@ -5,11 +5,21 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  mvc:
+    problemdetails:
+      enabled: true
   datasource:
     url: jdbc:postgresql://postgres:5432/mydatabase
     username: myuser
     password: secret
     driver-class-name: org.postgresql.Driver
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/CRM
+
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
@@ -17,8 +27,11 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       auto-offset-reset: earliest
+
+
 server:
   port: 8084
+
 logging:
   level:
     root: INFO
