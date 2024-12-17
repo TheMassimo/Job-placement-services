@@ -15,8 +15,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
-class AnalyticsServicesImpl(private val entityManager: EntityManager,
-                            private val skillOccurrenceRepository: SkillOccurrenceRepository,
+class AnalyticsServicesImpl(private val skillOccurrenceRepository: SkillOccurrenceRepository,
                             private val jobOfferAnalyticsRepository: JobOfferAnalyticsRepository,
                             private val locationRepository: LocationRepository
 ): AnalyticsServices {
@@ -81,7 +80,7 @@ class AnalyticsServicesImpl(private val entityManager: EntityManager,
 
     /*
     override fun getRequiredSkillsList(): List<SkillRepetitionsDTO>{
-        
+
     }
 
     override fun addSkillRequirement(jobOfferId: Long, skill: String) {
