@@ -12,7 +12,7 @@ Content-Type: application/json
 {
   "name": "Luca",
   "surname": "Sturaro",
-  "ssn": "LLSS9",
+  "ssn": "LLSS22",
   "category": "Unknown",
   "address": ["Via Michelangelo"],
   "email": ["luca@gmail.com"],
@@ -45,6 +45,11 @@ Content-Type: application/json
   "skill": "skill_4"
 }
 
+### check existing job offers
+
+//@no-log
+GET http://localhost:8082/API/joboffers/
+
 ### Add job offer for customer
 
 //@no-log
@@ -71,11 +76,11 @@ POST http://localhost:8082/API/professionals
 Content-Type: application/json
 
 {
-  "contactId": 53,
+  "contactId": 113,
   "geographicalInfo": "Turin",
   "dailyRate": 80.0,
   "notes": "Some note",
-  "skills": [1]
+  "skills": [2]
 }
 
 ### Connect professional 2
@@ -85,11 +90,11 @@ POST http://localhost:8082/API/professionals
 Content-Type: application/json
 
 {
-"contactId": 8,
+"contactId": 114,
 "geographicalInfo": "Milan",
-"dailyRate": 80.0,
+"dailyRate": 295.0,
 "notes": "Some note",
-"skills": [1]
+"skills": [1, 2, 3]
 }
 
 ### Change emplyment state

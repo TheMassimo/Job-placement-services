@@ -8,12 +8,6 @@ import com.example.analytics.dtos.*
 
 interface AnalyticsServices {
 
-    fun getRequiredSkillsList(): List<SkillRepetitionsDTO>
-
-    fun addSkillRequirement(jobOfferId: Long, skill: String)
-
-    fun deleteSkillRequirement(jobOfferId: Long, skills: List<String>)
-
     fun storeJobOffer(jobOfferAnalyticsDTO: JobOfferAnalyticsDTO?)
 
     fun getAverageJobOfferValue(): Double?
@@ -23,4 +17,10 @@ interface AnalyticsServices {
     fun storeLocation(location: String)
 
     fun getLocationsList(): List<LocationDTO>
+
+    //fun getRequiredSkillsList(): List<SkillRepetitionsDTO>
+
+    //fun addSkillRequirement(jobOfferId: Long, skill: String)
+
+    //fun deleteSkillRequirement(jobOfferId: Long, skills: List<String>)
 }

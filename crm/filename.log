@@ -117,3 +117,133 @@
 2024-12-17T10:38:55.571+01:00  INFO 24528 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-12-17T10:38:55.576+01:00  INFO 24528 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-12-17T10:38:55.579+01:00  INFO 24528 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-17T16:16:01.256+01:00  INFO 25820 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.3 with PID 25820 (C:\Users\drluc\WebApp2\Job-placement-services\crm\build\classes\kotlin\main started by drluc in C:\Users\drluc\WebApp2\Job-placement-services\crm)
+2024-12-17T16:16:01.258+01:00 DEBUG 25820 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-12-17T16:16:01.259+01:00  INFO 25820 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2024-12-17T16:16:01.343+01:00  INFO 25820 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\drluc\WebApp2\Job-placement-services\crm\compose.yml'
+2024-12-17T16:16:03.305+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2024-12-17T16:16:03.305+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
+2024-12-17T16:16:03.305+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
+2024-12-17T16:16:03.305+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
+2024-12-17T16:16:03.384+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
+2024-12-17T16:16:03.384+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2024-12-17T16:16:04.892+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
+2024-12-17T16:16:04.892+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
+2024-12-17T16:16:04.893+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
+2024-12-17T16:16:05.638+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2024-12-17T16:16:07.228+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
+2024-12-17T16:16:08.167+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
+2024-12-17T16:16:08.168+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
+2024-12-17T16:16:08.168+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
+2024-12-17T16:16:08.168+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2024-12-17T16:16:08.168+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
+2024-12-17T16:16:08.702+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
+2024-12-17T16:16:08.703+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
+2024-12-17T16:16:08.747+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2024-12-17T16:17:44.223+01:00  INFO 25820 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
+2024-12-17T16:17:48.251+01:00  INFO 25820 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-17T16:17:48.345+01:00  INFO 25820 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 10 JPA repository interfaces.
+2024-12-17T16:17:48.901+01:00  INFO 25820 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-12-17T16:17:48.922+01:00  INFO 25820 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-17T16:17:48.923+01:00  INFO 25820 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-12-17T16:17:48.997+01:00  INFO 25820 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-17T16:17:48.997+01:00  INFO 25820 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2845 ms
+2024-12-17T16:17:49.096+01:00  INFO 25820 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-17T16:17:49.328+01:00  INFO 25820 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@587f4f63
+2024-12-17T16:17:49.330+01:00  INFO 25820 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-17T16:17:49.454+01:00  INFO 25820 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-17T16:17:49.547+01:00  INFO 25820 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-12-17T16:17:49.597+01:00  INFO 25820 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-17T16:17:49.902+01:00  INFO 25820 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-17T16:17:51.200+01:00  INFO 25820 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-17T16:17:51.656+01:00  INFO 25820 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-17T16:17:52.759+01:00  WARN 25820 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-17T16:17:53.067+01:00  INFO 25820 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5fc3dfc1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67d6bb59, org.springframework.security.web.context.SecurityContextHolderFilter@7127f04b, org.springframework.security.web.header.HeaderWriterFilter@5add0cc0, org.springframework.web.filter.CorsFilter@1a632663, org.springframework.security.web.authentication.logout.LogoutFilter@49868df8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@42f9b425, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@37351baa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1147ab09, org.springframework.security.web.session.SessionManagementFilter@14c1cba6, org.springframework.security.web.access.ExceptionTranslationFilter@23acd55e, org.springframework.security.web.access.intercept.AuthorizationFilter@79408109]
+2024-12-17T16:17:53.343+01:00  INFO 25820 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-12-17T16:17:53.350+01:00  INFO 25820 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 112.745 seconds (process running for 113.613)
+2024-12-17T16:18:58.137+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-17T16:18:58.137+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-17T16:18:58.138+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-17T16:19:01.459+01:00 ERROR 25820 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact with SSN 'LLSS9' already exists
+2024-12-17T16:19:06.373+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:19:06.476+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:19:06.485+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:19:06.555+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:19:20.979+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:19:20.998+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:23:06.748+01:00 ERROR 25820 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact with SSN 'LLSS10' already exists
+2024-12-17T16:23:10.238+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:23:10.291+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:23:10.299+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:23:10.357+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:23:31.820+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:23:31.832+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-3] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:24:20.385+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:24:20.492+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:24:20.499+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:24:20.513+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:24:37.047+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:24:37.130+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-7] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:28:27.148+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:28:27.177+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:28:27.183+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:28:27.195+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:28:43.435+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:28:43.446+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:28:53.723+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:28:53.752+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:28:53.818+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:28:53.905+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:29:06.015+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:29:06.025+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-10] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:30:46.363+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:30:46.519+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:30:46.526+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:30:46.541+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:31:05.194+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:31:05.221+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-9] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:31:15.672+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:31:15.727+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:31:15.735+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:31:15.765+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:31:26.135+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:31:26.147+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-5] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:34:35.010+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:34:35.049+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:34:35.055+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:34:35.067+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:34:37.900+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:34:38.019+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:34:38.067+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:34:38.088+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:34:54.533+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:34:54.542+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-8] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:35:19.546+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:35:19.555+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-2] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:37:40.384+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:37:40.503+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:37:40.510+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:37:40.611+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:37:45.266+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:37:45.298+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:37:45.302+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:37:45.311+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:37:49.637+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:37:49.789+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:37:49.794+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:37:49.804+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:37:52.164+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Email already exists: luca@gmail.com
+2024-12-17T16:37:52.202+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Address already exist: Via Michelangelo
+2024-12-17T16:37:52.206+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Telephone already exist: 3882222222
+2024-12-17T16:37:52.216+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact created with success
+2024-12-17T16:38:06.804+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:38:06.813+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-2] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:38:13.220+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:38:13.229+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-5] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:38:18.040+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:38:18.050+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-4] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:38:26.974+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact category modified successfully
+2024-12-17T16:38:26.983+01:00  INFO 25820 --- [crm] [http-nio-8082-exec-6] c.e.crm.services.ProfessionalServices    : Professional successfully created }
+2024-12-17T16:44:49.134+01:00  INFO 25820 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-17T16:44:49.137+01:00  INFO 25820 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-17T16:44:49.140+01:00  INFO 25820 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

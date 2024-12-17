@@ -23,8 +23,65 @@ class AnalyticsServicesImpl(private val entityManager: EntityManager,
 
     private val logger: Logger = LoggerFactory.getLogger(AnalyticsServicesImpl::class.java)
 
+    override fun storeJobOffer(jobOfferAnalyticsDTO: JobOfferAnalyticsDTO?) {
+
+        if (jobOfferAnalyticsDTO != null) {
+            val eJobOfferAnalytics = JobOfferAnalytics()
+            eJobOfferAnalytics.offerValue = jobOfferAnalyticsDTO.offer_value
+            eJobOfferAnalytics.duration = jobOfferAnalyticsDTO.duration
+            eJobOfferAnalytics.status = jobOfferAnalyticsDTO.status
+
+            jobOfferAnalyticsRepository.save(eJobOfferAnalytics)
+            logger.info("job Offer Analytics successfully created")
+        }
+        else{
+            throw BadParameterException("jobOfferAnalyticsDTO not found")
+        }
+    }
+
+    override fun getAverageJobOfferValue(): Double? {
+        val count = jobOfferAnalyticsRepository.findAll().size
+        return jobOfferAnalyticsRepository.findAll().sumOf { it.offerValue } / count
+    }
+
+    override fun getAverageJobOfferDuration(): Double? {
+        val count = jobOfferAnalyticsRepository.findAll().size
+        return jobOfferAnalyticsRepository.findAll().sumOf { it.duration } / count
+    }
+
+    override fun storeLocation(location: String) {
+        // check if the given location already exists,
+        // if no add it with 1 professional, if yes, increase its professional field by 1
+        val existingLocation = locationRepository.findByLocation(location)
+        if (existingLocation == null){
+            val eLocation = Location()
+            eLocation.location = location
+            eLocation.professionals = 1
+
+            logger.info("\n-------\nNew Location:\n${eLocation.location} - ${eLocation.professionals}\n-------")
+
+
+            locationRepository.save(eLocation)
+            logger.info("new Location $eLocation successfully created")
+        }
+        else{
+            existingLocation.professionals += 1
+
+            logger.info("\n-------\nExisting Location: ${existingLocation.locationId}\n${existingLocation.location} - ${existingLocation.professionals}\n-------")
+
+            locationRepository.save(existingLocation)
+            logger.info("Location $existingLocation successfully updated")
+        }
+    }
+
+    override fun getLocationsList(): List<LocationDTO> {
+        val locationsList = locationRepository.findAll().map { it.toDto() }.sortedBy { it.professionals }
+        return locationsList
+    }
+
+    /*
     override fun getRequiredSkillsList(): List<SkillRepetitionsDTO>{
-        TODO("Not yet implemented")
+        
     }
 
     override fun addSkillRequirement(jobOfferId: Long, skill: String) {
@@ -55,57 +112,5 @@ class AnalyticsServicesImpl(private val entityManager: EntityManager,
             skillOccurrenceRepository.delete(eSkillOccurrence)
             logger.info("skill occurrence successfully deleted")
         }
-    }
-
-    override fun storeJobOffer(jobOfferAnalyticsDTO: JobOfferAnalyticsDTO?) {
-
-        if (jobOfferAnalyticsDTO != null) {
-            val eJobOfferAnalytics = JobOfferAnalytics()
-            eJobOfferAnalytics.offerValue = jobOfferAnalyticsDTO.offer_value
-            eJobOfferAnalytics.duration = jobOfferAnalyticsDTO.duration
-            eJobOfferAnalytics.status = jobOfferAnalyticsDTO.status
-
-            jobOfferAnalyticsRepository.save(eJobOfferAnalytics)
-            logger.info("job Offer Analytics successfully created")
-        }
-        else{
-            throw BadParameterException("jobOfferAnalyticsDTO not found")
-        }
-    }
-
-    override fun getAverageJobOfferValue(): Double? {
-        val count = jobOfferAnalyticsRepository.findAll().size
-        return jobOfferAnalyticsRepository.findAll().sumOf { it.offerValue } / count
-    }
-
-    override fun getAverageJobOfferDuration(): Double? {
-        val count = jobOfferAnalyticsRepository.findAll().size
-        return jobOfferAnalyticsRepository.findAll().sumOf { it.duration } / count
-    }
-
-    override fun storeLocation(location: String) {
-        // check if the given location already exists,
-        // if no add it with 1 professional, if yes, increase its professional field by 1
-        val locationId = locationRepository.findIdByLocation(location)
-        if (locationId == null){
-            val eLocation = Location()
-            eLocation.location = location
-            eLocation.professionals = 1
-
-            locationRepository.save(eLocation)
-            logger.info("new Location successfully created")
-        }
-        else{
-            val eLocation = Location()
-            eLocation.professionals += 1
-
-            locationRepository.save(eLocation)
-            logger.info("Location population successfully updated")
-        }
-    }
-
-    override fun getLocationsList(): List<LocationDTO> {
-        val locationsList = locationRepository.findAll().map { it.toDto() }.sortedBy { it.professionals }
-        return locationsList
-    }
+    }*/
 }

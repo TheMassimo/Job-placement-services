@@ -8,7 +8,7 @@ class Location {
     @GeneratedValue
     var locationId: Long = 0
 
-    lateinit var location: String
+    var location: String = ""
     var professionals: Int = 0
 }
 

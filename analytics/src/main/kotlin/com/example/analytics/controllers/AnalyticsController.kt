@@ -12,12 +12,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/API/analytics")
 class AnalyticsController(private val analyticsServices: AnalyticsServices) {
 
-    @GetMapping("/skills", "/skills/")
-    fun getRequiredSkillsList() : ResponseEntity<List<SkillRepetitionsDTO>> {
-        val skillRepetitionsList = analyticsServices.getRequiredSkillsList()
-        return ResponseEntity.ok(skillRepetitionsList)
-    }
-
     @GetMapping("/JobOfferValue", "/JobOfferValue/")
     fun getAverageJobOfferValue() : ResponseEntity<Double> {
         val averageValue = analyticsServices.getAverageJobOfferValue()
@@ -35,4 +29,11 @@ class AnalyticsController(private val analyticsServices: AnalyticsServices) {
         val locationsList = analyticsServices.getLocationsList()
         return ResponseEntity.ok(locationsList)
     }
+
+    /*
+    @GetMapping("/skills", "/skills/")
+    fun getRequiredSkillsList() : ResponseEntity<List<SkillRepetitionsDTO>> {
+        val skillRepetitionsList = analyticsServices.getRequiredSkillsList()
+        return ResponseEntity.ok(skillRepetitionsList)
+    }*/
 }
