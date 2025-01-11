@@ -1,64 +1,75 @@
 package com.example.api_gateway
 
 import org.springframework.security.core.Authentication
-import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken
+import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal
 import org.springframework.security.oauth2.core.oidc.user.OidcUser
 import org.springframework.web.bind.annotation.CookieValue
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.security.Principal
-import java.time.LocalDateTime
 
 @RestController
+@RequestMapping
 class HomeController {
-
-    @GetMapping("", "/")
-    fun home(principal: Principal?): Map<String, Any?> {
-        return mapOf(
-            "name" to "home",
-            "date" to LocalDateTime.now(),
-            "principal" to principal
-            )
+    // From slides: The OAuth2 client should offer URL/login-options returns a JSON list of IAM URLs,
+    // to be contacted to perform the login
+    @GetMapping("/login-options")
+    fun loginOptions(): String? {
+        return null
     }
 
-    @GetMapping("/prova")
-    fun prova(authentication: Authentication?): Map<String, Any?> {
-        return mapOf("NAME" to "PROVAMI/", "principal" to authentication?.principal, "authorities" to authentication?.authorities)
-    }
-
-    @GetMapping("/secure")
-    fun secure(): Map<String, Any?>{
-        val authentication =  SecurityContextHolder.getContext().authentication
-        return mapOf(
-            "name" to "secure",
-            "date" to LocalDateTime.now(),
-            "principal" to authentication.principal
-        )
-    }
-
-    @GetMapping("/anon")
-    fun anon(principal: Principal): Map<String, Any?>{
-        return mapOf(
-            "name" to "anon",
-            "date" to LocalDateTime.now(),
-            "principal" to principal
-            )
-    }
-
-    @GetMapping("/me")
-    fun me(
-        @CookieValue(name="XSRF-TOKEN", required = false)
-        xsrf: String?,
+    @GetMapping("/current-user")
+    fun currentUser(
+        @CookieValue(name = "XSRF-TOKEN", required = false)
+        xsrfToken: String?,
         authentication: Authentication?
     ): Map<String, Any?> {
+        println("Authentication: $authentication")
+        println("Principal: ${authentication?.principal}")
+
         val principal: OidcUser? = authentication?.principal as? OidcUser
-        val name = principal?.preferredUsername ?: ""
+        val username = principal?.preferredUsername ?: ""
+        val name = principal?.givenName ?: ""
+        val surname = principal?.familyName ?: ""
+        val email = principal?.email ?: ""
+
+        val clientRoles = principal?.getAttribute<List<String>>("client_roles")
+        val roles = principal?.getAttribute<List<String>>("roles")
+
+        val allRoles = (clientRoles ?: emptyList()) + (roles ?: emptyList())
+
         return mapOf(
+            "username" to username,
             "name" to name,
+            "surname" to surname,
+            "email" to email,
             "loginUrl" to "/oauth2/authorization/CRMclient",
             "logoutUrl" to "/logout",
             "principal" to principal,
-            "xsrfToken" to xsrf
+            "xsrfToken" to xsrfToken,
+            "roles" to allRoles.filter { it.contains("operator") || it.contains("manager") || it.contains("recruiter") }
+        )
+    }
+
+
+    @GetMapping("/secure")
+    fun getDetails(
+        authentication: Authentication?
+    ): Map<String, Any?> {
+        val oAuth2Authentication = authentication as OAuth2AuthenticationToken
+
+        val principal = oAuth2Authentication.principal as OAuth2AuthenticatedPrincipal
+
+        val clientRoles = principal.getAttribute<List<String>>("client_roles")
+        val roles = principal.getAttribute<List<String>>("roles")
+
+        var allRoles = (clientRoles ?: emptyList()) + (roles ?: emptyList())
+        allRoles = allRoles.filter { it.contains("operator") || it.contains("manager") || it.contains("guest") }
+
+        return mapOf(
+            "principal" to principal,
+            "roles" to allRoles
         )
     }
 }

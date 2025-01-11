@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
+/* eslint-disable react/prop-types */
+
 
 function HomeLayout(props) {
+
+    console.log(props);
     const [profile, setProfile] = useState({
-        name: 'John',
+        name: props.user? props.user.name : '',
         surname: 'Doe',
         ssn: '123-45-6789',
-        email: 'john.doe@example.com',
+        email: '',
         telephone: '+123456789',
         address: '123 Main St, Anytown, USA',
     });
 
+    useEffect(() => {
+        if (props.user) {
+            setProfile(prevProfile => ({
+                ...prevProfile, // Preserve the existing state
+                name: props.user.name // Update the name from props.user
+            }));
+        }
+    }, [props.user]);
     const [isEditing, setIsEditing] = useState(false);
+
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,13 +44,12 @@ function HomeLayout(props) {
     };
 
     return (
-        <Container className="page-container mt-4 filterBox" >
+        <Container className="page-container mt-4 filterBox">
             <Row>
                 <Col md={4} className="mx-auto">
                     <div className="d-flex align-items-center mb-4">
-                        {/* Profile Image */}
                         <img
-                            src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg" // Replace with the profile image URL
+                            src="https://upload.wikimedia.org/wikipedia/en/c/c7/Chill_guy_original_artwork.jpg"
                             alt="Profile"
                             className="rounded-circle me-3"
                             style={{ width: '100px', height: '100px', objectFit: 'cover' }}
