@@ -49,12 +49,12 @@ spring:
     oauth2:
       client:
         provider:
-          keyclock: #keyclock
+          keycloak: #keyclock
             issuer-uri: http://localhost:9090/realms/CRM
             user-name-attribute: sub
         registration:
           CRMclient:
-            provider: keyclock
+            provider: keycloak
             client-id: CRMclient
             #client-secret: 5r44MqZAPGMAgWmZPAU1LwVhPNxlpoVQ #Miriam
             #client-secret: rZexIVvaOoBGTQalRrln5P2XbcWIjTw6 #Paolo
@@ -73,6 +73,8 @@ logging:
   level:
     org.springframework.web: DEBUG
     reactor.netty.http.client: DEBUG
+
+#spring.security.oauth2.client.provider.keycloak.end-session-endpoint=https://<keycloak-server>/realms/<realm-name>/protocol/openid-connect/logout
 #logging:
 #  level:
 #    org.springframework.security: DEBUG

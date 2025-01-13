@@ -27,23 +27,28 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
 
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+
+
 @Configuration
 class GlobalCorsConfig {
-
     @Bean
     fun corsFilter(): CorsFilter {
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration().apply {
-            allowedOrigins = listOf("http://localhost:5173")
-            allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
-            allowedHeaders = listOf("*", "X-XSRF-TOKEN") // Include X-XSRF-TOKEN
-            exposedHeaders = listOf("X-XSRF-TOKEN") // Optional: expose it to the frontend
-            allowCredentials = true
+            allowedOrigins = listOf("http://localhost:5173") // Allowed origins
+            allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allowed methods
+            allowedHeaders = listOf("Content-Type", "Authorization", "X-XSRF-TOKEN") // Include X-XSRF-TOKEN
+            exposedHeaders = listOf("X-XSRF-TOKEN") // Expose headers to frontend
+            allowCredentials = true // Allow cookies and credentials
         }
         source.registerCorsConfiguration("/**", config)
         return CorsFilter(source)
     }
 }
+
+
 
 @Configuration
 @EnableWebSecurity
@@ -59,7 +64,6 @@ class SecurityConfig(val crr: ClientRegistrationRepository) {
                 /* ApiGateway Server end-points */
                 it.requestMatchers("/current-user").permitAll()
                 it.requestMatchers("/secure").authenticated()
-                it.requestMatchers("/logout").permitAll()
 
 
                 /* Resource Servers */
@@ -79,7 +83,10 @@ class SecurityConfig(val crr: ClientRegistrationRepository) {
                 it.anyRequest().permitAll()
             }
             .oauth2Login { }
-            .logout { it.logoutSuccessHandler(oidcLogoutSuccessHandler()) }
+            .logout {
+                it.clearAuthentication(true)
+                it.invalidateHttpSession(true)
+                it.logoutSuccessHandler(oidcLogoutSuccessHandler()) }
             .csrf {
                 it.ignoringRequestMatchers("/crm/api/messages")
                 it.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())

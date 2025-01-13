@@ -6,10 +6,9 @@ import axios from 'axios';
 
 function HomeLayout(props) {
 
-    console.log(props);
     const [profile, setProfile] = useState({
         name: props.user? props.user.name : '',
-        surname: 'Doe',
+        surname: props.user? props.user.surname : '',
         ssn: '123-45-6789',
         email: '',
         telephone: '+123456789',
@@ -20,7 +19,9 @@ function HomeLayout(props) {
         if (props.user) {
             setProfile(prevProfile => ({
                 ...prevProfile, // Preserve the existing state
-                name: props.user.name // Update the name from props.user
+                name: props.user.name ,
+                surname: props.user.surname,
+                email: props.user.email
             }));
         }
     }, [props.user]);
