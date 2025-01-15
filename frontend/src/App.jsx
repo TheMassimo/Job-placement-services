@@ -14,6 +14,7 @@ import AddJobOffer from "./components/AddJobOffer";
 import ProgressJobOffer from "./components/ProgressJobOffer";
 import ViewCustomerDetails from "./components/ViewCustomerDetails";
 import ViewProfessionalDetails from "./components/ViewProfessionalDetails";
+import ViewAnalytics from "./components/ViewAnalytics";
 
 // Import del provider di errore
 import {NotificationProvider} from './contexts/NotificationProvider';
@@ -44,6 +45,8 @@ function App() {
                         <Route path="/jobOffers/add/:contactId" element={<AddJobOffer />} />
                         <Route path="/jobOffers/edit/:jobOfferId" element={<AddJobOffer />} />
                         <Route path="/jobOffers/progress/:jobOfferId" element={<ProgressJobOffer />} />
+
+                        <Route path="/analytics" element={<ViewAnalytics/>}/>
 
                         <Route path="*" element={<NotFoundPage/>}/>
                     </Routes>

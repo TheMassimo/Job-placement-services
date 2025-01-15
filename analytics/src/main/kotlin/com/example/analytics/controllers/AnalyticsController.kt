@@ -6,6 +6,7 @@ import com.example.analytics.services.AnalyticsServices
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -25,9 +26,10 @@ class AnalyticsController(private val analyticsServices: AnalyticsServices) {
     }
 
     @GetMapping("/locations", "/locations/")
-    fun getLocations() : ResponseEntity<List<LocationDTO>> {
-        val locationsList = analyticsServices.getLocationsList()
-        return ResponseEntity.ok(locationsList)
+    fun getLocations(@RequestParam numLocations: Int = 1) : ResponseEntity<List<LocationDTO>> {
+        val locationsList = analyticsServices.getLocationsList(numLocations)
+        val sortedLocationList = locationsList.sortedByDescending { it.professionals }
+        return ResponseEntity.ok(sortedLocationList)
     }
 
     /*

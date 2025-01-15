@@ -55,25 +55,22 @@ class AnalyticsServicesImpl(private val skillOccurrenceRepository: SkillOccurren
             eLocation.location = location
             eLocation.professionals = 1
 
-            logger.info("\n-------\nNew Location:\n${eLocation.location} - ${eLocation.professionals}\n-------")
-
-
             locationRepository.save(eLocation)
             logger.info("new Location $eLocation successfully created")
         }
         else{
             existingLocation.professionals += 1
 
-            logger.info("\n-------\nExisting Location: ${existingLocation.locationId}\n${existingLocation.location} - ${existingLocation.professionals}\n-------")
-
             locationRepository.save(existingLocation)
             logger.info("Location $existingLocation successfully updated")
         }
     }
 
-    override fun getLocationsList(): List<LocationDTO> {
-        val locationsList = locationRepository.findAll().map { it.toDto() }.sortedBy { it.professionals }
-        return locationsList
+    override fun getLocationsList(numLocations: Int): List<LocationDTO> {
+        val locationsList = locationRepository.findAll().map { it.toDto() }.sortedByDescending { it.professionals }
+        val topLocations = locationsList.take(numLocations)
+        //logger.info("Showing the top $numLocations locations by number of professionals")
+        return topLocations
     }
 
     /*

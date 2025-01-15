@@ -53,6 +53,14 @@ function NavbarComponent() {
                 <li className="nav-item">
                     <a className="nav-link" href="#" style={{color: 'white'}}>Messages</a>
                 </li>
+                <li className="nav-item active">
+                    <NavLink
+                        to="/analytics"
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
+                        style={{color: 'white'}}>
+                        Analytics
+                    </NavLink>
+                </li>
             </ul>
 
 

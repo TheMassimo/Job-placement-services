@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 @Repository
 interface LocationRepository: JpaRepository<Location, Long> {
     fun findByLocation(location: String): Location?
+    fun findLocationByLocationId(id: Long): Location?
 }

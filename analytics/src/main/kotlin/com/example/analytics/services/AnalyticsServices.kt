@@ -16,7 +16,7 @@ interface AnalyticsServices {
 
     fun storeLocation(location: String)
 
-    fun getLocationsList(): List<LocationDTO>
+    fun getLocationsList(numLocations: Int): List<LocationDTO>
 
     //fun getRequiredSkillsList(): List<SkillRepetitionsDTO>
 
