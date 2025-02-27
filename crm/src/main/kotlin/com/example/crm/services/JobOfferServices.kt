@@ -29,7 +29,7 @@ interface JobOfferServices {
 
     fun getContactIdByJobOfferId(jobOfferId: Long): Long?
 
-    fun updateJobOfferStatus(jobOfferId: Long, status: String, professionalId: Long?): JobOfferDTO
+    fun updateJobOfferStatus(jobOfferId: Long, status: String): JobOfferDTO
 
     fun getJobOfferValue(jobOfferId: Long): Double
 

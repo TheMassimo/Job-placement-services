@@ -93,9 +93,8 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
 
     @PutMapping("/{joboffersId}/status", "/{joboffersId}/status/")
     fun updateJobOfferStatus(@PathVariable @Positive joboffersId: Long,
-                             @RequestParam status: String,
-                             @RequestParam(required = false) professionalId: Long?): JobOfferDTO{
-        val jobOffer = jobOfferServices.updateJobOfferStatus(joboffersId, status, professionalId)
+                             @RequestBody status: String): JobOfferDTO{
+        val jobOffer = jobOfferServices.updateJobOfferStatus(joboffersId, status)
         return jobOffer
     }
 
