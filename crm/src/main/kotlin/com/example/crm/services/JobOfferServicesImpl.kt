@@ -200,10 +200,11 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         return jobOffer?.currentCustomer?.contact?.contactId
     }
 
-    override fun updateJobOfferStatus(jobOfferId: Long, status: String, professionalId: Long?): JobOfferDTO {
+    override fun updateJobOfferStatus(jobOfferId: Long, status: String): JobOfferDTO {
         val jobOffer = jobOfferRepository.findByIdOrNull(jobOfferId)
             ?: throw ElementNotFoundException("JobOffer not found")
 
+        //check if the given state is valid
         val possibleStates = jobOffer.status.getJobStatusFor()
         val newState: JobStatus
         try {
@@ -215,6 +216,7 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
             throw BadParameterException("Cannot transition to this state from " + jobOffer.status.name)
         }
 
+       /*
         if(jobOffer.status == JobStatus.SELECTION_PHASE && newState==JobStatus.CANDIDATE_PROPOSAL){
             if(professionalId == null){
                 throw BadParameterException("Professional id not given")
@@ -297,6 +299,7 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
                 professionalRepository.save(tmpProfessional)
             }
         }
+        */
 
         jobOffer.status = newState
         jobOfferRepository.save(jobOffer)

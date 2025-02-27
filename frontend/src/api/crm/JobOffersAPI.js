@@ -158,6 +158,24 @@ async function DeleteRequiredSkillToJobOffer(jobOfferId, skillId) {
     }
 }
 
+async function UpdateStatusJobOffer(jobOfferId, status) {
+    const response = await fetch(
+        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/status`, null, null), {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+            body: status
+        })
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return obj
+    } else {
+        throw obj
+    }
+}
+
 const JobOffersAPI = {
     GetJobOffers,
     GetJobOfferById,
@@ -168,6 +186,7 @@ const JobOffersAPI = {
     AddRequiredSkillToJobOffer,
     UpdateRequiredSkillToJobOffer,
     DeleteRequiredSkillToJobOffer,
+    UpdateStatusJobOffer,
 }
 
 export default JobOffersAPI

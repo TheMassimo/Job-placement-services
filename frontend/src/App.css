@@ -301,3 +301,60 @@
   border-bottom-left-radius: 0.375rem;  /* Raggio dell'angolo inferiore */
 }
 
+/* Barra di progresso (stepsbar) */
+.step-progress-line {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #ddd;
+  z-index: 1;
+}
+
+.step-progress-line-completed {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  height: 4px;
+  background-color: #28a745; /* verde */
+  z-index: 2;
+  transition: width 0.3s ease;
+}
+
+.step-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  position: relative;
+}
+
+.step-circle.completed {
+  background-color: #28a745; /* verde */
+  color: white;
+}
+
+/* Stile per il cerchio ABORTED */
+.step-circle.aborted {
+  background-color: red;
+  color: white;
+}
+
+.step-label {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.pending-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #333;
+}

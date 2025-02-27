@@ -162,8 +162,10 @@ function AddJobOffer(props) {
     const togglePopup = () => setIsPopupOpen(!isPopupOpen);
 
     return (
-        <div className="container mt-4" style={{ paddingTop: '90px' }}>
-            <h2 className="offerTitle">Create New Job Offer</h2>
+        <div className="container mt-4" style={{paddingTop: '90px'}}>
+            <h2 className="offerTitle">
+                {isEditMode ? "Edit Job Offer" : "Create New Job Offer"}
+            </h2>
 
             {contact && (
                 <div className="customer-info d-flex justify-content-center align-items-center my-4">
@@ -263,7 +265,7 @@ function AddJobOffer(props) {
 
                                 {/* Mostra le skill selezionate */}
                                 {formData.requiredSkills && formData.requiredSkills.length > 0 && (
-                                    <div className="mt-3 ms-3" style={{ flexGrow: 1 }}>
+                                    <div className="mt-3 ms-3" style={{flexGrow: 1}}>
                                         <strong>Selected skills:</strong>
                                         <ul className="mb-0">
                                             {formData.requiredSkills
