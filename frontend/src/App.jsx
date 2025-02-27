@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { ToastContainer } from 'react-toastify';
@@ -14,18 +14,53 @@ import AddJobOffer from "./components/AddJobOffer";
 import ProgressJobOffer from "./components/ProgressJobOffer";
 import ViewCustomerDetails from "./components/ViewCustomerDetails";
 import ViewProfessionalDetails from "./components/ViewProfessionalDetails";
+import ViewAnalytics from "./components/ViewAnalytics";
 
 // Import del provider di errore
 import {NotificationProvider} from './contexts/NotificationProvider';
+import axios from "axios";
 
 function App() {
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const userInfo = await getCurrentUser();
+            if (userInfo) {
+                setUser(userInfo);
+            }
+        };
+
+        fetchUser();
+    }, []);
+
+    const getCurrentUser = async () => {
+        try {
+            const xsrfToken = document.cookie
+                .split('; ')
+                .find((row) => row.startsWith('XSRF-TOKEN='))
+                ?.split('=')[1];
+
+            const response = await axios.get('http://localhost:8080/current-user', {
+                headers: { 'X-XSRF-TOKEN': xsrfToken },
+                withCredentials: true,
+            });
+
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching current user:', error);
+            return null;
+        }
+    };
+
     return (
         <NotificationProvider>
             <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
                 <Container fluid>
-                    <NavbarComponent/>
+                    <NavbarComponent user={user} />
                     <Routes>
-                        <Route path="/" element={<HomeLayout/>}/>
+                        <Route path="/" element={<HomeLayout user={user} />}/>
 
                         {/* action= add/edit */}
                         <Route path="/contacts" element={<ViewContacts />} />
@@ -44,6 +79,8 @@ function App() {
                         <Route path="/jobOffers/add/:contactId" element={<AddJobOffer />} />
                         <Route path="/jobOffers/edit/:jobOfferId" element={<AddJobOffer />} />
                         <Route path="/jobOffers/progress/:jobOfferId" element={<ProgressJobOffer />} />
+
+                        <Route path="/analytics" element={<ViewAnalytics/>}/>
 
                         <Route path="*" element={<NotFoundPage/>}/>
                     </Routes>

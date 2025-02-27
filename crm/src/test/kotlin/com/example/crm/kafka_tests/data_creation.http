@@ -1,3 +1,4 @@
+### Get contacts
 
 //@no-log
 GET http://localhost:8082/API/contacts
@@ -11,7 +12,7 @@ Content-Type: application/json
 {
   "name": "Luca",
   "surname": "Sturaro",
-  "ssn": "LLSS5",
+  "ssn": "LLSS22",
   "category": "Unknown",
   "address": ["Via Michelangelo"],
   "email": ["luca@gmail.com"],
@@ -44,31 +45,56 @@ Content-Type: application/json
   "skill": "skill_4"
 }
 
+### check existing job offers
+
+//@no-log
+GET http://localhost:8082/API/joboffers/
+
 ### Add job offer for customer
 
 //@no-log
-POST http://localhost:8082/API/joboffers/2
+POST http://localhost:8082/API/joboffers/52
 Content-Type: application/json
 
 {
-  "description": "Description job 1",
-  "requiredSkills": [1],
+  "description": "Description job 2",
+  "requiredSkills": [1, 2, 3],
   "notes": "note job 11",
-  "duration": 9.0,
-  "offerValue": 55.0
+  "duration": 12.0,
+  "offerValue": 100.0
 }
 
-###Connect professional
+### check existing contacts to make into professionals
 
+//@no-log
+GET http://localhost:8082/API/contacts
+
+### Connect professional 1
+
+//@no-log
 POST http://localhost:8082/API/professionals
 Content-Type: application/json
 
 {
-  "contactId": 2,
+  "contactId": 113,
   "geographicalInfo": "Turin",
   "dailyRate": 80.0,
   "notes": "Some note",
-  "skills": [1, 2]
+  "skills": [2]
+}
+
+### Connect professional 2
+
+//@no-log
+POST http://localhost:8082/API/professionals
+Content-Type: application/json
+
+{
+"contactId": 114,
+"geographicalInfo": "Milan",
+"dailyRate": 295.0,
+"notes": "Some note",
+"skills": [1, 2, 3]
 }
 
 ### Change emplyment state

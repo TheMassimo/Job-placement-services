@@ -8,6 +8,4 @@ import org.springframework.data.jpa.repository.JpaRepository
 @Repository
 interface SkillOccurrenceRepository: JpaRepository<SkillOccurrence, Long> {
     fun findIdByJobOfferIdAndSkill(jobOfferId: Long, skill: String): SkillOccurrence?
-    fun findByJobOfferId(jobOfferId: Long): SkillOccurrence?
-    fun existByJobOfferIdAndSkill(jobOfferId: Long, skill: String): Boolean
 }
