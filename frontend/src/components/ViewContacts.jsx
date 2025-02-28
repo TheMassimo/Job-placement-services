@@ -201,6 +201,13 @@ function Filters(props) {
 
 function ContactCard(props) {
     const contact = props.contact;
+    const navigate = useNavigate(); // Hook per navigare
+
+    const handleNavigate = () => {
+        navigate(`/contact/${contact.contactId}/details`, {
+            state: { mode: null }, // Passa il valore di "mode"
+        });
+    };
 
     return(
         <Card  className="p-0 m-3">
@@ -208,7 +215,8 @@ function ContactCard(props) {
                 <Row className="w-100">
                     <Col xs={4} className="text-start">
                         {/* Nome a sinistra */}
-                        <Card.Title>
+                        <Card.Title className="hover-underline cursor-pointer"
+                                    onClick={handleNavigate}>
                             {contact.name} {contact.surname}
                         </Card.Title>
                     </Col>
@@ -276,7 +284,9 @@ function CustomerCard(props) {
     const navigate = useNavigate(); // Hook per navigare
 
     const handleNavigate = () => {
-        navigate(`/customer/${contact.contactId}/details`);
+        navigate(`/contact/${contact.contactId}/details`, {
+            state: { mode: "customer" }, // Passa il valore di "mode"
+        });
     };
 
     return (
@@ -307,7 +317,9 @@ function ProfessionalCard(props) {
     const navigate = useNavigate(); // Hook per navigare
 
     const handleNavigate = () => {
-        navigate(`/professional/${contact.contactId}/details`);
+        navigate(`/contact/${contact.contactId}/details`, {
+            state: { mode: "professional" }, // Passa il valore di "mode"
+        });
     };
 
     return(
