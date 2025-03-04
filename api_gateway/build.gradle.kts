@@ -24,6 +24,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springframework.security:spring-security-oauth2-jose") // For JWT support
+    implementation("org.springframework.security:spring-security-oauth2-resource-server") // For resource server support
+
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+
 
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
     implementation("org.springframework.cloud:spring-cloud-starter-gateway-mvc:4.1.1")
@@ -31,6 +36,13 @@ dependencies {
     //implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("jakarta.validation:jakarta.validation-api:3.0.0")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-jackson:0.11.5") // Needed for JSON parsing
+
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+
+
 
     //developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     //runtimeOnly("org.postgresql:postgresql")
