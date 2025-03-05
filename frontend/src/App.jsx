@@ -62,8 +62,8 @@ function App() {
                         <Route path="/" element={<HomeLayout user={user} />}/>
 
                         {/* action= add/edit */}
-                        <Route path="/contacts" element={<ViewContacts />} />
-                        <Route path="/contacts/:action/" element={<ContactForm mode={null} />} />
+                        <Route path="/contacts" element={<ViewContacts role = {user?.roles}/>} />
+                        <Route path="/contacts/:action/" element={<ContactForm mode={null}  />} />
                         <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} />} />
                         <Route path="/contact/:contactId/details" element={<ViewContactDetails />} />
 

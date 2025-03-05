@@ -593,16 +593,20 @@ function ViewContacts(props) {
                                         >
                                             <i className="bi bi-pencil"></i>
                                         </button>
-                                        <button
-                                            className="btn btn-danger"
-                                            style={{ width: "40px", height: "40px" }}
-                                            onClick={() => {
-                                                setIsOpenConfirmation(true);
-                                                setContactToDelete(contact)
-                                            }}
-                                        >
-                                            <i className="bi bi-trash"></i>
-                                        </button>
+                                        {console.log(props.role)}
+
+                                        {props.role?.includes("manager") && (
+                                            <button
+                                                className="btn btn-danger"
+                                                style={{ width: "40px", height: "40px" }}
+                                                onClick={() => {
+                                                    setIsOpenConfirmation(true);
+                                                    setContactToDelete(contact);
+                                                }}
+                                            >
+                                                <i className="bi bi-trash"></i>
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             );
