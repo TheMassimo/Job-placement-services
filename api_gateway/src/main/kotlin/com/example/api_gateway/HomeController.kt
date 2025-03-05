@@ -34,16 +34,61 @@ class HomeController(    private val authorizedClientService: OAuth2AuthorizedCl
                 authentication.token.tokenValue
             }
             is OAuth2AuthenticationToken -> {
-                val accessToken = authorizedClientService.loadAuthorizedClient<OAuth2AuthorizedClient>(
+                val authorizedClient = authorizedClientService.loadAuthorizedClient<OAuth2AuthorizedClient>(
                     authentication.authorizedClientRegistrationId,
                     authentication.name
-                )?.accessToken?.tokenValue
-                println("Access Token: $accessToken")
+                )
+
+                if (authorizedClient == null) {
+                    println("No authorized client found.")
+                    return null
+                }
+
+                var accessToken = authorizedClient.accessToken?.tokenValue
+                val refreshToken = authorizedClient.refreshToken
+
+                // Check if access token is expired
+                if (authorizedClient.accessToken?.expiresAt?.isBefore(java.time.Instant.now()) == true) {
+                    println("Access token expired, refreshing...")
+
+                    if (refreshToken != null) {
+                        val restTemplate = org.springframework.web.client.RestTemplate()
+                        val headers = org.springframework.http.HttpHeaders()
+                        headers.contentType = org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED
+
+                        val body = org.springframework.util.LinkedMultiValueMap<String, String>()
+                        body.add("grant_type", "refresh_token")
+                        body.add("refresh_token", refreshToken.tokenValue)
+                        body.add("client_id", "CRMclient")
+                        body.add("client_secret", "784jYAnNndMiACzCzDGiXjtWLiePlN9o")
+
+                        val requestEntity = org.springframework.http.HttpEntity(body, headers)
+
+                        val response = restTemplate.postForEntity(
+                            "http://localhost:9090/realms/CRM/protocol/openid-connect/token",
+                            requestEntity,
+                            Map::class.java
+                        )
+
+                        if (response.statusCode.is2xxSuccessful) {
+                            val bodyResponse = response.body as Map<String, Any>
+                            accessToken = bodyResponse["access_token"] as? String
+                            println("New Access Token: $accessToken")
+                        } else {
+                            println("Failed to refresh token: ${response.statusCode}")
+                        }
+                    } else {
+                        println("No refresh token available")
+                    }
+                }
+
                 accessToken
             }
             else -> null
         }
     }
+
+
 
 
 

@@ -533,7 +533,8 @@ function ViewContacts(props) {
                         </Dropdown>
                     </Col>
                     <Col>
-                        {mode === null && (
+                        {mode === null && ((props.role?.includes("manager") || props.role?.includes("recruiter"))) && (
+
                         <Button className="m-2"
                                 variant="success"
                                 onClick={() => navigate(`/contacts/add`, {
@@ -546,7 +547,7 @@ function ViewContacts(props) {
                             {"Create new Contact"}
                         </Button>
                         )}
-                        {mode !== null && (
+                        {mode !== null && ((props.role?.includes("manager") || props.role?.includes("recruiter"))) && (
                             <Button className="m-2"
                                     variant="success"
                                     onClick={() => setShowModal(true)}>
@@ -583,7 +584,9 @@ function ViewContacts(props) {
                                         className="position-absolute top-50 end-0 translate-middle-y d-flex flex-column align-items-center"
                                         style={{ width: "50px" }} // larghezza fissa per i tasti
                                     >
-                                        <button
+                                        {(props.role?.includes("manager") || props.role?.includes("recruiter")) && (
+
+                                            <button
                                             className="btn btn-primary mb-2"
                                             style={{ width: "40px", height: "40px" }}
                                             onClick={() => {
@@ -593,7 +596,7 @@ function ViewContacts(props) {
                                         >
                                             <i className="bi bi-pencil"></i>
                                         </button>
-                                        {console.log(props.role)}
+                                        )}
 
                                         {props.role?.includes("manager") && (
                                             <button

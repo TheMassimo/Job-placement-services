@@ -71,7 +71,7 @@ function App() {
 
                         <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
 
-                        <Route path="/jobOffers" element={<ViewJobOffers/>}/>
+                        <Route path="/jobOffers" element={<ViewJobOffers role = {user?.roles} />}/>
                         <Route path="/jobOffers/add/:contactId" element={<AddJobOffer />} />
                         <Route path="/jobOffers/edit/:jobOfferId" element={<AddJobOffer />} />
                         <Route path="/jobOffers/progress/:jobOfferId" element={<ProgressJobOffer />} />
