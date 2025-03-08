@@ -63,8 +63,8 @@ function App() {
                         <Route path="/" element={<HomeLayout user={user} />}/>
 
                         {/* action= add/edit */}
-                        <Route path="/contacts" element={<ViewContacts />} />
-                        <Route path="/contacts/:action/" element={<ContactForm mode={null} />} />
+                        <Route path="/contacts" element={<ViewContacts role = {user?.roles}/>} />
+                        <Route path="/contacts/:action/" element={<ContactForm mode={null}  />} />
                         <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} />} />
                         <Route path="/contact/:contactId/details" element={<ViewContactDetails />} />
 
@@ -72,7 +72,7 @@ function App() {
 
                         <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
 
-                        <Route path="/jobOffers" element={<ViewJobOffers/>}/>
+                        <Route path="/jobOffers" element={<ViewJobOffers role = {user?.roles} />}/>
                         <Route path="/jobOffers/add/:contactId" element={<AddJobOffer />} />
                         <Route path="/jobOffers/edit/:jobOfferId" element={<AddJobOffer />} />
                         <Route path="/jobOffers/history/:jobOfferId" element={<ViewJobOfferHistory />} />

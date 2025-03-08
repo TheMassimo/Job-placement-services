@@ -126,7 +126,7 @@ function Filters(props) {
 }
 
 
-const ViewJobOffers = () => {
+function ViewJobOffers (props)  {
     const [jobOffers, setJobOffers] = useState([]);
     const [filters, setFilters] = useState([]);
     const navigate = useNavigate();
@@ -219,10 +219,12 @@ const ViewJobOffers = () => {
                     title="Confirm"
                     message={"Are you sure you want to proceed?"}
                 />
+                {(props.role?.includes("manager") || props.role?.includes("recruiter")) && (
 
                 <Button variant="success" className="float-end" onClick={() => setShowModal(true)}>
                     <i className="bi bi-plus-circle"></i> Add new job offer
                 </Button>
+                    )}
                 <h2>Job Offers</h2>
 
                 <Dropdown onSelect={handleSelect}>
@@ -260,14 +262,18 @@ const ViewJobOffers = () => {
                                 </div>
                                 <Row className="mt-3">
                                     <Col className="text-center">
-                                        <Button
-                                            variant="danger"
-                                            className="bi bi-trash me-2"
-                                            onClick={() => {
-                                                setIsOpenConfirmation(true);
-                                                setJobOfferToDelete(offer)
-                                            }}
-                                        > </Button>
+                                        {props.role?.includes("manager") && (
+                                            <Button
+                                                variant="danger"
+                                                className="bi bi-trash me-2"
+                                                onClick={() => {
+                                                    setIsOpenConfirmation(true);
+                                                    setJobOfferToDelete(offer)
+                                                }}
+                                            > </Button>
+                                        )}
+
+                                        {(props.role?.includes("manager") || props.role?.includes("recruiter")) && (
 
                                         <Button
                                             variant="warning"
@@ -276,6 +282,7 @@ const ViewJobOffers = () => {
                                                 navigate(`/jobOffers/edit/${offer.jobOfferId}`);
                                             }}
                                         > </Button>
+                                            )}
 
                                         <Button
                                             variant="success"
