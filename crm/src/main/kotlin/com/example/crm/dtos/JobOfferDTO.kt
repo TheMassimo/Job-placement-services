@@ -1,9 +1,7 @@
 package com.example.crm.dtos
 
 
-import com.example.crm.entities.JobOffer
-import com.example.crm.entities.JobStatus
-import com.example.crm.entities.Skill
+import com.example.crm.entities.*
 
 
 data class JobOfferDTO (
@@ -11,6 +9,7 @@ data class JobOfferDTO (
     val description: String,
     val status: JobStatus,
     val requiredSkills: MutableSet<Skill>,
+    val candidateProfiles: MutableSet<ProfessionalDTO>,
     val duration: Double,
     val offerValue: Double,
     val notes: String?
@@ -22,6 +21,7 @@ fun JobOffer.toDto(): JobOfferDTO =
         this.description,
         this.status,
         this.requiredSkills,
+        this.candidateProfiles.map { it.toDto() }.toMutableSet(),
         this.duration,
         this.offerValue,
         this.notes

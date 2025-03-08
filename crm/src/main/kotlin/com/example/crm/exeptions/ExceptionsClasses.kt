@@ -23,3 +23,9 @@ class ContactProcessingException(message: String?) : RuntimeException(message)
 class CustomerProcessingException(message: String?) : RuntimeException(message)
 
 class ProfessionalProcessingException(message: String?) : RuntimeException(message)
+
+class JobOfferNotFoundException(message: String?) : RuntimeException(message)
+
+class JobOfferProcessingException(message: String) : RuntimeException(message)
+
+class ProfessionalNotUnemployedException(message: String) : RuntimeException(message)

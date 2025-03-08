@@ -26,6 +26,8 @@ interface ContactServices {
 
     fun getContactById(id: Long): ContactDetailsDTO
 
+    fun getContactByProfessionalId(professionalId: Long): ContactDetailsDTO
+
     fun create(dto: ContactCreateDTO): ContactDTO
 
     fun uploadEmail(contactId: Long, email: String ): EmailDTO

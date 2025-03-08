@@ -1,400 +1,262 @@
-2025-02-27T12:14:03.001+01:00  INFO 12528 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 12528 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2025-02-27T12:14:03.007+01:00 DEBUG 12528 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2025-02-27T12:14:03.007+01:00  INFO 12528 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2025-02-27T12:14:03.128+01:00  INFO 12528 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2025-02-27T12:14:04.131+01:00 ERROR 12528 --- [crm] [main] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.boot.docker.compose.core.DockerNotRunningException: Docker is not running
-	at org.springframework.boot.docker.compose.core.DockerCli$DockerCommands.getDockerCommand(DockerCli.java:146) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.core.DockerCli$DockerCommands.<init>(DockerCli.java:129) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.core.DockerCli.lambda$new$0(DockerCli.java:65) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at java.base/java.util.HashMap.computeIfAbsent(HashMap.java:1228) ~[na:na]
-	at org.springframework.boot.docker.compose.core.DockerCli.<init>(DockerCli.java:64) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.core.DockerCompose.get(DockerCompose.java:92) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.lifecycle.DockerComposeLifecycleManager.getDockerCompose(DockerComposeLifecycleManager.java:154) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.lifecycle.DockerComposeLifecycleManager.start(DockerComposeLifecycleManager.java:110) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.lifecycle.DockerComposeListener.onApplicationEvent(DockerComposeListener.java:53) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.lifecycle.DockerComposeListener.onApplicationEvent(DockerComposeListener.java:35) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.1.5.jar:6.1.5]
-	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.1.5.jar:6.1.5]
-	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.1.5.jar:6.1.5]
-	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:138) ~[spring-context-6.1.5.jar:6.1.5]
-	at org.springframework.boot.context.event.EventPublishingRunListener.multicastInitialEvent(EventPublishingRunListener.java:136) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.context.event.EventPublishingRunListener.contextLoaded(EventPublishingRunListener.java:98) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplicationRunListeners.lambda$contextLoaded$4(SpringApplicationRunListeners.java:72) ~[spring-boot-3.2.4.jar:3.2.4]
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
-	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:118) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:112) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplicationRunListeners.contextLoaded(SpringApplicationRunListeners.java:72) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplication.prepareContext(SpringApplication.java:432) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:333) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.4.jar:3.2.4]
-	at com.example.crm.Lab3ApplicationKt.main(Lab3Application.kt:14) ~[main/:na]
-Caused by: org.springframework.boot.docker.compose.core.ProcessExitException: 'docker version --format {{.Client.Version}}' failed with exit code 1.
-
-Stdout:
-26.1.1
-
-
-Stderr:
-error during connect: this error may indicate that the docker daemon is not running: Get "http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.45/version": open //./pipe/docker_engine: The system cannot find the file specified.
-
-	at org.springframework.boot.docker.compose.core.ProcessRunner.run(ProcessRunner.java:96) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.core.ProcessRunner.run(ProcessRunner.java:74) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.core.DockerCli$DockerCommands.getDockerCommand(DockerCli.java:135) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	... 25 common frames omitted
-
-2025-02-27T12:14:34.284+01:00  INFO 27488 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 27488 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2025-02-27T12:14:34.286+01:00 DEBUG 27488 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2025-02-27T12:14:34.287+01:00  INFO 27488 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2025-02-27T12:14:34.392+01:00  INFO 27488 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2025-02-27T12:14:36.811+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2025-02-27T12:14:36.811+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
-2025-02-27T12:14:36.811+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
-2025-02-27T12:14:36.811+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
-2025-02-27T12:14:36.819+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
-2025-02-27T12:14:36.819+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2025-02-27T12:14:37.484+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
-2025-02-27T12:14:37.486+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
-2025-02-27T12:14:37.486+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
-2025-02-27T12:14:37.626+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2025-02-27T12:14:38.012+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
-2025-02-27T12:14:38.190+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
-2025-02-27T12:14:38.191+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
-2025-02-27T12:14:38.192+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
-2025-02-27T12:14:38.192+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2025-02-27T12:14:38.192+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
-2025-02-27T12:14:38.713+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2025-02-27T12:14:38.715+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
-2025-02-27T12:14:38.718+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
-2025-02-27T12:15:28.208+01:00  INFO 27488 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
-2025-02-27T12:15:31.610+01:00  INFO 27488 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-02-27T12:15:31.719+01:00  INFO 27488 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 10 JPA repository interfaces.
-2025-02-27T12:15:32.314+01:00  INFO 27488 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2025-02-27T12:15:32.328+01:00  INFO 27488 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-02-27T12:15:32.328+01:00  INFO 27488 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2025-02-27T12:15:32.390+01:00  INFO 27488 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-02-27T12:15:32.391+01:00  INFO 27488 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2640 ms
-2025-02-27T12:15:32.503+01:00  INFO 27488 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-02-27T12:15:32.707+01:00  INFO 27488 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@52d7ab79
-2025-02-27T12:15:32.709+01:00  INFO 27488 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-02-27T12:15:32.832+01:00  INFO 27488 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-02-27T12:15:32.921+01:00  INFO 27488 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2025-02-27T12:15:32.974+01:00  INFO 27488 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-02-27T12:15:33.297+01:00  INFO 27488 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-02-27T12:15:34.529+01:00  INFO 27488 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-02-27T12:15:34.764+01:00  INFO 27488 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-02-27T12:15:35.699+01:00  WARN 27488 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-02-27T12:15:35.971+01:00  INFO 27488 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@548e70f0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b14628b, org.springframework.security.web.context.SecurityContextHolderFilter@44252e9b, org.springframework.security.web.header.HeaderWriterFilter@6178ac9d, org.springframework.web.filter.CorsFilter@64657b13, org.springframework.security.web.authentication.logout.LogoutFilter@d41518b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@788a7567, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62672ad5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@686ee555, org.springframework.security.web.session.SessionManagementFilter@2c3df478, org.springframework.security.web.access.ExceptionTranslationFilter@63b4a896, org.springframework.security.web.access.intercept.AuthorizationFilter@828e2d8]
-2025-02-27T12:15:36.191+01:00  INFO 27488 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2025-02-27T12:15:36.198+01:00  INFO 27488 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 62.454 seconds (process running for 63.092)
-2025-02-27T12:18:35.655+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-02-27T12:18:35.661+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-02-27T12:18:35.661+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-02-27T12:19:00.438+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T12:19:00.481+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T12:19:34.264+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T12:19:34.292+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T13:25:06.811+01:00  WARN 27488 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m32s777ms9µs400ns).
-2025-02-27T15:06:20.562+01:00  WARN 27488 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h40m13s740ms991µs400ns).
-2025-02-27T17:29:43.047+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:29:43.079+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:29:50.902+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:29:50.933+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:06.743+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:06.768+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:23.159+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : skill added
-2025-02-27T17:30:23.223+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Job offer successfully created and associated
-2025-02-27T17:30:31.740+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:31.761+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:42.449+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:42.467+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:48.232+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:48.251+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:51.411+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:51.433+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:55.215+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:30:55.230+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:31:06.995+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:31:07.012+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:31:12.793+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:31:12.812+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:41:38.386+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:41:38.412+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:42:19.457+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:42:19.479+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:42:26.202+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:42:26.227+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:55:45.296+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:55:49.289+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:55:52.248+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:55:54.294+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:58:39.530+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:58:39.549+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:58:47.653+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:58:47.671+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:58:54.609+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:58:54.626+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:58:59.291+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:58:59.311+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:59:11.790+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T17:59:11.806+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:00:54.714+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:00:54.730+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:03:08.291+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:03:09.299+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:03:14.591+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:03:14.613+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:03:20.021+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:03:20.037+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:04:45.571+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:04:45.598+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:08:30.875+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:08:30.900+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:08:33.564+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:08:33.586+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:08:35.310+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:08:35.331+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:08:38.978+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:08:39.048+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:12:49.496+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:12:49.519+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:17:09.313+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:21:57.576+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:21:57.602+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:22:13.180+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:22:13.199+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:22:16.131+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:22:16.147+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:22:17.989+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:22:18.005+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:29:50.055+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:29:50.072+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:39:24.329+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:40:02.857+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:40:12.597+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:40:20.438+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:40:24.795+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:41:14.343+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:42:17.770+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T18:42:17.794+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:13:50.336+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:14:45.606+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:30:51.323+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:31:54.329+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:31:54.359+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:32:13.306+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:33:21.318+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:33:21.341+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:33:38.143+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:33:38.168+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:33:44.085+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:33:44.109+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:34:53.317+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:34:53.342+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:34:58.879+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:34:58.899+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:40:07.273+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:40:07.290+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:43:08.314+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:43:11.680+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:43:11.700+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:44:14.300+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:44:24.053+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:44:24.075+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:44:44.308+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:45:14.299+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:46:28.872+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:46:28.890+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:46:31.893+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:46:31.908+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:46:33.752+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:46:33.776+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:46:51.210+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:46:51.226+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:47:19.310+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:49:43.294+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:51:03.293+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:53:46.301+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T19:58:21.283+01:00  INFO 27488 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:23:35.543+01:00  INFO 27488 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-02-27T20:23:35.565+01:00  INFO 27488 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-02-27T20:23:35.579+01:00  INFO 27488 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-02-27T20:25:04.700+01:00  INFO 15020 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 15020 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2025-02-27T20:25:04.700+01:00 DEBUG 15020 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2025-02-27T20:25:04.700+01:00  INFO 15020 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2025-02-27T20:25:04.791+01:00  INFO 15020 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2025-02-27T20:25:06.636+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
-2025-02-27T20:25:06.636+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2025-02-27T20:25:06.636+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
-2025-02-27T20:25:06.636+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
-2025-02-27T20:25:06.646+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2025-02-27T20:25:06.646+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
-2025-02-27T20:25:07.356+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2025-02-27T20:25:07.360+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
-2025-02-27T20:25:07.361+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
-2025-02-27T20:25:07.361+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
-2025-02-27T20:25:07.889+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
-2025-02-27T20:25:07.964+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
-2025-02-27T20:25:07.965+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
-2025-02-27T20:25:07.965+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2025-02-27T20:25:07.965+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
-2025-02-27T20:25:07.965+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
-2025-02-27T20:25:08.474+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
-2025-02-27T20:25:08.474+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2025-02-27T20:25:08.481+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
-2025-02-27T20:25:56.479+01:00  INFO 15020 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
-2025-02-27T20:25:58.879+01:00  INFO 15020 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-02-27T20:25:58.998+01:00  INFO 15020 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 109 ms. Found 10 JPA repository interfaces.
-2025-02-27T20:25:59.621+01:00  INFO 15020 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2025-02-27T20:25:59.642+01:00  INFO 15020 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-02-27T20:25:59.642+01:00  INFO 15020 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2025-02-27T20:25:59.711+01:00  INFO 15020 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-02-27T20:25:59.711+01:00  INFO 15020 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1748 ms
-2025-02-27T20:25:59.838+01:00  INFO 15020 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-02-27T20:26:00.062+01:00  INFO 15020 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1cba0321
-2025-02-27T20:26:00.064+01:00  INFO 15020 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-02-27T20:26:00.160+01:00  INFO 15020 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-02-27T20:26:00.262+01:00  INFO 15020 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2025-02-27T20:26:00.321+01:00  INFO 15020 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-02-27T20:26:00.623+01:00  INFO 15020 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-02-27T20:26:01.987+01:00  INFO 15020 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-02-27T20:26:02.258+01:00  INFO 15020 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-02-27T20:26:03.233+01:00  WARN 15020 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-02-27T20:26:03.486+01:00  INFO 15020 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2f318251, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@219c10c2, org.springframework.security.web.context.SecurityContextHolderFilter@4163f505, org.springframework.security.web.header.HeaderWriterFilter@74cd82f1, org.springframework.web.filter.CorsFilter@5e352e3a, org.springframework.security.web.authentication.logout.LogoutFilter@13e12ab6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4cce421e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3681c285, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b26f006, org.springframework.security.web.session.SessionManagementFilter@355da59c, org.springframework.security.web.access.ExceptionTranslationFilter@51aa8c0f, org.springframework.security.web.access.intercept.AuthorizationFilter@4177d427]
-2025-02-27T20:26:03.742+01:00  INFO 15020 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2025-02-27T20:26:03.757+01:00  INFO 15020 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 59.642 seconds (process running for 60.316)
-2025-02-27T20:26:11.392+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-02-27T20:26:11.392+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-02-27T20:26:11.392+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-02-27T20:26:11.847+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:27:11.327+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:27:12.313+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:27:56.316+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:29:03.312+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:31:17.343+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:32:41.305+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:32:48.630+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:32:48.655+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:33:03.575+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:33:03.603+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:33:07.736+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:33:07.759+01:00  INFO 15020 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:34:53.967+01:00  INFO 15020 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-02-27T20:34:53.969+01:00  INFO 15020 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-02-27T20:34:53.972+01:00  INFO 15020 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2025-02-27T20:35:10.619+01:00  INFO 27352 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 27352 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2025-02-27T20:35:10.622+01:00 DEBUG 27352 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2025-02-27T20:35:10.623+01:00  INFO 27352 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2025-02-27T20:35:10.706+01:00  INFO 27352 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2025-02-27T20:35:12.298+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
-2025-02-27T20:35:12.298+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2025-02-27T20:35:12.298+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
-2025-02-27T20:35:12.298+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
-2025-02-27T20:35:12.304+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
-2025-02-27T20:35:12.304+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2025-02-27T20:35:12.799+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2025-02-27T20:35:12.801+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
-2025-02-27T20:35:12.801+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
-2025-02-27T20:35:12.801+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
-2025-02-27T20:35:13.405+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
-2025-02-27T20:35:13.406+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
-2025-02-27T20:35:13.407+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2025-02-27T20:35:13.407+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
-2025-02-27T20:35:13.408+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
-2025-02-27T20:35:13.408+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
-2025-02-27T20:35:13.926+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
-2025-02-27T20:35:13.950+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
-2025-02-27T20:35:13.950+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2025-02-27T20:35:57.432+01:00  INFO 27352 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
-2025-02-27T20:35:59.422+01:00  INFO 27352 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-02-27T20:35:59.505+01:00  INFO 27352 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76 ms. Found 10 JPA repository interfaces.
-2025-02-27T20:35:59.980+01:00  INFO 27352 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
-2025-02-27T20:35:59.990+01:00  INFO 27352 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-02-27T20:35:59.991+01:00  INFO 27352 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2025-02-27T20:36:00.044+01:00  INFO 27352 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-02-27T20:36:00.045+01:00  INFO 27352 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1226 ms
-2025-02-27T20:36:00.125+01:00  INFO 27352 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-02-27T20:36:00.278+01:00  INFO 27352 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4cae66a8
-2025-02-27T20:36:00.280+01:00  INFO 27352 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-02-27T20:36:00.351+01:00  INFO 27352 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-02-27T20:36:00.408+01:00  INFO 27352 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2025-02-27T20:36:00.441+01:00  INFO 27352 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-02-27T20:36:00.676+01:00  INFO 27352 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-02-27T20:36:01.704+01:00  INFO 27352 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-02-27T20:36:01.917+01:00  INFO 27352 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-02-27T20:36:02.851+01:00  WARN 27352 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-02-27T20:36:03.125+01:00  INFO 27352 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@78907a46, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4290fcd7, org.springframework.security.web.context.SecurityContextHolderFilter@12d24c43, org.springframework.security.web.header.HeaderWriterFilter@6b0636d9, org.springframework.web.filter.CorsFilter@5a503cf0, org.springframework.security.web.authentication.logout.LogoutFilter@50508ed3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a66949a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57e83608, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14c1cba6, org.springframework.security.web.session.SessionManagementFilter@68823b6b, org.springframework.security.web.access.ExceptionTranslationFilter@2926144f, org.springframework.security.web.access.intercept.AuthorizationFilter@611f28f5]
-2025-02-27T20:36:03.358+01:00  INFO 27352 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
-2025-02-27T20:36:03.365+01:00  INFO 27352 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 53.238 seconds (process running for 53.883)
-2025-02-27T20:36:15.152+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-02-27T20:36:15.152+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-02-27T20:36:15.152+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2025-02-27T20:36:15.686+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:36:15.755+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:36:37.330+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:36:39.719+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:36:39.750+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:36:41.764+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T20:37:39.309+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:37:41.870+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:37:41.897+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:37:43.730+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T20:37:48.368+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:37:48.397+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:37:51.290+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T20:37:53.657+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:37:53.687+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:37:55.510+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T20:37:58.283+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T20:37:58.311+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T22:56:14.848+01:00  WARN 27352 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h16m14s407ms493µs300ns).
-2025-02-27T23:20:30.386+01:00  WARN 27352 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=22m15s511ms672µs400ns).
-2025-02-27T23:20:57.418+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:20:57.461+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:22:41.297+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:22:57.298+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:23:07.818+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:23:07.846+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:23:11.004+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:23:11.031+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:23:14.961+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:29:28.325+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:29:28.357+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:29:44.234+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:29:44.288+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Contact fetched successfully
-2025-02-27T23:29:45.939+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:29:48.808+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:29:52.079+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:29:53.422+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:29:54.673+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:29:56.367+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:30:10.201+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:30:10.634+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:30:11.733+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:30:12.402+01:00  INFO 27352 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Status successfully update
-2025-02-27T23:41:40.911+01:00  INFO 32004 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 32004 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
-2025-02-27T23:41:40.915+01:00 DEBUG 32004 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
-2025-02-27T23:41:40.916+01:00  INFO 32004 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
-2025-02-27T23:41:41.011+01:00  INFO 32004 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
-2025-02-27T23:41:42.698+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
-2025-02-27T23:41:42.699+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
-2025-02-27T23:41:42.700+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
-2025-02-27T23:41:42.701+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Recreate
-2025-02-27T23:41:42.903+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Recreated
-2025-02-27T23:41:42.913+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
-2025-02-27T23:41:42.914+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
-2025-02-27T23:41:43.626+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
-2025-02-27T23:41:43.627+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
-2025-02-27T23:41:43.627+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
-2025-02-27T23:41:43.627+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
-2025-02-27T23:41:44.092+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
-2025-02-27T23:41:44.182+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
-2025-02-27T23:41:44.183+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
-2025-02-27T23:41:44.185+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
-2025-02-27T23:41:44.186+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
-2025-02-27T23:41:44.186+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
-2025-02-27T23:41:44.693+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
-2025-02-27T23:41:44.694+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
-2025-02-27T23:41:44.697+01:00  INFO 32004 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
+2025-03-08T10:49:54.621+01:00  INFO 3392 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 3392 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2025-03-08T10:49:54.628+01:00 DEBUG 3392 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-08T10:49:54.628+01:00  INFO 3392 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2025-03-08T10:49:54.736+01:00  INFO 3392 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2025-03-08T10:49:56.815+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
+2025-03-08T10:49:56.816+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2025-03-08T10:49:56.816+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
+2025-03-08T10:49:56.816+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
+2025-03-08T10:49:56.825+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2025-03-08T10:49:56.825+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
+2025-03-08T10:49:57.455+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2025-03-08T10:49:57.525+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
+2025-03-08T10:49:57.526+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
+2025-03-08T10:49:57.527+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
+2025-03-08T10:49:58.098+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
+2025-03-08T10:49:58.199+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
+2025-03-08T10:49:58.200+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2025-03-08T10:49:58.200+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
+2025-03-08T10:49:58.200+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
+2025-03-08T10:49:58.200+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
+2025-03-08T10:49:58.725+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
+2025-03-08T10:49:58.726+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2025-03-08T10:49:58.731+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
+2025-03-08T10:50:43.723+01:00  INFO 3392 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
+2025-03-08T10:50:46.066+01:00  INFO 3392 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-08T10:50:46.166+01:00  INFO 3392 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 90 ms. Found 11 JPA repository interfaces.
+2025-03-08T10:50:46.747+01:00  INFO 3392 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2025-03-08T10:50:46.756+01:00  INFO 3392 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-08T10:50:46.763+01:00  INFO 3392 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-08T10:50:46.823+01:00  INFO 3392 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-08T10:50:46.823+01:00  INFO 3392 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1668 ms
+2025-03-08T10:50:46.916+01:00  INFO 3392 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-08T10:50:47.141+01:00  INFO 3392 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1ae924f1
+2025-03-08T10:50:47.142+01:00  INFO 3392 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-08T10:50:47.236+01:00  INFO 3392 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-08T10:50:47.338+01:00  INFO 3392 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-08T10:50:47.394+01:00  INFO 3392 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-08T10:50:47.756+01:00  INFO 3392 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-08T10:50:48.439+01:00  WARN 3392 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.crm.entities.Application
+2025-03-08T10:50:48.439+01:00  WARN 3392 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.crm.entities.Application
+2025-03-08T10:50:49.256+01:00  INFO 3392 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-08T10:50:49.527+01:00  INFO 3392 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-08T10:50:50.647+01:00  WARN 3392 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-08T10:50:51.021+01:00  INFO 3392 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6971c6b7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@402d45c6, org.springframework.security.web.context.SecurityContextHolderFilter@4eb43d2f, org.springframework.security.web.header.HeaderWriterFilter@30a8ac50, org.springframework.web.filter.CorsFilter@4b37b01e, org.springframework.security.web.authentication.logout.LogoutFilter@14cd8dfa, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@505f6511, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3dfb1626, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@f53db1a, org.springframework.security.web.session.SessionManagementFilter@625d2b6d, org.springframework.security.web.access.ExceptionTranslationFilter@23f16852, org.springframework.security.web.access.intercept.AuthorizationFilter@2cb4e4b1]
+2025-03-08T10:50:51.277+01:00  INFO 3392 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2025-03-08T10:50:51.286+01:00  INFO 3392 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 57.18 seconds (process running for 57.908)
+2025-03-08T15:04:45.351+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-08T15:04:45.352+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-08T15:04:45.358+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-03-08T15:04:46.866+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T15:04:47.222+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T15:04:54.381+01:00  WARN 3392 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h40m4s678ms314µs200ns).
+2025-03-08T15:05:11.707+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T15:05:11.742+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T15:05:35.398+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : skill added
+2025-03-08T15:05:35.456+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Job offer successfully created and associated
+2025-03-08T15:05:39.637+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T15:05:39.682+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T15:05:44.857+01:00  INFO 3392 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Status successfully update
+2025-03-08T15:08:42.796+01:00  INFO 3392 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-08T15:08:42.798+01:00  INFO 3392 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-08T15:08:42.805+01:00  INFO 3392 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-08T15:09:22.326+01:00  INFO 16284 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 16284 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2025-03-08T15:09:22.327+01:00 DEBUG 16284 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-08T15:09:22.328+01:00  INFO 16284 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2025-03-08T15:09:22.411+01:00  INFO 16284 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2025-03-08T15:09:23.907+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2025-03-08T15:09:23.908+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
+2025-03-08T15:09:23.908+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
+2025-03-08T15:09:23.908+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
+2025-03-08T15:09:23.914+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
+2025-03-08T15:09:23.915+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2025-03-08T15:09:24.596+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2025-03-08T15:09:24.598+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
+2025-03-08T15:09:24.598+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
+2025-03-08T15:09:24.599+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
+2025-03-08T15:09:25.065+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
+2025-03-08T15:09:25.266+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
+2025-03-08T15:09:25.267+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
+2025-03-08T15:09:25.267+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
+2025-03-08T15:09:25.268+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
+2025-03-08T15:09:25.268+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2025-03-08T15:09:25.779+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2025-03-08T15:09:25.780+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
+2025-03-08T15:09:25.782+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
+2025-03-08T15:10:09.781+01:00  INFO 16284 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
+2025-03-08T15:10:11.806+01:00  INFO 16284 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-08T15:10:11.893+01:00  INFO 16284 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 78 ms. Found 11 JPA repository interfaces.
+2025-03-08T15:10:12.385+01:00  INFO 16284 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2025-03-08T15:10:12.394+01:00  INFO 16284 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-08T15:10:12.394+01:00  INFO 16284 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-08T15:10:12.445+01:00  INFO 16284 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-08T15:10:12.447+01:00  INFO 16284 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1262 ms
+2025-03-08T15:10:12.527+01:00  INFO 16284 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-08T15:10:12.713+01:00  INFO 16284 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5e68be2
+2025-03-08T15:10:12.714+01:00  INFO 16284 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-08T15:10:12.786+01:00  INFO 16284 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-08T15:10:12.845+01:00  INFO 16284 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-08T15:10:12.879+01:00  INFO 16284 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-08T15:10:13.112+01:00  INFO 16284 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-08T15:10:13.613+01:00  WARN 16284 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.crm.entities.Application
+2025-03-08T15:10:13.613+01:00  WARN 16284 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.crm.entities.Application
+2025-03-08T15:10:14.234+01:00  INFO 16284 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-08T15:10:14.563+01:00  INFO 16284 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-08T15:10:15.542+01:00  WARN 16284 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-08T15:10:15.789+01:00  INFO 16284 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@35fddea2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4f876114, org.springframework.security.web.context.SecurityContextHolderFilter@1ee04ff6, org.springframework.security.web.header.HeaderWriterFilter@3c2188b0, org.springframework.web.filter.CorsFilter@52d625bd, org.springframework.security.web.authentication.logout.LogoutFilter@4a5dc126, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3e92bded, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3bbab2c9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@608448e7, org.springframework.security.web.session.SessionManagementFilter@4a5cddd9, org.springframework.security.web.access.ExceptionTranslationFilter@51bba775, org.springframework.security.web.access.intercept.AuthorizationFilter@b42d1c8]
+2025-03-08T15:10:16.009+01:00  INFO 16284 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2025-03-08T15:10:16.015+01:00  INFO 16284 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 54.194 seconds (process running for 55.004)
+2025-03-08T15:11:23.471+01:00  INFO 16284 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-08T15:11:23.471+01:00  INFO 16284 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-08T15:11:23.472+01:00  INFO 16284 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-08T15:11:23.983+01:00  INFO 16284 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Status successfully update
+2025-03-08T15:11:41.661+01:00  INFO 16284 --- [crm] [http-nio-8082-exec-9] c.example.crm.services.ContactServices   : Status successfully update
+2025-03-08T15:11:56.724+01:00  INFO 16284 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Status successfully update
+2025-03-08T15:13:09.780+01:00  INFO 16284 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-08T15:13:09.782+01:00  INFO 16284 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-08T15:13:09.794+01:00  INFO 16284 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-08T15:13:30.656+01:00  INFO 15524 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 15524 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2025-03-08T15:13:30.661+01:00 DEBUG 15524 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-08T15:13:30.661+01:00  INFO 15524 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2025-03-08T15:13:30.750+01:00  INFO 15524 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2025-03-08T15:13:32.372+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
+2025-03-08T15:13:32.372+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2025-03-08T15:13:32.372+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
+2025-03-08T15:13:32.373+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
+2025-03-08T15:13:32.381+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
+2025-03-08T15:13:32.381+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2025-03-08T15:13:32.965+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2025-03-08T15:13:32.966+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
+2025-03-08T15:13:32.966+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
+2025-03-08T15:13:32.967+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
+2025-03-08T15:13:33.486+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
+2025-03-08T15:13:33.593+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
+2025-03-08T15:13:33.595+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
+2025-03-08T15:13:33.595+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
+2025-03-08T15:13:33.595+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2025-03-08T15:13:33.595+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
+2025-03-08T15:13:34.109+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
+2025-03-08T15:13:34.110+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2025-03-08T15:13:34.113+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
+2025-03-08T15:14:18.105+01:00  INFO 15524 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
+2025-03-08T15:14:20.178+01:00  INFO 15524 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-08T15:14:20.260+01:00  INFO 15524 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 75 ms. Found 11 JPA repository interfaces.
+2025-03-08T15:14:20.769+01:00  INFO 15524 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2025-03-08T15:14:20.780+01:00  INFO 15524 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-08T15:14:20.780+01:00  INFO 15524 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-08T15:14:20.835+01:00  INFO 15524 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-08T15:14:20.836+01:00  INFO 15524 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1277 ms
+2025-03-08T15:14:20.915+01:00  INFO 15524 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-08T15:14:21.056+01:00  INFO 15524 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7d401cdc
+2025-03-08T15:14:21.058+01:00  INFO 15524 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-08T15:14:21.127+01:00  INFO 15524 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-08T15:14:21.185+01:00  INFO 15524 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-08T15:14:21.218+01:00  INFO 15524 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-08T15:14:21.453+01:00  INFO 15524 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-08T15:14:21.918+01:00  WARN 15524 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.crm.entities.Application
+2025-03-08T15:14:21.918+01:00  WARN 15524 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.crm.entities.Application
+2025-03-08T15:14:22.523+01:00  INFO 15524 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-08T15:14:22.758+01:00  INFO 15524 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-08T15:14:23.759+01:00  WARN 15524 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-08T15:14:24.001+01:00  INFO 15524 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5946e540, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@651a399, org.springframework.security.web.context.SecurityContextHolderFilter@59d8a968, org.springframework.security.web.header.HeaderWriterFilter@3725242e, org.springframework.web.filter.CorsFilter@79ef8115, org.springframework.security.web.authentication.logout.LogoutFilter@4f9191c1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a438c0a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@174da9a0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6db99c79, org.springframework.security.web.session.SessionManagementFilter@796687de, org.springframework.security.web.access.ExceptionTranslationFilter@5911dd25, org.springframework.security.web.access.intercept.AuthorizationFilter@1d1c5bb5]
+2025-03-08T15:14:24.224+01:00  INFO 15524 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2025-03-08T15:14:24.230+01:00  INFO 15524 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 54.061 seconds (process running for 54.661)
+2025-03-08T15:16:07.343+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-08T15:16:07.344+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-08T15:16:07.345+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-08T15:20:58.943+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T15:26:05.756+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T15:26:12.409+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T15:26:12.447+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T15:26:32.763+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T16:11:47.812+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T16:12:47.745+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T16:13:28.762+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-6] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T16:17:31.792+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T16:17:39.234+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T16:17:39.312+01:00  INFO 15524 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T16:49:04.388+01:00  WARN 15524 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=21m42s127ms474µs200ns).
+2025-03-08T17:25:14.829+01:00  WARN 15524 --- [crm] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m56s308ms165µs100ns).
+2025-03-08T17:26:06.684+01:00  INFO 15524 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-08T17:26:06.688+01:00  INFO 15524 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-08T17:26:06.698+01:00  INFO 15524 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-08T17:26:25.468+01:00  INFO 21248 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.2 with PID 21248 (C:\Users\maxim\Desktop\Job-placement-services\crm\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\crm)
+2025-03-08T17:26:25.468+01:00 DEBUG 21248 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-08T17:26:25.468+01:00  INFO 21248 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2025-03-08T17:26:25.556+01:00  INFO 21248 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\crm\compose.yml'
+2025-03-08T17:26:27.247+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2025-03-08T17:26:27.247+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
+2025-03-08T17:26:27.248+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
+2025-03-08T17:26:27.248+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
+2025-03-08T17:26:27.256+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
+2025-03-08T17:26:27.256+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2025-03-08T17:26:28.039+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
+2025-03-08T17:26:28.040+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
+2025-03-08T17:26:28.040+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
+2025-03-08T17:26:28.045+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2025-03-08T17:26:28.517+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
+2025-03-08T17:26:28.742+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
+2025-03-08T17:26:28.742+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
+2025-03-08T17:26:28.743+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
+2025-03-08T17:26:28.743+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2025-03-08T17:26:28.743+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
+2025-03-08T17:26:29.270+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2025-03-08T17:26:29.272+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
+2025-03-08T17:26:29.276+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
+2025-03-08T17:27:13.255+01:00  INFO 21248 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
+2025-03-08T17:27:15.556+01:00  INFO 21248 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-08T17:27:15.666+01:00  INFO 21248 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 96 ms. Found 11 JPA repository interfaces.
+2025-03-08T17:27:16.256+01:00  INFO 21248 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2025-03-08T17:27:16.268+01:00  INFO 21248 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-08T17:27:16.268+01:00  INFO 21248 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-08T17:27:16.340+01:00  INFO 21248 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-08T17:27:16.340+01:00  INFO 21248 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1564 ms
+2025-03-08T17:27:16.437+01:00  INFO 21248 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-08T17:27:16.640+01:00  INFO 21248 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4a9b3956
+2025-03-08T17:27:16.646+01:00  INFO 21248 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-08T17:27:16.748+01:00  INFO 21248 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-08T17:27:16.851+01:00  INFO 21248 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-08T17:27:16.910+01:00  INFO 21248 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-08T17:27:17.258+01:00  INFO 21248 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-08T17:27:17.976+01:00  WARN 21248 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.crm.entities.Application
+2025-03-08T17:27:17.976+01:00  WARN 21248 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.crm.entities.Application
+2025-03-08T17:27:18.938+01:00  INFO 21248 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-08T17:27:19.261+01:00  INFO 21248 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-08T17:27:20.386+01:00  WARN 21248 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-08T17:27:20.686+01:00  INFO 21248 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4a723adf, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f289126, org.springframework.security.web.context.SecurityContextHolderFilter@34fde3a3, org.springframework.security.web.header.HeaderWriterFilter@4707d60a, org.springframework.web.filter.CorsFilter@22cbbe87, org.springframework.security.web.authentication.logout.LogoutFilter@2eb27091, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d9639bb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@796687de, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@46e32574, org.springframework.security.web.session.SessionManagementFilter@63fcc21, org.springframework.security.web.access.ExceptionTranslationFilter@81f9b01, org.springframework.security.web.access.intercept.AuthorizationFilter@3b4cce5a]
+2025-03-08T17:27:20.939+01:00  INFO 21248 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2025-03-08T17:27:20.946+01:00  INFO 21248 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 55.98 seconds (process running for 56.598)
+2025-03-08T17:27:23.326+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-08T17:27:23.326+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-08T17:27:23.326+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-08T17:27:23.833+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:27:23.915+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:29:12.084+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:29:12.104+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:29:57.873+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:29:57.891+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:30:31.962+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:30:31.988+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:30:35.136+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:30:35.165+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:30:51.191+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:30:51.227+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:33:10.049+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : skill added
+2025-03-08T17:33:10.059+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : skill added
+2025-03-08T17:33:10.097+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-8] c.example.crm.services.ContactServices   : Job offer successfully created and associated
+2025-03-08T17:34:48.672+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:34:48.704+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:34:57.336+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Status successfully update
+2025-03-08T17:36:13.997+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Status successfully update
+2025-03-08T17:36:47.558+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-4] c.example.crm.services.ContactServices   : Status successfully update
+2025-03-08T17:37:58.197+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Status successfully update
+2025-03-08T17:38:02.575+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-10] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:38:02.609+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-1] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:38:19.549+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-3] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:38:19.573+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:38:21.010+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-2] c.example.crm.services.ContactServices   : Status successfully update
+2025-03-08T17:38:31.400+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-5] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:38:31.427+01:00  INFO 21248 --- [crm] [http-nio-8082-exec-7] c.example.crm.services.ContactServices   : Contact fetched successfully
+2025-03-08T17:41:46.547+01:00  INFO 21248 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-08T17:41:46.551+01:00  INFO 21248 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-08T17:41:46.558+01:00  INFO 21248 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

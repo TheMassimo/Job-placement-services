@@ -40,6 +40,21 @@ async function GetContactById(contactId) {
     }
 }
 
+async function GetContactByProfessionalId(professionalId) {
+    const response = await fetch(
+        generateUrl(`${URL_CONTACTS}/professional/${professionalId}`, null, null), {
+            method: 'GET',
+            credentials: 'include'
+        })
+    const obj = await response.json()
+
+    if (response.ok) {
+        return ContactDetails.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
 async function AddContact(contact){
     const response = await fetch(
         generateUrl(`${URL_CONTACTS}`, null, null), {
@@ -242,6 +257,7 @@ async function DeleteAddressOfContact(contactId, addressId) {
 const ContactAPI = {
     GetContacts,
     GetContactById,
+    GetContactByProfessionalId,
     AddContact,
     UpdateContact,
     DeleteContact,

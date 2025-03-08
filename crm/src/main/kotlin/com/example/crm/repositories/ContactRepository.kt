@@ -18,5 +18,8 @@ interface ContactRepository: JpaRepository<Contact, Long> {
     @EntityGraph(attributePaths = ["professional"])
     fun findByProfessionalIsNotNull(pageable: Pageable): Page<Contact>
 
+    // Query per trovare il Contact in base al professionalId
+    fun findByProfessionalProfessionalId(professionalId: Long): Contact?
+
     fun existsBySsn(ssn: String): Boolean
 }

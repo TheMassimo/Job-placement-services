@@ -284,6 +284,14 @@ const ViewJobOffers = () => {
                                                 navigate(`/jobOffers/progress/${offer.jobOfferId}`);
                                             }}
                                         > </Button>
+
+                                        <Button
+                                            variant="primary"
+                                            className="bi bi-clock-history me-2"
+                                            onClick={() => {
+                                                navigate(`/jobOffers/history/${offer.jobOfferId}`);
+                                            }}
+                                        > </Button>
                                     </Col>
                                 </Row>
                             </Card.Body>

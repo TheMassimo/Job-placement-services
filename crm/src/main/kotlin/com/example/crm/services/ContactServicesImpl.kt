@@ -190,6 +190,12 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         return contact.toDetailsDto()
     }
 
+    // Funzione che trova un Contact dato un professionalId
+    override fun getContactByProfessionalId(professionalId: Long): ContactDetailsDTO {
+        val contact = contactRepository.findByProfessionalProfessionalId(professionalId) ?: throw ContactNotFoundException("Contact not found")
+        return contact.toDetailsDto()
+    }
+
     override fun create(
         dto: ContactCreateDTO
     ) : ContactDTO {

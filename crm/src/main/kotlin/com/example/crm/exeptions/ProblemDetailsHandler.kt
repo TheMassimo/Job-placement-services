@@ -122,4 +122,31 @@ class ProblemDetailsHandler: ResponseEntityExceptionHandler(){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail)
     }
 
+    @ExceptionHandler(JobOfferNotFoundException::class)
+    fun handleJobOfferNotFoundException(e: JobOfferNotFoundException): ResponseEntity<Any> {
+        val problemDetail = ProblemDetail.forStatusAndDetail(
+            HttpStatus.BAD_REQUEST,
+            e.message ?: "Bad request"
+        )
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail)
+    }
+
+    @ExceptionHandler(JobOfferProcessingException::class)
+    fun handleJobOfferProcessingException(e: JobOfferProcessingException): ResponseEntity<Any> {
+        val problemDetail = ProblemDetail.forStatusAndDetail(
+            HttpStatus.BAD_REQUEST,
+            e.message ?: "Bad request"
+        )
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail)
+    }
+
+    @ExceptionHandler(ProfessionalNotUnemployedException::class)
+    fun handleProfessionalNotUnemployedException(e: ProfessionalNotUnemployedException): ResponseEntity<Any> {
+        val problemDetail = ProblemDetail.forStatusAndDetail(
+            HttpStatus.BAD_REQUEST,
+            e.message ?: "Professional no longer unemployed"
+        )
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail)
+    }
+
 }

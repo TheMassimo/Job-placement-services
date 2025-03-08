@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Positive
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -91,10 +92,11 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
         return jobOfferServices.updateJobOffer(jobOfferId, dto);
     }
 
-    @PutMapping("/{joboffersId}/status", "/{joboffersId}/status/")
+    @PutMapping("/{joboffersId}/status/{status}", "/{joboffersId}/status/{status}/")
     fun updateJobOfferStatus(@PathVariable @Positive joboffersId: Long,
-                             @RequestBody status: String): JobOfferDTO{
-        val jobOffer = jobOfferServices.updateJobOfferStatus(joboffersId, status)
+                             @PathVariable status: String,
+                             @RequestBody candidates: List<Long>): JobOfferDTO{
+        val jobOffer = jobOfferServices.updateJobOfferStatus(joboffersId, status, candidates)
         return jobOffer
     }
 
@@ -155,6 +157,43 @@ class JobOfferController(private val jobOfferServices: JobOfferServices) {
         @RequestBody skill: String
     ): JobOfferDTO {
         return jobOfferServices.updateSkill(id, skillId, skill)
+    }
+
+
+    @PostMapping("/{jobOfferId}/applications/{professionalId}", "/{jobOfferId}/applications/{professionalId}/")
+    @ResponseStatus(HttpStatus.CREATED)
+    fun insertNewApplication(
+        @PathVariable(name = "jobOfferId", required = true) jobOfferId: Long,
+        @PathVariable(name = "professionalId", required = true) professionalId: Long
+    ) {
+        jobOfferServices.insertNewApplication(jobOfferId, professionalId)
+    }
+
+    @DeleteMapping("/{jobOfferId}/{professionalId}", "/{jobOfferId}/{professionalId}/")
+    @ResponseStatus(HttpStatus.CREATED)
+    fun deleteNewApplication(
+        @PathVariable(name = "jobOfferId", required = true) jobOfferId: Long,
+        @PathVariable(name = "professionalId", required = true) professionalId: Long
+    ) {
+        jobOfferServices.deleteApplication(jobOfferId, professionalId)
+    }
+
+    @GetMapping("/{jobOfferId}/history", "/{jobOfferId}/history/")
+    fun getJobOfferHistory(@PathVariable("jobOfferId", required = true) jobOfferId: Long): List<JobOfferHistoryDTO> {
+        return jobOfferServices.getJobOfferHistory(jobOfferId)
+    }
+
+    @GetMapping("/{jobOfferId}/history/newest", "/{jobOfferId}/history/newest/")
+    fun getJobOfferNewestHistory(@PathVariable("jobOfferId", required = true) jobOfferId: Long): JobOfferHistoryDTO? {
+        return jobOfferServices.getJobOfferNewestHistory(jobOfferId)
+    }
+
+    @PutMapping("/{jobOfferId}/history/note", "/{jobOfferId}/history/note/")
+    fun updateJobOfferHistoryNote(
+        @PathVariable("jobOfferId", required = true) jobOfferId: Long,
+        @RequestBody newNote: String,
+    ):JobOfferHistoryDTO? {
+        return jobOfferServices.updateJobOfferHistoryNote(jobOfferId, newNote);
     }
 
 }

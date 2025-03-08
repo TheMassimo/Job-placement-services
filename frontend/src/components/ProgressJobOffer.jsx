@@ -8,6 +8,7 @@ import {Card, Badge, Dropdown, ListGroup, ListGroupItem} from "react-bootstrap";
 import {Row, Col} from "react-bootstrap"
 import {Pagination} from "../api/utils/Pagination.ts";
 import PopupContact from "./PopupContact";
+import PopupCandidate from "./PopupCandidate";
 import PopupConfirmation from "./PopupConfirmation";
 import SkillAPI from "../api/crm/SkillAPI.js";
 import { useNotification } from '../contexts/NotificationProvider';
@@ -15,16 +16,21 @@ import ContactAPI from "../api/crm/ContactAPI.js"; // Assicurati di avere una AP
 import JobOffersAPI from "../api/crm/JobOffersAPI.js"; // Assicurati di avere una API per le job offers
 import StepProgress from "../components/StepProgress";
 
-
 function ProgressJobOffer(props) {
     const { jobOfferId } = useParams();
     const [contact, setContact] = useState({});
     const [jobOffer, setJobOffer] = useState({});
-
+    const [candidates, setCandidates] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [mode, setMode] = useState(null);
+    const [note, setNote] = useState("");
+    const { handleError, handleSuccess } = useNotification();
+    const [selectedCandidateId, setSelectedCandidateId] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+
                 //get the contact id if needed
                 const response = await JobOffersAPI.GetJobOffersContactId(jobOfferId);
                 const contactIdToUse = response;
@@ -34,12 +40,45 @@ function ProgressJobOffer(props) {
                 //get contact data
                 const theContact = await ContactAPI.GetContactById(contactIdToUse);
                 setContact(theContact);
+
+                //get last history
+                const history = await JobOffersAPI.GetJobOfferNewestHistory(jobOfferId);
+                //set candidate profile
+                // Imposta i profili dei candidati
+                if (history.candidates) {
+                    // get all id
+                    const candidatePromises = history.candidates.map(async (application) => {
+                        return await ContactAPI.GetContactByProfessionalId(application.professionalId);
+                    });
+                    //Attendi che tutte le promesse siano risolte
+                    const resolvedCandidates = await Promise.all(candidatePromises);
+                    //Aggiorna lo stato con i candidati ricevuti
+                    setCandidates(resolvedCandidates);
+                }
+                //set previous note
+                if(history.note) {
+                    setNote(history.note)
+                }
             } catch (err) {
                 console.error(err);
             }
         };
         fetchData();
     }, [jobOfferId]);
+
+    //Per gestione modal
+    const handleModalClose = () => setShowModal(false);
+    const handleModalShow = () => setShowModal(true);
+    const handleConfirmContact = (contact) => {
+        setCandidates(contact)
+        setShowModal(false);
+    }
+
+    // Gestione dei cambiamenti nei campi del form
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setNote(value);
+    };
 
     const states = [
         'CREATED',
@@ -54,7 +93,7 @@ function ProgressJobOffer(props) {
             let nextState;
 
             if (targetState) {
-                // Se è stato specificato un targetState (es. "PIPPO"), usa quello
+                // Se è stato specificato un targetState, usa quello
                 nextState = targetState;
             } else {
                 // Altrimenti continua con la logica standard per ottenere il prossimo stato
@@ -68,28 +107,74 @@ function ProgressJobOffer(props) {
                 }
             }
 
-            // Aggiorna lo stato della job offer nel database
-            const response = await JobOffersAPI.UpdateStatusJobOffer(jobOfferId, nextState);
+            if((nextState == "CANDIDATE_PROPOSAL")&&(candidates.length < 1)) {
+                const err = {
+                    message: "Aggiungere almeno un professional"
+                };
+                handleError(err);
+            }else if((nextState == "CONSOLIDATED")&&(selectedCandidateId == null)) {
+                const err = {
+                    message: "Selezionare un professionista"
+                };
+                handleError(err);
+            }else{
+                //Aggiorna le note di questa history
+                const upNote = await JobOffersAPI.UpdateJobOfferHistoryNote(jobOfferId, note);
 
-            if (response) {
-                console.log('Stato aggiornato con successo nel database:', response);
-                // Aggiorna lo stato locale per riflettere il cambiamento nell'interfaccia
-                setJobOffer((prev) => ({ ...prev, status: nextState }));
+                let tmpCandidatesId = []
+                //decido cosa impostare
+                if(nextState == "CANDIDATE_PROPOSAL") {
+                    //prendo solo gli id dei professional e rimuovo tutte le altre informazioni
+                    tmpCandidatesId = candidates.map(item => item.professional?.professionalId).filter(id => id !== undefined);
+                }else if(nextState == "CONSOLIDATED") {
+                    tmpCandidatesId.push(selectedCandidateId)
+                }
+
+                // Aggiorna lo stato della job offer nel database
+                const response = await JobOffersAPI.UpdateStatusJobOffer(jobOfferId, nextState, tmpCandidatesId);
+
+                if (response) {
+                    console.log("Response=>", response);
+                    // Aggiorna lo stato locale per riflettere il cambiamento nell'interfaccia
+                    setJobOffer((prev) => ({ ...prev, status: nextState }));
+                }
+
+                setNote("")
+                handleSuccess('Step completato');
             }
         } catch (err) {
             console.error(err);
+            handleError(err);
         }
     };
 
+    const handleRowClick = (professionalId) => {
+        setSelectedCandidateId(professionalId);
+    };
 
+    const cancelCandidate = (professionalId) =>{
+        // Rimuovere l'elemento con il professionalId specificato
+        const updatedCandidates = candidates.filter(candidate => candidate.professional.professionalId !== professionalId);
 
-
+        // Aggiornare lo stato con la lista dei candidati aggiornata
+        setCandidates(updatedCandidates);
+    }
 
     return (
         <div style={{paddingTop: '90px'}}>
             {jobOffer.status && (
                 <StepProgress currentStep={jobOffer.status}/>
             )}
+
+            <PopupCandidate
+                mode={mode}
+                showModal={showModal}
+                handleModalClose={handleModalClose}
+                toLoad={"Professional"}
+                handleConfirmContact={handleConfirmContact}
+                preSelectedProfessionals={candidates}
+            />
+
             <Card className="view-customer-details-card m-3 ">
                 <h3>Job Offer</h3>
                 {/* Header */}
@@ -148,11 +233,106 @@ function ProgressJobOffer(props) {
                         </Col>
                     </Row>
 
+                    <Row>
+                        <Form.Group controlId="formNotes" className="text-start">
+                            <Form.Label>Note di questa fase</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                rows={3}
+                                name="notes"
+                                placeholder="Enter Additional Notes"
+                                value={note}
+                                onChange={handleChange}
+                                className="form-control-sm"
+                            />
+                        </Form.Group>
+                    </Row>
+
+                    {/*Tabella selezione candidati */}
+                    {jobOffer.status == "SELECTION_PHASE" && (
+                    <Row className="mt-4">
+                        {/* Sezione Note Cliente */}
+                        <Col>
+                            <div className="d-flex justify-content-between align-items-center mb-2">
+                                <h5 className="section-title m-0">Selected Profiles</h5>
+                                <Button variant="success" className="mx-2" onClick={handleModalShow}>
+                                    Select Professional <i className="bi bi-plus-lg"></i>
+                                </Button>
+                            </div>
+                            <Table striped bordered hover>
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>SSN</th>
+                                    <th> </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {candidates.map((candidate, index) => (
+                                    <tr key={candidate.professional.professionalId}>
+                                        <td>{candidate.professional.professionalId}</td>
+                                        <td>{candidate.name}</td>
+                                        <td>{candidate.surname}</td>
+                                        <td>{candidate.ssn}</td>
+                                        <td>
+                                            <Button variant="danger" className="mx-2"
+                                                    onClick={() => cancelCandidate(candidate.professional.professionalId)}>
+                                                <i className="bi bi-trash"></i>
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </Table>
+                        </Col>
+                    </Row>
+                    )}
+
+                    {/*Tabella candidati propsti */}
+                    {jobOffer.status === "CANDIDATE_PROPOSAL" && (
+                        <Row className="mt-4">
+                            <Col>
+                                <div className="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 className="section-title m-0">Candidate Profiles</h5>
+                                </div>
+                                <Table striped bordered hover>
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Surname</th>
+                                        <th>SSN</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {candidates.map((candidate) => {
+                                        const isSelected = candidate.professional.professionalId === selectedCandidateId;
+                                        return (
+                                            <tr
+                                                key={candidate.professional.professionalId}
+                                                onClick={() => handleRowClick(candidate.professional.professionalId)}
+                                                className = {isSelected ? "table-success" : null}
+                                            >
+                                                <td>{candidate.professional.professionalId}</td>
+                                                <td>{candidate.name}</td>
+                                                <td>{candidate.surname}</td>
+                                                <td>{candidate.ssn}</td>
+                                            </tr>
+                                        );
+                                    })}
+                                    </tbody>
+                                </Table>
+                            </Col>
+                        </Row>
+                    )}
+
                 </Card.Body>
             </Card>
 
             <div className="d-flex justify-content-center my-4">
-                {jobOffer.status!="ABORTED" && (
+                {jobOffer.status != "ABORTED" && (
                     <Button variant="danger" className="mx-2" onClick={() => goToState("ABORTED")}>
                         Abort <i className="bi bi-x-lg"></i>
                     </Button>

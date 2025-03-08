@@ -1,4 +1,5 @@
 import {Skill} from "./Skill";
+import {Professional} from "./Professional";
 
 export enum JobOfferStatus {
     CREATED,
@@ -14,6 +15,7 @@ interface JobOfferRawData {
     description: string
     status: JobOfferStatus | null
     requiredSkills: Skill[]
+    candidateProfiles: Professional[]
     duration: number
     offerValue: number | null
     notes: string | null
@@ -24,6 +26,7 @@ export class JobOffer implements JobOfferRawData {
     description: string
     status: JobOfferStatus | null
     requiredSkills: Skill[]
+    candidateProfiles: Professional[]
     duration: number
     offerValue: number | null
     notes: string | null
@@ -33,6 +36,7 @@ export class JobOffer implements JobOfferRawData {
         description: string,
         status: JobOfferStatus | null,
         requiredSkills: Skill[],
+        candidateProfiles: Professional[],
         duration: number,
         offerValue: number | null,
         notes: string | null,
@@ -41,6 +45,7 @@ export class JobOffer implements JobOfferRawData {
         this.description = description
         this.status = status
         this.requiredSkills = requiredSkills
+        this.candidateProfiles = candidateProfiles
         this.duration = duration
         this.offerValue = offerValue
         this.notes = notes
@@ -53,6 +58,7 @@ export class JobOffer implements JobOfferRawData {
                 obj.description,
                 obj.status,
                 obj.requiredSkills,
+                obj.candidateProfiles,
                 obj.duration,
                 obj.offerValue,
                 obj.notes,

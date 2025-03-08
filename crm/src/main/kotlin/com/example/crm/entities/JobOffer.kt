@@ -47,6 +47,9 @@ class JobOffer {
     @OneToMany(mappedBy = "jobOfferProposal")
     var candidateProfiles: MutableSet<Professional> = mutableSetOf()
 
+    @OneToMany(mappedBy = "jobOffer", cascade = [(CascadeType.ALL)])
+    val jobHistory = mutableSetOf<JobOfferHistory>()
+
     @OneToOne(mappedBy = "jobOffer")
     var professional: Professional? = null
 
@@ -89,6 +92,21 @@ class JobOffer {
     fun removeCandidateProfiles(p: Professional){
         p.jobOfferProposal = null
         candidateProfiles.remove(p)
+    }
+
+    fun removeAllCandidateProfiles() {
+        // Itera su tutti i candidateProfiles e rimuovi l'associazione con l'offerta di lavoro
+        candidateProfiles.forEach { candidate ->
+            candidate.jobOfferProposal = null  // Rimuovi l'associazione con questa offerta di lavoro
+        }
+
+        // Ora svuota la lista di candidateProfiles
+        candidateProfiles.clear() // Rimuove tutti i candidati dalla collezione
+    }
+
+    fun addHistory(history: JobOfferHistory) {
+        history.jobOffer = this
+        this.jobHistory.add(history)
     }
 }
 

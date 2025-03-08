@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 import ContactAPI from "../api/crm/ContactAPI.js";
 import {Pagination} from "../api/utils/Pagination.ts"
 import {ContactFilter} from "../api/crm/filters/ContactFilter.ts";
+import SkillAPI from "../api/crm/SkillAPI.js";
 import '../App.css';  // Importa il file CSS
 
 function Filters(props) {
     const setFilters = props.setFilters;
     const toLoad = props.toLoad;
+    const skills = props.skills;
     const setCurrentPage = props.setCurrentPage;
     const [formFilters, setFormFilters] = useState(new ContactFilter(null, null, null, null, null, null, toLoad, null, null, null, null));
 
@@ -133,27 +135,36 @@ function Filters(props) {
                     />
                 </Form.Group>
             )}
-            {toLoad === "Professionals" && (
+            {toLoad==="Professional" && (
                 <>
                     <Form.Group controlId="filterSkill" className="mb-2">
                         <Form.Label>Filter by Skill</Form.Label>
                         <Form.Control
-                            type="text"
-                            name="skill"
-                            placeholder="Enter Skill"
-                            value={formFilters.skill}
+                            as="select"
+                            name="skills"
+                            value={formFilters.skills === null ? "" : formFilters.skills}
                             onChange={handleFilterChange}
-                        />
+                        >
+                            <option value="">All Skills</option>
+                            {skills && skills.map((skill) => (
+                                <option key={skill.skillId} value={skill.skill}>
+                                    {skill.skill}
+                                </option>
+                            ))}
+                        </Form.Control>
                     </Form.Group>
                     <Form.Group controlId="filterStatus" className="mb-2">
                         <Form.Label>Filter by Status</Form.Label>
-                        <Form.Control
-                            type="text"
+                        <Form.Select
                             name="status"
-                            placeholder="Enter Status"
-                            value={formFilters.status}
-                            onChange={handleFilterChange}
-                        />
+                            value={formFilters.status ?? ""} // Imposta "all" come valore di default
+                            onChange={handleFilterChange} // Funzione per gestire il cambiamento
+                        >
+                            <option value="">All</option>
+                            <option value="UNEMPLOYED">Unemployed</option>
+                            <option value="BUSY">Busy</option>
+                            <option value="EMPLOYED">Employed</option>
+                        </Form.Select>
                     </Form.Group>
                     <Form.Group controlId="filterGeographicalInfo" className="mb-2">
                         <Form.Label>Filter by Geographical Info</Form.Label>
@@ -161,7 +172,7 @@ function Filters(props) {
                             type="text"
                             name="geographicalInfo"
                             placeholder="Enter Geographical Info"
-                            value={formFilters.GeographicalInfo}
+                            value={formFilters.geographicalInfo === null ? "" : formFilters.geographicalInfo}
                             onChange={handleFilterChange}
                         />
                     </Form.Group>
@@ -222,7 +233,7 @@ const ContactTable = ({contacts, setSelectedContact, mode}) => {
                     return (<tr
                             key={index}
                             {...rowProps} // Applica le proprietà calcolate
-                            >
+                        >
 
                             <td>{contact.contactId}</td>
                             <td>{contact.name}</td>
@@ -258,22 +269,7 @@ const ContactTable = ({contacts, setSelectedContact, mode}) => {
     );
 };
 
-const CustomerTable = ({contacts, setSelectedContact}) => {
-    const [selectedPerson, setSelectedPerson] = useState("");
-
-    const handleRowClick = (contact) => {
-        //update select to color in green
-        setSelectedPerson(contact.contactId);
-        //call external function
-        if (setSelectedContact) {
-            setSelectedContact(contact); // Comunica al genitore il cliente selezionato
-        }
-    };
-
-    useEffect(() => {
-        setSelectedPerson(null)
-    }, [contacts]);
-
+const ProfessionalTable = ({ contacts, selectedProfessionals, handleRowClick }) => {
     return (
         <Form>
             <Table striped bordered hover>
@@ -283,26 +279,31 @@ const CustomerTable = ({contacts, setSelectedContact}) => {
                     <th>Name</th>
                     <th>Surname</th>
                     <th>SSN code</th>
-                    <th>Job offers</th>
+                    <th>Skills</th>
                 </tr>
                 </thead>
                 <tbody>
                 {contacts.map((contact, index) => {
+                    const isSelected = selectedProfessionals.some(c => c.contactId === contact.contactId);
 
-                    return (<tr
+                    return (
+                        <tr
                             key={index}
-                            onClick={() => {
-                                handleRowClick(contact);
-                            }}
-                            className={String(selectedPerson) === String(contact.contactId) ? "table-success" : null}
+                            onClick={() => handleRowClick(contact)}
+                            className={isSelected ? "table-success" : ""}
                         >
-                            <td>{contact.contactId}</td>
+                            <td>{contact.professional.professionalId}</td>
                             <td>{contact.name}</td>
                             <td>{contact.surname}</td>
                             <td>{contact.ssn}</td>
-                            <td>{Array.isArray(contact.customer?.jobOffers)
-                                ? contact.customer.jobOffers.length
-                                : 0}</td>
+                            <td>
+                                {Array.isArray(contact.professional?.skills)
+                                    ? contact.professional.skills
+                                        .map(skillObj => skillObj.skill)
+                                        .sort((a, b) => a.localeCompare(b))
+                                        .join(', ')
+                                    : 'N/A'}
+                            </td>
                         </tr>
                     );
                 })}
@@ -321,27 +322,48 @@ function PopupContact(props) {
     const handleModalClose = props.handleModalClose;
     const mode = props.mode;
     const toLoad = props.toLoad;
+    const preSelectedProfessionals = props.preSelectedProfessionals
     const handleConfirmContact = props.handleConfirmContact;
     const [pageSize, setPageSize] = useState(5);
+    const [skills, setSkills] = useState([]);
     const [filters, setFilters] = useState(new ContactFilter(null, null, null, null, null, null, toLoad, null, null, null, null));
-
+    const [selectedProfessionals, setSelectedProfessionals] = useState([]); // Tiene traccia delle selezioni
 
     //USE Effect
     useEffect(() => {
         ContactAPI.GetContacts(filters, new Pagination(currentPage, pageSize)).then((res) => {
             setContacts(res);
         }).catch((err) => console.log(err))
-    }, [filters, currentPage, showModal]);
+    }, [filters, currentPage]);
+
+    // Aggiorna i selectedValues con i professional pre-selezionati
+    useEffect(() => {
+        if (preSelectedProfessionals.length > 0) {
+            setSelectedProfessionals(preSelectedProfessionals);
+        }
+    }, [preSelectedProfessionals]);
+
+    useEffect(() => {
+        SkillAPI.GetSkills()
+            .then((res) => {
+                // Setta le skills
+                setSkills(res);
+                //console.log("skills", res);
+            })
+            .catch((err) => console.log(err));
+    }, []); // Esegui solo una volta quando il componente viene montato
 
     const handleContinue = () => {
-        if (selectedContact) {
-            //richiamo l'evento esterno passandogli il contatto selezionato
-            handleConfirmContact(selectedContact);
-        } else {
-            console.log("Nessun contatto selezionato.");
-        }
+        //richiamo l'evento esterno passandogli il contatto selezionato
+        handleConfirmContact(selectedProfessionals);
     };
 
+    const handleCancel = () => {
+        //reimposto i valori iniziali prima di chiudere
+        setSelectedProfessionals(preSelectedProfessionals);
+        //chiamo il metodo esterno che gestisce la chiusura
+        handleModalClose()
+    };
     const handleSelect = (eventKey) => {
         const parsedValue = parseInt(eventKey, 10); // Converte l'eventKey in un numero intero
         setPageSize(parsedValue);
@@ -356,21 +378,35 @@ function PopupContact(props) {
         handleModalClose(event);
     };
 
+    const handleRowClick = (contact) => {
+        setSelectedProfessionals((prevSelected) => {
+            const isSelected = prevSelected.some(c => c.contactId === contact.contactId);
+
+            if (isSelected) {
+                // Se già selezionato, rimuovilo
+                return prevSelected.filter(c => c.contactId !== contact.contactId);
+            } else {
+                // Altrimenti, aggiungilo
+                return [...prevSelected, contact];
+            }
+        });
+    };
+
     return (
         <>
             {/* Modale */}
             <Modal show={showModal} onHide={localOnHide} centered size="lg">
                 <Modal.Header closeButton>
-                    <Modal.Title>{ toLoad === "Professionals"
-                                   ? "Choose Professional"
-                                   : toLoad === "Customer"
-                                     ? "Choose Customer"
-                                     : "Choose Contacts"
+                    <Modal.Title>{ toLoad === "Professional"
+                        ? "Choose Professional"
+                        : toLoad === "Customer"
+                            ? "Choose Customer"
+                            : "Choose Contacts"
                     }</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Filters toLoad={toLoad} setFilters={setFilters} setCurrentPage={setCurrentPage} />
-                    <h4>{ toLoad === "Professionals"
+                    <Filters toLoad={toLoad} setFilters={setFilters} setCurrentPage={setCurrentPage} skills={skills} />
+                    <h4>{ toLoad === "Professional"
                         ? "Select Professional:"
                         : toLoad === "Customer"
                             ? "Select Customer:"
@@ -394,10 +430,11 @@ function PopupContact(props) {
                             mode={mode}
                         />
                     )}
-                    {toLoad === "Customer" && (
-                        <CustomerTable
+                    {toLoad === "Professional" && (
+                        <ProfessionalTable
                             contacts={contacts}
-                            setSelectedContact={setSelectedContact}
+                            selectedProfessionals = {selectedProfessionals}
+                            handleRowClick={handleRowClick}
                         />
                     )}
                     <div className="d-flex justify-content-between align-items-center mt-3">
@@ -429,13 +466,13 @@ function PopupContact(props) {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger"  onClick={handleModalClose}>
+                    <Button variant="danger"
+                        onClick={handleCancel}>
                         Cancel
                     </Button>
                     <Button
                         className="custom-button"
                         onClick={handleContinue}
-                        disabled={!selectedContact}
                     >
                         Continue
                     </Button>

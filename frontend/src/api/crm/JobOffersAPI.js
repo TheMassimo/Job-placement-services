@@ -6,6 +6,7 @@ import {Address} from "./entities/Address.ts"
 import {Email} from "./entities/Email.ts"
 import {Telephone} from "./entities/Telephone.ts"
 import {JobOffer} from "./entities/JobOffer.ts"
+import {JobOfferHistory} from "./entities/JobOfferHistory.ts"
 import {Skill} from "./entities/Skill.ts"
 
 const URL_JOBOFFERS = 'http://localhost:8082/API/joboffers'
@@ -28,6 +29,7 @@ async function GetJobOffers(filters, pagination){
 }
 
 async function GetJobOfferById(jobOfferId){
+
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${jobOfferId}`, null, null), {
             method: 'GET',
@@ -158,13 +160,13 @@ async function DeleteRequiredSkillToJobOffer(jobOfferId, skillId) {
     }
 }
 
-async function UpdateStatusJobOffer(jobOfferId, status) {
+async function UpdateStatusJobOffer(jobOfferId, status, candidates) {
     const response = await fetch(
-        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/status`, null, null), {
+        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/status/${status}`, null, null), {
             method: 'PUT',
             credentials: 'include',
             headers: {'Content-Type': 'application/json'},
-            body: status
+            body: JSON.stringify(candidates)
         })
 
     const obj = await response.json()
@@ -175,6 +177,60 @@ async function UpdateStatusJobOffer(jobOfferId, status) {
         throw obj
     }
 }
+
+async function GetJobOfferHistory(jobOfferId){
+    const response = await fetch(
+        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/history`, null, null), {
+            method: 'GET',
+            credentials: 'include'
+        }
+    )
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return obj.map((e) => JobOfferHistory.fromJsonObject(e))
+    } else {
+        throw obj
+    }
+}
+
+async function GetJobOfferNewestHistory(jobOfferId){
+    const response = await fetch(
+        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/history/newest`, null, null), {
+            method: 'GET',
+            credentials: 'include'
+        }
+    )
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return JobOfferHistory.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
+async function UpdateJobOfferHistoryNote(jobOfferId, newNote){
+    const response = await fetch(
+        generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/history/note`, null, null), {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(newNote)
+        }
+    )
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return JobOfferHistory.fromJsonObject(obj)
+    } else {
+        throw obj
+    }
+}
+
 
 const JobOffersAPI = {
     GetJobOffers,
@@ -187,6 +243,9 @@ const JobOffersAPI = {
     UpdateRequiredSkillToJobOffer,
     DeleteRequiredSkillToJobOffer,
     UpdateStatusJobOffer,
+    GetJobOfferHistory,
+    GetJobOfferNewestHistory,
+    UpdateJobOfferHistoryNote,
 }
 
 export default JobOffersAPI

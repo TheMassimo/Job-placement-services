@@ -18,11 +18,13 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import jakarta.persistence.criteria.*
+import java.time.LocalDateTime
 
 
 @Service
 class JobOfferServicesImpl(private val entityManager: EntityManager,
                            private val jobOfferRepository: JobOfferRepository,
+                           private val jobOfferHistoryRepository: JobOfferHistoryRepository,
                            private val customerRepository: CustomerRepository,
                            private val contactRepository: ContactRepository,
                            private val professionalRepository: ProfessionalRepository,
@@ -153,6 +155,7 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         dto: JobOfferCreateDTO, contactId: Long
     ): JobOfferDTO {
         val j = JobOffer()
+        val jh = JobOfferHistory()
 
         dto.requiredSkills?.forEach { skillId ->
             val eSkill = skillRepository.findByIdOrNull(skillId)
@@ -169,6 +172,10 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         j.notes = dto.notes ?: ""
         j.duration = dto.duration
         j.offerValue = dto.offerValue
+        //add history
+        jh.jobOfferStatus = JobStatus.CREATED
+        j.addHistory(jh)
+        jobOfferHistoryRepository.save(jh)
 
         //check if contact exist
         val myContact = contactRepository.findByIdOrNull(contactId)
@@ -200,7 +207,8 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         return jobOffer?.currentCustomer?.contact?.contactId
     }
 
-    override fun updateJobOfferStatus(jobOfferId: Long, status: String): JobOfferDTO {
+    @Transactional
+    override fun updateJobOfferStatus(jobOfferId: Long, status: String, candidates:List<Long>): JobOfferDTO {
         val jobOffer = jobOfferRepository.findByIdOrNull(jobOfferId)
             ?: throw ElementNotFoundException("JobOffer not found")
 
@@ -216,26 +224,89 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
             throw BadParameterException("Cannot transition to this state from " + jobOffer.status.name)
         }
 
-       /*
-        if(jobOffer.status == JobStatus.SELECTION_PHASE && newState==JobStatus.CANDIDATE_PROPOSAL){
-            if(professionalId == null){
-                throw BadParameterException("Professional id not given")
-            }else{
-                val professional = professionalRepository.findByIdOrNull(professionalId)
-                    ?: throw ElementNotFoundException("Professional of professionalId: $professionalId not found")
+        val jobOfferHistory = JobOfferHistory()
 
-                if(professional.employment == ProfessionalEmployment.UNEMPLOYED){
-                    //set the new status
-                    professional.employment = ProfessionalEmployment.BUSY
-                    //bind the ids
-                    jobOffer.addCandidateProfiles(professional)
-                    //save the new proposal value
-                    professionalRepository.save(professional)
-                }else{
-                    throw BadParameterException("This professional is already bounds to another jobOffer")
+
+        if(newState==JobStatus.CANDIDATE_PROPOSAL){
+            if(candidates.isEmpty()){
+                throw BadParameterException("Professionals id not given")
+            }else{
+
+                //aggiungo tutti i nuovi candidati alla vecchia SELECTION_PHASE
+                for (professionalId in candidates) {
+                    val professional = professionalRepository.findByIdOrNull(professionalId)
+                        ?: throw ElementNotFoundException("Professional not found")
+                    if(professional.employment != ProfessionalEmployment.UNEMPLOYED){
+                        throw ProfessionalNotUnemployedException("Professional: ${professionalId} no longer unemployed")
+                    }
+                    insertNewApplication(jobOfferId, professionalId)
+                }
+                //Aggiungo i candidati anche al Candidate proposal perchè poi li modificherò
+                val lastJobOfferHistory =
+                    jobOffer.jobHistory.filter { it.jobOfferStatus == JobStatus.SELECTION_PHASE }
+                        .maxByOrNull { it.date }!!
+
+                lastJobOfferHistory.candidates.forEach {
+                    jobOfferHistory.addJobApplication(it.professional)
                 }
             }
-        }else if(jobOffer.status == JobStatus.CANDIDATE_PROPOSAL && newState==JobStatus.CONSOLIDATED){
+        }
+
+        if(newState==JobStatus.CONSOLIDATED){
+            if(candidates.isEmpty()){
+                throw BadParameterException("Professionals id not given")
+            }else{
+                //verifico che il candidato sia ancora disocupato
+                val professionalId = candidates[0];
+                val professional = professionalRepository.findByIdOrNull(professionalId)
+                    ?: throw ElementNotFoundException("Professional not found")
+                if(professional.employment != ProfessionalEmployment.UNEMPLOYED){
+                    throw ProfessionalNotUnemployedException("Professional: ${professionalId} no longer unemployed")
+                }
+
+                //se quindi è ancora disponibile cambio il suo stato in occupato e vado avanti
+                professional.employment = ProfessionalEmployment.EMPLOYED;
+                professionalRepository.save(professional);
+
+                //Trova la JobOfferHistory più recente
+                val latestHistory = jobOffer.jobHistory.maxByOrNull { it.date ?: LocalDateTime.MIN }
+                    ?: throw IllegalStateException("No job history found for job offer ${jobOffer.jobOfferId}")
+
+                //Trova l'application dell'utente con professionalId specifico
+                val application = latestHistory.candidates.find { it.professional.professionalId == professionalId }
+                    ?: throw IllegalStateException("Application not found for Professional ID: $professionalId")
+
+                //Modifica lo stato dell'application
+                application.status = ApplicationStatus.Accepted;
+
+                // Salva i cambiamenti
+                jobOfferHistoryRepository.save(latestHistory)
+
+
+                ///AGGIUNGERE ANCHE IL PROFESSIONAL ID NELLA JOB OFFER E PORFESSIONAL BINDARLO BENE
+            }
+        }
+
+        if (newState == JobStatus.DONE) {
+            val lastJobOfferHistory =
+                jobOffer.jobHistory.filter { it.jobOfferStatus == JobStatus.SELECTION_PHASE }
+                    .maxByOrNull { it.date }!!
+
+            lastJobOfferHistory.candidates = lastJobOfferHistory.candidates.map {
+                if (it.professional.professionalId == candidates[0]) {
+                    jobOfferHistory.addJobApplication(it.professional)
+
+                    it.status = ApplicationStatus.Accepted
+                    it
+                } else {
+                    it.status = ApplicationStatus.Aborted
+                    it
+                }
+            }.toMutableSet()
+        }
+
+        /*
+        if(jobOffer.status == JobStatus.CANDIDATE_PROPOSAL && newState==JobStatus.CONSOLIDATED){
             if(professionalId == null){
                 throw BadParameterException("Professional id not given")
             }else{
@@ -301,8 +372,14 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         }
         */
 
+        //per jobOffer
         jobOffer.status = newState
         jobOfferRepository.save(jobOffer)
+        //per history
+        jobOfferHistory.jobOfferStatus = jobOffer.status
+        //jobOfferHistory.note = newJobOffer.notes
+        jobOffer.addHistory(jobOfferHistory)
+        jobOfferHistoryRepository.save(jobOfferHistory)
 
         logger.info("Status successfully update")
 
@@ -466,6 +543,80 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         deleteSkill(id, skillId)
         //add the new skill
         return addSkill(id, skill)
+    }
+
+    override fun insertNewApplication(
+        jobOfferId: Long, professionalId: Long
+    ) {
+        //cerca la jobOffer
+        val jobOffer = jobOfferRepository.findById(jobOfferId)
+            .orElseThrow { JobOfferNotFoundException("Job offer with $jobOfferId not found") }
+
+        //se è in selection phase la può aggiungere altrimenti no
+        if (jobOffer.status == JobStatus.SELECTION_PHASE) {
+            //ottiene il professional
+            val professional = professionalRepository.findById(professionalId).orElseThrow {
+                ProfessionalNotFoundException("Professional with id: $professionalId not found")
+            }
+
+
+            val jobOfferHistory = jobOffer.jobHistory.filter { it.jobOfferStatus == JobStatus.SELECTION_PHASE }
+                .maxByOrNull { it.date }!!
+
+            jobOfferHistory.addJobApplication(professional)
+            jobOfferHistoryRepository.save(jobOfferHistory)
+        } else {
+            throw JobOfferProcessingException("To add an application the status of the job offer must be equal to 'Selection Phase'")
+        }
+    }
+
+    override fun deleteApplication(jobOfferId: Long, professionalId: Long) {
+        //get the jobOffer
+        val jobOffer = jobOfferRepository.findById(jobOfferId)
+            .orElseThrow { JobOfferNotFoundException("Job offer with $jobOfferId not found") }
+
+        //control if we are in the right sitation
+        if (jobOffer.status == JobStatus.SELECTION_PHASE) {
+            //get professional or error
+            val professional = professionalRepository.findById(professionalId).orElseThrow {
+                ProfessionalNotFoundException("Professional with id: $professionalId not found")
+            }
+
+            val jobOfferHistory = jobOffer.jobHistory.filter { it.jobOfferStatus == JobStatus.SELECTION_PHASE }
+                .maxByOrNull { it.date }!!
+
+            jobOfferHistory.removeJobApplication(jobOfferHistory.candidates.first {
+                it.professional == professional
+            })
+            jobOfferHistoryRepository.save(jobOfferHistory)
+        } else {
+            throw JobOfferProcessingException("To remove an application the status of the job offer must be equal to 'Selection Phase'")
+        }
+    }
+
+    override fun getJobOfferHistory(jobOfferId: Long): List<JobOfferHistoryDTO> {
+        return jobOfferRepository.findById(jobOfferId)
+            .orElseThrow { JobOfferNotFoundException("Job offer with $jobOfferId not found") }.jobHistory.map { it.toDto() }
+    }
+
+    override fun getJobOfferNewestHistory(jobOfferId: Long): JobOfferHistoryDTO? {
+        return jobOfferRepository.findById(jobOfferId)
+            .orElseThrow { JobOfferNotFoundException("Job offer with $jobOfferId not found") }
+            .jobHistory.map { it.toDto() }
+            .maxByOrNull { it.date ?: LocalDateTime.MIN } // Se `date` è null, usa `LocalDateTime.MIN`
+    }
+
+    override fun updateJobOfferHistoryNote(jobOfferId: Long, note:String): JobOfferHistoryDTO? {
+        val lastHistoryDTO = getJobOfferNewestHistory(jobOfferId)
+            ?: throw ElementNotFoundException("No history found for job offer $jobOfferId")
+
+        val lastHistory = jobOfferHistoryRepository.findById(lastHistoryDTO.jobOfferHistoryId)
+            .orElseThrow { ElementNotFoundException("JobOfferHistory with ID ${lastHistoryDTO.jobOfferHistoryId} not found") }
+
+        lastHistory.note = note  // Supponendo che `note` sia una proprietà mutabile
+        jobOfferHistoryRepository.save(lastHistory)  // Salva le modifiche
+
+        return lastHistory.toDto();
     }
 
 }

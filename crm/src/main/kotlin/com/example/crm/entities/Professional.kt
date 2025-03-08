@@ -1,4 +1,5 @@
 package com.example.crm.entities
+import com.example.crm.dtos.ProfessionalDTO
 import jakarta.persistence.*
 
 enum class ProfessionalEmployment {
@@ -25,6 +26,9 @@ class Professional {
     @ManyToOne
     var jobOfferProposal: JobOffer? = null
 
+    @OneToMany(mappedBy = "professional", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val jobApplications = mutableSetOf<Application>()
+
     @ManyToMany(mappedBy = "professional")
     var skills: MutableSet<Skill> = mutableSetOf()
 
@@ -50,6 +54,14 @@ class Professional {
         jo.professional = null
         jobOffer = null
     }
-
-
 }
+
+fun Professional.toDto(): ProfessionalDTO =
+    ProfessionalDTO(
+        this.professionalId,
+        this.employment,
+        this.geographicalInfo,
+        this.dailyRate,
+        this.notes,
+        //this.contact,
+        this.skills)

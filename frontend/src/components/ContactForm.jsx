@@ -93,7 +93,7 @@ function ContactForm(props) {
     const handleAdd = async (e) => {
         try {
             // La logica rimane la stessa, ora usi solo formData.skills
-            formData.skills = formData.skills.map((skill) => skill.skillId);
+            const tmpSkills = formData.skills.map((skill) => skill.skillId);
 
             let resAddContact = null;
             // Prima chiamata API per aggiugnere il contatto
@@ -126,7 +126,7 @@ function ContactForm(props) {
                     geographicalInfo: formData.geographicalInfo,
                     dailyRate: formData.dailyRate,
                     notes: formData.professionalNotes,
-                    skills: formData.skills,
+                    skills: tmpSkills,
                 }
                 const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData);
                 handleSuccess('Professional added successfully!');

@@ -1,9 +1,6 @@
 package com.example.crm.services
 
-import com.example.crm.dtos.ContactDTO
-import com.example.crm.dtos.JobOfferCreateDTO
-import com.example.crm.dtos.JobOfferDTO
-import com.example.crm.dtos.ProfessionalDTO
+import com.example.crm.dtos.*
 import com.example.crm.entities.JobStatus
 
 interface JobOfferServices {
@@ -29,7 +26,7 @@ interface JobOfferServices {
 
     fun getContactIdByJobOfferId(jobOfferId: Long): Long?
 
-    fun updateJobOfferStatus(jobOfferId: Long, status: String): JobOfferDTO
+    fun updateJobOfferStatus(jobOfferId: Long, status: String, candidates:List<Long>): JobOfferDTO
 
     fun getJobOfferValue(jobOfferId: Long): Double
 
@@ -49,4 +46,13 @@ interface JobOfferServices {
 
     fun updateSkill(id : Long, skillId : Long, skill : String) : JobOfferDTO
 
+    fun insertNewApplication(jobOfferId: Long, professionalId: Long)
+
+    fun deleteApplication(jobOfferId: Long, professionalId: Long)
+
+    fun getJobOfferHistory(jobOfferId: Long): List<JobOfferHistoryDTO>
+
+    fun getJobOfferNewestHistory(jobOfferId: Long): JobOfferHistoryDTO?
+
+    fun updateJobOfferHistoryNote(jobOfferId: Long, note:String): JobOfferHistoryDTO?
 }

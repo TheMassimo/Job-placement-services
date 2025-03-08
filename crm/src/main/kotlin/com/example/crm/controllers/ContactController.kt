@@ -61,6 +61,12 @@ class ContactController(private val contactServices: ContactServices) {
         return ResponseEntity.ok(document)
     }
 
+    @GetMapping("/professional/{professionalId}", "/professional/{professionalId}/")
+    fun getContactByProfessionalId(@PathVariable @Positive professionalId: Long): ResponseEntity<ContactDetailsDTO>{
+        val contact = contactServices.getContactByProfessionalId(professionalId)
+        return ResponseEntity.ok(contact)
+    }
+
     @PostMapping("", "/")
     @ResponseStatus(HttpStatus.CREATED)
     fun uploadContact(
