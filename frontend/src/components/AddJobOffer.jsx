@@ -119,7 +119,7 @@ function AddJobOffer(props) {
                 offerValue: formData.offerValue,
                 //requiredSkills: tmpSkills,
             };
-            const resUpdateJobOffer = await JobOffersAPI.UpdateJobOffer(jobOfferId, tmpJobOffer, user.xsrfToken);
+            const resUpdateJobOffer = await JobOffersAPI.UpdateJobOffer(jobOfferId, tmpJobOffer, user?.xsrfToken);
             processJobOfferRequiredSkillsChanges(resUpdateJobOffer, formData)
             handleSuccess('Job Offer successfully updated!');
 

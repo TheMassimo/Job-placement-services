@@ -120,7 +120,7 @@ function ProgressJobOffer(props) {
                 handleError(err);
             }else{
                 //Aggiorna le note di questa history
-                const upNote = await JobOffersAPI.UpdateJobOfferHistoryNote(jobOfferId, note, user.xsrfToken);
+                const upNote = await JobOffersAPI.UpdateJobOfferHistoryNote(jobOfferId, note, user?.xsrfToken);
 
                 let tmpCandidatesId = []
                 //decido cosa impostare

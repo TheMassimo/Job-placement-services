@@ -10,12 +10,12 @@ import {Skill} from "./entities/Skill.ts"
 
 const URL_PROFESSIONALS = 'http://localhost:8082/API/professionals'
 
-async function AddProfessional(professional){
+async function AddProfessional(professional, xsrfToken){
     const response = await fetch(
         generateUrl(`${URL_PROFESSIONALS}`, null, null), {
             method: 'POST',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'/*, 'X-XSRF-TOKEN': xsrfToken*/},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: JSON.stringify(professional)
         }
     )
@@ -28,12 +28,12 @@ async function AddProfessional(professional){
     }
 }
 
-async function UpdateProfessional(professional) {
+async function UpdateProfessional(professional, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_PROFESSIONALS}/${professional.professionalId}`, null, null), {
             method: 'PUT',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: JSON.stringify(professional)
         })
 
@@ -46,12 +46,12 @@ async function UpdateProfessional(professional) {
     }
 }
 
-async function DeleteProfessional(professionalId) {
+async function DeleteProfessional(professionalId, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_PROFESSIONALS}/${professionalId}`, null, null), {
             method: 'DELETE',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
         })
 
     if (!response.ok) {
@@ -59,12 +59,12 @@ async function DeleteProfessional(professionalId) {
     }
 }
 
-async function AddSkillToProfessional(professionalId, skill) {
+async function AddSkillToProfessional(professionalId, skill, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_PROFESSIONALS}/${professionalId}/skill`, null, null), {
             method: 'POST',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: skill
         })
 
@@ -77,12 +77,12 @@ async function AddSkillToProfessional(professionalId, skill) {
     }
 }
 
-async function UpdateSkillOfProfessional(professionalId, skillId, skill) {
+async function UpdateSkillOfProfessional(professionalId, skillId, skill, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_PROFESSIONALS}/${professionalId}/skill/${skillId}`, null, null), {
             method: 'PUT',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: skill
         })
 
@@ -95,12 +95,12 @@ async function UpdateSkillOfProfessional(professionalId, skillId, skill) {
     }
 }
 
-async function DeleteSkillOfProfessioanl(professionalId, skillId) {
+async function DeleteSkillOfProfessioanl(professionalId, skillId, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_PROFESSIONALS}/${professionalId}/skill/${skillId}`, null, null), {
             method: 'DELETE',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
         })
 
     if (!response.ok) {

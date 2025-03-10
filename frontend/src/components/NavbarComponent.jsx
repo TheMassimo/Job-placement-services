@@ -80,7 +80,7 @@ function NavbarComponent(props) {
                                 to="/"
                                 onClick={() => {
                                     // Get CSRF token from cookies
-                                    const csrfToken = props.user.xsrfToken;
+                                    const csrfToken = props.user?.xsrfToken;
 
                                     fetch('http://localhost:8080/logout', {
                                         method: 'POST',

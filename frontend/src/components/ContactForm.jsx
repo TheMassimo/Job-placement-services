@@ -107,7 +107,7 @@ function ContactForm(props) {
                     address: formData.address.map((item) => item.address),
                     telephone: formData.telephone.map((item) => item.telephone),
                 };
-                resAddContact = await ContactAPI.AddContact(tmpContact, user.xsrfToken);
+                resAddContact = await ContactAPI.AddContact(tmpContact, user?.xsrfToken);
                 handleSuccess('Contact added successfully!');
             }
 
@@ -130,7 +130,7 @@ function ContactForm(props) {
                     notes: formData.professionalNotes,
                     skills: tmpSkills,
                 }
-                const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData);
+                const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData, user?.xsrfToken);
                 handleSuccess('Professional added successfully!');
             }
             //if all is right go back to contacts
@@ -149,7 +149,7 @@ function ContactForm(props) {
             if (mode === null) {
                 //update name, surname and ssn
                 const tmpContact = {contactId:contact.contactId, name:formData.name, surname:formData.surname, ssn:formData.ssn};
-                const resUpdateContact = await ContactAPI.UpdateContact(tmpContact, user.xsrfToken);
+                const resUpdateContact = await ContactAPI.UpdateContact(tmpContact, user?.xsrfToken);
                 //check for email/telephone/address
                 processContactChanges(contact, formData)
                 handleSuccess('Contact data update!');
@@ -171,7 +171,7 @@ function ContactForm(props) {
                                           geographicalInfo:formData.geographicalInfo,
                                           dailyRate:formData.dailyRate,
                                           notes:formData.professionalNotes}
-                const resUpdateContact = await ProfessionalAPI.UpdateProfessional(tmpProfessional, user.xsrfToken);
+                const resUpdateContact = await ProfessionalAPI.UpdateProfessional(tmpProfessional, user?.xsrfToken);
                 //update professional skills
                 processProfessionalSkillsChanges(contact, formData);
                 handleSuccess('Professional data updated!');
@@ -251,7 +251,7 @@ function ContactForm(props) {
         // Gestisci eliminazioni
         for (let id of contactMap.keys()) {
             if (!formDataMap.has(id)) {
-                ProfessionalAPI.DeleteSkillOfProfessioanl(professionalId, id);
+                ProfessionalAPI.DeleteSkillOfProfessioanl(professionalId, id, user?.xsrfToken);
             }
         }
 
@@ -259,10 +259,10 @@ function ContactForm(props) {
         for (let [id, value] of formDataMap.entries()) {
             if (contactMap.has(id)) {
                 if (contactMap.get(id) !== value) {
-                    ProfessionalAPI.UpdateSkillOfProfessional(professionalId, id, value);
+                    ProfessionalAPI.UpdateSkillOfProfessional(professionalId, id, value, user?.xsrfToken);
                 }
             } else {
-                ProfessionalAPI.AddSkillToProfessional(professionalId, value);
+                ProfessionalAPI.AddSkillToProfessional(professionalId, value, user?.xsrfToken);
             }
         }
     };
