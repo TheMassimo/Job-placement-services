@@ -107,7 +107,7 @@ function ContactForm(props) {
                     address: formData.address.map((item) => item.address),
                     telephone: formData.telephone.map((item) => item.telephone),
                 };
-                resAddContact = await ContactAPI.AddContact(tmpContact);
+                resAddContact = await ContactAPI.AddContact(tmpContact, user.xsrfToken);
                 handleSuccess('Contact added successfully!');
             }
 
@@ -149,7 +149,7 @@ function ContactForm(props) {
             if (mode === null) {
                 //update name, surname and ssn
                 const tmpContact = {contactId:contact.contactId, name:formData.name, surname:formData.surname, ssn:formData.ssn};
-                const resUpdateContact = await ContactAPI.UpdateContact(tmpContact);
+                const resUpdateContact = await ContactAPI.UpdateContact(tmpContact, user.xsrfToken);
                 //check for email/telephone/address
                 processContactChanges(contact, formData)
                 handleSuccess('Contact data update!');
@@ -171,7 +171,7 @@ function ContactForm(props) {
                                           geographicalInfo:formData.geographicalInfo,
                                           dailyRate:formData.dailyRate,
                                           notes:formData.professionalNotes}
-                const resUpdateContact = await ProfessionalAPI.UpdateProfessional(tmpProfessional);
+                const resUpdateContact = await ProfessionalAPI.UpdateProfessional(tmpProfessional, user.xsrfToken);
                 //update professional skills
                 processProfessionalSkillsChanges(contact, formData);
                 handleSuccess('Professional data updated!');
@@ -215,7 +215,7 @@ function ContactForm(props) {
             // Gestisci eliminazioni
             for (let id of contactMap.keys()) {
                 if (!formDataMap.has(id)) {
-                    apiMethods.delete(contactId, id);
+                    apiMethods.delete(contactId, id, user?.xsrfToken);
                 }
             }
 
@@ -223,10 +223,10 @@ function ContactForm(props) {
             for (let [id, value] of formDataMap.entries()) {
                 if (contactMap.has(id)) {
                     if (contactMap.get(id) !== value) {
-                        apiMethods.update(contactId, id, value);
+                        apiMethods.update(contactId, id, value,user?.xsrfToken);
                     }
                 } else {
-                    apiMethods.add(contactId, value);
+                    apiMethods.add(contactId, value, user?.xsrfToken);
                 }
             }
         };

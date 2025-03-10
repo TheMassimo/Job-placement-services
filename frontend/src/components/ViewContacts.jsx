@@ -456,7 +456,7 @@ function ViewContacts(props) {
                 setIsOpenConfirmation(false);
                 setRefreshContact(prev => prev + 1);
             } else {
-                await ContactAPI.DeleteContact(contactToDelete.contactId); // Chiamata asincrona
+                await ContactAPI.DeleteContact(contactToDelete.contactId, user.xsrfToken); // Chiamata asincrona
                 handleSuccess('Contact successfully deleted!');
                 setIsOpenConfirmation(false);
                 setRefreshContact(prev => prev + 1);
