@@ -14,6 +14,7 @@ import { Row, Col, Toast } from 'react-bootstrap';
 import { useNotification } from '../contexts/NotificationProvider';
 
 function Filters(props) {
+    const user = props.user;
     const setFilters = props.setFilters;
     const setCurrentPage = props.setCurrentPage;
     const mode = props.mode;
@@ -189,7 +190,7 @@ function ViewJobOffers (props)  {
 
     const onConfirmConfirmation = async () => {
         try {
-            await JobOffersAPI.DeleteJobOffer(jobOfferToDelete.jobOfferId); // Chiamata asincrona
+            await JobOffersAPI.DeleteJobOffer(jobOfferToDelete.jobOfferId, user?.xsrfToken); // Chiamata asincrona
             handleSuccess('Customer successfully deleted!');
             setIsOpenConfirmation(false);
             setRefreshContact(prev => prev + 1);

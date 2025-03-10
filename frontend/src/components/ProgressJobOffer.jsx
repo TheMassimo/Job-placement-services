@@ -17,6 +17,7 @@ import JobOffersAPI from "../api/crm/JobOffersAPI.js"; // Assicurati di avere un
 import StepProgress from "../components/StepProgress";
 
 function ProgressJobOffer(props) {
+    const user = props.user;
     const { jobOfferId } = useParams();
     const [contact, setContact] = useState({});
     const [jobOffer, setJobOffer] = useState({});
@@ -119,7 +120,7 @@ function ProgressJobOffer(props) {
                 handleError(err);
             }else{
                 //Aggiorna le note di questa history
-                const upNote = await JobOffersAPI.UpdateJobOfferHistoryNote(jobOfferId, note);
+                const upNote = await JobOffersAPI.UpdateJobOfferHistoryNote(jobOfferId, note, user.xsrfToken);
 
                 let tmpCandidatesId = []
                 //decido cosa impostare
@@ -131,7 +132,7 @@ function ProgressJobOffer(props) {
                 }
 
                 // Aggiorna lo stato della job offer nel database
-                const response = await JobOffersAPI.UpdateStatusJobOffer(jobOfferId, nextState, tmpCandidatesId);
+                const response = await JobOffersAPI.UpdateStatusJobOffer(jobOfferId, nextState, tmpCandidatesId, user?.xsrfToken);
 
                 if (response) {
                     console.log("Response=>", response);
