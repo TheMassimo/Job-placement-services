@@ -41,7 +41,18 @@ logging:
     root: INFO
     com.example: DEBUG
   file:
-    name: filename.log
+    name: './src/log/crm_logfile.log'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
 
 #fFormato del log
 #logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
