@@ -16,6 +16,20 @@ spring:
 
   security:
     oauth2:
+      client:
+        provider:
+          keycloak: #keyclock
+            issuer-uri: http://localhost:9090/realms/CRM
+            user-name-attribute: sub
+        registration:
+          CRMclient:
+            provider: keycloak
+            client-id: CRMclient
+            client-secret: 784jYAnNndMiACzCzDGiXjtWLiePlN9o #Massimo2
+            scope:
+              - openid
+              - offline_access
+            authorization-grant-type: authorization_code
       resourceserver:
         jwt:
           issuer-uri: http://localhost:9090/realms/CRM

@@ -12,6 +12,7 @@ function ContactForm(props) {
     const { contactId } = useParams();
     const { action } = useParams();
     const mode = props.mode;
+    const user = props.user;
     const navigate = useNavigate();
     const { handleError, handleSuccess } = useNotification();
     const [contact, setContact] = useState({});
@@ -114,7 +115,8 @@ function ContactForm(props) {
             if( (mode===null || mode==="Customer") && customerChecked) {
                 const contactId = resAddContact?.contactId || contact?.contactId;
                 const tmpCustomerData = {contactId: contactId, notes: formData.customerNotes}
-                const resAddCustomer = await CustomerAPI.AddCustomer(tmpCustomerData);
+                console.log(user);
+                const resAddCustomer = await CustomerAPI.AddCustomer(tmpCustomerData,user?.xsrfToken);
                 handleSuccess('Customer added successfully!');
             }
 
@@ -156,7 +158,7 @@ function ContactForm(props) {
             // Se spuntato aggiungere anche il customer
             if( (mode===null || mode==="Customer") && customerChecked) {
                 const customerId = contact?.customer?.customerId;
-                const resUpdateCustomer = await CustomerAPI.UpdateNotes(customerId, formData.customerNotes);
+                const resUpdateCustomer = await CustomerAPI.UpdateNotes(customerId, formData.customerNotes, user?.xsrfToken);
                 handleSuccess('Customer data update!');
             }
 

@@ -379,6 +379,7 @@ function ProfessionalCard(props) {
 
 
 function ViewContacts(props) {
+    const user = props.user;
     const navigate = useNavigate();
     const { handleError, handleSuccess } = useNotification();
     const [contacts, setContacts] = useState([]);
@@ -445,7 +446,7 @@ function ViewContacts(props) {
     const onConfirmConfirmation = async () => {
         try {
             if (mode === "Customer") {
-                await CustomerAPI.DeleteCustomer(contactToDelete.customer.customerId); // Chiamata asincrona
+                await CustomerAPI.DeleteCustomer(contactToDelete.customer.customerId, user.xsrfToken); // Chiamata asincrona
                 handleSuccess('Customer successfully deleted!');
                 setIsOpenConfirmation(false);
                 setRefreshContact(prev => prev + 1);
