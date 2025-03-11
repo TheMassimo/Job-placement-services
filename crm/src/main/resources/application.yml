@@ -24,8 +24,9 @@ spring:
         registration:
           CRMclient:
             provider: keycloak
-            client-id: CRMclient
-            client-secret: 784jYAnNndMiACzCzDGiXjtWLiePlN9o #Massimo2
+            client-id: apigateway
+            #client-secret: 784jYAnNndMiACzCzDGiXjtWLiePlN9o #Massimo2
+            client-secret: IRENkPNCvWzPe1fjHrmF1jkzR10Vxr1j #Luca
             scope:
               - openid
               - offline_access
