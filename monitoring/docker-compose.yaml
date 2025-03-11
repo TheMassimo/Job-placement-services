@@ -50,7 +50,6 @@ services:
     volumes:
       - ./configs/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
       - ./configs/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
-      - ./dashboards/dashboard.json:/var/lib/grafana/dashboards/dashboard.json
       - ./dashboards/loki_dashboard.json:/var/lib/grafana/dashboards/loki_dashboard.json
       - ./dashboards/prometheus_dashboard.json:/var/lib/grafana/dashboards/prometheus_dashboard.json
     ports:
