@@ -1,37 +1,21 @@
 package com.example.document_store.services
 
+import com.example.document_store.dtos.DocumentDTO
 import com.example.document_store.dtos.DocumentDataDTO
-import com.example.document_store.dtos.DocumentMetaDataDTO
-import com.example.document_store.entities.DocumentMetaData
+import com.example.document_store.dtos.DocumentMetadataDTO
+import com.example.document_store.utils.DocumentCategory
 import java.time.LocalDateTime
-import java.util.Date
 
 interface DocumentServices {
-    fun getAllDocuments(page: Int, limit: Int): List<DocumentMetaDataDTO>
+    fun insertNewDocument(newDocument: DocumentDTO): DocumentMetadataDTO
 
-    fun getDocumentMetaData(id: Long): DocumentMetaDataDTO
+    fun updateDocument(id: Long, newDocument: DocumentDTO): DocumentMetadataDTO
 
-    fun getEntireDocument(id: Long) : Pair<DocumentDataDTO, DocumentMetaDataDTO>
+    fun deleteDocument(id: Long)
 
-    fun create(name:String, size:Number, content_type:String, creationg_timestamp:LocalDateTime, content_data : ByteArray) : DocumentMetaDataDTO
+    fun getDocuments(pageNumber: Int, pageSize: Int, category: DocumentCategory?, id: Long?): List<DocumentMetadataDTO>
 
-    fun update(id:Long, name:String, size:Number, content_type: String, creationg_timestamp: LocalDateTime, content_data: ByteArray) : DocumentMetaDataDTO
+    fun getDocumentMetadataById(id: Long): DocumentMetadataDTO
 
-    fun deleteDocumentById(id: Long)
-
-
-
-
-    /*
-    TEMPLATE
-    fun create(name:String, size:Number, content_type:String, creationg_timestamp:Date) : DocumentMetaDataDTO
-
-    fun listAll() : List<DocumentMetaDataDTO>
-
-    fun findByName(name:String) : List<DocumentMetaDataDTO>
-
-    fun findById(id:Long) : DocumentMetaDataDTO?
-
-    fun delete(id:Long)
-    */
+    fun getDocumentDataById(id: Long): DocumentDataDTO
 }

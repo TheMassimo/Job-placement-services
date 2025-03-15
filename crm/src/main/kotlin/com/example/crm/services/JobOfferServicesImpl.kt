@@ -18,6 +18,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import jakarta.persistence.criteria.*
+import kotlinx.coroutines.Job
 import java.time.LocalDateTime
 
 
@@ -227,6 +228,24 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
         val jobOfferHistory = JobOfferHistory()
 
 
+        if(newState===JobStatus.SELECTION_PHASE){
+            if(jobOffer.status == JobStatus.CONSOLIDATED){
+                //recupero il candidato e lo reimposto come libero
+                val professionalId = candidates[0];
+                val professional = professionalRepository.findByIdOrNull(professionalId)
+                    ?: throw ElementNotFoundException("Professional not found")
+                //cambio lo stato del professional
+                professional.employment = ProfessionalEmployment.UNEMPLOYED;
+
+                //stacco il candidato dalla job offer
+                jobOffer.removeProfessional(professional);
+
+                //salvo le modifiche
+                professionalRepository.save(professional);
+            }
+        }
+
+
         if(newState==JobStatus.CANDIDATE_PROPOSAL){
             if(candidates.isEmpty()){
                 throw BadParameterException("Professionals id not given")
@@ -266,9 +285,8 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
 
                 //se quindi è ancora disponibile cambio il suo stato in occupato e vado avanti
                 professional.employment = ProfessionalEmployment.EMPLOYED;
-                professionalRepository.save(professional);
 
-                //Trova la JobOfferHistory più recente
+                //Trova la JobOfferHistory più recente (quindi la precedente CANDIDATE_PROPOSAL)
                 val latestHistory = jobOffer.jobHistory.maxByOrNull { it.date ?: LocalDateTime.MIN }
                     ?: throw IllegalStateException("No job history found for job offer ${jobOffer.jobOfferId}")
 
@@ -282,95 +300,51 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
                 // Salva i cambiamenti
                 jobOfferHistoryRepository.save(latestHistory)
 
+                //aggiungo il professional alla jobOffer
+                jobOffer.addProfessional(professional);
+                //calcolo l'offer value
+                val profitMargin = 1.5
+                jobOffer.offerValue =  jobOffer.duration * professional.dailyRate * profitMargin
+                //salvo
+                jobOfferRepository.save(jobOffer)
+                professionalRepository.save(professional);
 
-                ///AGGIUNGERE ANCHE IL PROFESSIONAL ID NELLA JOB OFFER E PORFESSIONAL BINDARLO BENE
+                //aggiungo il candidato preso a questa nuova history
+                jobOfferHistory.addJobApplication(professional, ApplicationStatus.Accepted);
             }
         }
 
         if (newState == JobStatus.DONE) {
-            val lastJobOfferHistory =
-                jobOffer.jobHistory.filter { it.jobOfferStatus == JobStatus.SELECTION_PHASE }
-                    .maxByOrNull { it.date }!!
+            val professionalId = jobOffer.professional?.professionalId;
+            val professional = professionalRepository.findByIdOrNull(professionalId)
+                ?: throw ElementNotFoundException("Professional not found")
+            professional.employment = ProfessionalEmployment.UNEMPLOYED;
+            professionalRepository.save(professional);
 
-            lastJobOfferHistory.candidates = lastJobOfferHistory.candidates.map {
-                if (it.professional.professionalId == candidates[0]) {
-                    jobOfferHistory.addJobApplication(it.professional)
-
-                    it.status = ApplicationStatus.Accepted
-                    it
-                } else {
-                    it.status = ApplicationStatus.Aborted
-                    it
-                }
-            }.toMutableSet()
+            //stacco il candidato dalla job offer
+            jobOffer.removeProfessional(professional);
         }
 
-        /*
-        if(jobOffer.status == JobStatus.CANDIDATE_PROPOSAL && newState==JobStatus.CONSOLIDATED){
-            if(professionalId == null){
-                throw BadParameterException("Professional id not given")
-            }else{
+        if(newState == JobStatus.ABORTED){
+            //rendo di nuovo libero il professional
+            val professionalId = jobOffer.professional?.professionalId;
+            if(professionalId != null) {
                 val professional = professionalRepository.findByIdOrNull(professionalId)
-                    ?: throw ElementNotFoundException("Professional of professionalId: $professionalId not found")
+                    ?: throw ElementNotFoundException("Professional not found")
+                professional.employment = ProfessionalEmployment.UNEMPLOYED;
+                professionalRepository.save(professional);
+            }
+            if(jobOffer.status == JobStatus.CANDIDATE_PROPOSAL){
+                val latestHistory = jobOffer.jobHistory.maxByOrNull { it.date ?: LocalDateTime.MIN }
+                    ?: throw IllegalStateException("No job history found for job offer ${jobOffer.jobOfferId}")
 
-                if((professional.employment == ProfessionalEmployment.BUSY)&&(professional.jobOfferProposal == jobOffer)){
-                    //set the new status
-                    professional.employment = ProfessionalEmployment.EMPLOYED
-                    //remove the bind between these two entities
-                    jobOffer.removeCandidateProfiles(professional)
-                    //remove the other candidates and set them as UNEMPLYED
-                    for(p in jobOffer.candidateProfiles){
-                        //remove binding
-                        jobOffer.removeCandidateProfiles(p)
-                        //update emplyment of each professionals in candidate list
-                        p.employment = ProfessionalEmployment.UNEMPLOYED
-                    }
-                    jobOffer.addProfessional(professional)
-                    //save the new proposal value
-                    professionalRepository.save(professional)
-
-                    //update job offer offerValue
-                    val profitMargin = 1.5
-                    jobOffer.offerValue =  jobOffer.duration * professional.dailyRate * profitMargin
-                }else{
-                    throw BadParameterException("This professional is not bounds to this jobOffer")
+                latestHistory.candidates.forEach { application ->
+                    application.status = ApplicationStatus.Aborted
                 }
-            }
-        }else if(jobOffer.status != JobStatus.CREATED && jobOffer.status != JobStatus.ABORTED && newState==JobStatus.SELECTION_PHASE){
 
-            if(jobOffer.candidateProfiles.isNotEmpty()){
-                //remove the other candidates and set them as UNEMPLYED
-                for(p in jobOffer.candidateProfiles){
-                    //remove binding
-                    jobOffer.removeCandidateProfiles(p)
-                    //update emplyment of each professionals in candidate list
-                    p.employment = ProfessionalEmployment.UNEMPLOYED
-                    //SAVE NEW VALUES
-                    professionalRepository.save(p)
-                }
-            }
-            val tmpProfessional = jobOffer.professional
-            if(tmpProfessional != null) {
-                jobOffer.removeProfessional(tmpProfessional)
-                tmpProfessional.employment = ProfessionalEmployment.UNEMPLOYED
-                professionalRepository.save(tmpProfessional)
-            }
-        }else if((jobOffer.status == JobStatus.CONSOLIDATED  && newState==JobStatus.DONE) || (newState==JobStatus.ABORTED)) {
-
-            val tmpCustomer = jobOffer.currentCustomer ?: throw CustomerNotFoundException("customer not found")
-
-            tmpCustomer.completeJobOffer(jobOffer)
-            customerRepository.save(tmpCustomer)
-
-            //REMOVE ONLY JOB OFFER FROM PROFESSIONAL (if it had one already) AND NOT VICEVERSA BECAUSE JOB OFFER GOES TO HISTORY
-            val tmpProfessional = jobOffer.professional //?: throw ProfessionalNotFoundException("professional not found")
-            if (tmpProfessional != null) {
-                tmpProfessional.jobOffer = null
-                tmpProfessional.employment = ProfessionalEmployment.UNEMPLOYED
-                professionalRepository.save(tmpProfessional)
+                jobOfferHistoryRepository.save(latestHistory);
             }
         }
-        */
 
         //per jobOffer
         jobOffer.status = newState
@@ -410,14 +384,14 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
             jobOffer.currentCustomer?.removeJobOffer(jobOffer)
             jobOffer.currentCustomer?.replacementHistory?.add(jobOffer)
         }
+        //change the professional status
+        jobOffer.professional?.let { professional ->
+            professional.employment = ProfessionalEmployment.UNEMPLOYED
+            professionalRepository.save(professional)
+        }
+        //remove professional
         if (jobOffer.professional != null) {
             jobOffer.professional?.removeJobOffer(jobOffer)
-        }
-        for(p in jobOffer.candidateProfiles){
-            //remove binding
-            jobOffer.removeCandidateProfiles(p)
-            //update emplyment of each professionals in candidate list
-            p.employment = ProfessionalEmployment.UNEMPLOYED
         }
 
         // Rimuovere tutte le associazioni con le Skill
@@ -425,7 +399,6 @@ class JobOfferServicesImpl(private val entityManager: EntityManager,
             skill.jobOffer.remove(jobOffer)
         }
         jobOffer.requiredSkills.clear()
-
 
         jobOfferRepository.delete(jobOffer)
         logger.info("JobOffer successfully deleted")

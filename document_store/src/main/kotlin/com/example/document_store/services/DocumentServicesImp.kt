@@ -1,186 +1,153 @@
 package com.example.document_store.services
 
+import com.example.document_store.dtos.DocumentDTO
 import com.example.document_store.dtos.DocumentDataDTO
-import com.example.document_store.dtos.DocumentMetaDataDTO
+import com.example.document_store.dtos.DocumentMetadataDTO
 import com.example.document_store.dtos.toDto
 import com.example.document_store.entities.DocumentData
-import com.example.document_store.entities.DocumentMetaData
-import com.example.document_store.exceptions.BadParameterException
+import com.example.document_store.entities.DocumentMetadata
 import com.example.document_store.exceptions.DocumentNotFoundException
+import com.example.document_store.exceptions.DocumentProcessingException
 import com.example.document_store.exceptions.DuplicateDocumentException
 import com.example.document_store.repositories.DocumentDataRepository
-import com.example.document_store.repositories.DocumentMetaDataRepository
+import com.example.document_store.repositories.DocumentMetadataRepository
+import jakarta.persistence.EntityManager
+import jakarta.persistence.criteria.CriteriaBuilder
+import jakarta.persistence.criteria.CriteriaQuery
+import jakarta.persistence.criteria.Predicate
+import jakarta.persistence.criteria.Root
 import jakarta.transaction.Transactional
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.RequestParam
 import java.time.LocalDateTime
 import java.util.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.Exception
+import com.example.document_store.utils.DocumentCategory
+import kotlin.jvm.optionals.getOrElse
 
 @Service
 class DocumentServicesImp(
-    private val documentMetaDataRepository: DocumentMetaDataRepository,
-    private val documentDataRepository: DocumentDataRepository
-
+    private val entityManager: EntityManager,
+    private val documentMetadataRepository: DocumentMetadataRepository,
 ) : DocumentServices {
-    private val logger: Logger = LoggerFactory.getLogger(DocumentServices::class.java)
+    private val logger = LoggerFactory.getLogger(DocumentServicesImp::class.java)
 
-    override fun getAllDocuments(page: Int, limit: Int): List<DocumentMetaDataDTO> {
+    @org.springframework.transaction.annotation.Transactional
+    override fun insertNewDocument(newDocument: DocumentDTO): DocumentMetadataDTO {
+        if (documentMetadataRepository.findByName(newDocument.name).isNotEmpty()) {
+            throw DuplicateDocumentException("Document with the same name already exists")
+        }
+
+        val documentMetadata = DocumentMetadata()
+        val documentData = DocumentData()
 
         try {
-            val pageable = PageRequest.of(page, limit)
-            val documents = documentMetaDataRepository.findAll(pageable)
-            logger.info("Document fetched successfully")
-            return documents.content.map { it.toDto() }
-        }catch(ex: Exception){
-            throw ex
+            documentMetadata.name = newDocument.name
+            documentMetadata.size = newDocument.size
+            documentMetadata.contentType = newDocument.contentType
+            documentMetadata.timestamp = LocalDateTime.now()
+            documentMetadata.category = newDocument.category
+            documentMetadata.id = newDocument.id
+            documentData.data = newDocument.data.toByteArray()
+            documentData.documentMetadata = documentMetadata
+            documentMetadata.documentData = documentData
+        } catch (e: RuntimeException) {
+            throw DocumentProcessingException("Error encountered while processing document", e)
         }
 
+        logger.info("Starting insert DocumentMetadata (with DocumentData) into database")
+        val newDocumentMetadata = documentMetadataRepository.save(documentMetadata)
+        logger.info("Correctly inserted: $newDocumentMetadata")
+
+        return newDocumentMetadata.toDto()
     }
 
-    override fun getDocumentMetaData(id: Long): DocumentMetaDataDTO {
-        val doc = documentMetaDataRepository.findByIdOrNull(id)
-            ?: throw BadParameterException("Document metadata not found")
-        logger.info("Document fetched successfully")
-        return doc.toDto()
-    }
-
-
-    @Transactional
-    override fun getEntireDocument(id: Long): Pair<DocumentDataDTO, DocumentMetaDataDTO> {
-        val docData = documentDataRepository.findByIdOrNull(id)?:
-        throw DocumentNotFoundException("Document data not found")
-
-        val docMetadata = documentMetaDataRepository.findByIdOrNull(id)?:
-        throw DocumentNotFoundException("Document metadata not found")
-
-        logger.info("Document fetched successfully")
-
-        return Pair(docData.toDto(), docMetadata.toDto())
-    }
-
-    @Transactional
-    override fun create(
-        name: String,
-        size: Number,
-        content_type: String,
-        creationg_timestamp: LocalDateTime,
-        content_data : ByteArray
-    ): DocumentMetaDataDTO {
-        if(documentMetaDataRepository.findByNameIgnoreCase(name).isNotEmpty()){
-            throw DuplicateDocumentException("A document with this name already exist")
+    @org.springframework.transaction.annotation.Transactional
+    override fun updateDocument(id: Long, newDocument: DocumentDTO): DocumentMetadataDTO {
+        val documentMetadata = documentMetadataRepository.findById(id).getOrElse {
+            throw DocumentNotFoundException("Document not found")
         }
 
-        val d = DocumentMetaData()
-        val c = DocumentData()
+        if (documentMetadataRepository.findByName(newDocument.name).any { it.metadataId != id }) {
+            throw DuplicateDocumentException("Document with the same name already exists")
+        }
 
-
-        c.content = content_data
-        documentDataRepository.save(c)
-
-        d.name = name
-        d.size = size
-        d.content_type = content_type
-        d.creation_timestamp = creationg_timestamp
-        d.documentData = c
-
-        logger.info("Document posted successfully")
-
-        return documentMetaDataRepository.save(d).toDto()
-    }
-
-    @Transactional
-    override fun update(
-        id: Long,
-        name: String,
-        size: Number,
-        content_type: String,
-        creationg_timestamp: LocalDateTime,
-        content_data: ByteArray
-    ): DocumentMetaDataDTO {
-        // Fetch the existing document from the database
-        val existingMetadata = documentMetaDataRepository.findById(id)
-            .orElseThrow {
-                logger.error("Document not found")
-                DocumentNotFoundException("Document with id $id not found in MetaDataRepository") }
-
-        val existingData = documentDataRepository.findById(id)
-            .orElseThrow {
-                logger.error("Document not found ")
-                DocumentNotFoundException("Document with id $id not found in DataRepository") }
+        logger.info("Starting to update DocumentMetadata (with DocumentData) into database:  $documentMetadata")
 
         try {
-            existingData.content = content_data
-            documentDataRepository.save(existingData)
+            documentMetadata.metadataId = id
+            documentMetadata.name = newDocument.name
+            documentMetadata.size = newDocument.size
+            documentMetadata.contentType = newDocument.contentType
+            documentMetadata.timestamp = LocalDateTime.now()
+            documentMetadata.category = newDocument.category
+            documentMetadata.id = newDocument.id
+            documentMetadata.documentData.data = newDocument.data.toByteArray()
+        } catch (e: RuntimeException) {
+            throw DocumentProcessingException("Error encountered while processing document", e)
+        }
 
-            existingMetadata.name = name
-            existingMetadata.size = size
-            existingMetadata.content_type = content_type
-            existingMetadata.creation_timestamp = creationg_timestamp
-            existingMetadata.documentData = existingData
-            logger.info("Document modified successfully")
+        val updatedDocumentMetadata = documentMetadataRepository.save(documentMetadata)
 
-            return documentMetaDataRepository.save(existingMetadata).toDto()
-        } catch (ex : Exception){
-            throw ex
+        logger.info("Update successful, new DocumentMetadata: $updatedDocumentMetadata")
+
+        return updatedDocumentMetadata.toDto()
+    }
+
+    @org.springframework.transaction.annotation.Transactional
+    override fun deleteDocument(id: Long) {
+        if (documentMetadataRepository.existsById(id)) {
+            logger.info("Starting to delete DocumentMetadata (with DocumentData) with id: $id")
+
+            documentMetadataRepository.deleteById(id)
+
+            logger.info("Successfully deleted DocumentMetadata (and related DocumentData) with id: $id")
+        } else {
+            throw DocumentNotFoundException("Document not found")
         }
     }
 
-    @Transactional
-    override fun deleteDocumentById(id: Long) {
-        val documentMetadata = documentMetaDataRepository.findById(id)
-        documentMetadata.ifPresentOrElse({documentMetaDataRepository.deleteById(id)
-        },{
-            logger.error("Document metadata not found")
-            throw DocumentNotFoundException("Document metadata not found")})
+    override fun getDocuments(
+        pageNumber: Int,
+        pageSize: Int,
+        category: DocumentCategory?,
+        id: Long?
+    ): List<DocumentMetadataDTO> {
+        val cb: CriteriaBuilder = entityManager.criteriaBuilder
 
-        val documentData = documentDataRepository.findById(id)
-        documentData.ifPresentOrElse({documentDataRepository.deleteById(id)},
-            {
-                logger.error("Document data not found")
-                throw DocumentNotFoundException("Document data not found")})
+        val cqDocumentMetadata: CriteriaQuery<DocumentMetadata> = cb.createQuery(DocumentMetadata::class.java)
+        val rootDocumentMetadata: Root<DocumentMetadata> = cqDocumentMetadata.from(DocumentMetadata::class.java)
 
-        logger.info("Document successfully deleted")
+        val predicates = mutableListOf<Predicate>()
 
+        if (category != null) {
+            predicates.add(cb.equal(rootDocumentMetadata.get<String>("category"), category))
+        }
 
+        if (id != null) {
+            predicates.add(cb.equal(rootDocumentMetadata.get<String>("id"), id))
+        }
+
+        cqDocumentMetadata.where(*predicates.toTypedArray())
+
+        val query = entityManager.createQuery(cqDocumentMetadata)
+        query.firstResult = pageNumber * pageSize
+        query.maxResults = pageSize
+
+        return query.resultList.map { it.toDto() }
     }
 
-    /*
-    TEMPLATE
-
-    override fun create(
-        name: String,
-        size: Number,
-        content_type: String,
-        creationg_timestamp: Date
-    ): DocumentMetaDataDTO {
-        val d = DocumentMetaData()
-        d.name = name
-        d.size = size
-        d.content_type = content_type
-        d.creation_timestamp = creationg_timestamp
-        return documentMetaDataRepository.save(d).toDto()
+    override fun getDocumentMetadataById(id: Long): DocumentMetadataDTO {
+        return documentMetadataRepository.findById(id).map { it.toDto() }
+            .orElseThrow { throw DocumentNotFoundException("Document not found") }
     }
 
-    override fun listAll(): List<DocumentMetaDataDTO> {
-        return documentMetaDataRepository.findAll().map { it.toDto() }
+    override fun getDocumentDataById(id: Long): DocumentDataDTO {
+        val documentMetadata = documentMetadataRepository.findById(id)
+            .orElseThrow { throw DocumentNotFoundException("Document not found") }
+        return documentMetadata.documentData.toDto()
     }
-
-    override fun findByName(name: String): List<DocumentMetaDataDTO> {
-        return documentMetaDataRepository.findByNameIgnoreCase(name).map { it.toDto() }
-    }
-
-    override fun findById(id: Long): DocumentMetaDataDTO? {
-        return documentMetaDataRepository.findDocumentById(id)?.toDto()
-    }
-
-    override fun delete(id: Long) {
-        documentMetaDataRepository.deleteById(id)
-    }
-    */
-
 }

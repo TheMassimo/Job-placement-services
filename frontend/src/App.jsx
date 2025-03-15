@@ -15,13 +15,17 @@ import ProgressJobOffer from "./components/ProgressJobOffer";
 import ViewContactDetails from "./components/ViewContactDetails";
 import ViewAnalytics from "./components/ViewAnalytics";
 import ViewJobOfferHistory from "./components/ViewJobOfferHistory";
+import Documents from "./components/Documents";
+import FileForm from "./components/FileForm";
+import ContactUs from "./components/ContactUs";
+import ViewMessages from "./components/ViewMessages";
 
 // Import del provider di errore
 import {NotificationProvider} from './contexts/NotificationProvider';
 import axios from "axios";
 
 function App() {
-
+    /*
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -53,6 +57,10 @@ function App() {
             return null;
         }
     };
+    */
+
+    const [user, setUser] = useState({roles:"manager"});
+
 
     return (
         <NotificationProvider>
@@ -62,6 +70,8 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomeLayout user={user} />}/>
 
+                        <Route path="/analytics" element={<ViewAnalytics/>}/>
+
                         {/* action= add/edit */}
                         <Route path="/contacts" element={<ViewContacts role = {user?.roles}/>} />
                         <Route path="/contacts/:action/" element={<ContactForm mode={null}  />} />
@@ -70,7 +80,8 @@ function App() {
 
                         <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"} />} />
 
-                        <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
+                        <Route path="/documents" element={<Documents />}/>
+                        <Route path="/fileform" element={<FileForm />}/>
 
                         <Route path="/jobOffers" element={<ViewJobOffers role = {user?.roles} />}/>
                         <Route path="/jobOffers/add/:contactId" element={<AddJobOffer />} />
@@ -78,8 +89,11 @@ function App() {
                         <Route path="/jobOffers/history/:jobOfferId" element={<ViewJobOfferHistory />} />
                         <Route path="/jobOffers/progress/:jobOfferId" element={<ProgressJobOffer />} />
 
+                        <Route path="/messages" element={<ViewMessages />}/>
 
-                        <Route path="/analytics" element={<ViewAnalytics/>}/>
+                        <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
+
+                        <Route path="/reach_us" element={<ContactUs />} />
 
                         <Route path="*" element={<NotFoundPage/>}/>
                     </Routes>

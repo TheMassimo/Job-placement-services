@@ -285,12 +285,19 @@ const ProfessionalTable = ({ contacts, selectedProfessionals, handleRowClick }) 
                 <tbody>
                 {contacts.map((contact, index) => {
                     const isSelected = selectedProfessionals.some(c => c.contactId === contact.contactId);
+                    const rowProps = (contact.professional.employment !== "UNEMPLOYED")
+                        ? {
+                            className: "table-danger", // Classe speciale se non è disoccupato
+                        }
+                        : {
+                            onClick: () => handleRowClick(contact),
+                            className: isSelected ? "table-success" : "" // Qui ci voleva ":" invece di "="
+                        };
 
                     return (
                         <tr
                             key={index}
-                            onClick={() => handleRowClick(contact)}
-                            className={isSelected ? "table-success" : ""}
+                            {...rowProps} // Applica le proprietà calcolate
                         >
                             <td>{contact.professional.professionalId}</td>
                             <td>{contact.name}</td>

@@ -53,8 +53,21 @@ function NavbarComponent(props) {
                         Job Offers
                     </NavLink>
                 </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#" style={{color: 'white'}}>Messages</a>
+                <li className="nav-item active">
+                    <NavLink
+                        to="/documents"
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
+                        style={{color: 'white'}}>
+                        Documents
+                    </NavLink>
+                </li>
+                <li className="nav-item active">
+                    <NavLink
+                        to="/messages"
+                        className={({isActive}) => isActive ? "nav-link active" : "nav-link"}
+                        style={{color: 'white'}}>
+                        Messages
+                    </NavLink>
                 </li>
                 <li className="nav-item active">
                     <NavLink
@@ -69,7 +82,7 @@ function NavbarComponent(props) {
 
             <Nav className="ms-auto">
                 <Nav.Item>
-                    {props.user?.username!= '' ?
+                    {props.user?.username != '' ?
                         <>
                             <Navbar.Text className='fs-5'>
                                 <i className="bi bi-person-circle"

@@ -1,287 +1,764 @@
-2024-06-13T00:12:31.283+02:00  INFO 9316 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 9316 (C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store)
-2024-06-13T00:12:31.294+02:00 DEBUG 9316 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-06-13T00:12:31.296+02:00  INFO 9316 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
-2024-06-13T00:12:31.378+02:00  INFO 9316 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml'
-2024-06-13T00:12:33.397+02:00  INFO 9316 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network document_store_default  Creating
-2024-06-13T00:12:33.620+02:00  INFO 9316 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network document_store_default  Created
-2024-06-13T00:12:33.624+02:00  INFO 9316 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Creating
-2024-06-13T00:12:34.078+02:00  INFO 9316 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
-2024-06-13T00:12:34.083+02:00  INFO 9316 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
-2024-06-13T00:12:35.330+02:00  INFO 9316 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
-2024-06-13T00:12:35.331+02:00  INFO 9316 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
-2024-06-13T00:12:35.981+02:00  INFO 9316 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
-2024-06-13T00:12:41.609+02:00  INFO 9316 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-06-13T00:12:41.672+02:00  INFO 9316 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 2 JPA repository interfaces.
-2024-06-13T00:12:42.177+02:00  INFO 9316 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2024-06-13T00:12:42.198+02:00  INFO 9316 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-06-13T00:12:42.199+02:00  INFO 9316 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-06-13T00:12:42.254+02:00  INFO 9316 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-06-13T00:12:42.254+02:00  INFO 9316 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1316 ms
-2024-06-13T00:12:42.418+02:00  INFO 9316 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-13T00:12:42.494+02:00  INFO 9316 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-06-13T00:12:42.541+02:00  INFO 9316 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-06-13T00:12:42.813+02:00  INFO 9316 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-06-13T00:12:42.832+02:00  INFO 9316 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-06-13T00:12:43.028+02:00  INFO 9316 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5bd3ca3c
-2024-06-13T00:12:43.029+02:00  INFO 9316 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-06-13T00:12:43.975+02:00  INFO 9316 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-06-13T00:12:44.086+02:00  INFO 9316 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T00:12:44.708+02:00  WARN 9316 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-06-13T00:12:44.973+02:00  INFO 9316 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@cc3fc5c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2aac60b, org.springframework.security.web.context.SecurityContextHolderFilter@298cfe89, org.springframework.security.web.header.HeaderWriterFilter@27f6e2c3, org.springframework.security.web.authentication.logout.LogoutFilter@4d1f6e1c, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@2b27d5d3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@49522bdf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@77587422, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@173602c0, org.springframework.security.web.session.SessionManagementFilter@546ca9da, org.springframework.security.web.access.ExceptionTranslationFilter@1fa8a4f7, org.springframework.security.web.access.intercept.AuthorizationFilter@1f41f259]
-2024-06-13T00:12:45.189+02:00  INFO 9316 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
-2024-06-13T00:12:45.189+02:00  INFO 9316 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 14.403 seconds (process running for 15.289)
-2024-06-13T00:13:07.892+02:00  INFO 9316 --- [document_store] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-06-13T00:13:07.893+02:00  INFO 9316 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-06-13T00:13:07.894+02:00  INFO 9316 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-06-13T00:13:08.096+02:00  INFO 9316 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
-2024-06-13T00:13:14.399+02:00  INFO 9316 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T00:13:14.399+02:00  INFO 9316 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-06-13T00:13:14.417+02:00  INFO 9316 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-06-13T00:13:40.931+02:00  INFO 2064 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 2064 (C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store)
-2024-06-13T00:13:40.932+02:00 DEBUG 2064 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-06-13T00:13:40.933+02:00  INFO 2064 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
-2024-06-13T00:13:41.009+02:00  INFO 2064 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml'
-2024-06-13T00:13:42.665+02:00  INFO 2064 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network document_store_default  Creating
-2024-06-13T00:13:42.722+02:00  INFO 2064 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network document_store_default  Created
-2024-06-13T00:13:42.723+02:00  INFO 2064 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Creating
-2024-06-13T00:13:42.858+02:00  INFO 2064 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
-2024-06-13T00:13:42.865+02:00  INFO 2064 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
-2024-06-13T00:13:43.424+02:00  INFO 2064 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
-2024-06-13T00:13:43.425+02:00  INFO 2064 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
-2024-06-13T00:13:43.939+02:00  INFO 2064 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
-2024-06-13T00:14:31.415+02:00  INFO 7816 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 7816 (C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store)
-2024-06-13T00:14:31.416+02:00 DEBUG 7816 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-06-13T00:14:31.417+02:00  INFO 7816 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
-2024-06-13T00:14:31.498+02:00  INFO 7816 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml'
-2024-06-13T00:14:32.814+02:00  INFO 7816 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
-2024-06-13T00:14:59.912+02:00  INFO 8520 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 8520 (C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store)
-2024-06-13T00:14:59.914+02:00 DEBUG 8520 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-06-13T00:14:59.915+02:00  INFO 8520 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
-2024-06-13T00:14:59.996+02:00  INFO 8520 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml'
-2024-06-13T00:15:01.426+02:00  INFO 8520 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
-2024-06-13T00:15:29.442+02:00  INFO 2444 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 2444 (C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store)
-2024-06-13T00:15:29.444+02:00 DEBUG 2444 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-06-13T00:15:29.444+02:00  INFO 2444 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
-2024-06-13T00:15:29.520+02:00  INFO 2444 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml'
-2024-06-13T00:15:30.817+02:00  INFO 2444 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network document_store_default  Creating
-2024-06-13T00:15:30.869+02:00  INFO 2444 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network document_store_default  Created
-2024-06-13T00:15:30.871+02:00  INFO 2444 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Creating
-2024-06-13T00:15:31.015+02:00  INFO 2444 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
-2024-06-13T00:15:31.021+02:00  INFO 2444 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
-2024-06-13T00:15:31.493+02:00  INFO 2444 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
-2024-06-13T00:15:31.495+02:00  INFO 2444 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
-2024-06-13T00:15:32.014+02:00  INFO 2444 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
-2024-06-13T00:15:34.507+02:00  INFO 2444 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-06-13T00:15:34.564+02:00  INFO 2444 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 2 JPA repository interfaces.
-2024-06-13T00:15:35.065+02:00  INFO 2444 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2024-06-13T00:15:35.075+02:00  INFO 2444 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-06-13T00:15:35.076+02:00  INFO 2444 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-06-13T00:15:35.129+02:00  INFO 2444 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-06-13T00:15:35.129+02:00  INFO 2444 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1272 ms
-2024-06-13T00:15:35.271+02:00  INFO 2444 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-13T00:15:35.347+02:00  INFO 2444 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-06-13T00:15:35.382+02:00  INFO 2444 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-06-13T00:15:35.635+02:00  INFO 2444 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-06-13T00:15:35.666+02:00  INFO 2444 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-06-13T00:15:35.806+02:00  INFO 2444 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5fb44964
-2024-06-13T00:15:35.807+02:00  INFO 2444 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-06-13T00:15:36.716+02:00  INFO 2444 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-06-13T00:15:36.802+02:00  INFO 2444 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T00:15:37.394+02:00  WARN 2444 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-06-13T00:15:38.857+02:00  INFO 2444 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@31ce271c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b1d7b09, org.springframework.security.web.context.SecurityContextHolderFilter@389fad5b, org.springframework.security.web.header.HeaderWriterFilter@2f1b8770, org.springframework.security.web.authentication.logout.LogoutFilter@7c08461b, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@42c9f2cd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@285b63eb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a983f8a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@64faf3d, org.springframework.security.web.session.SessionManagementFilter@c8d20bb, org.springframework.security.web.access.ExceptionTranslationFilter@a904e64, org.springframework.security.web.access.intercept.AuthorizationFilter@322399e6]
-2024-06-13T00:15:39.396+02:00  INFO 2444 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
-2024-06-13T00:15:39.403+02:00  INFO 2444 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 10.398 seconds (process running for 10.977)
-2024-06-13T00:16:18.383+02:00  INFO 2444 --- [document_store] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-06-13T00:16:18.383+02:00  INFO 2444 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-06-13T00:16:18.384+02:00  INFO 2444 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-06-13T00:16:18.599+02:00  INFO 2444 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
-2024-06-13T00:16:33.267+02:00  INFO 2444 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
-2024-06-13T00:16:44.062+02:00  INFO 2444 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T00:16:44.065+02:00  INFO 2444 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-06-13T00:16:44.069+02:00  INFO 2444 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-06-13T00:23:30.277+02:00  INFO 4168 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 4168 (C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store)
-2024-06-13T00:23:30.278+02:00 DEBUG 4168 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-06-13T00:23:30.279+02:00  INFO 4168 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
-2024-06-13T00:23:30.358+02:00  INFO 4168 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml'
-2024-06-13T00:23:31.960+02:00  INFO 4168 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
-2024-06-13T00:23:31.966+02:00  INFO 4168 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
-2024-06-13T00:23:32.241+02:00  INFO 4168 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   : Error response from daemon: driver failed programming external connectivity on endpoint document_store-postgres-1 (89fe9c9ca27f7cddce8639d6b295d2fa3d8f82df0c216dcc5cb00c37df807e69): Bind for 0.0.0.0:5432 failed: port is already allocated
-2024-06-13T00:23:32.308+02:00 ERROR 4168 --- [document_store] [main] o.s.boot.SpringApplication               : Application run failed
+2025-03-12T10:23:22.593+01:00  WARN 21440 --- [document_store] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10h59m21s474ms625µs200ns).
+2025-03-12T10:51:53.154+01:00  INFO 21440 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T10:51:53.340+01:00  INFO 21440 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T10:51:53.391+01:00  INFO 21440 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T10:52:18.657+01:00  INFO 18300 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 18300 (C:\Users\maxim\Desktop\Job-placement-services\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\document_store)
+2025-03-12T10:52:18.658+01:00 DEBUG 18300 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-12T10:52:18.658+01:00  INFO 18300 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T10:52:18.740+01:00  INFO 18300 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\document_store\compose.yaml'
+2025-03-12T10:52:20.467+01:00  INFO 18300 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
+2025-03-12T10:52:20.473+01:00  INFO 18300 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
+2025-03-12T10:52:21.454+01:00  INFO 18300 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
+2025-03-12T10:52:21.455+01:00  INFO 18300 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
+2025-03-12T10:52:21.961+01:00  INFO 18300 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
+2025-03-12T10:52:23.369+01:00  INFO 18300 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-12T10:52:23.423+01:00  INFO 18300 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 2 JPA repository interfaces.
+2025-03-12T10:52:23.928+01:00  INFO 18300 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-03-12T10:52:23.940+01:00  INFO 18300 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T10:52:23.940+01:00  INFO 18300 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-12T10:52:23.999+01:00  INFO 18300 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T10:52:24.000+01:00  INFO 18300 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1229 ms
+2025-03-12T10:52:24.147+01:00  INFO 18300 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-12T10:52:24.229+01:00  INFO 18300 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-12T10:52:24.267+01:00  INFO 18300 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-12T10:52:24.537+01:00  INFO 18300 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-12T10:52:24.567+01:00  INFO 18300 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T10:52:24.762+01:00  INFO 18300 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@cf9bd1e
+2025-03-12T10:52:24.764+01:00  INFO 18300 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T10:52:25.867+01:00  INFO 18300 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-12T10:52:25.966+01:00  INFO 18300 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T10:52:26.578+01:00  WARN 18300 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-12T10:52:26.804+01:00  INFO 18300 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@48064a5a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d018c58, org.springframework.security.web.context.SecurityContextHolderFilter@50f65fe0, org.springframework.security.web.header.HeaderWriterFilter@56897de0, org.springframework.web.filter.CorsFilter@6a2b6031, org.springframework.security.web.authentication.logout.LogoutFilter@5d72da0b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@70736b19, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@183e64a8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2e4262d2, org.springframework.security.web.session.SessionManagementFilter@1d2aa638, org.springframework.security.web.access.ExceptionTranslationFilter@4795876e, org.springframework.security.web.access.intercept.AuthorizationFilter@2e895acb]
+2025-03-12T10:52:27.009+01:00  INFO 18300 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2025-03-12T10:52:27.017+01:00  INFO 18300 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 8.861 seconds (process running for 9.762)
+2025-03-12T10:59:23.043+01:00  INFO 18300 --- [document_store] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T10:59:23.043+01:00  INFO 18300 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T10:59:23.044+01:00  INFO 18300 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T10:59:23.075+01:00 ERROR 18300 --- [document_store] [http-nio-8081-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
-org.springframework.boot.docker.compose.core.ProcessExitException: 'docker compose --file C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml --ansi never up --no-color --detach --wait' failed with exit code 1.
+java.lang.IllegalArgumentException: When allowCredentials is true, allowedOrigins cannot contain the special value "*" since that cannot be set on the "Access-Control-Allow-Origin" response header. To allow credentials to a set of origins, list them explicitly or consider using "allowedOriginPatterns" instead.
+	at org.springframework.web.cors.CorsConfiguration.validateAllowCredentials(CorsConfiguration.java:572) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.cors.CorsConfiguration.checkOrigin(CorsConfiguration.java:699) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.cors.DefaultCorsProcessor.checkOrigin(DefaultCorsProcessor.java:190) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.cors.DefaultCorsProcessor.handleInternal(DefaultCorsProcessor.java:127) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.cors.DefaultCorsProcessor.processRequest(DefaultCorsProcessor.java:106) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:87) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
 
-Stdout:
+2025-03-12T10:59:23.128+01:00 ERROR 18300 --- [document_store] [http-nio-8081-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
 
+java.lang.IllegalArgumentException: When allowCredentials is true, allowedOrigins cannot contain the special value "*" since that cannot be set on the "Access-Control-Allow-Origin" response header. To allow credentials to a set of origins, list them explicitly or consider using "allowedOriginPatterns" instead.
+	at org.springframework.web.cors.CorsConfiguration.validateAllowCredentials(CorsConfiguration.java:572) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.cors.CorsConfiguration.checkOrigin(CorsConfiguration.java:699) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.cors.DefaultCorsProcessor.checkOrigin(DefaultCorsProcessor.java:190) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.cors.DefaultCorsProcessor.handleInternal(DefaultCorsProcessor.java:127) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.cors.DefaultCorsProcessor.processRequest(DefaultCorsProcessor.java:106) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:87) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
 
-Stderr:
- Container document_store-postgres-1  Created
- Container document_store-postgres-1  Starting
-Error response from daemon: driver failed programming external connectivity on endpoint document_store-postgres-1 (89fe9c9ca27f7cddce8639d6b295d2fa3d8f82df0c216dcc5cb00c37df807e69): Bind for 0.0.0.0:5432 failed: port is already allocated
+2025-03-12T10:59:38.072+01:00  INFO 18300 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T11:04:32.215+01:00  INFO 18300 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T11:04:32.218+01:00  INFO 18300 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T11:04:32.223+01:00  INFO 18300 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T11:04:39.763+01:00  INFO 7044 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 7044 (C:\Users\maxim\Desktop\Job-placement-services\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\document_store)
+2025-03-12T11:04:39.765+01:00 DEBUG 7044 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-12T11:04:39.766+01:00  INFO 7044 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T11:04:39.851+01:00  INFO 7044 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\document_store\compose.yaml'
+2025-03-12T11:04:41.587+01:00  INFO 7044 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
+2025-03-12T11:04:41.594+01:00  INFO 7044 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
+2025-03-12T11:04:42.098+01:00  INFO 7044 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
+2025-03-12T11:04:42.099+01:00  INFO 7044 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
+2025-03-12T11:04:42.608+01:00  INFO 7044 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
+2025-03-12T11:04:44.089+01:00  INFO 7044 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-12T11:04:44.148+01:00  INFO 7044 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 2 JPA repository interfaces.
+2025-03-12T11:04:44.614+01:00  INFO 7044 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-03-12T11:04:44.626+01:00  INFO 7044 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T11:04:44.626+01:00  INFO 7044 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-12T11:04:44.681+01:00  INFO 7044 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T11:04:44.682+01:00  INFO 7044 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1190 ms
+2025-03-12T11:04:44.833+01:00  INFO 7044 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-12T11:04:44.892+01:00  INFO 7044 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-12T11:04:44.923+01:00  INFO 7044 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-12T11:04:45.154+01:00  INFO 7044 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-12T11:04:45.178+01:00  INFO 7044 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T11:04:45.326+01:00  INFO 7044 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@67a6a2d0
+2025-03-12T11:04:45.327+01:00  INFO 7044 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T11:04:46.364+01:00  INFO 7044 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-12T11:04:46.489+01:00  INFO 7044 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T11:04:47.273+01:00  WARN 7044 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-12T11:04:47.622+01:00  INFO 7044 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3c89fdd8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@665c79a2, org.springframework.security.web.context.SecurityContextHolderFilter@1134a934, org.springframework.security.web.header.HeaderWriterFilter@c6a1be2, org.springframework.web.filter.CorsFilter@3e79473d, org.springframework.security.web.authentication.logout.LogoutFilter@22bbbe6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@534c3b9d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@69b436a7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2e895acb, org.springframework.security.web.session.SessionManagementFilter@2862bac6, org.springframework.security.web.access.ExceptionTranslationFilter@5c00de0d, org.springframework.security.web.access.intercept.AuthorizationFilter@1fa8a4f7]
+2025-03-12T11:04:48.125+01:00  INFO 7044 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2025-03-12T11:04:48.133+01:00  INFO 7044 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 8.884 seconds (process running for 9.688)
+2025-03-12T11:05:15.232+01:00  INFO 7044 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T11:05:15.234+01:00  INFO 7044 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T11:05:15.240+01:00  INFO 7044 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T11:05:19.056+01:00  INFO 28860 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 28860 (C:\Users\maxim\Desktop\Job-placement-services\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\document_store)
+2025-03-12T11:05:19.058+01:00 DEBUG 28860 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-12T11:05:19.059+01:00  INFO 28860 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T11:05:19.139+01:00  INFO 28860 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\document_store\compose.yaml'
+2025-03-12T11:05:20.712+01:00  INFO 28860 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
+2025-03-12T11:05:20.717+01:00  INFO 28860 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
+2025-03-12T11:05:21.131+01:00  INFO 28860 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
+2025-03-12T11:05:21.132+01:00  INFO 28860 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
+2025-03-12T11:05:21.649+01:00  INFO 28860 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
+2025-03-12T11:05:22.991+01:00  INFO 28860 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-12T11:05:23.042+01:00  INFO 28860 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 2 JPA repository interfaces.
+2025-03-12T11:05:23.523+01:00  INFO 28860 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-03-12T11:05:23.533+01:00  INFO 28860 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T11:05:23.533+01:00  INFO 28860 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-12T11:05:23.591+01:00  INFO 28860 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T11:05:23.592+01:00  INFO 28860 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1178 ms
+2025-03-12T11:05:23.722+01:00  INFO 28860 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-12T11:05:23.781+01:00  INFO 28860 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-12T11:05:23.812+01:00  INFO 28860 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-12T11:05:24.034+01:00  INFO 28860 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-12T11:05:24.058+01:00  INFO 28860 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T11:05:24.186+01:00  INFO 28860 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@793d09e
+2025-03-12T11:05:24.188+01:00  INFO 28860 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T11:05:25.054+01:00  INFO 28860 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-12T11:05:25.117+01:00  INFO 28860 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T11:05:25.725+01:00  WARN 28860 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-12T11:05:25.979+01:00  INFO 28860 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5889e697, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c3d1214, org.springframework.security.web.context.SecurityContextHolderFilter@1d2aa638, org.springframework.security.web.header.HeaderWriterFilter@665e18d5, org.springframework.web.filter.CorsFilter@48064a5a, org.springframework.security.web.authentication.logout.LogoutFilter@1ead6e20, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67c1fc9b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@50f65fe0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d018c58, org.springframework.security.web.session.SessionManagementFilter@534c3b9d, org.springframework.security.web.access.ExceptionTranslationFilter@138110f8, org.springframework.security.web.access.intercept.AuthorizationFilter@3e79473d]
+2025-03-12T11:05:26.201+01:00  INFO 28860 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2025-03-12T11:05:26.206+01:00  INFO 28860 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 7.687 seconds (process running for 8.343)
+2025-03-12T11:07:10.550+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T11:07:10.550+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T11:07:10.550+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-03-12T11:07:10.772+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T11:07:16.425+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T11:07:16.438+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T11:07:52.053+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:50:46.062+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:50:46.062+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:50:46.073+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:50:46.073+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:50:46.082+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:50:46.083+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:15.058+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:15.058+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:15.070+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:15.080+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:22.938+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:22.938+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:22.957+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:22.960+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:22.973+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:22.984+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:30.658+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:30.658+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:30.672+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:30.672+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:30.687+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:30.698+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:31.871+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:31.873+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:31.884+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:31.884+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:31.897+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T12:52:31.906+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:04:43.078+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:04:43.078+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:04:43.090+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:04:43.090+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:04:43.100+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:04:43.108+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:05:19.062+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:05:19.062+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:05:19.072+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:05:19.084+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:05:45.790+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:05:45.790+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:05:45.805+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:05:45.806+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:05:45.817+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:05:45.826+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:39.068+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:39.068+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:39.077+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:39.086+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:43.053+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:43.053+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:43.064+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:43.073+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:45.060+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:45.060+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:45.070+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:45.078+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:58.060+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:58.060+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:58.069+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:06:58.078+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:31.070+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:31.070+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:31.097+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:31.097+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:31.108+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:31.116+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:34.829+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:34.829+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:34.842+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:34.842+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:34.852+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T13:19:34.862+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T14:49:17.302+01:00  WARN 28860 --- [document_store] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h28m20s656ms402µs600ns).
+2025-03-12T15:37:28.245+01:00  WARN 28860 --- [document_store] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m10s210ms304µs200ns).
+2025-03-12T15:44:01.071+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:01.071+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:01.086+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:01.086+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:01.119+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:01.133+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:33.081+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:33.088+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:33.099+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:33.108+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:41.210+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:41.210+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:41.226+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:41.899+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:41.899+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:44:41.914+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:46:21.044+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:46:21.044+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:46:21.055+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:46:21.064+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:19.031+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:19.035+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:34.048+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:34.048+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:34.065+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:34.065+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:35.299+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:35.299+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:35.314+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:35.314+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:35.333+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:35.344+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:58.057+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:58.061+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:58.072+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:58.074+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:58.083+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:47:58.090+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:48:00.489+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:48:00.489+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:48:00.499+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:48:00.499+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:48:00.507+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:48:00.515+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:49:28.320+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:49:28.320+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:49:28.331+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:49:28.338+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:49:28.348+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:49:28.357+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:49:37.043+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:49:37.046+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:49:37.057+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:49:37.069+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:50:57.039+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:50:57.039+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:50:57.054+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:50:57.064+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:51:08.096+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:51:08.096+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-4] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:51:08.108+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:51:08.118+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-5] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:51:11.807+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:51:11.807+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:51:11.835+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:51:11.835+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:51:11.850+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-6] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:51:11.860+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-8] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:53:11.776+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-7] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:53:11.776+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-3] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:53:11.792+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-9] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:53:11.802+01:00  INFO 28860 --- [document_store] [http-nio-8081-exec-2] c.e.d.services.DocumentServices          : Document fetched successfully
+2025-03-12T15:59:14.018+01:00  INFO 28860 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T15:59:14.030+01:00  INFO 28860 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T15:59:14.036+01:00  INFO 28860 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T16:48:15.611+01:00  INFO 19000 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 19000 (C:\Users\maxim\Desktop\Job-placement-services\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\document_store)
+2025-03-12T16:48:15.615+01:00 DEBUG 19000 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-12T16:48:15.616+01:00  INFO 19000 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T16:48:15.715+01:00  INFO 19000 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\document_store\compose.yaml'
+2025-03-12T16:48:18.179+01:00  INFO 34404 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 34404 (C:\Users\maxim\Desktop\Job-placement-services\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\document_store)
+2025-03-12T16:48:18.183+01:00 DEBUG 34404 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-12T16:48:18.185+01:00  INFO 34404 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T16:48:18.293+01:00  INFO 34404 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\document_store\compose.yaml'
+2025-03-12T16:48:19.763+01:00  INFO 19000 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
+2025-03-12T16:48:19.772+01:00  INFO 19000 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
+2025-03-12T16:48:20.792+01:00  INFO 35100 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 35100 (C:\Users\maxim\Desktop\Job-placement-services\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\document_store)
+2025-03-12T16:48:20.794+01:00 DEBUG 35100 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-12T16:48:20.795+01:00  INFO 35100 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T16:48:20.912+01:00  INFO 35100 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\document_store\compose.yaml'
+2025-03-12T16:48:21.069+01:00  INFO 19000 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
+2025-03-12T16:48:21.069+01:00  INFO 19000 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
+2025-03-12T16:48:21.593+01:00  INFO 19000 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
+2025-03-12T16:48:21.680+01:00  INFO 34404 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Running
+2025-03-12T16:48:21.690+01:00  INFO 34404 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
+2025-03-12T16:48:22.205+01:00  INFO 34404 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
+2025-03-12T16:48:22.608+01:00  INFO 33700 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 33700 (C:\Users\maxim\Desktop\Job-placement-services\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\document_store)
+2025-03-12T16:48:22.610+01:00 DEBUG 33700 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-12T16:48:22.611+01:00  INFO 33700 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T16:48:22.716+01:00  INFO 33700 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\document_store\compose.yaml'
+2025-03-12T16:48:23.542+01:00  INFO 35100 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-03-12T16:48:23.919+01:00  INFO 19000 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-12T16:48:24.015+01:00  INFO 19000 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 84 ms. Found 2 JPA repository interfaces.
+2025-03-12T16:48:24.389+01:00  INFO 34404 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-12T16:48:24.484+01:00  INFO 34404 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83 ms. Found 2 JPA repository interfaces.
+2025-03-12T16:48:24.800+01:00  INFO 35100 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-12T16:48:24.867+01:00  INFO 19000 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-03-12T16:48:24.889+01:00  INFO 19000 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T16:48:24.889+01:00  INFO 19000 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-12T16:48:24.895+01:00  INFO 35100 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 2 JPA repository interfaces.
+2025-03-12T16:48:24.986+01:00  INFO 19000 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T16:48:24.987+01:00  INFO 19000 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2250 ms
+2025-03-12T16:48:25.087+01:00  INFO 33700 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2025-03-12T16:48:25.230+01:00  INFO 19000 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-12T16:48:25.260+01:00  INFO 34404 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-03-12T16:48:25.275+01:00  INFO 34404 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T16:48:25.275+01:00  INFO 34404 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-12T16:48:25.348+01:00  INFO 19000 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-12T16:48:25.359+01:00  INFO 34404 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T16:48:25.359+01:00  INFO 34404 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2117 ms
+2025-03-12T16:48:25.409+01:00  INFO 19000 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-12T16:48:25.569+01:00  INFO 34404 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-12T16:48:25.629+01:00  INFO 35100 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-03-12T16:48:25.645+01:00  INFO 35100 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T16:48:25.645+01:00  INFO 35100 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-12T16:48:25.658+01:00  INFO 34404 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-12T16:48:25.721+01:00  INFO 34404 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-12T16:48:25.737+01:00  INFO 35100 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T16:48:25.737+01:00  INFO 35100 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1974 ms
+2025-03-12T16:48:25.838+01:00  INFO 19000 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-12T16:48:25.897+01:00  INFO 19000 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T16:48:25.980+01:00  INFO 35100 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-12T16:48:26.078+01:00  INFO 35100 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-12T16:48:26.122+01:00  INFO 34404 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-12T16:48:26.131+01:00  INFO 35100 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-12T16:48:26.169+01:00  INFO 19000 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3a72e2e8
+2025-03-12T16:48:26.170+01:00  INFO 34404 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T16:48:26.173+01:00  INFO 19000 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T16:48:26.283+01:00  INFO 33700 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-12T16:48:26.375+01:00  INFO 33700 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 2 JPA repository interfaces.
+2025-03-12T16:48:26.387+01:00  INFO 34404 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4f581211
+2025-03-12T16:48:26.389+01:00  INFO 34404 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T16:48:26.550+01:00  INFO 35100 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-12T16:48:26.603+01:00  INFO 35100 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T16:48:26.890+01:00  INFO 35100 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4b7ab7ab
+2025-03-12T16:48:26.891+01:00  INFO 35100 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T16:48:27.282+01:00  INFO 33700 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-03-12T16:48:27.295+01:00  INFO 33700 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T16:48:27.297+01:00  INFO 33700 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-12T16:48:27.385+01:00  INFO 33700 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T16:48:27.386+01:00  INFO 33700 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2079 ms
+2025-03-12T16:48:27.632+01:00  INFO 33700 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-12T16:48:27.720+01:00  INFO 33700 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-12T16:48:27.767+01:00  INFO 33700 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-12T16:48:27.912+01:00  INFO 34404 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-12T16:48:27.914+01:00  INFO 19000 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-12T16:48:28.102+01:00  WARN 19000 --- [document_store] [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "create table documents_data (document_id bigserial not null, data bytea, primary key (document_id))" via JDBC [ERROR: duplicate key value violates unique constraint "pg_class_relname_nsp_index"
+  Dettaglio: Key (relname, relnamespace)=(documents_data_document_id_seq, 2200) already exists.]
 
-	at org.springframework.boot.docker.compose.core.ProcessRunner.run(ProcessRunner.java:96) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.core.DockerCli.run(DockerCli.java:80) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.core.DefaultDockerCompose.up(DefaultDockerCompose.java:51) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.lifecycle.StartCommand.applyTo(StartCommand.java:51) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.lifecycle.DockerComposeLifecycleManager.start(DockerComposeLifecycleManager.java:123) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.lifecycle.DockerComposeListener.onApplicationEvent(DockerComposeListener.java:53) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.boot.docker.compose.lifecycle.DockerComposeListener.onApplicationEvent(DockerComposeListener.java:35) ~[spring-boot-docker-compose-3.2.4.jar:3.2.4]
-	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:185) ~[spring-context-6.1.5.jar:6.1.5]
-	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:178) ~[spring-context-6.1.5.jar:6.1.5]
-	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:156) ~[spring-context-6.1.5.jar:6.1.5]
-	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:138) ~[spring-context-6.1.5.jar:6.1.5]
-	at org.springframework.boot.context.event.EventPublishingRunListener.multicastInitialEvent(EventPublishingRunListener.java:136) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.context.event.EventPublishingRunListener.contextLoaded(EventPublishingRunListener.java:98) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplicationRunListeners.lambda$contextLoaded$4(SpringApplicationRunListeners.java:72) ~[spring-boot-3.2.4.jar:3.2.4]
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
-	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:118) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplicationRunListeners.doWithListeners(SpringApplicationRunListeners.java:112) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplicationRunListeners.contextLoaded(SpringApplicationRunListeners.java:72) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplication.prepareContext(SpringApplication.java:432) ~[spring-boot-3.2.4.jar:3.2.4]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:333) ~[spring-boot-3.2.4.jar:3.2.4]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "create table documents_data (document_id bigserial not null, data bytea, primary key (document_id))" via JDBC [ERROR: duplicate key value violates unique constraint "pg_class_relname_nsp_index"
+  Dettaglio: Key (relname, relnamespace)=(documents_data_document_id_seq, 2200) already exists.]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:574) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:514) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.createTable(AbstractSchemaMigrator.java:315) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:232) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:117) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1234) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.4.jar:3.2.4]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.4.jar:3.2.4]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.4.jar:3.2.4]
 	at com.example.document_store.DocumentStoreApplicationKt.main(DocumentStoreApplication.kt:13) ~[main/:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "pg_class_relname_nsp_index"
+  Dettaglio: Key (relname, relnamespace)=(documents_data_document_id_seq, 2200) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292) ~[postgresql-42.6.2.jar:42.6.2]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	... 38 common frames omitted
 
-2024-06-13T00:24:32.576+02:00  INFO 18944 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 18944 (C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store)
-2024-06-13T00:24:32.578+02:00 DEBUG 18944 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-06-13T00:24:32.579+02:00  INFO 18944 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
-2024-06-13T00:24:32.648+02:00  INFO 18944 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml'
-2024-06-13T00:24:34.978+02:00  INFO 18944 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Recreate
-2024-06-13T00:24:35.291+02:00  INFO 18944 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Recreated
-2024-06-13T00:24:35.300+02:00  INFO 18944 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
-2024-06-13T00:24:36.508+02:00  INFO 18944 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
-2024-06-13T00:24:36.508+02:00  INFO 18944 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
-2024-06-13T00:24:37.030+02:00  INFO 18944 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
-2024-06-13T00:24:38.456+02:00  INFO 18944 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-06-13T00:24:38.511+02:00  INFO 18944 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 2 JPA repository interfaces.
-2024-06-13T00:24:39.007+02:00  INFO 18944 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2024-06-13T00:24:39.017+02:00  INFO 18944 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-06-13T00:24:39.018+02:00  INFO 18944 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-06-13T00:24:39.072+02:00  INFO 18944 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-06-13T00:24:39.072+02:00  INFO 18944 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1296 ms
-2024-06-13T00:24:39.308+02:00  INFO 18944 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-13T00:24:39.611+02:00  INFO 18944 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-06-13T00:24:39.699+02:00  INFO 18944 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-06-13T00:24:40.464+02:00  INFO 18944 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-06-13T00:24:40.541+02:00  INFO 18944 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-06-13T00:24:41.235+02:00  INFO 18944 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@603f4e3e
-2024-06-13T00:24:41.236+02:00  INFO 18944 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-06-13T00:24:42.318+02:00  INFO 18944 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-06-13T00:24:42.398+02:00  INFO 18944 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T00:24:42.994+02:00  WARN 18944 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-06-13T00:24:43.238+02:00  INFO 18944 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1043c493, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b27d5d3, org.springframework.security.web.context.SecurityContextHolderFilter@546ca9da, org.springframework.security.web.header.HeaderWriterFilter@5a983f8a, org.springframework.security.web.authentication.logout.LogoutFilter@304933cb, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@2693e39c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@14e54a35, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@298cfe89, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@12115c28, org.springframework.security.web.session.SessionManagementFilter@7d018c58, org.springframework.security.web.access.ExceptionTranslationFilter@5d72da0b, org.springframework.security.web.access.intercept.AuthorizationFilter@64faf3d]
-2024-06-13T00:24:43.439+02:00  INFO 18944 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
-2024-06-13T00:24:43.447+02:00  INFO 18944 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 11.372 seconds (process running for 12.125)
-2024-06-13T00:26:28.865+02:00  INFO 18944 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T00:26:28.868+02:00  INFO 18944 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-06-13T00:26:28.872+02:00  INFO 18944 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-06-13T00:26:39.860+02:00  INFO 16636 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 16636 (C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store)
-2024-06-13T00:26:39.861+02:00 DEBUG 16636 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-06-13T00:26:39.862+02:00  INFO 16636 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
-2024-06-13T00:26:39.943+02:00  INFO 16636 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml'
-2024-06-13T00:26:41.278+02:00  INFO 16636 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network document_store_default  Creating
-2024-06-13T00:26:41.336+02:00  INFO 16636 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network document_store_default  Created
-2024-06-13T00:26:41.337+02:00  INFO 16636 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Creating
-2024-06-13T00:26:41.460+02:00  INFO 16636 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
-2024-06-13T00:26:41.465+02:00  INFO 16636 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
-2024-06-13T00:26:42.043+02:00  INFO 16636 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
-2024-06-13T00:26:42.045+02:00  INFO 16636 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
-2024-06-13T00:26:42.557+02:00  INFO 16636 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
-2024-06-13T00:26:45.905+02:00  INFO 16636 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-06-13T00:26:45.959+02:00  INFO 16636 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 2 JPA repository interfaces.
-2024-06-13T00:26:46.401+02:00  INFO 16636 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2024-06-13T00:26:46.410+02:00  INFO 16636 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-06-13T00:26:46.411+02:00  INFO 16636 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-06-13T00:26:46.458+02:00  INFO 16636 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-06-13T00:26:46.458+02:00  INFO 16636 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1180 ms
-2024-06-13T00:26:46.581+02:00  INFO 16636 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-13T00:26:46.639+02:00  INFO 16636 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-06-13T00:26:46.678+02:00  INFO 16636 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-06-13T00:26:46.896+02:00  INFO 16636 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-06-13T00:26:46.919+02:00  INFO 16636 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-06-13T00:26:47.039+02:00  INFO 16636 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@d4ecdb0
-2024-06-13T00:26:47.040+02:00  INFO 16636 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-06-13T00:26:47.860+02:00  INFO 16636 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-06-13T00:26:47.950+02:00  INFO 16636 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T00:26:48.500+02:00  WARN 16636 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-06-13T00:26:48.729+02:00  INFO 16636 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@797c67c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31ce271c, org.springframework.security.web.context.SecurityContextHolderFilter@59f56892, org.springframework.security.web.header.HeaderWriterFilter@22d23c27, org.springframework.security.web.authentication.logout.LogoutFilter@308d8de8, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@3431cb1f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d72da0b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@285b63eb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@b1d7b09, org.springframework.security.web.session.SessionManagementFilter@53a645a2, org.springframework.security.web.access.ExceptionTranslationFilter@24ffe853, org.springframework.security.web.access.intercept.AuthorizationFilter@443d94ae]
-2024-06-13T00:26:48.931+02:00  INFO 16636 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
-2024-06-13T00:26:48.938+02:00  INFO 16636 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 9.553 seconds (process running for 10.239)
-2024-06-13T00:27:46.152+02:00  INFO 16636 --- [document_store] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-06-13T00:27:46.152+02:00  INFO 16636 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-06-13T00:27:46.152+02:00  INFO 16636 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2024-06-13T00:27:46.366+02:00  INFO 16636 --- [document_store] [http-nio-8081-exec-1] c.e.d.services.DocumentServices          : Document fetched successfully
-2024-06-13T00:28:24.222+02:00  INFO 16636 --- [document_store] [http-nio-8081-exec-10] c.e.d.services.DocumentServices          : Document fetched successfully
-2024-06-13T00:28:41.361+02:00  INFO 16636 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T00:28:41.365+02:00  INFO 16636 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-06-13T00:28:41.373+02:00  INFO 16636 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-06-13T09:50:57.557+02:00  INFO 9780 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 9780 (C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store)
-2024-06-13T09:50:57.559+02:00 DEBUG 9780 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-06-13T09:50:57.560+02:00  INFO 9780 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
-2024-06-13T09:50:57.690+02:00  INFO 9780 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml'
-2024-06-13T09:50:59.742+02:00  INFO 9780 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network document_store_default  Creating
-2024-06-13T09:50:59.956+02:00  INFO 9780 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Network document_store_default  Created
-2024-06-13T09:50:59.960+02:00  INFO 9780 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Creating
-2024-06-13T09:51:00.280+02:00  INFO 9780 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
-2024-06-13T09:51:00.287+02:00  INFO 9780 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
-2024-06-13T09:51:02.286+02:00  INFO 9780 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
-2024-06-13T09:51:02.287+02:00  INFO 9780 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
-2024-06-13T09:51:02.806+02:00  INFO 9780 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
-2024-06-13T09:51:09.664+02:00  INFO 9780 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-06-13T09:51:09.724+02:00  INFO 9780 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 2 JPA repository interfaces.
-2024-06-13T09:51:10.327+02:00  INFO 9780 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2024-06-13T09:51:10.352+02:00  INFO 9780 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-06-13T09:51:10.353+02:00  INFO 9780 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-06-13T09:51:10.500+02:00  INFO 9780 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-06-13T09:51:10.502+02:00  INFO 9780 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1828 ms
-2024-06-13T09:51:10.714+02:00  INFO 9780 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-13T09:51:10.812+02:00  INFO 9780 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-06-13T09:51:10.863+02:00  INFO 9780 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-06-13T09:51:11.206+02:00  INFO 9780 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-06-13T09:51:11.243+02:00  INFO 9780 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-06-13T09:51:11.443+02:00  INFO 9780 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7ac685ef
-2024-06-13T09:51:11.445+02:00  INFO 9780 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-06-13T09:51:12.575+02:00  INFO 9780 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-06-13T09:51:12.673+02:00  INFO 9780 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T09:51:13.610+02:00  WARN 9780 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-06-13T09:51:13.960+02:00  INFO 9780 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@74fd5fb0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c16cc25, org.springframework.security.web.context.SecurityContextHolderFilter@cf82c58, org.springframework.security.web.header.HeaderWriterFilter@2286dfcd, org.springframework.security.web.authentication.logout.LogoutFilter@1134a934, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@22d23c27, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5aff8207, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6a5a99d9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f96e484, org.springframework.security.web.session.SessionManagementFilter@453bbb9b, org.springframework.security.web.access.ExceptionTranslationFilter@64ba5a71, org.springframework.security.web.access.intercept.AuthorizationFilter@18a538a0]
-2024-06-13T09:51:14.220+02:00  INFO 9780 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
-2024-06-13T09:51:14.228+02:00  INFO 9780 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 17.609 seconds (process running for 18.911)
-2024-06-13T09:55:38.356+02:00  INFO 9780 --- [document_store] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-06-13T09:55:38.371+02:00  INFO 9780 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-06-13T09:55:38.410+02:00  INFO 9780 --- [document_store] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 36 ms
-2024-06-13T10:57:15.209+02:00  INFO 9780 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T10:57:15.379+02:00  INFO 9780 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-06-13T10:57:15.424+02:00  INFO 9780 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-06-13T12:10:26.460+02:00  INFO 14112 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 14112 (C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store)
-2024-06-13T12:10:26.462+02:00 DEBUG 14112 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-06-13T12:10:26.464+02:00  INFO 14112 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
-2024-06-13T12:10:26.559+02:00  INFO 14112 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Polito\2° Anno\2°Semestre\Web Application II\Laboratori\lab5-g29\document_store\compose.yaml'
-2024-06-13T12:10:28.492+02:00  INFO 14112 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
-2024-06-13T12:10:28.498+02:00  INFO 14112 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
-2024-06-13T12:10:30.535+02:00  INFO 14112 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
-2024-06-13T12:10:30.535+02:00  INFO 14112 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
-2024-06-13T12:10:31.057+02:00  INFO 14112 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
-2024-06-13T12:10:32.450+02:00  INFO 14112 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-06-13T12:10:32.502+02:00  INFO 14112 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 2 JPA repository interfaces.
-2024-06-13T12:10:32.985+02:00  INFO 14112 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2024-06-13T12:10:32.998+02:00  INFO 14112 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-06-13T12:10:32.998+02:00  INFO 14112 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
-2024-06-13T12:10:33.051+02:00  INFO 14112 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-06-13T12:10:33.051+02:00  INFO 14112 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1224 ms
-2024-06-13T12:10:33.188+02:00  INFO 14112 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-13T12:10:33.276+02:00  INFO 14112 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-06-13T12:10:33.313+02:00  INFO 14112 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-06-13T12:10:33.575+02:00  INFO 14112 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-06-13T12:10:33.602+02:00  INFO 14112 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-06-13T12:10:33.871+02:00  INFO 14112 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6200b644
-2024-06-13T12:10:33.874+02:00  INFO 14112 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-06-13T12:10:34.935+02:00  INFO 14112 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-06-13T12:10:35.175+02:00  INFO 14112 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T12:10:35.749+02:00  WARN 14112 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-06-13T12:10:36.001+02:00  INFO 14112 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@173602c0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@fdeec12, org.springframework.security.web.context.SecurityContextHolderFilter@49522bdf, org.springframework.security.web.header.HeaderWriterFilter@665c79a2, org.springframework.security.web.authentication.logout.LogoutFilter@42c9f2cd, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@cc3fc5c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39eea4f6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c94d4b8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1cecd0a9, org.springframework.security.web.session.SessionManagementFilter@14e54a35, org.springframework.security.web.access.ExceptionTranslationFilter@27f6e2c3, org.springframework.security.web.access.intercept.AuthorizationFilter@4a9d6eb9]
-2024-06-13T12:10:36.223+02:00  INFO 14112 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
-2024-06-13T12:10:36.230+02:00  INFO 14112 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 10.489 seconds (process running for 11.302)
-2024-06-13T12:10:40.372+02:00  INFO 14112 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-06-13T12:10:40.376+02:00  INFO 14112 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-06-13T12:10:40.381+02:00  INFO 14112 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T16:48:28.113+01:00  WARN 19000 --- [document_store] [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "create table documents_metadata (metadata_id bigserial not null, category smallint check (category between 0 and 3), content_type varchar(255), id bigint, name varchar(255), size bigint, timestamp timestamp(6), document_id bigint, primary key (metadata_id))" via JDBC [ERROR: relation "documents_metadata" already exists]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "create table documents_metadata (metadata_id bigserial not null, category smallint check (category between 0 and 3), content_type varchar(255), id bigint, name varchar(255), size bigint, timestamp timestamp(6), document_id bigint, primary key (metadata_id))" via JDBC [ERROR: relation "documents_metadata" already exists]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:574) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:514) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.createTable(AbstractSchemaMigrator.java:315) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:232) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:117) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1234) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.4.jar:3.2.4]
+	at com.example.document_store.DocumentStoreApplicationKt.main(DocumentStoreApplication.kt:13) ~[main/:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "documents_metadata" already exists
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292) ~[postgresql-42.6.2.jar:42.6.2]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	... 38 common frames omitted
+
+2025-03-12T16:48:28.118+01:00  WARN 34404 --- [document_store] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-12T16:48:28.118+01:00  WARN 34404 --- [document_store] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_jit81eir4v2kbn8k6v6ukf97q" of relation "documents_metadata" does not exist, skipping
+2025-03-12T16:48:28.120+01:00  WARN 19000 --- [document_store] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2025-03-12T16:48:28.120+01:00  WARN 19000 --- [document_store] [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_jit81eir4v2kbn8k6v6ukf97q" of relation "documents_metadata" does not exist, skipping
+2025-03-12T16:48:28.126+01:00  INFO 33700 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-12T16:48:28.139+01:00  INFO 19000 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T16:48:28.140+01:00  WARN 34404 --- [document_store] [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists documents_metadata add constraint FKs9xn6alohb81nl41thu8yt2l6 foreign key (document_id) references documents_data" via JDBC [ERROR: constraint "fks9xn6alohb81nl41thu8yt2l6" for relation "documents_metadata" already exists]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists documents_metadata add constraint FKs9xn6alohb81nl41thu8yt2l6 foreign key (document_id) references documents_data" via JDBC [ERROR: constraint "fks9xn6alohb81nl41thu8yt2l6" for relation "documents_metadata" already exists]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:574) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:514) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applyForeignKeys(AbstractSchemaMigrator.java:446) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:268) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:117) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:315) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1234) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:952) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624) ~[spring-context-6.1.5.jar:6.1.5]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.2.4.jar:3.2.4]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.2.4.jar:3.2.4]
+	at com.example.document_store.DocumentStoreApplicationKt.main(DocumentStoreApplication.kt:13) ~[main/:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: constraint "fks9xn6alohb81nl41thu8yt2l6" for relation "documents_metadata" already exists
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:335) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:321) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:297) ~[postgresql-42.6.2.jar:42.6.2]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:292) ~[postgresql-42.6.2.jar:42.6.2]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.4.4.Final.jar:6.4.4.Final]
+	... 37 common frames omitted
+
+2025-03-12T16:48:28.147+01:00  INFO 34404 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T16:48:28.172+01:00  INFO 33700 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T16:48:28.365+01:00  INFO 33700 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6a278584
+2025-03-12T16:48:28.367+01:00  INFO 33700 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T16:48:28.389+01:00  INFO 35100 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-12T16:48:28.502+01:00  INFO 35100 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T16:48:29.096+01:00  WARN 34404 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-12T16:48:29.125+01:00  WARN 19000 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-12T16:48:29.447+01:00  INFO 34404 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@402adc9c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@70313b0b, org.springframework.security.web.context.SecurityContextHolderFilter@648c80cb, org.springframework.security.web.header.HeaderWriterFilter@18f1a81a, org.springframework.web.filter.CorsFilter@5da16ed6, org.springframework.security.web.authentication.logout.LogoutFilter@740530b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@157a2c86, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b9c74a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@444720b7, org.springframework.security.web.session.SessionManagementFilter@3f523dae, org.springframework.security.web.access.ExceptionTranslationFilter@333e01c6, org.springframework.security.web.access.intercept.AuthorizationFilter@7b897456]
+2025-03-12T16:48:29.478+01:00  INFO 19000 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2d4aadc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@773ad729, org.springframework.security.web.context.SecurityContextHolderFilter@1cecd0a9, org.springframework.security.web.header.HeaderWriterFilter@5b395ee, org.springframework.web.filter.CorsFilter@20e8286a, org.springframework.security.web.authentication.logout.LogoutFilter@2b8f5aa4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6fa5fc67, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17e323fd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4d408746, org.springframework.security.web.session.SessionManagementFilter@2aac60b, org.springframework.security.web.access.ExceptionTranslationFilter@157a2c86, org.springframework.security.web.access.intercept.AuthorizationFilter@18edbed9]
+2025-03-12T16:48:29.487+01:00  WARN 35100 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-12T16:48:29.844+01:00  WARN 19000 --- [document_store] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-03-12T16:48:29.848+01:00  INFO 19000 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T16:48:29.849+01:00  INFO 34404 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2025-03-12T16:48:29.854+01:00  INFO 19000 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T16:48:29.861+01:00  INFO 19000 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T16:48:29.870+01:00  INFO 34404 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 12.559 seconds (process running for 14.105)
+2025-03-12T16:48:29.887+01:00  INFO 19000 --- [document_store] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-03-12T16:48:29.887+01:00  INFO 33700 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-12T16:48:29.899+01:00  INFO 35100 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2943e61c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6bab373c, org.springframework.security.web.context.SecurityContextHolderFilter@31ce271c, org.springframework.security.web.header.HeaderWriterFilter@2b551e7b, org.springframework.web.filter.CorsFilter@493ed8e6, org.springframework.security.web.authentication.logout.LogoutFilter@7d453075, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@64faf3d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3f523dae, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b897456, org.springframework.security.web.session.SessionManagementFilter@3431cb1f, org.springframework.security.web.access.ExceptionTranslationFilter@443d94ae, org.springframework.security.web.access.intercept.AuthorizationFilter@cd9ce76]
+2025-03-12T16:48:29.914+01:00 ERROR 19000 --- [document_store] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+
+2025-03-12T16:48:29.992+01:00  INFO 33700 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T16:48:30.225+01:00  WARN 35100 --- [document_store] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-03-12T16:48:30.228+01:00  INFO 35100 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T16:48:30.231+01:00  INFO 35100 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T16:48:30.238+01:00  INFO 35100 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T16:48:30.256+01:00  INFO 35100 --- [document_store] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-03-12T16:48:30.295+01:00 ERROR 35100 --- [document_store] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+
+2025-03-12T16:48:30.852+01:00  WARN 33700 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-12T16:48:31.209+01:00  INFO 33700 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@43069adf, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@18edbed9, org.springframework.security.web.context.SecurityContextHolderFilter@cc3fc5c, org.springframework.security.web.header.HeaderWriterFilter@648c80cb, org.springframework.web.filter.CorsFilter@4823f4d0, org.springframework.security.web.authentication.logout.LogoutFilter@70313b0b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@173602c0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@fdeec12, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75f316df, org.springframework.security.web.session.SessionManagementFilter@1043c493, org.springframework.security.web.access.ExceptionTranslationFilter@7fe40b9f, org.springframework.security.web.access.intercept.AuthorizationFilter@6557dcea]
+2025-03-12T16:48:31.659+01:00  WARN 33700 --- [document_store] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-03-12T16:48:31.661+01:00  INFO 33700 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T16:48:31.663+01:00  INFO 33700 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T16:48:31.678+01:00  INFO 33700 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T16:48:31.695+01:00  INFO 33700 --- [document_store] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-03-12T16:48:31.725+01:00 ERROR 33700 --- [document_store] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+
+2025-03-12T16:53:01.018+01:00  INFO 34404 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T16:53:01.022+01:00  INFO 34404 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T16:53:01.026+01:00  INFO 34404 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-12T16:53:05.402+01:00  INFO 32908 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Starting DocumentStoreApplicationKt using Java 21.0.2 with PID 32908 (C:\Users\maxim\Desktop\Job-placement-services\document_store\build\classes\kotlin\main started by maxim in C:\Users\maxim\Desktop\Job-placement-services\document_store)
+2025-03-12T16:53:05.405+01:00 DEBUG 32908 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-12T16:53:05.406+01:00  INFO 32908 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : No active profile set, falling back to 1 default profile: "default"
+2025-03-12T16:53:05.535+01:00  INFO 32908 --- [document_store] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file 'C:\Users\maxim\Desktop\Job-placement-services\document_store\compose.yaml'
+2025-03-12T16:53:08.051+01:00  INFO 32908 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Created
+2025-03-12T16:53:08.058+01:00  INFO 32908 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Starting
+2025-03-12T16:53:08.411+01:00  INFO 32908 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Started
+2025-03-12T16:53:08.411+01:00  INFO 32908 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Waiting
+2025-03-12T16:53:08.920+01:00  INFO 32908 --- [document_store] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container document_store-postgres-1  Healthy
+2025-03-12T16:53:10.300+01:00  INFO 32908 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-12T16:53:10.354+01:00  INFO 32908 --- [document_store] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 2 JPA repository interfaces.
+2025-03-12T16:53:10.826+01:00  INFO 32908 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-03-12T16:53:10.836+01:00  INFO 32908 --- [document_store] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-12T16:53:10.836+01:00  INFO 32908 --- [document_store] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-12T16:53:10.892+01:00  INFO 32908 --- [document_store] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-12T16:53:10.892+01:00  INFO 32908 --- [document_store] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1179 ms
+2025-03-12T16:53:11.021+01:00  INFO 32908 --- [document_store] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-12T16:53:11.091+01:00  INFO 32908 --- [document_store] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-12T16:53:11.123+01:00  INFO 32908 --- [document_store] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-12T16:53:11.350+01:00  INFO 32908 --- [document_store] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-12T16:53:11.374+01:00  INFO 32908 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-12T16:53:11.519+01:00  INFO 32908 --- [document_store] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3ba46845
+2025-03-12T16:53:11.520+01:00  INFO 32908 --- [document_store] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-12T16:53:12.430+01:00  INFO 32908 --- [document_store] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-12T16:53:12.546+01:00  INFO 32908 --- [document_store] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T16:53:13.138+01:00  WARN 32908 --- [document_store] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-12T16:53:13.351+01:00  INFO 32908 --- [document_store] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@14060410, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58397dd, org.springframework.security.web.context.SecurityContextHolderFilter@628b1538, org.springframework.security.web.header.HeaderWriterFilter@12115c28, org.springframework.web.filter.CorsFilter@620260ad, org.springframework.security.web.authentication.logout.LogoutFilter@43069adf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@58dd1d0c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@740530b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@216c6825, org.springframework.security.web.session.SessionManagementFilter@7d453075, org.springframework.security.web.access.ExceptionTranslationFilter@1043c493, org.springframework.security.web.access.intercept.AuthorizationFilter@63be4548]
+2025-03-12T16:53:13.604+01:00  INFO 32908 --- [document_store] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''
+2025-03-12T16:53:13.611+01:00  INFO 32908 --- [document_store] [main] c.e.d.DocumentStoreApplicationKt         : Started DocumentStoreApplicationKt in 8.874 seconds (process running for 10.25)
+2025-03-12T16:53:55.053+01:00  INFO 32908 --- [document_store] [http-nio-8081-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-12T16:53:55.053+01:00  INFO 32908 --- [document_store] [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-12T16:53:55.054+01:00  INFO 32908 --- [document_store] [http-nio-8081-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-12T21:28:15.366+01:00  WARN 32908 --- [document_store] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=53m247ms249µs799ns).
+2025-03-12T23:05:37.202+01:00  INFO 32908 --- [document_store] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-12T23:05:37.301+01:00  INFO 32908 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-12T23:05:38.977+01:00  INFO 32908 --- [document_store] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

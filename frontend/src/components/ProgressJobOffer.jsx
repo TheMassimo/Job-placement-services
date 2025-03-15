@@ -128,6 +128,9 @@ function ProgressJobOffer(props) {
                     tmpCandidatesId = candidates.map(item => item.professional?.professionalId).filter(id => id !== undefined);
                 }else if(nextState == "CONSOLIDATED") {
                     tmpCandidatesId.push(selectedCandidateId)
+                }else if (nextState == "SELECTION_PHASE" && jobOffer.status!="CREATED") {
+                    //prendo solo gli id dei professional e rimuovo tutte le altre informazioni
+                    tmpCandidatesId = candidates.map(item => item.professional?.professionalId).filter(id => id !== undefined);
                 }
 
                 // Aggiorna lo stato della job offer nel database
@@ -137,6 +140,17 @@ function ProgressJobOffer(props) {
                     console.log("Response=>", response);
                     // Aggiorna lo stato locale per riflettere il cambiamento nell'interfaccia
                     setJobOffer((prev) => ({ ...prev, status: nextState }));
+
+
+                }
+
+                if(nextState == "CONSOLIDATED") {
+                    //carico solo il nuovo candidate
+                    const myCandidate = candidates.find(candidate => candidate.professional.professionalId === selectedCandidateId);
+                    setCandidates([myCandidate]);
+                }else if (nextState == "SELECTION_PHASE" && jobOffer.status!="CREATED") {
+                    //azzero i candidati localmente
+                    setCandidates([])
                 }
 
                 setNote("")
@@ -158,6 +172,17 @@ function ProgressJobOffer(props) {
 
         // Aggiornare lo stato con la lista dei candidati aggiornata
         setCandidates(updatedCandidates);
+    }
+
+    //Aggiorna le note di questa history
+    const saveNote = async (targetState = null) => {
+        try {
+            const upNote = await JobOffersAPI.UpdateJobOfferHistoryNote(jobOfferId, note);
+            handleSuccess('Note aggiornate');
+        }catch(err){
+            console.error(err);
+            handleError(err);
+        }
     }
 
     return (
@@ -291,7 +316,7 @@ function ProgressJobOffer(props) {
                     )}
 
                     {/*Tabella candidati propsti */}
-                    {jobOffer.status === "CANDIDATE_PROPOSAL" && (
+                    {(jobOffer.status === "CANDIDATE_PROPOSAL" ) && (
                         <Row className="mt-4">
                             <Col>
                                 <div className="d-flex justify-content-between align-items-center mb-2">
@@ -328,6 +353,45 @@ function ProgressJobOffer(props) {
                         </Row>
                     )}
 
+                    {(jobOffer.status === "CONSOLIDATED") && (
+                        <Row className="mt-4">
+                            <Col>
+                                <div className="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 className="section-title m-0">Candidate Profiles</h5>
+                                </div>
+                                <Table striped bordered hover>
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Surname</th>
+                                        <th>SSN</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {candidates.map((candidate) => {
+                                        const isSelected = false;
+                                        return (
+                                            <tr
+                                                key={candidate.professional.professionalId}
+                                                onClick={() => handleRowClick(candidate.professional.professionalId)}
+                                                className = {isSelected ? "table-success" : null}
+                                            >
+                                                <td>{candidate.professional.professionalId}</td>
+                                                <td>{candidate.name}</td>
+                                                <td>{candidate.surname}</td>
+                                                <td>{candidate.ssn}</td>
+                                            </tr>
+                                        );
+                                    })}
+                                    </tbody>
+                                </Table>
+                            </Col>
+                        </Row>
+                    )}
+
+
+
                 </Card.Body>
             </Card>
 
@@ -345,6 +409,11 @@ function ProgressJobOffer(props) {
                 {jobOffer.status!="DONE" && jobOffer.status!="ABORTED" && (
                     <Button variant="success" className="mx-2" onClick={() => goToState()}>
                         Next <i className="bi bi-arrow-right"></i>
+                    </Button>
+                )}
+                {jobOffer.status=="DONE" || jobOffer.status=="ABORTED" && (
+                    <Button variant="primary" className="mx-2" onClick={() => saveNote()}>
+                        Save
                     </Button>
                 )}
             </div>
