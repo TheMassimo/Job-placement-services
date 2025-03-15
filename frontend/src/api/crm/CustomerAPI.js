@@ -9,12 +9,12 @@ import {Telephone} from "./entities/Telephone.ts"
 
 const URL_CUSTOMER = 'http://localhost:8082/API/customers'
 
-async function AddCustomer(customer){
+async function AddCustomer(customer, xsrfToken){
     const response = await fetch(
         generateUrl(`${URL_CUSTOMER}`, null, null), {
             method: 'POST',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'/*, 'X-XSRF-TOKEN': xsrfToken*/},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: JSON.stringify(customer)
         }
     )
@@ -27,12 +27,12 @@ async function AddCustomer(customer){
     }
 }
 
-async function UpdateNotes(customerId, note) {
+async function UpdateNotes(customerId, note, xsrfToken ) {
     const response = await fetch(
         generateUrl(`${URL_CUSTOMER}/note/${customerId}`, null, null), {
             method: 'PUT',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'}, //'X-XSRF-TOKEN': xsrfToken
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: note //JSON.stringify(note)
         })
 
@@ -45,12 +45,12 @@ async function UpdateNotes(customerId, note) {
     }
 }
 
-async function DeleteCustomer(customerId) {
+async function DeleteCustomer(customerId, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_CUSTOMER}/${customerId}`, null, null), {
             method: 'DELETE',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
         })
 
     if (!response.ok) {

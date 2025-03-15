@@ -16,6 +16,21 @@ spring:
 
   security:
     oauth2:
+      client:
+        provider:
+          keycloak: #keyclock
+            issuer-uri: http://localhost:9090/realms/CRM
+            user-name-attribute: sub
+        registration:
+          CRMclient:
+            provider: keycloak
+            client-id: apigateway
+            #client-secret: 784jYAnNndMiACzCzDGiXjtWLiePlN9o #Massimo2
+            client-secret: IRENkPNCvWzPe1fjHrmF1jkzR10Vxr1j #Luca
+            scope:
+              - openid
+              - offline_access
+            authorization-grant-type: authorization_code
       resourceserver:
         jwt:
           issuer-uri: http://localhost:9090/realms/CRM
@@ -27,7 +42,18 @@ logging:
     root: INFO
     com.example: DEBUG
   file:
-    name: filename.log
+    name: './src/log/crm_logfile.log'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
 
 #fFormato del log
 #logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n

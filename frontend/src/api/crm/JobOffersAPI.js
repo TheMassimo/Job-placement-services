@@ -62,12 +62,12 @@ async function GetJobOffersContactId(jobOfferId){
     }
 }
 
-async function AddJobOffer(contactId, jobOffer) {
+async function AddJobOffer(contactId, jobOffer, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${contactId}`, null, null), {
             method: 'POST',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'/*, 'X-XSRF-TOKEN': xsrfToken*/},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: JSON.stringify(jobOffer)
         }
     )
@@ -80,12 +80,12 @@ async function AddJobOffer(contactId, jobOffer) {
     }
 }
 
-async function UpdateJobOffer(jobOfferId, jobOffer) {
+async function UpdateJobOffer(jobOfferId, jobOffer, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${jobOfferId}`, null, null), {
             method: 'PUT',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: JSON.stringify(jobOffer)
         })
 
@@ -98,12 +98,12 @@ async function UpdateJobOffer(jobOfferId, jobOffer) {
     }
 }
 
-async function DeleteJobOffer(jobOfferId) {
+async function DeleteJobOffer(jobOfferId, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${jobOfferId}`, null, null), {
             method: 'DELETE',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
         })
 
     if (!response.ok) {
@@ -111,12 +111,12 @@ async function DeleteJobOffer(jobOfferId) {
     }
 }
 
-async function AddRequiredSkillToJobOffer(jobOfferId, skill) {
+async function AddRequiredSkillToJobOffer(jobOfferId, skill, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/requiredSkills`, null, null), {
             method: 'POST',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: skill
         })
 
@@ -129,12 +129,12 @@ async function AddRequiredSkillToJobOffer(jobOfferId, skill) {
     }
 }
 
-async function UpdateRequiredSkillToJobOffer(jobOfferId, skillId, skill) {
+async function UpdateRequiredSkillToJobOffer(jobOfferId, skillId, skill, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/requiredSkills/${skillId}`, null, null), {
             method: 'PUT',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: skill
         })
 
@@ -147,12 +147,12 @@ async function UpdateRequiredSkillToJobOffer(jobOfferId, skillId, skill) {
     }
 }
 
-async function DeleteRequiredSkillToJobOffer(jobOfferId, skillId) {
+async function DeleteRequiredSkillToJobOffer(jobOfferId, skillId, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/requiredSkills/${skillId}`, null, null), {
             method: 'DELETE',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
         })
 
     if (!response.ok) {
@@ -160,12 +160,12 @@ async function DeleteRequiredSkillToJobOffer(jobOfferId, skillId) {
     }
 }
 
-async function UpdateStatusJobOffer(jobOfferId, status, candidates) {
+async function UpdateStatusJobOffer(jobOfferId, status, candidates, xsrfToken) {
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/status/${status}`, null, null), {
             method: 'PUT',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: JSON.stringify(candidates)
         })
 
@@ -212,12 +212,12 @@ async function GetJobOfferNewestHistory(jobOfferId){
     }
 }
 
-async function UpdateJobOfferHistoryNote(jobOfferId, newNote){
+async function UpdateJobOfferHistoryNote(jobOfferId, newNote, xsrfToken){
     const response = await fetch(
         generateUrl(`${URL_JOBOFFERS}/${jobOfferId}/history/note`, null, null), {
             method: 'PUT',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
             body: JSON.stringify(newNote)
         }
     )

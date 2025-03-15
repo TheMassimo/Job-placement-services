@@ -27,8 +27,14 @@ dependencies {
 	implementation("jakarta.validation:jakarta.validation-api:3.0.0")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+	implementation("org.springframework.security:spring-security-oauth2-jose") // For JWT support
+	implementation("org.springframework.security:spring-security-oauth2-resource-server") // For resource server support
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+
+	implementation("io.micrometer:micrometer-registry-prometheus")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 
 
 	developmentOnly("org.springframework.boot:spring-boot-docker-compose")

@@ -12,6 +12,7 @@ function ContactForm(props) {
     const { contactId } = useParams();
     const { action } = useParams();
     const mode = props.mode;
+    const user = props.user;
     const navigate = useNavigate();
     const { handleError, handleSuccess } = useNotification();
     const [contact, setContact] = useState({});
@@ -106,7 +107,7 @@ function ContactForm(props) {
                     address: formData.address.map((item) => item.address),
                     telephone: formData.telephone.map((item) => item.telephone),
                 };
-                resAddContact = await ContactAPI.AddContact(tmpContact);
+                resAddContact = await ContactAPI.AddContact(tmpContact, user?.xsrfToken);
                 handleSuccess('Contact added successfully!');
             }
 
@@ -114,7 +115,8 @@ function ContactForm(props) {
             if( (mode===null || mode==="Customer") && customerChecked) {
                 const contactId = resAddContact?.contactId || contact?.contactId;
                 const tmpCustomerData = {contactId: contactId, notes: formData.customerNotes}
-                const resAddCustomer = await CustomerAPI.AddCustomer(tmpCustomerData);
+                console.log(user);
+                const resAddCustomer = await CustomerAPI.AddCustomer(tmpCustomerData,user?.xsrfToken);
                 handleSuccess('Customer added successfully!');
             }
 
@@ -128,7 +130,7 @@ function ContactForm(props) {
                     notes: formData.professionalNotes,
                     skills: tmpSkills,
                 }
-                const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData);
+                const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData, user?.xsrfToken);
                 handleSuccess('Professional added successfully!');
             }
             //if all is right go back to contacts
@@ -147,7 +149,7 @@ function ContactForm(props) {
             if (mode === null) {
                 //update name, surname and ssn
                 const tmpContact = {contactId:contact.contactId, name:formData.name, surname:formData.surname, ssn:formData.ssn};
-                const resUpdateContact = await ContactAPI.UpdateContact(tmpContact);
+                const resUpdateContact = await ContactAPI.UpdateContact(tmpContact, user?.xsrfToken);
                 //check for email/telephone/address
                 processContactChanges(contact, formData)
                 handleSuccess('Contact data update!');
@@ -156,7 +158,7 @@ function ContactForm(props) {
             // Se spuntato aggiungere anche il customer
             if( (mode===null || mode==="Customer") && customerChecked) {
                 const customerId = contact?.customer?.customerId;
-                const resUpdateCustomer = await CustomerAPI.UpdateNotes(customerId, formData.customerNotes);
+                const resUpdateCustomer = await CustomerAPI.UpdateNotes(customerId, formData.customerNotes, user?.xsrfToken);
                 handleSuccess('Customer data update!');
             }
 
@@ -169,7 +171,7 @@ function ContactForm(props) {
                                           geographicalInfo:formData.geographicalInfo,
                                           dailyRate:formData.dailyRate,
                                           notes:formData.professionalNotes}
-                const resUpdateContact = await ProfessionalAPI.UpdateProfessional(tmpProfessional);
+                const resUpdateContact = await ProfessionalAPI.UpdateProfessional(tmpProfessional, user?.xsrfToken);
                 //update professional skills
                 processProfessionalSkillsChanges(contact, formData);
                 handleSuccess('Professional data updated!');
@@ -213,7 +215,7 @@ function ContactForm(props) {
             // Gestisci eliminazioni
             for (let id of contactMap.keys()) {
                 if (!formDataMap.has(id)) {
-                    apiMethods.delete(contactId, id);
+                    apiMethods.delete(contactId, id, user?.xsrfToken);
                 }
             }
 
@@ -221,10 +223,10 @@ function ContactForm(props) {
             for (let [id, value] of formDataMap.entries()) {
                 if (contactMap.has(id)) {
                     if (contactMap.get(id) !== value) {
-                        apiMethods.update(contactId, id, value);
+                        apiMethods.update(contactId, id, value,user?.xsrfToken);
                     }
                 } else {
-                    apiMethods.add(contactId, value);
+                    apiMethods.add(contactId, value, user?.xsrfToken);
                 }
             }
         };
@@ -249,7 +251,7 @@ function ContactForm(props) {
         // Gestisci eliminazioni
         for (let id of contactMap.keys()) {
             if (!formDataMap.has(id)) {
-                ProfessionalAPI.DeleteSkillOfProfessioanl(professionalId, id);
+                ProfessionalAPI.DeleteSkillOfProfessioanl(professionalId, id, user?.xsrfToken);
             }
         }
 
@@ -257,10 +259,10 @@ function ContactForm(props) {
         for (let [id, value] of formDataMap.entries()) {
             if (contactMap.has(id)) {
                 if (contactMap.get(id) !== value) {
-                    ProfessionalAPI.UpdateSkillOfProfessional(professionalId, id, value);
+                    ProfessionalAPI.UpdateSkillOfProfessional(professionalId, id, value, user?.xsrfToken);
                 }
             } else {
-                ProfessionalAPI.AddSkillToProfessional(professionalId, value);
+                ProfessionalAPI.AddSkillToProfessional(professionalId, value, user?.xsrfToken);
             }
         }
     };

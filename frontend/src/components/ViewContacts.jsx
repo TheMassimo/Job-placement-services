@@ -21,6 +21,7 @@ function Filters(props) {
     const setCurrentPage = props.setCurrentPage;
     const mode = props.mode;
     const skills = props.skills;
+    const user = props.user;
     const [formFilters, setFormFilters] = useState(new ContactFilter(null, null, null, null, null, null, mode, null, null, null, null));
 
     const handleSubmit = (event) => {
@@ -379,6 +380,7 @@ function ProfessionalCard(props) {
 
 
 function ViewContacts(props) {
+    const user = props.user;
     const navigate = useNavigate();
     const { handleError, handleSuccess } = useNotification();
     const [contacts, setContacts] = useState([]);
@@ -445,17 +447,17 @@ function ViewContacts(props) {
     const onConfirmConfirmation = async () => {
         try {
             if (mode === "Customer") {
-                await CustomerAPI.DeleteCustomer(contactToDelete.customer.customerId); // Chiamata asincrona
+                await CustomerAPI.DeleteCustomer(contactToDelete.customer.customerId, user?.xsrfToken); // Chiamata asincrona
                 handleSuccess('Customer successfully deleted!');
                 setIsOpenConfirmation(false);
                 setRefreshContact(prev => prev + 1);
             } else if (mode === "Professional") {
-                await ProfessionalAPI.DeleteProfessional(contactToDelete.professional.professionalId); // Chiamata asincrona
+                await ProfessionalAPI.DeleteProfessional(contactToDelete.professional.professionalId, user?.xsrfToken); // Chiamata asincrona
                 handleSuccess('Professional successfully deleted!');
                 setIsOpenConfirmation(false);
                 setRefreshContact(prev => prev + 1);
             } else {
-                await ContactAPI.DeleteContact(contactToDelete.contactId); // Chiamata asincrona
+                await ContactAPI.DeleteContact(contactToDelete.contactId, user?.xsrfToken); // Chiamata asincrona
                 handleSuccess('Contact successfully deleted!');
                 setIsOpenConfirmation(false);
                 setRefreshContact(prev => prev + 1);

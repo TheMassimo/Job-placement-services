@@ -9,6 +9,7 @@ import JobOffersAPI from "../api/crm/JobOffersAPI.js"; // Assicurati di avere un
 
 
 function AddJobOffer(props) {
+    const user = props.user;
     const { contactId, jobOfferId } = useParams();
     const isEditMode = !!jobOfferId; // Modalità 'edit' se jobOfferId è presente
     const navigate = useNavigate();
@@ -96,7 +97,7 @@ function AddJobOffer(props) {
                 offerValue: formData.offerValue,
                 requiredSkills: tmpSkills,
             };
-            const resAddJobOffer = await JobOffersAPI.AddJobOffer(contactId, tmpJobOffer);
+            const resAddJobOffer = await JobOffersAPI.AddJobOffer(contactId, tmpJobOffer, user?.xsrfToken);
             handleSuccess('Job Offer added successfully!');
 
             //if all is right go back to contacts
@@ -118,7 +119,7 @@ function AddJobOffer(props) {
                 offerValue: formData.offerValue,
                 //requiredSkills: tmpSkills,
             };
-            const resUpdateJobOffer = await JobOffersAPI.UpdateJobOffer(jobOfferId, tmpJobOffer);
+            const resUpdateJobOffer = await JobOffersAPI.UpdateJobOffer(jobOfferId, tmpJobOffer, user?.xsrfToken);
             processJobOfferRequiredSkillsChanges(resUpdateJobOffer, formData)
             handleSuccess('Job Offer successfully updated!');
 
@@ -141,7 +142,7 @@ function AddJobOffer(props) {
         // Gestisci eliminazioni
         for (let id of jobOfferMap.keys()) {
             if (!formDataMap.has(id)) {
-                JobOffersAPI.DeleteRequiredSkillToJobOffer(jobOfferId, id);
+                JobOffersAPI.DeleteRequiredSkillToJobOffer(jobOfferId, id, user?.xsrfToken);
             }
         }
 
@@ -149,10 +150,10 @@ function AddJobOffer(props) {
         for (let [id, value] of formDataMap.entries()) {
             if (jobOfferMap.has(id)) {
                 if (jobOfferMap.get(id) !== value) {
-                    JobOffersAPI.UpdateRequiredSkillToJobOffer(jobOfferId, id, value);
+                    JobOffersAPI.UpdateRequiredSkillToJobOffer(jobOfferId, id, value, user?.xsrfToken);
                 }
             } else {
-                JobOffersAPI.AddRequiredSkillToJobOffer(jobOfferId, value);
+                JobOffersAPI.AddRequiredSkillToJobOffer(jobOfferId, value, user?.xsrfToken);
             }
         }
     };
