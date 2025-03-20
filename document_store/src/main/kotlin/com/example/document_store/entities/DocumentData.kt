@@ -4,19 +4,20 @@ import jakarta.persistence.*
 import java.util.*
 
 @Entity
+@Table(name = "documents_data")
 class DocumentData() {
     @Id
-    @GeneratedValue
-    var id: Long = 0
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "document_id")
+    var documentId: Long = 0
 
-    @Lob
-    lateinit var content: ByteArray
+    @Column(name = "data")
+    lateinit var data: ByteArray
 
-
-    @OneToOne(mappedBy = "documentData", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    var metaData: DocumentMetaData? = null
-
-
-
+    @OneToOne(mappedBy = "documentData", cascade = [CascadeType.ALL])
+    lateinit var documentMetadata: DocumentMetadata
+    override fun toString(): String {
+        return "DocumentData(documentId=$documentId)"
+    }
 }
 

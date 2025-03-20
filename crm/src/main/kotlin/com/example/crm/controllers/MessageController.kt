@@ -46,11 +46,10 @@ class MessageController(private val messageServices: MessageServices) {
         return message
     }
 
-    @PostMapping("/{id}", "/{id}/")
+    @PutMapping("/{id}", "/{id}/")
     fun updateState(@PathVariable @Positive id: Long,
-                    @RequestParam state: String,
-                    @RequestParam(required = false, defaultValue = "") comment: String): MessageDTO{
-        val message = messageServices.updateState(id, state, comment)
+                    @RequestBody state: String): MessageDTO{
+        val message = messageServices.updateState(id, state, "")
         return message
     }
 

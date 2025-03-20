@@ -24,8 +24,9 @@ spring:
         registration:
           CRMclient:
             provider: keycloak
-            client-id: CRMclient
-            client-secret: 784jYAnNndMiACzCzDGiXjtWLiePlN9o #Massimo2
+            client-id: apigateway
+            #client-secret: 784jYAnNndMiACzCzDGiXjtWLiePlN9o #Massimo2
+            client-secret: IRENkPNCvWzPe1fjHrmF1jkzR10Vxr1j #Luca
             scope:
               - openid
               - offline_access
@@ -41,7 +42,18 @@ logging:
     root: INFO
     com.example: DEBUG
   file:
-    name: filename.log
+    name: './src/log/crm_logfile.log'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
 
 #fFormato del log
 #logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n

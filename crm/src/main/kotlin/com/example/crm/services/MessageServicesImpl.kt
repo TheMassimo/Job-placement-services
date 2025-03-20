@@ -127,6 +127,9 @@ class MessageServicesImpl(private val messageRepository: MessageRepository,
         message.addMachineState(s)
         machineStateRepository.save(s)
 
+        message.state = newState
+        messageRepository.save(message)
+
         logger.info("State successfully update")
         return message.toDto()
     }

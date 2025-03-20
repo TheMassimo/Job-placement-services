@@ -16,8 +16,11 @@ import ContactAPI from "../api/crm/ContactAPI.js"; // Assicurati di avere una AP
 import JobOffersAPI from "../api/crm/JobOffersAPI.js"; // Assicurati di avere una API per le job offers
 import StepProgress from "../components/StepProgress";
 
-function JobOfferHistoryCard({ historyItem }) {
+function JobOfferHistoryCard({ historyItem, professionalId }) {
     const [candidates, setCandidates] = useState([]);
+    const [statusMap, setStatusMap] = useState([]);
+    const acceptedCandidate = null
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,12 +33,36 @@ function JobOfferHistoryCard({ historyItem }) {
                 const resolvedCandidates = await Promise.all(candidatePromises);
                 //Aggiorna lo stato con i candidati ricevuti
                 setCandidates(resolvedCandidates);
+
+
+                // Creazione del dizionario con professionalId come chiave e status come valore
+                const tmpStatusMap = historyItem.candidates.reduce((acc, candidate) => {
+                    acc[candidate.professionalId] = candidate.status;
+                    return acc;
+                }, {});
+
+                // Controlla se almeno un candidato ha lo status "Accepted"
+                const hasAccepted = Object.values(statusMap).includes("Accepted");
+
+                // Se esiste un "Accepted", cambia tutti gli altri stati in "Rejected"
+                if (hasAccepted) {
+                    Object.keys(statusMap).forEach(professionalId => {
+                        if (statusMap[professionalId] !== "Accepted") {
+                            statusMap[professionalId] = "Rejected";
+                        }
+                    });
+                }
+
+                setStatusMap(tmpStatusMap);
             } catch (err) {
                 console.error(err);
             }
         };
         fetchData();
     }, [historyItem]);
+
+
+
 
     return (
         <Card className="view-job-offer-history-card m-3">
@@ -123,7 +150,38 @@ function JobOfferHistoryCard({ historyItem }) {
                                         <td>{candidate.name || "-"}</td>
                                         <td>{candidate.surname || "-"}</td>
                                         <td>{candidate.ssn || "-"}</td>
-                                        <td>{candidate.ApplicationStatus || "-"}</td>
+                                        <td>{statusMap[candidate.professional?.professionalId] || "-"}</td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </Table>
+                        </Col>
+                    </Row>
+                )}
+
+                {/* Tabella Candidati (se presenti) */}
+                {(historyItem.jobOfferStatus=="CONSOLIDATED" && candidates.length > 0) && (
+                    <Row className="mt-4">
+                        <Col>
+                            <h5 className="section-title">Candidates</h5>
+                            <Table striped bordered hover>
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>SSN</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {candidates.map((candidate, index) => (
+                                    <tr key={index}>
+                                        <td>{candidate.professional?.professionalId || "-"}</td>
+                                        <td>{candidate.name || "-"}</td>
+                                        <td>{candidate.surname || "-"}</td>
+                                        <td>{candidate.ssn || "-"}</td>
+                                        <td>{statusMap[candidate.professional?.professionalId] || "-"}</td>
                                     </tr>
                                 ))}
                                 </tbody>
@@ -150,7 +208,6 @@ function ViewJobOfferHistory(props) {
                 const sortedHistory = response.sort((a, b) => new Date(a.date) - new Date(b.date));
                 // Imposta lo stato con la cronologia ordinata
                 setHistory(sortedHistory);
-                console.log(sortedHistory);
             } catch (err) {
                 console.error(err);
             }
@@ -162,9 +219,9 @@ function ViewJobOfferHistory(props) {
     return (
         <div style={{paddingTop: '90px'}}>
             <h3>Job Offer History</h3>
-            {history.map((item) => (
-                <JobOfferHistoryCard key={item.jobOfferHistoryId} historyItem={item} />
-            ))}
+            {history.map((item, index) => {
+                return (<JobOfferHistoryCard key={item.jobOfferHistoryId} historyItem={item} />);
+            })}
         </div>
     );
 }
