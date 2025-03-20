@@ -9,7 +9,7 @@ import {JobOffer} from "./entities/JobOffer.ts"
 import {JobOfferHistory} from "./entities/JobOfferHistory.ts"
 import {Skill} from "./entities/Skill.ts"
 
-const URL_JOBOFFERS = 'http://localhost:8082/API/joboffers'
+const URL_JOBOFFERS = 'http://localhost:8080/service_crm/API/joboffers'
 
 async function GetJobOffers(filters, pagination){
     const response = await fetch(

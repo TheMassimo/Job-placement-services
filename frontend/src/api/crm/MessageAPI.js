@@ -1,7 +1,7 @@
 import {generateUrl} from "../utils/urlBuilder.js"
 import {Message} from "./entities/Message.ts"
 
-const URL_MESSAGES = 'http://localhost:8082/API/messages'
+const URL_MESSAGES = 'http://localhost:8080/service_crm/API/messages'
 
 async function GetMessages(filter, pagination) {
     const response = await fetch(

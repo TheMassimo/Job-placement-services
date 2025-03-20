@@ -7,7 +7,7 @@ import {Email} from "./entities/Email.ts"
 import {Telephone} from "./entities/Telephone.ts"
 
 
-const URL_CUSTOMER = 'http://localhost:8082/API/customers'
+const URL_CUSTOMER = 'http://localhost:8080/service_crm/API/customers'
 
 async function AddCustomer(customer, xsrfToken){
     const response = await fetch(

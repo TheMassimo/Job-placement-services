@@ -25,7 +25,7 @@ import {NotificationProvider} from './contexts/NotificationProvider';
 import axios from "axios";
 
 function App() {
-    /*
+
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -57,9 +57,8 @@ function App() {
             return null;
         }
     };
-    */
 
-    const [user, setUser] = useState({roles:"manager"});
+
 
 
     return (

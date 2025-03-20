@@ -8,7 +8,7 @@ import {Email} from "./entities/Email.ts"
 import {Telephone} from "./entities/Telephone.ts"
 
 
-const URL_CONTACTS = 'http://localhost:8082/API/contacts'
+const URL_CONTACTS = 'http://localhost:8080/service_crm/API/contacts'
 
 async function GetContacts(filters, pagination) {
     const response = await fetch(

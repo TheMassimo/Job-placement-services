@@ -1,7 +1,7 @@
 import {generateUrl} from "../utils/urlBuilder.js"
 import {Skill} from "./entities/Skill.ts"
 
-const URL_CONTACTS = 'http://localhost:8082/API/skills'
+const URL_CONTACTS = 'http://localhost:8080/service_crm/API/skills'
 
 async function GetSkills() {
     const response = await fetch(

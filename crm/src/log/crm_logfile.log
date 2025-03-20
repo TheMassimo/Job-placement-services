@@ -972,3 +972,212 @@ Caused by: java.lang.IllegalArgumentException: Unable to resolve Configuration w
 	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.5.jar:6.1.5]
 	... 117 common frames omitted
 
+2025-03-20T18:21:29.716+01:00  INFO 86929 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.3 with PID 86929 (/Users/paolomuccilli/Desktop/Job-placement-services/crm/build/classes/kotlin/main started by paolomuccilli in /Users/paolomuccilli/Desktop/Job-placement-services/crm)
+2025-03-20T18:21:29.718+01:00 DEBUG 86929 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-20T18:21:29.719+01:00  INFO 86929 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2025-03-20T18:21:29.779+01:00  INFO 86929 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file '/Users/paolomuccilli/Desktop/Job-placement-services/crm/compose.yml'
+2025-03-20T18:21:31.773+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
+2025-03-20T18:21:31.774+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2025-03-20T18:21:31.774+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
+2025-03-20T18:21:31.775+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
+2025-03-20T18:21:31.779+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
+2025-03-20T18:21:31.779+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2025-03-20T18:21:32.207+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
+2025-03-20T18:21:32.208+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
+2025-03-20T18:21:32.208+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
+2025-03-20T18:21:32.224+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2025-03-20T18:21:32.573+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
+2025-03-20T18:21:32.579+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
+2025-03-20T18:21:32.579+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
+2025-03-20T18:21:32.579+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
+2025-03-20T18:21:32.579+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
+2025-03-20T18:21:32.580+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2025-03-20T18:21:33.085+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2025-03-20T18:21:33.086+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
+2025-03-20T18:21:33.089+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
+2025-03-20T18:22:18.578+01:00  INFO 86929 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
+2025-03-20T18:22:20.903+01:00  INFO 86929 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-20T18:22:20.996+01:00  INFO 86929 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 85 ms. Found 11 JPA repository interfaces.
+2025-03-20T18:22:21.755+01:00  INFO 86929 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2025-03-20T18:22:21.767+01:00  INFO 86929 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-20T18:22:21.767+01:00  INFO 86929 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-20T18:22:21.829+01:00  INFO 86929 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-20T18:22:21.831+01:00  INFO 86929 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2082 ms
+2025-03-20T18:22:22.091+01:00  INFO 86929 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-20T18:22:22.236+01:00  INFO 86929 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@189633f2
+2025-03-20T18:22:22.237+01:00  INFO 86929 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-20T18:22:22.334+01:00  INFO 86929 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-20T18:22:22.392+01:00  INFO 86929 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-20T18:22:22.425+01:00  INFO 86929 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-20T18:22:22.655+01:00  INFO 86929 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-20T18:22:23.144+01:00  WARN 86929 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.crm.entities.Application
+2025-03-20T18:22:23.145+01:00  WARN 86929 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.crm.entities.Application
+2025-03-20T18:22:23.792+01:00  INFO 86929 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-20T18:22:24.028+01:00  INFO 86929 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-20T18:22:25.176+01:00  WARN 86929 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-20T18:22:25.625+01:00  INFO 86929 --- [crm] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2025-03-20T18:22:25.740+01:00  INFO 86929 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@f57ced1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1d9c18b9, org.springframework.security.web.context.SecurityContextHolderFilter@4afb2c90, org.springframework.security.web.header.HeaderWriterFilter@20ca2c3f, org.springframework.web.filter.CorsFilter@c82d925, org.springframework.security.web.csrf.CsrfFilter@76527a00, org.springframework.security.web.authentication.logout.LogoutFilter@6f36c42, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@589c648, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@7cb4fc46, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@25a41143, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@447cdbaa, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@6d95b51d, com.example.crm.security.CsrfCookieFilter@5e774546, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@474f69d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e182453, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6f67291f, org.springframework.security.web.access.ExceptionTranslationFilter@573f95b2, org.springframework.security.web.access.intercept.AuthorizationFilter@2d4eba14]
+2025-03-20T18:22:26.130+01:00  INFO 86929 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2025-03-20T18:22:26.143+01:00  INFO 86929 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 56.875 seconds (process running for 57.416)
+2025-03-20T18:22:26.906+01:00  INFO 86929 --- [crm] [RMI TCP Connection(3)-192.168.1.191] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-20T18:22:26.906+01:00  INFO 86929 --- [crm] [RMI TCP Connection(3)-192.168.1.191] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-20T18:22:26.908+01:00  INFO 86929 --- [crm] [RMI TCP Connection(3)-192.168.1.191] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-20T19:03:36.160+01:00  INFO 86929 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-20T19:03:36.227+01:00  INFO 86929 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-20T19:03:36.256+01:00  INFO 86929 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-20T19:03:57.236+01:00  INFO 91226 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.3 with PID 91226 (/Users/paolomuccilli/Desktop/Job-placement-services/crm/build/classes/kotlin/main started by paolomuccilli in /Users/paolomuccilli/Desktop/Job-placement-services/crm)
+2025-03-20T19:03:57.237+01:00 DEBUG 91226 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-20T19:03:57.237+01:00  INFO 91226 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2025-03-20T19:03:57.282+01:00  INFO 91226 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file '/Users/paolomuccilli/Desktop/Job-placement-services/crm/compose.yml'
+2025-03-20T19:03:57.962+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2025-03-20T19:03:57.962+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
+2025-03-20T19:03:57.962+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
+2025-03-20T19:03:57.962+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
+2025-03-20T19:03:57.969+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
+2025-03-20T19:03:57.969+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2025-03-20T19:03:58.577+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2025-03-20T19:03:58.578+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
+2025-03-20T19:03:58.578+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
+2025-03-20T19:03:58.578+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
+2025-03-20T19:03:58.966+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
+2025-03-20T19:03:58.982+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
+2025-03-20T19:03:58.983+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2025-03-20T19:03:58.983+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
+2025-03-20T19:03:58.983+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
+2025-03-20T19:03:58.983+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
+2025-03-20T19:03:59.533+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
+2025-03-20T19:03:59.533+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2025-03-20T19:03:59.533+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
+2025-03-20T19:04:45.488+01:00  INFO 91226 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
+2025-03-20T19:04:47.545+01:00  INFO 91226 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-20T19:04:47.655+01:00  INFO 91226 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 93 ms. Found 11 JPA repository interfaces.
+2025-03-20T19:04:48.242+01:00  INFO 91226 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2025-03-20T19:04:48.251+01:00  INFO 91226 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-20T19:04:48.252+01:00  INFO 91226 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-20T19:04:48.300+01:00  INFO 91226 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-20T19:04:48.301+01:00  INFO 91226 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1700 ms
+2025-03-20T19:04:48.537+01:00  INFO 91226 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-20T19:04:48.701+01:00  INFO 91226 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7402c49f
+2025-03-20T19:04:48.703+01:00  INFO 91226 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-20T19:04:48.796+01:00  INFO 91226 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-20T19:04:48.852+01:00  INFO 91226 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-20T19:04:48.885+01:00  INFO 91226 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-20T19:04:49.094+01:00  INFO 91226 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-20T19:04:49.545+01:00  WARN 91226 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.crm.entities.Application
+2025-03-20T19:04:49.546+01:00  WARN 91226 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.crm.entities.Application
+2025-03-20T19:04:50.118+01:00  INFO 91226 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-20T19:04:50.363+01:00  INFO 91226 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-20T19:04:51.671+01:00  WARN 91226 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-20T19:04:52.110+01:00  INFO 91226 --- [crm] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2025-03-20T19:04:52.236+01:00  INFO 91226 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1bc467bd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c05ccdb, org.springframework.security.web.context.SecurityContextHolderFilter@4f2ab774, org.springframework.security.web.header.HeaderWriterFilter@6a7eef27, org.springframework.web.filter.CorsFilter@14df5253, org.springframework.security.web.csrf.CsrfFilter@6c633590, org.springframework.security.web.authentication.logout.LogoutFilter@79dcd7f1, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@796affb8, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@455082d2, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2dfdea3a, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5d71813b, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@1cf45f46, com.example.crm.security.CsrfCookieFilter@5891bd6d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5e774546, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@30c085f3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6050d04d, org.springframework.security.web.access.ExceptionTranslationFilter@2e5337d8, org.springframework.security.web.access.intercept.AuthorizationFilter@3b68a50c]
+2025-03-20T19:04:52.632+01:00  INFO 91226 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2025-03-20T19:04:52.646+01:00  INFO 91226 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 55.807 seconds (process running for 56.535)
+2025-03-20T19:04:52.865+01:00  INFO 91226 --- [crm] [RMI TCP Connection(1)-192.168.1.191] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-20T19:04:52.866+01:00  INFO 91226 --- [crm] [RMI TCP Connection(1)-192.168.1.191] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-20T19:04:52.867+01:00  INFO 91226 --- [crm] [RMI TCP Connection(1)-192.168.1.191] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-20T19:06:07.856+01:00  INFO 91226 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-20T19:06:07.867+01:00  INFO 91226 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-20T19:06:07.872+01:00  INFO 91226 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-20T19:06:26.390+01:00  INFO 91522 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.3 with PID 91522 (/Users/paolomuccilli/Desktop/Job-placement-services/crm/build/classes/kotlin/main started by paolomuccilli in /Users/paolomuccilli/Desktop/Job-placement-services/crm)
+2025-03-20T19:06:26.392+01:00 DEBUG 91522 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-20T19:06:26.393+01:00  INFO 91522 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2025-03-20T19:06:26.459+01:00  INFO 91522 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file '/Users/paolomuccilli/Desktop/Job-placement-services/crm/compose.yml'
+2025-03-20T19:06:27.475+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2025-03-20T19:06:27.476+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
+2025-03-20T19:06:27.476+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
+2025-03-20T19:06:27.476+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
+2025-03-20T19:06:27.481+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
+2025-03-20T19:06:27.482+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2025-03-20T19:06:27.827+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2025-03-20T19:06:27.829+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
+2025-03-20T19:06:27.829+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
+2025-03-20T19:06:27.830+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
+2025-03-20T19:06:28.207+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
+2025-03-20T19:06:28.224+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
+2025-03-20T19:06:28.224+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
+2025-03-20T19:06:28.224+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
+2025-03-20T19:06:28.224+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2025-03-20T19:06:28.224+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
+2025-03-20T19:06:28.729+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
+2025-03-20T19:06:28.730+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2025-03-20T19:06:28.730+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
+2025-03-20T19:07:14.735+01:00  INFO 91522 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
+2025-03-20T19:07:17.132+01:00  INFO 91522 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-20T19:07:17.216+01:00  INFO 91522 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 75 ms. Found 11 JPA repository interfaces.
+2025-03-20T19:07:17.944+01:00  INFO 91522 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2025-03-20T19:07:17.958+01:00  INFO 91522 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-20T19:07:17.958+01:00  INFO 91522 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-20T19:07:18.026+01:00  INFO 91522 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-20T19:07:18.026+01:00  INFO 91522 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2178 ms
+2025-03-20T19:07:18.290+01:00  INFO 91522 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-20T19:07:18.435+01:00  INFO 91522 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@bf4e48e
+2025-03-20T19:07:18.436+01:00  INFO 91522 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-20T19:07:18.620+01:00  INFO 91522 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-20T19:07:18.706+01:00  INFO 91522 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-20T19:07:18.761+01:00  INFO 91522 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-20T19:07:19.017+01:00  INFO 91522 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-20T19:07:19.526+01:00  WARN 91522 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.crm.entities.Application
+2025-03-20T19:07:19.526+01:00  WARN 91522 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.crm.entities.Application
+2025-03-20T19:07:20.168+01:00  INFO 91522 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-20T19:07:20.430+01:00  INFO 91522 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-20T19:07:21.756+01:00  WARN 91522 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-20T19:07:22.249+01:00  INFO 91522 --- [crm] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2025-03-20T19:07:22.371+01:00  INFO 91522 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@76296c86, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c807e6b, org.springframework.security.web.context.SecurityContextHolderFilter@543895d2, org.springframework.security.web.header.HeaderWriterFilter@222557fc, org.springframework.web.filter.CorsFilter@c82d925, org.springframework.security.web.csrf.CsrfFilter@2aee0173, org.springframework.security.web.authentication.logout.LogoutFilter@1243ad9a, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@23f4aaeb, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@2fef413c, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5b628376, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@49bcd90d, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@221c097f, com.example.crm.security.CsrfCookieFilter@1bb6bc81, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3fd7f545, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21e72fb2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@26c6be2d, org.springframework.security.web.access.ExceptionTranslationFilter@988eae9, org.springframework.security.web.access.intercept.AuthorizationFilter@5af7a7]
+2025-03-20T19:07:22.788+01:00  INFO 91522 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2025-03-20T19:07:22.802+01:00  INFO 91522 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 56.775 seconds (process running for 57.399)
+2025-03-20T19:07:23.282+01:00  INFO 91522 --- [crm] [RMI TCP Connection(3)-192.168.1.191] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-20T19:07:23.283+01:00  INFO 91522 --- [crm] [RMI TCP Connection(3)-192.168.1.191] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-20T19:07:23.285+01:00  INFO 91522 --- [crm] [RMI TCP Connection(3)-192.168.1.191] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-03-20T19:08:05.052+01:00  INFO 91522 --- [crm] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-20T19:08:05.069+01:00  INFO 91522 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-20T19:08:05.081+01:00  INFO 91522 --- [crm] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-20T19:10:45.240+01:00  INFO 92015 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Starting Lab3ApplicationKt using Java 21.0.3 with PID 92015 (/Users/paolomuccilli/Desktop/Job-placement-services/crm/build/classes/kotlin/main started by paolomuccilli in /Users/paolomuccilli/Desktop/Job-placement-services/crm)
+2025-03-20T19:10:45.241+01:00 DEBUG 92015 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-03-20T19:10:45.242+01:00  INFO 92015 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : No active profile set, falling back to 1 default profile: "default"
+2025-03-20T19:10:45.309+01:00  INFO 92015 --- [crm] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file '/Users/paolomuccilli/Desktop/Job-placement-services/crm/compose.yml'
+2025-03-20T19:10:46.740+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Created
+2025-03-20T19:10:46.740+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Created
+2025-03-20T19:10:46.741+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Created
+2025-03-20T19:10:46.741+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Created
+2025-03-20T19:10:46.749+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Starting
+2025-03-20T19:10:46.749+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Starting
+2025-03-20T19:10:47.334+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Started
+2025-03-20T19:10:47.335+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Starting
+2025-03-20T19:10:47.335+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Started
+2025-03-20T19:10:47.335+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Starting
+2025-03-20T19:10:47.860+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Started
+2025-03-20T19:10:47.883+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Started
+2025-03-20T19:10:47.883+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Waiting
+2025-03-20T19:10:47.884+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Waiting
+2025-03-20T19:10:47.884+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Waiting
+2025-03-20T19:10:47.884+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Waiting
+2025-03-20T19:10:48.396+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_ui_1  Healthy
+2025-03-20T19:10:48.397+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_cluster_1  Healthy
+2025-03-20T19:10:48.397+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container crm-postgres-1  Healthy
+2025-03-20T19:11:44.894+01:00  INFO 92015 --- [crm] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container kafka_connect_1  Healthy
+2025-03-20T19:11:47.291+01:00  INFO 92015 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-20T19:11:47.382+01:00  INFO 92015 --- [crm] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 81 ms. Found 11 JPA repository interfaces.
+2025-03-20T19:11:48.096+01:00  INFO 92015 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2025-03-20T19:11:48.108+01:00  INFO 92015 --- [crm] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-20T19:11:48.109+01:00  INFO 92015 --- [crm] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-03-20T19:11:48.170+01:00  INFO 92015 --- [crm] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-20T19:11:48.170+01:00  INFO 92015 --- [crm] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2043 ms
+2025-03-20T19:11:48.418+01:00  INFO 92015 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-20T19:11:48.551+01:00  INFO 92015 --- [crm] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@299eca90
+2025-03-20T19:11:48.553+01:00  INFO 92015 --- [crm] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-20T19:11:48.663+01:00  INFO 92015 --- [crm] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-20T19:11:48.725+01:00  INFO 92015 --- [crm] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-03-20T19:11:48.755+01:00  INFO 92015 --- [crm] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-20T19:11:48.966+01:00  INFO 92015 --- [crm] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-20T19:11:49.345+01:00  WARN 92015 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000038: Composite-id class does not override equals(): com.example.crm.entities.Application
+2025-03-20T19:11:49.345+01:00  WARN 92015 --- [crm] [main] org.hibernate.mapping.RootClass          : HHH000039: Composite-id class does not override hashCode(): com.example.crm.entities.Application
+2025-03-20T19:11:49.824+01:00  INFO 92015 --- [crm] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-20T19:11:50.053+01:00  INFO 92015 --- [crm] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-20T19:11:51.178+01:00  WARN 92015 --- [crm] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-20T19:11:51.929+01:00  INFO 92015 --- [crm] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2025-03-20T19:11:52.058+01:00  INFO 92015 --- [crm] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3dfef314, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7edab945, org.springframework.security.web.context.SecurityContextHolderFilter@307cf289, org.springframework.security.web.header.HeaderWriterFilter@237e61ac, org.springframework.web.filter.CorsFilter@37986daf, org.springframework.security.web.csrf.CsrfFilter@6a17ab87, org.springframework.security.web.authentication.logout.LogoutFilter@482652f7, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@2cf073da, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@4691e2f5, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@34adce96, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@533d28aa, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@6bfa228c, com.example.crm.security.CsrfCookieFilter@6bbd645, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@319428ba, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75564689, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4c97e3d5, org.springframework.security.web.access.ExceptionTranslationFilter@3095e9c6, org.springframework.security.web.access.intercept.AuthorizationFilter@2fd16368]
+2025-03-20T19:11:52.564+01:00  INFO 92015 --- [crm] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2025-03-20T19:11:52.579+01:00  INFO 92015 --- [crm] [main] com.example.crm.Lab3ApplicationKt        : Started Lab3ApplicationKt in 67.872 seconds (process running for 68.819)
+2025-03-20T19:11:52.878+01:00  INFO 92015 --- [crm] [RMI TCP Connection(5)-192.168.1.191] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-20T19:11:52.879+01:00  INFO 92015 --- [crm] [RMI TCP Connection(5)-192.168.1.191] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-20T19:11:52.882+01:00  INFO 92015 --- [crm] [RMI TCP Connection(5)-192.168.1.191] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms

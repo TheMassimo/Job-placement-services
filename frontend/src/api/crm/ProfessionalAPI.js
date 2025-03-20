@@ -8,7 +8,7 @@ import {Telephone} from "./entities/Telephone.ts"
 import {Skill} from "./entities/Skill.ts"
 
 
-const URL_PROFESSIONALS = 'http://localhost:8082/API/professionals'
+const URL_PROFESSIONALS = 'http://localhost:8080/service_crm/API/professionals'
 
 async function AddProfessional(professional, xsrfToken){
     const response = await fetch(
