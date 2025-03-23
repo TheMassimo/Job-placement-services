@@ -146,6 +146,7 @@ class HomeController(    private val authorizedClientService: OAuth2AuthorizedCl
 
 
         val token = getJwtToken(authentication)
+        println(token)
         val allRoles = extractRolesFromToken(token)
         val roles = allRoles.filter { it.contains("operator") || it.contains("manager") || it.contains("recruiter") }
 

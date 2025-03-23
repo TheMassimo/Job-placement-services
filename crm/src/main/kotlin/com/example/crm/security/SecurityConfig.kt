@@ -6,10 +6,13 @@ import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.core.convert.converter.Converter
 import org.springframework.http.HttpMethod
 import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.oauth2.client.oidc.web.logout.OidcClientInitiatedLogoutSuccessHandler
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository
 import org.springframework.security.web.SecurityFilterChain
@@ -26,6 +29,10 @@ import java.util.function.Supplier
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
+
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter
+import org.springframework.security.oauth2.jwt.Jwt
 
 
 @Configuration
@@ -58,14 +65,17 @@ class SecurityConfig {
             .cors { } // Enable CORS configuration
             .authorizeHttpRequests {
                 /* ApiGateway Server end-points */
+                it.requestMatchers(HttpMethod.POST, "/API/**").hasAnyRole("manager", "recruiter")
+                it.requestMatchers(HttpMethod.DELETE, "/API/**").hasRole("manager")
 
 
                 /* Other end-points */
                 it.anyRequest().permitAll()
             }
             .oauth2Login { }
-            .oauth2ResourceServer { oauth2 -> oauth2.jwt(Customizer.withDefaults()) }
-            .csrf {
+            .oauth2ResourceServer { oauth2 ->
+                oauth2.jwt { jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()) }
+            }            .csrf {
                 it.ignoringRequestMatchers("/crm/api/messages")
                 it.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 it.csrfTokenRequestHandler(SpaCsrfTokenRequestHandler())
@@ -74,6 +84,13 @@ class SecurityConfig {
             }
             .addFilterAfter(CsrfCookieFilter(), BasicAuthenticationFilter::class.java)
             .build()
+    }
+
+    @Bean
+    fun jwtAuthenticationConverter(): JwtAuthenticationConverter {
+        val converter = JwtAuthenticationConverter()
+        converter.setJwtGrantedAuthoritiesConverter(CustomJwtRoleConverter())
+        return converter
     }
 
 
@@ -132,3 +149,21 @@ class SpaCsrfTokenRequestHandler : CsrfTokenRequestAttributeHandler() {
         }
     }
 }
+
+
+class CustomJwtRoleConverter : Converter<Jwt, Collection<GrantedAuthority>> {
+    override fun convert(jwt: Jwt): Collection<GrantedAuthority> {
+        val authorities = mutableListOf<GrantedAuthority>()
+
+        // Extract "realm_access.roles"
+        val realmRoles = jwt.getClaimAsMap("realm_access")?.get("roles") as? Collection<String> ?: emptyList()
+        authorities.addAll(realmRoles.map { SimpleGrantedAuthority("ROLE_$it") })
+
+        // Extract "resource_access.CRMclient.roles"
+        val resourceRoles = (jwt.getClaimAsMap("resource_access")?.get("CRMclient") as? Map<*, *>)?.get("roles") as? Collection<String> ?: emptyList()
+        authorities.addAll(resourceRoles.map { SimpleGrantedAuthority("ROLE_$it") })
+
+        return authorities
+    }
+}
+
