@@ -60,43 +60,42 @@ class SecurityConfig(val crr: ClientRegistrationRepository) {
     @Bean
     fun securityFilterChain(httpSecurity: HttpSecurity): SecurityFilterChain {
         return httpSecurity
-            .cors { } // Enable CORS configuration
+            .cors { } // Enable CORS
             .authorizeHttpRequests {
-                /* ApiGateway Server end-points */
+                /* Public Endpoints */
                 it.requestMatchers("/current-user").permitAll()
                 it.requestMatchers("/secure").authenticated()
 
-
-                /* Resource Servers */
-                it.requestMatchers("/crm/api/messages").permitAll()
-                it.requestMatchers("/crm/**").authenticated()
-
-                it.requestMatchers("/communication-manager/**").authenticated()
-
-                it.requestMatchers("/document-store/**").authenticated()
-
+                /* API Routes - Allow access with OAuth2 */
+                it.requestMatchers("/service_crm/**").permitAll()
+                it.requestMatchers("/service_ds/**").authenticated()
+                it.requestMatchers("/service_cm/**").authenticated()
                 it.requestMatchers("/analytics/**").authenticated()
 
-                /* UI Server */
+                /* UI Server - Public */
                 it.requestMatchers("/ui/**").permitAll()
 
-                /* Other end-points */
+                /* Other Endpoints */
                 it.anyRequest().permitAll()
             }
-            .oauth2Login { }
-            .oauth2ResourceServer { oauth2 -> oauth2.jwt(Customizer.withDefaults()) }
+            .oauth2Login { } // Enable OAuth2 login
+            .oauth2ResourceServer { oauth2 -> oauth2.jwt(Customizer.withDefaults()) } // Use JWT auth
+
             .logout {
                 it.clearAuthentication(true)
                 it.invalidateHttpSession(true)
-                it.logoutSuccessHandler(oidcLogoutSuccessHandler()) }
+                it.logoutSuccessHandler(oidcLogoutSuccessHandler())
+            }
+
+            // CSRF: Enable only for UI, disable for APIs
             .csrf {
-                it.ignoringRequestMatchers("/crm/api/messages")
-                it.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                it.ignoringRequestMatchers("/service_crm/**", "/service_ds/**", "/service_cm/**") // Disable CSRF for APIs
+                it.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // CSRF for UI
                 it.csrfTokenRequestHandler(SpaCsrfTokenRequestHandler())
-                //it.ignoringRequestMatchers("/logout")
 
             }
-            .addFilterAfter(CsrfCookieFilter(), BasicAuthenticationFilter::class.java)
+
+            .addFilterAfter(CsrfCookieFilter(), BasicAuthenticationFilter::class.java) // CSRF Cookie Filter
             .build()
     }
 

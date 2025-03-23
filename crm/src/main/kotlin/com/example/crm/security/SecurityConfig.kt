@@ -59,7 +59,6 @@ class SecurityConfig {
             .authorizeHttpRequests {
                 /* ApiGateway Server end-points */
 
-                it.requestMatchers(HttpMethod.POST, "/API/contacts/**").authenticated()
 
                 /* Other end-points */
                 it.anyRequest().permitAll()

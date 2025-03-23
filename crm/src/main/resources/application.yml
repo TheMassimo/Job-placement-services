@@ -40,7 +40,7 @@ server:
 logging:
   level:
     root: INFO
-    com.example: DEBUG
+    org.springframework: DEBUG
   file:
     name: './src/log/crm_logfile.log'
 
