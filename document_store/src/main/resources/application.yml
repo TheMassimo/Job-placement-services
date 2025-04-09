@@ -13,8 +13,24 @@ spring:
     username: myuser
     password: secret
     driver-class-name: org.postgresql.Driver
+
   security:
     oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:9090/realms/CRM
+            user-name-attribute: sub
+        registration:
+          CRMclient:
+            provider: keycloak
+            client-id: apigateway
+            #client-secret: 784jYAnNndMiACzCzDGiXjtWLiePlN9o #Massimo2
+            client-secret: IRENkPNCvWzPe1fjHrmF1jkzR10Vxr1j #Luca
+            scope:
+              - openid
+              - offline_access
+            authorization-grant-type: authorization_code
       resourceserver:
         jwt:
           issuer-uri: http://localhost:9090/realms/CRM

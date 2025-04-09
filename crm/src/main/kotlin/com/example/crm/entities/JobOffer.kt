@@ -22,7 +22,7 @@ enum class JobStatus {
             SELECTION_PHASE to listOf(ABORTED, CANDIDATE_PROPOSAL),
             CANDIDATE_PROPOSAL to listOf(ABORTED, CONSOLIDATED, SELECTION_PHASE),
             CONSOLIDATED to listOf(ABORTED, DONE, SELECTION_PHASE),
-            DONE to listOf(SELECTION_PHASE),
+            DONE to listOf(SELECTION_PHASE, ABORTED),
         )
     }
 }

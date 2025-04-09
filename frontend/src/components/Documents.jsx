@@ -76,7 +76,7 @@ function DocumentSearchBar({onFilterChange, filter}) {
 
 
 // eslint-disable-next-line react/prop-types
-function Documents({currentUser}) {
+function Documents(props) {
     const [data, setData] = useState([])
     const [load, setLoad] = useState(false)
     const [page, setPage] = useState(1);

@@ -73,24 +73,24 @@ function App() {
 
                         {/* action= add/edit */}
                         <Route path="/contacts" element={<ViewContacts role = {user?.roles}/>} />
-                        <Route path="/contacts/:action/" element={<ContactForm mode={null}  />} />
-                        <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} />} />
-                        <Route path="/contact/:contactId/details" element={<ViewContactDetails />} />
+                        <Route path="/contacts/:action/" element={<ContactForm mode={null} user={user} />} />
+                        <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} user={user}/>} />
+                        <Route path="/contact/:contactId/details" element={<ViewContactDetails user={user} />} />
 
-                        <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"} />} />
+                        <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"} user={user}/>} />
 
-                        <Route path="/documents" element={<Documents />}/>
-                        <Route path="/fileform" element={<FileForm />}/>
+                        <Route path="/documents" element={<Documents user={user}/>}/>
+                        <Route path="/fileform" element={<FileForm user={user}/>}/>
 
-                        <Route path="/jobOffers" element={<ViewJobOffers role = {user?.roles} />}/>
-                        <Route path="/jobOffers/add/:contactId" element={<AddJobOffer />} />
-                        <Route path="/jobOffers/edit/:jobOfferId" element={<AddJobOffer />} />
-                        <Route path="/jobOffers/history/:jobOfferId" element={<ViewJobOfferHistory />} />
-                        <Route path="/jobOffers/progress/:jobOfferId" element={<ProgressJobOffer />} />
+                        <Route path="/jobOffers" element={<ViewJobOffers role = {user?.roles} user={user}/>}/>
+                        <Route path="/jobOffers/add/:contactId" element={<AddJobOffer user={user}/>} />
+                        <Route path="/jobOffers/edit/:jobOfferId" element={<AddJobOffer user={user}/>} />
+                        <Route path="/jobOffers/history/:jobOfferId" element={<ViewJobOfferHistory user={user}/>} />
+                        <Route path="/jobOffers/progress/:jobOfferId" element={<ProgressJobOffer user={user}/>} />
 
                         <Route path="/messages" element={<ViewMessages />}/>
 
-                        <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} />} />
+                        <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} user={user}/>} />
 
                         <Route path="/reach_us" element={<ContactUs />} />
 

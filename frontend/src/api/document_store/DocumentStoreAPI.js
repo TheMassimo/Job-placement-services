@@ -3,7 +3,7 @@ import {DocumentMetadata} from "./entities/DocumentMetadata.ts"
 import {DocumentDTO} from "./entities/DocumentDTO.ts";
 import {convertFileToBase64} from "../utils/converterFileToBase64.js";
 
-const URL_DOCUMENT_STORE = 'http://localhost:8081/API/documents'
+const URL_DOCUMENT_STORE = 'http://localhost:8080/service_ds/API/documents'
 
 async function GetDocuments(filter, pagination) {
     const response = await fetch(

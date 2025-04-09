@@ -4,8 +4,9 @@ import {DocumentMetadataFilter} from "../api/document_store/filters/DocumentMeta
 import {DocumentCategory} from "../api/document_store/entities/DocumentMetadata.ts";
 import Button from 'react-bootstrap/Button';
 
-function FileUploadForm({currentUser}) {
+function FileUploadForm(props) {
     const [file, setFile] = useState(null);
+    const user = props.user;
 
     const [fileList, setFileList] = useState(null);
     const [load, setLoad] = useState(false);
@@ -20,7 +21,7 @@ function FileUploadForm({currentUser}) {
         event.preventDefault();
 
         if (file) {
-            DocumentStoreAPI.InsertNewDocument(file, currentUser.xsrfToken).then((res) => console.log(res)).catch((err) => console.log(err))
+            DocumentStoreAPI.InsertNewDocument(file, user?.xsrfToken).then((res) => console.log(res)).catch((err) => console.log(err))
         } else {
             console.log('Nessun file selezionato');
         }
