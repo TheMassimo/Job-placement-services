@@ -1,5 +1,5 @@
 import {generateUrl} from "../utils/urlBuilder.js"
-import {DocumentMetadata} from "./entities/DocumentMetadata.ts"
+import {DocumentCategory, DocumentMetadata} from "./entities/DocumentMetadata.ts"
 import {DocumentDTO} from "./entities/DocumentDTO.ts";
 import {convertFileToBase64} from "../utils/converterFileToBase64.js";
 
@@ -57,7 +57,9 @@ async function GetDocumentDataById(documentMetadataId, filename) {
     document.body.removeChild(link);
 }
 
-async function InsertNewDocument(file, category, id, xsrfToken) {
+async function InsertNewDocument(file,category, xsrfToken) {
+    const id = 42; // un ID mock valido (puoi scegliere qualsiasi intero)
+
     const base64File = await convertFileToBase64(file)
     const documentDTO = new DocumentDTO(file.name, file.size, base64File.split(';')[0].split(':')[1], category, id, base64File.split(',')[1])
 

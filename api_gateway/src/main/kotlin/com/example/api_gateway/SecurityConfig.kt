@@ -68,7 +68,7 @@ class SecurityConfig(val crr: ClientRegistrationRepository) {
 
                 /* API Routes - Allow access with OAuth2 */
                 it.requestMatchers("/service_crm/**").permitAll()
-                it.requestMatchers("/service_ds/**").authenticated()
+                it.requestMatchers("/service_ds/**").permitAll()
                 it.requestMatchers("/service_cm/**").authenticated()
                 it.requestMatchers("/analytics/**").authenticated()
 

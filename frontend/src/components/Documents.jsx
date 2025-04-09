@@ -6,6 +6,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import { useNavigate } from "react-router-dom";
+import {useNotification} from "../contexts/NotificationProvider.jsx"
 
 // eslint-disable-next-line react/prop-types
 function DocumentSearchBar({onFilterChange, filter}) {
@@ -82,6 +83,8 @@ function Documents(props) {
     const [page, setPage] = useState(1);
     const [openFilter, setOpenFilter] = useState(false);
     const navigate = useNavigate(); // Hook per navigare
+    const { handleError, handleSuccess } = useNotification();
+    const user = props.user;
     const [filter, setFilter] = useState({
         type: [
             'Curriculum',
@@ -107,6 +110,21 @@ function Documents(props) {
         fetchDocuments();
     }, [page, filter]);
 
+    const deleteDocument = async (documentId) => {
+
+        try {
+            DocumentStoreAPI.DeleteDocument(documentId, user?.xsrfToken)
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err));
+            // Rimuovi il documento dalla lista
+            const updatedData = data.filter(document => document.metadataId !== documentId);
+            // Aggiorna lo stato con i nuovi dati
+            setData(updatedData);
+            handleSuccess('File eliminato con successo');
+        } catch (err) {
+            handleError(err);
+        }
+    };
 
     const handleFilterChange = (newFilter) => {
         setFilter(newFilter);
@@ -174,6 +192,13 @@ function Documents(props) {
                                         Download
                                     </Icon>
                                     */}
+                                    <Button
+                                        variant="danger"
+                                        className="bi bi-trash me-2"
+                                        onClick={() => {
+                                            deleteDocument(document.metadataId);
+                                        }}
+                                    > </Button>
                                 </div>
                             </td>
                         </tr>

@@ -37,13 +37,14 @@ class DocumentServicesImp(
 
     @org.springframework.transaction.annotation.Transactional
     override fun insertNewDocument(newDocument: DocumentDTO): DocumentMetadataDTO {
+        logger.info("MASSIMO 111");
         if (documentMetadataRepository.findByName(newDocument.name).isNotEmpty()) {
             throw DuplicateDocumentException("Document with the same name already exists")
         }
 
         val documentMetadata = DocumentMetadata()
         val documentData = DocumentData()
-
+        logger.info("MASSIMO 222");
         try {
             documentMetadata.name = newDocument.name
             documentMetadata.size = newDocument.size

@@ -22,9 +22,11 @@ import java.util.*
 @CrossOrigin(origins = ["http://localhost:5173"])
 class DocumentController(private val documentServices: DocumentServices) {
     @PostMapping("", "/")
+
     @ResponseStatus(code = HttpStatus.CREATED)
     //@PreAuthorize("hasAnyRole('ROLE_manager', 'ROLE_operator')")
     fun insertNewDocument(@RequestBody newDocument: DocumentDTO): DocumentMetadataDTO {
+
         return documentServices.insertNewDocument(newDocument)
     }
 
