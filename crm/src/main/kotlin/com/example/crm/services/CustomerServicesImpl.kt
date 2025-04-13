@@ -66,9 +66,15 @@ class CustomerServicesImpl(
             customerRepository.findById(customerId)
                 .orElseThrow { CustomerProcessingException("customer not found") }
 
+        //prima di tutto verifico se ha job offer associate e in tal caso impedisco l'eliminazione
+        // Verifica se ci sono job offer associate (attive)
+        if (customer.jobOffers.isNotEmpty()) {
+            throw CustomerProcessingException("Cannot delete customer with active job offers.")
+        }
+
         // Se il contatto esiste, aggiorno la categoria e rimuovo la relazione con il professionista
         customer.contact?.let { contact ->
-            contact.professional = null // Rimuovo il collegamento tra contatto e professionista
+            contact.customer = null // Rimuovo il collegamento tra contatto e professionista
             contactServices.downgradeCategory(contact.contactId, Category.Customer) // Rimuovo anche la categoria, se necessario
         }
 

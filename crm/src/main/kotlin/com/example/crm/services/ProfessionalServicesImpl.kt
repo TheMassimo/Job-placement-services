@@ -111,6 +111,12 @@ class ProfessionalServicesImpl(private val professionalRepository: ProfessionalR
             professionalRepository.findById(professionalId)
                 .orElseThrow { ProfessionalNotFoundException("professional not found") }
 
+        //se il professional sta lavorando a qualcosa non può essere eliminato
+        // Se il professional ha jobApplications, impedisco l'eliminazione
+        if (professional.jobApplications.isNotEmpty()) {
+            throw ProfessionalProcessingException("Cannot delete professional with associated job applications.")
+        }
+
         // Rimuovo la relazione 'professional' dalle skill a cui è associato
         professional.skills.forEach { skill ->
             skill.professional.remove(professional) // Rimuovo il professionista dalla skill

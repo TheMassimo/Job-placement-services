@@ -128,6 +128,7 @@ function Filters(props) {
 
 
 function ViewJobOffers (props)  {
+    const user = props.user;
     const [jobOffers, setJobOffers] = useState([]);
     const [filters, setFilters] = useState([]);
     const navigate = useNavigate();

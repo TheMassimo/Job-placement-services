@@ -53,8 +53,14 @@ async function DeleteCustomer(customerId, xsrfToken) {
             headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
         })
 
-    if (!response.ok) {
-        throw "Error"
+    if(response.status !== 204){
+        const obj = await response.json()
+
+        if (response.ok) {
+            return "Customer successfully deleted"
+        } else {
+            throw obj
+        }
     }
 }
 
