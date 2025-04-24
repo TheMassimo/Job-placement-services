@@ -1,13 +1,14 @@
 import {generateUrl} from "../utils/urlBuilder.js"
 import {Location} from "./entities/Location.ts";
 
-const URL_ANALYTICS = 'http://localhost:8084/API/analytics'
+const URL_ANALYTICS = 'http://localhost:8080/service_analytics/API/analytics'
 
-async function GetAverageJobOfferValue(){
+async function GetAverageJobOfferValue(xsrfToken){
     const response = await fetch(
         generateUrl(`${URL_ANALYTICS}/JobOfferValue`), {
             method: 'GET',
-            credentials: 'include'
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken}
         }
     )
 
@@ -20,11 +21,12 @@ async function GetAverageJobOfferValue(){
     }
 }
 
-async function GetAverageJobOfferDuration(){
+async function GetAverageJobOfferDuration(xsrfToken){
     const response = await fetch(
         generateUrl(`${URL_ANALYTICS}/JobOfferDuration`), {
             method: 'GET',
-            credentials: 'include'
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken}
         }
     )
 
@@ -37,11 +39,12 @@ async function GetAverageJobOfferDuration(){
     }
 }
 
-async function GetLocationsList(numLocations = 1){
+async function GetLocationsList(numLocations = 1, xsrfToken){
     const response = await fetch(
         generateUrl(`${URL_ANALYTICS}/locations`, {numLocations}), {
             method: 'GET',
-            credentials: 'include'
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken}
         }
     )
 

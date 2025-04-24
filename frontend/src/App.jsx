@@ -69,7 +69,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomeLayout user={user} />}/>
 
-                        <Route path="/analytics" element={<ViewAnalytics/>}/>
+                        <Route path="/analytics" element={<ViewAnalytics role = {user?.roles}/>}/>
 
                         {/* action= add/edit */}
                         <Route path="/contacts" element={<ViewContacts role = {user?.roles}/>} />

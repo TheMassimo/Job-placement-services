@@ -70,7 +70,7 @@ class SecurityConfig(val crr: ClientRegistrationRepository) {
                 it.requestMatchers("/service_crm/**").permitAll()
                 it.requestMatchers("/service_ds/**").permitAll()
                 it.requestMatchers("/service_cm/**").authenticated()
-                it.requestMatchers("/analytics/**").authenticated()
+                it.requestMatchers("/service_analytics/**").permitAll()
 
                 /* UI Server - Public */
                 it.requestMatchers("/ui/**").permitAll()
@@ -89,7 +89,7 @@ class SecurityConfig(val crr: ClientRegistrationRepository) {
 
             // CSRF: Enable only for UI, disable for APIs
             .csrf {
-                it.ignoringRequestMatchers("/service_crm/**", "/service_ds/**", "/service_cm/**") // Disable CSRF for APIs
+                it.ignoringRequestMatchers("/service_crm/**", "/service_ds/**", "/service_cm/**", "/service_analytics/**") // Disable CSRF for APIs
                 it.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // CSRF for UI
                 it.csrfTokenRequestHandler(SpaCsrfTokenRequestHandler())
 

@@ -34,6 +34,14 @@ spring:
             filters:
               - StripPrefix=1
               - TokenRelay
+          #route for analytics
+          - id: service_analytics
+            uri: http://localhost:8084
+            predicates:
+              - Path= /service_analytics/**
+            filters:
+              - StripPrefix=1
+              - TokenRelay
 
           - id: ui
             uri: http://localhost:5173
@@ -59,12 +67,7 @@ spring:
           CRMclient:
             provider: keycloak
             client-id: CRMclient
-            #client-secret: 5r44MqZAPGMAgWmZPAU1LwVhPNxlpoVQ #Miriam
-            #client-secret: rZexIVvaOoBGTQalRrln5P2XbcWIjTw6 #Paolo
-            #client-secret: 9gXtKZ1Hx3FPvmjqF9qaqSXfHcz7jXYt #Massimo1
-            client-secret: 784jYAnNndMiACzCzDGiXjtWLiePlN9o #Massimo2
-            #client-secret: JcP5pBQX2eTs9oLnOXW5Jtoa1DVrjF22 #Luca
-            #client-secret: IRENkPNCvWzPe1fjHrmF1jkzR10Vxr1j #Luca
+            client-secret: v2Seb5AyEkjIdEhQs7DjpIZoug1MnbYH #Luca
             scope:
               - openid
               - offline_access

@@ -6,6 +6,7 @@ import AnalyticsAPI from "../api/analytics/AnalyticsAPI.js";
 
 
 function ViewAnalytics(props) {
+    const user = props.user;
     const { handleError, handleSuccess } = useNotification()
     const [shownLocations, setShownLocations] = useState(1);
     const [locationList, setLocationList] = useState([]);
@@ -14,21 +15,21 @@ function ViewAnalytics(props) {
 
     //USE Effect
     useEffect(() => {
-        AnalyticsAPI.GetAverageJobOfferValue().then((res) => {
+        AnalyticsAPI.GetAverageJobOfferValue(user?.xsrfToken).then((res) => {
             //get data
             setAverageJobOfferValue(res);
         }).catch((err) => console.log(err))
     }, []);
 
     useEffect(() => {
-        AnalyticsAPI.GetAverageJobOfferDuration().then((res) => {
+        AnalyticsAPI.GetAverageJobOfferDuration(user?.xsrfToken).then((res) => {
             //get data
             setAverageJobOfferDuration(res);
         }).catch((err) => console.log(err))
     }, []);
 
     useEffect(() => {
-        AnalyticsAPI.GetLocationsList(shownLocations).then((res) => {
+        AnalyticsAPI.GetLocationsList(shownLocations, user?.xsrfToken).then((res) => {
             //get data
             setLocationList(res);
         }).catch((err) => console.log(err))

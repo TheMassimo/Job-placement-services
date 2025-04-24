@@ -1359,3 +1359,821 @@ org.apache.kafka.common.errors.DisconnectException: null
 2025-03-10T22:07:07.513+01:00  INFO 12524 --- [analytics] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-03-10T22:07:07.524+01:00  INFO 12524 --- [analytics] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-03-10T22:07:07.530+01:00  INFO 12524 --- [analytics] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-13T19:51:28.987+02:00  INFO 14892 --- [analytics] [main] c.e.analytics.AnalyticsApplicationKt     : Starting AnalyticsApplicationKt using Java 20.0.2.1 with PID 14892 (C:\Users\drluc\WebApp2\Job-placement-services\analytics\build\classes\kotlin\main started by drluc in C:\Users\drluc\WebApp2\Job-placement-services\analytics)
+2025-04-13T19:51:28.993+02:00 DEBUG 14892 --- [analytics] [main] c.e.analytics.AnalyticsApplicationKt     : Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-04-13T19:51:28.995+02:00  INFO 14892 --- [analytics] [main] c.e.analytics.AnalyticsApplicationKt     : No active profile set, falling back to 1 default profile: "default"
+2025-04-13T19:51:29.155+02:00  INFO 14892 --- [analytics] [main] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file C:\Users\drluc\WebApp2\Job-placement-services\analytics\compose.yaml
+2025-04-13T19:51:31.489+02:00  INFO 14892 --- [analytics] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container analytics-postgres-1  Created
+2025-04-13T19:51:31.500+02:00  INFO 14892 --- [analytics] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container analytics-postgres-1  Starting
+2025-04-13T19:51:33.973+02:00  INFO 14892 --- [analytics] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container analytics-postgres-1  Started
+2025-04-13T19:51:33.974+02:00  INFO 14892 --- [analytics] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container analytics-postgres-1  Waiting
+2025-04-13T19:51:34.492+02:00  INFO 14892 --- [analytics] [OutputReader-stderr] o.s.boot.docker.compose.core.DockerCli   :  Container analytics-postgres-1  Healthy
+2025-04-13T19:51:36.265+02:00  INFO 14892 --- [analytics] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-13T19:51:36.386+02:00  INFO 14892 --- [analytics] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 110 ms. Found 13 JPA repository interfaces.
+2025-04-13T19:51:37.242+02:00  INFO 14892 --- [analytics] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+2025-04-13T19:51:37.261+02:00  INFO 14892 --- [analytics] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-13T19:51:37.261+02:00  INFO 14892 --- [analytics] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-04-13T19:51:37.338+02:00  INFO 14892 --- [analytics] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-13T19:51:37.340+02:00  INFO 14892 --- [analytics] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2060 ms
+2025-04-13T19:51:37.578+02:00  INFO 14892 --- [analytics] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-13T19:51:37.666+02:00  INFO 14892 --- [analytics] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-04-13T19:51:37.707+02:00  INFO 14892 --- [analytics] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-13T19:51:38.077+02:00  INFO 14892 --- [analytics] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-13T19:51:38.115+02:00  INFO 14892 --- [analytics] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-13T19:51:38.301+02:00  INFO 14892 --- [analytics] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@410f53b2
+2025-04-13T19:51:38.303+02:00  INFO 14892 --- [analytics] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-13T19:51:38.421+02:00  INFO 14892 --- [analytics] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-13T19:51:39.774+02:00  INFO 14892 --- [analytics] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-13T19:51:40.022+02:00  INFO 14892 --- [analytics] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-13T19:51:41.091+02:00  WARN 14892 --- [analytics] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-13T19:51:42.017+02:00  INFO 14892 --- [analytics] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/'
+2025-04-13T19:51:42.065+02:00  INFO 14892 --- [analytics] [main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-analytics-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = analytics
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2025-04-13T19:51:42.131+02:00  INFO 14892 --- [analytics] [main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2025-04-13T19:51:42.242+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.8.1
+2025-04-13T19:51:42.242+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 70d6ff42debf7e17
+2025-04-13T19:51:42.242+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1744566702240
+2025-04-13T19:51:42.247+02:00  INFO 14892 --- [analytics] [main] o.a.k.c.c.internals.LegacyKafkaConsumer  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Subscribed to topic(s): kafka_postgres_.public.job_offer
+2025-04-13T19:51:42.257+02:00  INFO 14892 --- [analytics] [main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-analytics-2
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = analytics
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2025-04-13T19:51:42.258+02:00  INFO 14892 --- [analytics] [main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2025-04-13T19:51:42.267+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.8.1
+2025-04-13T19:51:42.268+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 70d6ff42debf7e17
+2025-04-13T19:51:42.268+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1744566702267
+2025-04-13T19:51:42.268+02:00  INFO 14892 --- [analytics] [main] o.a.k.c.c.internals.LegacyKafkaConsumer  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Subscribed to topic(s): kafka_postgres_.public.skill
+2025-04-13T19:51:42.271+02:00  INFO 14892 --- [analytics] [main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-analytics-3
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = analytics
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2025-04-13T19:51:42.271+02:00  INFO 14892 --- [analytics] [main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2025-04-13T19:51:42.279+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.8.1
+2025-04-13T19:51:42.279+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 70d6ff42debf7e17
+2025-04-13T19:51:42.279+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1744566702279
+2025-04-13T19:51:42.280+02:00  INFO 14892 --- [analytics] [main] o.a.k.c.c.internals.LegacyKafkaConsumer  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Subscribed to topic(s): kafka_postgres_.public.customer
+2025-04-13T19:51:42.282+02:00  INFO 14892 --- [analytics] [main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-analytics-4
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = analytics
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2025-04-13T19:51:42.283+02:00  INFO 14892 --- [analytics] [main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2025-04-13T19:51:42.294+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.8.1
+2025-04-13T19:51:42.295+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 70d6ff42debf7e17
+2025-04-13T19:51:42.295+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1744566702294
+2025-04-13T19:51:42.295+02:00  INFO 14892 --- [analytics] [main] o.a.k.c.c.internals.LegacyKafkaConsumer  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Subscribed to topic(s): kafka_postgres_.public.professional
+2025-04-13T19:51:42.297+02:00  INFO 14892 --- [analytics] [main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-analytics-5
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = analytics
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2025-04-13T19:51:42.298+02:00  INFO 14892 --- [analytics] [main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2025-04-13T19:51:42.305+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.8.1
+2025-04-13T19:51:42.305+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 70d6ff42debf7e17
+2025-04-13T19:51:42.305+02:00  INFO 14892 --- [analytics] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1744566702304
+2025-04-13T19:51:42.305+02:00  INFO 14892 --- [analytics] [main] o.a.k.c.c.internals.LegacyKafkaConsumer  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Subscribed to topic(s): kafka_postgres_.public.contact
+2025-04-13T19:51:42.323+02:00  INFO 14892 --- [analytics] [main] c.e.analytics.AnalyticsApplicationKt     : Started AnalyticsApplicationKt in 14.394 seconds (process running for 15.568)
+2025-04-13T19:51:42.821+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-analytics-3, groupId=analytics] Cluster ID: 5zP101v1Sza80r-2Q_48wQ
+2025-04-13T19:51:42.821+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-analytics-4, groupId=analytics] Cluster ID: 5zP101v1Sza80r-2Q_48wQ
+2025-04-13T19:51:42.821+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-analytics-2, groupId=analytics] Cluster ID: 5zP101v1Sza80r-2Q_48wQ
+2025-04-13T19:51:42.821+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-analytics-1, groupId=analytics] Cluster ID: 5zP101v1Sza80r-2Q_48wQ
+2025-04-13T19:51:42.821+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-analytics-5, groupId=analytics] Cluster ID: 5zP101v1Sza80r-2Q_48wQ
+2025-04-13T19:51:42.822+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T19:51:42.822+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T19:51:42.822+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T19:51:42.822+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T19:51:42.822+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T19:51:42.827+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] (Re-)joining group
+2025-04-13T19:51:42.827+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] (Re-)joining group
+2025-04-13T19:51:42.827+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] (Re-)joining group
+2025-04-13T19:51:42.828+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] (Re-)joining group
+2025-04-13T19:51:42.827+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] (Re-)joining group
+2025-04-13T19:51:42.857+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Request joining group due to: need to re-join with the given member-id: consumer-analytics-1-1dc86c09-0182-4766-8b1e-a15c025e4523
+2025-04-13T19:51:42.857+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Request joining group due to: need to re-join with the given member-id: consumer-analytics-3-73ef0520-3951-4f5d-bfa4-e4947f97551a
+2025-04-13T19:51:42.857+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Request joining group due to: need to re-join with the given member-id: consumer-analytics-4-89ca3b32-17c8-4561-9b4a-b86362067755
+2025-04-13T19:51:42.858+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] (Re-)joining group
+2025-04-13T19:51:42.858+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] (Re-)joining group
+2025-04-13T19:51:42.858+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Request joining group due to: need to re-join with the given member-id: consumer-analytics-5-64e381e7-6bf8-430c-b489-b50800589173
+2025-04-13T19:51:42.858+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] (Re-)joining group
+2025-04-13T19:51:42.859+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] (Re-)joining group
+2025-04-13T19:51:42.859+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Request joining group due to: need to re-join with the given member-id: consumer-analytics-2-ff486344-39c9-4f57-ad69-94d05ec0e558
+2025-04-13T19:51:42.859+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] (Re-)joining group
+2025-04-13T19:51:45.866+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Successfully joined group with generation Generation{generationId=33, memberId='consumer-analytics-3-73ef0520-3951-4f5d-bfa4-e4947f97551a', protocol='range'}
+2025-04-13T19:51:45.866+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Successfully joined group with generation Generation{generationId=33, memberId='consumer-analytics-4-89ca3b32-17c8-4561-9b4a-b86362067755', protocol='range'}
+2025-04-13T19:51:45.866+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Successfully joined group with generation Generation{generationId=33, memberId='consumer-analytics-5-64e381e7-6bf8-430c-b489-b50800589173', protocol='range'}
+2025-04-13T19:51:45.866+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Successfully joined group with generation Generation{generationId=33, memberId='consumer-analytics-1-1dc86c09-0182-4766-8b1e-a15c025e4523', protocol='range'}
+2025-04-13T19:51:45.867+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Successfully joined group with generation Generation{generationId=33, memberId='consumer-analytics-2-ff486344-39c9-4f57-ad69-94d05ec0e558', protocol='range'}
+2025-04-13T19:51:45.882+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Finished assignment for group at generation 33: {consumer-analytics-5-64e381e7-6bf8-430c-b489-b50800589173=Assignment(partitions=[kafka_postgres_.public.contact-0]), consumer-analytics-1-1dc86c09-0182-4766-8b1e-a15c025e4523=Assignment(partitions=[kafka_postgres_.public.job_offer-0]), consumer-analytics-2-ff486344-39c9-4f57-ad69-94d05ec0e558=Assignment(partitions=[kafka_postgres_.public.skill-0]), consumer-analytics-3-73ef0520-3951-4f5d-bfa4-e4947f97551a=Assignment(partitions=[kafka_postgres_.public.customer-0]), consumer-analytics-4-89ca3b32-17c8-4561-9b4a-b86362067755=Assignment(partitions=[kafka_postgres_.public.professional-0])}
+2025-04-13T19:51:45.889+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Successfully synced group in generation Generation{generationId=33, memberId='consumer-analytics-4-89ca3b32-17c8-4561-9b4a-b86362067755', protocol='range'}
+2025-04-13T19:51:45.889+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Successfully synced group in generation Generation{generationId=33, memberId='consumer-analytics-3-73ef0520-3951-4f5d-bfa4-e4947f97551a', protocol='range'}
+2025-04-13T19:51:45.890+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Notifying assignor about the new Assignment(partitions=[kafka_postgres_.public.professional-0])
+2025-04-13T19:51:45.890+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Notifying assignor about the new Assignment(partitions=[kafka_postgres_.public.customer-0])
+2025-04-13T19:51:45.890+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Successfully synced group in generation Generation{generationId=33, memberId='consumer-analytics-5-64e381e7-6bf8-430c-b489-b50800589173', protocol='range'}
+2025-04-13T19:51:45.890+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Successfully synced group in generation Generation{generationId=33, memberId='consumer-analytics-2-ff486344-39c9-4f57-ad69-94d05ec0e558', protocol='range'}
+2025-04-13T19:51:45.891+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Notifying assignor about the new Assignment(partitions=[kafka_postgres_.public.skill-0])
+2025-04-13T19:51:45.891+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Notifying assignor about the new Assignment(partitions=[kafka_postgres_.public.contact-0])
+2025-04-13T19:51:45.891+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Successfully synced group in generation Generation{generationId=33, memberId='consumer-analytics-1-1dc86c09-0182-4766-8b1e-a15c025e4523', protocol='range'}
+2025-04-13T19:51:45.891+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Notifying assignor about the new Assignment(partitions=[kafka_postgres_.public.job_offer-0])
+2025-04-13T19:51:45.893+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-analytics-1, groupId=analytics] Adding newly assigned partitions: kafka_postgres_.public.job_offer-0
+2025-04-13T19:51:45.893+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-analytics-4, groupId=analytics] Adding newly assigned partitions: kafka_postgres_.public.professional-0
+2025-04-13T19:51:45.893+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-analytics-2, groupId=analytics] Adding newly assigned partitions: kafka_postgres_.public.skill-0
+2025-04-13T19:51:45.893+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-analytics-5, groupId=analytics] Adding newly assigned partitions: kafka_postgres_.public.contact-0
+2025-04-13T19:51:45.893+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-analytics-3, groupId=analytics] Adding newly assigned partitions: kafka_postgres_.public.customer-0
+2025-04-13T19:51:45.924+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Found no committed offset for partition kafka_postgres_.public.skill-0
+2025-04-13T19:51:45.928+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition kafka_postgres_.public.customer-0 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 0 rack: null)], epoch=54}}
+2025-04-13T19:51:45.928+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition kafka_postgres_.public.job_offer-0 to the committed offset FetchPosition{offset=4, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 0 rack: null)], epoch=54}}
+2025-04-13T19:51:45.928+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition kafka_postgres_.public.contact-0 to the committed offset FetchPosition{offset=15, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 0 rack: null)], epoch=54}}
+2025-04-13T19:51:45.928+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition kafka_postgres_.public.professional-0 to the committed offset FetchPosition{offset=7, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 0 rack: null)], epoch=54}}
+2025-04-13T19:51:45.929+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: partitions assigned: [kafka_postgres_.public.customer-0]
+2025-04-13T19:51:45.929+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: partitions assigned: [kafka_postgres_.public.job_offer-0]
+2025-04-13T19:51:45.929+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: partitions assigned: [kafka_postgres_.public.contact-0]
+2025-04-13T19:51:45.929+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: partitions assigned: [kafka_postgres_.public.professional-0]
+2025-04-13T19:51:45.942+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.SubscriptionState    : [Consumer clientId=consumer-analytics-2, groupId=analytics] Resetting offset for partition kafka_postgres_.public.skill-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 0 rack: null)], epoch=54}}.
+2025-04-13T19:51:45.943+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: partitions assigned: [kafka_postgres_.public.skill-0]
+2025-04-13T19:52:12.381+02:00  INFO 14892 --- [analytics] [http-nio-8084-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-13T19:52:12.382+02:00  INFO 14892 --- [analytics] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-13T19:52:12.383+02:00  INFO 14892 --- [analytics] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-13T20:00:43.104+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Node -1 disconnected.
+2025-04-13T20:00:43.104+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Node -1 disconnected.
+2025-04-13T20:00:43.104+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Node -1 disconnected.
+2025-04-13T20:00:43.104+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Node -1 disconnected.
+2025-04-13T20:00:43.104+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Node -1 disconnected.
+2025-04-13T20:10:42.817+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Node -1 disconnected.
+2025-04-13T20:10:42.817+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Node -1 disconnected.
+2025-04-13T20:10:42.817+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Node -1 disconnected.
+2025-04-13T20:10:43.225+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Node -1 disconnected.
+2025-04-13T20:10:43.225+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Node -1 disconnected.
+2025-04-13T22:13:35.515+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Node 0 disconnected.
+2025-04-13T22:13:35.516+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Cancelled in-flight FETCH request with correlation id 3056 due to node 0 being disconnected (elapsed time since creation: 7200987ms, elapsed time since send: 7200987ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:35.516+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Disconnecting from node 2147483647 due to request timeout.
+2025-04-13T22:13:35.516+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3057 due to node 2147483647 being disconnected (elapsed time since creation: 7198361ms, elapsed time since send: 7198361ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:35.516+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Group coordinator localhost:9092 (id: 2147483647 rack: null) is unavailable or invalid due to cause: null. isDisconnected: true. Rediscovery will be attempted.
+2025-04-13T22:13:35.577+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Node 0 disconnected.
+2025-04-13T22:13:35.577+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Node 0 disconnected.
+2025-04-13T22:13:35.578+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Cancelled in-flight FETCH request with correlation id 3057 due to node 0 being disconnected (elapsed time since creation: 7201076ms, elapsed time since send: 7201076ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:35.578+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Cancelled in-flight FETCH request with correlation id 3056 due to node 0 being disconnected (elapsed time since creation: 7201078ms, elapsed time since send: 7201078ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:35.578+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Cancelled in-flight METADATA request with correlation id 3059 due to node 0 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:35.578+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Cancelled in-flight METADATA request with correlation id 3058 due to node 0 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:35.578+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Disconnecting from node 2147483647 due to request timeout.
+2025-04-13T22:13:35.578+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Disconnecting from node 2147483647 due to request timeout.
+2025-04-13T22:13:35.578+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3058 due to node 2147483647 being disconnected (elapsed time since creation: 7198531ms, elapsed time since send: 7198531ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:35.578+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3057 due to node 2147483647 being disconnected (elapsed time since creation: 7198407ms, elapsed time since send: 7198407ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:35.593+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Node 0 disconnected.
+2025-04-13T22:13:35.594+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Cancelled in-flight FETCH request with correlation id 3057 due to node 0 being disconnected (elapsed time since creation: 7201066ms, elapsed time since send: 7201066ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:35.594+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Cancelled in-flight METADATA request with correlation id 3059 due to node 0 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:35.594+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Disconnecting from node 2147483647 due to request timeout.
+2025-04-13T22:13:35.594+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3058 due to node 2147483647 being disconnected (elapsed time since creation: 7198577ms, elapsed time since send: 7198577ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:36.287+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Node 0 disconnected.
+2025-04-13T22:13:36.288+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Cancelled in-flight FETCH request with correlation id 3056 due to node 0 being disconnected (elapsed time since creation: 7201728ms, elapsed time since send: 7201728ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:36.288+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Disconnecting from node 2147483647 due to request timeout.
+2025-04-13T22:13:36.288+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3057 due to node 2147483647 being disconnected (elapsed time since creation: 7199194ms, elapsed time since send: 7199194ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:13:36.288+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Group coordinator localhost:9092 (id: 2147483647 rack: null) is unavailable or invalid due to cause: null. isDisconnected: true. Rediscovery will be attempted.
+2025-04-13T22:13:35.516+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.kafka.clients.FetchSessionHandler    : [Consumer clientId=consumer-analytics-3, groupId=analytics] Error sending fetch request (sessionId=1534218220, epoch=2602) to node 0:
+
+org.apache.kafka.common.errors.DisconnectException: null
+
+2025-04-13T22:13:36.288+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.kafka.clients.FetchSessionHandler    : [Consumer clientId=consumer-analytics-5, groupId=analytics] Error sending fetch request (sessionId=621527459, epoch=2602) to node 0:
+
+org.apache.kafka.common.errors.DisconnectException: null
+
+2025-04-13T22:13:35.594+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.kafka.clients.FetchSessionHandler    : [Consumer clientId=consumer-analytics-2, groupId=analytics] Error sending fetch request (sessionId=1096672284, epoch=2602) to node 0:
+
+org.apache.kafka.common.errors.DisconnectException: null
+
+2025-04-13T22:13:35.579+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.kafka.clients.FetchSessionHandler    : [Consumer clientId=consumer-analytics-1, groupId=analytics] Error sending fetch request (sessionId=883491578, epoch=2602) to node 0:
+
+org.apache.kafka.common.errors.DisconnectException: null
+
+2025-04-13T22:13:35.579+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.kafka.clients.FetchSessionHandler    : [Consumer clientId=consumer-analytics-4, groupId=analytics] Error sending fetch request (sessionId=63040257, epoch=2602) to node 0:
+
+org.apache.kafka.common.errors.DisconnectException: null
+
+2025-04-13T22:13:36.633+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Group coordinator localhost:9092 (id: 2147483647 rack: null) is unavailable or invalid due to cause: null. isDisconnected: true. Rediscovery will be attempted.
+2025-04-13T22:13:36.633+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Group coordinator localhost:9092 (id: 2147483647 rack: null) is unavailable or invalid due to cause: null. isDisconnected: true. Rediscovery will be attempted.
+2025-04-13T22:13:36.633+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Group coordinator localhost:9092 (id: 2147483647 rack: null) is unavailable or invalid due to cause: null. isDisconnected: true. Rediscovery will be attempted.
+2025-04-13T22:13:37.740+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:13:37.742+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:13:37.765+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:13:37.767+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:13:37.768+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:13:37.768+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:13:37.782+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:13:38.229+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:13:38.231+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:13:38.270+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:31:33.606+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Node 0 disconnected.
+2025-04-13T22:31:33.606+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Cancelled in-flight FETCH request with correlation id 3083 due to node 0 being disconnected (elapsed time since creation: 1068813ms, elapsed time since send: 1068813ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:33.606+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Cancelled in-flight METADATA request with correlation id 3086 due to node 0 being disconnected (elapsed time since creation: 0ms, elapsed time since send: 0ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:33.607+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Disconnecting from node 2147483647 due to request timeout.
+2025-04-13T22:31:33.607+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3084 due to node 2147483647 being disconnected (elapsed time since creation: 1066350ms, elapsed time since send: 1066350ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:33.607+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-1, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3085 due to node 2147483647 being disconnected (elapsed time since creation: 1063342ms, elapsed time since send: 1063342ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:33.607+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.kafka.clients.FetchSessionHandler    : [Consumer clientId=consumer-analytics-1, groupId=analytics] Error sending fetch request (sessionId=555830457, epoch=14) to node 0:
+
+org.apache.kafka.common.errors.DisconnectException: null
+
+2025-04-13T22:31:33.607+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Group coordinator localhost:9092 (id: 2147483647 rack: null) is unavailable or invalid due to cause: null. isDisconnected: true. Rediscovery will be attempted.
+2025-04-13T22:31:34.075+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Node 0 disconnected.
+2025-04-13T22:31:34.076+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Cancelled in-flight FETCH request with correlation id 3081 due to node 0 being disconnected (elapsed time since creation: 1069215ms, elapsed time since send: 1069215ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.076+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Disconnecting from node 2147483647 due to request timeout.
+2025-04-13T22:31:34.076+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3082 due to node 2147483647 being disconnected (elapsed time since creation: 1067302ms, elapsed time since send: 1067302ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.076+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-5, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3083 due to node 2147483647 being disconnected (elapsed time since creation: 1064292ms, elapsed time since send: 1064292ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.076+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.kafka.clients.FetchSessionHandler    : [Consumer clientId=consumer-analytics-5, groupId=analytics] Error sending fetch request (sessionId=1543633165, epoch=14) to node 0:
+
+org.apache.kafka.common.errors.DisconnectException: null
+
+2025-04-13T22:31:34.076+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Group coordinator localhost:9092 (id: 2147483647 rack: null) is unavailable or invalid due to cause: null. isDisconnected: true. Rediscovery will be attempted.
+2025-04-13T22:31:34.117+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Node 0 disconnected.
+2025-04-13T22:31:34.117+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Cancelled in-flight FETCH request with correlation id 3084 due to node 0 being disconnected (elapsed time since creation: 1069255ms, elapsed time since send: 1069254ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.118+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Disconnecting from node 2147483647 due to request timeout.
+2025-04-13T22:31:34.118+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3085 due to node 2147483647 being disconnected (elapsed time since creation: 1067314ms, elapsed time since send: 1067314ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.118+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-3, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3086 due to node 2147483647 being disconnected (elapsed time since creation: 1064304ms, elapsed time since send: 1064304ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.118+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.kafka.clients.FetchSessionHandler    : [Consumer clientId=consumer-analytics-3, groupId=analytics] Error sending fetch request (sessionId=726159378, epoch=14) to node 0:
+
+org.apache.kafka.common.errors.DisconnectException: null
+
+2025-04-13T22:31:34.118+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Group coordinator localhost:9092 (id: 2147483647 rack: null) is unavailable or invalid due to cause: null. isDisconnected: true. Rediscovery will be attempted.
+2025-04-13T22:31:34.617+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Node 0 disconnected.
+2025-04-13T22:31:34.617+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Node 0 disconnected.
+2025-04-13T22:31:34.617+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Cancelled in-flight FETCH request with correlation id 3083 due to node 0 being disconnected (elapsed time since creation: 1069757ms, elapsed time since send: 1069757ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.617+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Cancelled in-flight FETCH request with correlation id 3082 due to node 0 being disconnected (elapsed time since creation: 1069808ms, elapsed time since send: 1069808ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.618+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Disconnecting from node 2147483647 due to request timeout.
+2025-04-13T22:31:34.618+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Disconnecting from node 2147483647 due to request timeout.
+2025-04-13T22:31:34.618+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3084 due to node 2147483647 being disconnected (elapsed time since creation: 1067316ms, elapsed time since send: 1067316ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.618+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-2, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3085 due to node 2147483647 being disconnected (elapsed time since creation: 1064306ms, elapsed time since send: 1064306ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.618+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3083 due to node 2147483647 being disconnected (elapsed time since creation: 1067361ms, elapsed time since send: 1067361ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.618+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] org.apache.kafka.clients.NetworkClient   : [Consumer clientId=consumer-analytics-4, groupId=analytics] Cancelled in-flight HEARTBEAT request with correlation id 3084 due to node 2147483647 being disconnected (elapsed time since creation: 1064353ms, elapsed time since send: 1064353ms, throttle time: 0ms, request timeout: 30000ms)
+2025-04-13T22:31:34.618+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.kafka.clients.FetchSessionHandler    : [Consumer clientId=consumer-analytics-2, groupId=analytics] Error sending fetch request (sessionId=1665207812, epoch=14) to node 0:
+
+org.apache.kafka.common.errors.DisconnectException: null
+
+2025-04-13T22:31:34.618+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Group coordinator localhost:9092 (id: 2147483647 rack: null) is unavailable or invalid due to cause: null. isDisconnected: true. Rediscovery will be attempted.
+2025-04-13T22:31:34.618+02:00  INFO 14892 --- [analytics] [kafka-coordinator-heartbeat-thread | analytics] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Group coordinator localhost:9092 (id: 2147483647 rack: null) is unavailable or invalid due to cause: null. isDisconnected: true. Rediscovery will be attempted.
+2025-04-13T22:31:34.618+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.kafka.clients.FetchSessionHandler    : [Consumer clientId=consumer-analytics-4, groupId=analytics] Error sending fetch request (sessionId=2112900142, epoch=14) to node 0:
+
+org.apache.kafka.common.errors.DisconnectException: null
+
+2025-04-13T22:31:35.539+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:31:35.545+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:31:35.546+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:31:35.547+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:31:35.548+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:31:35.552+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:31:35.555+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Discovered group coordinator localhost:9092 (id: 2147483647 rack: null)
+2025-04-13T22:31:46.175+02:00  WARN 14892 --- [analytics] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h18m10s659ms325µs300ns).
+2025-04-13T23:51:08.832+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-analytics-4, groupId=analytics] Revoke previously assigned partitions kafka_postgres_.public.professional-0
+2025-04-13T23:51:08.832+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-analytics-3, groupId=analytics] Revoke previously assigned partitions kafka_postgres_.public.customer-0
+2025-04-13T23:51:08.832+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-analytics-2, groupId=analytics] Revoke previously assigned partitions kafka_postgres_.public.skill-0
+2025-04-13T23:51:08.832+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-analytics-1, groupId=analytics] Revoke previously assigned partitions kafka_postgres_.public.job_offer-0
+2025-04-13T23:51:08.832+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-analytics-5, groupId=analytics] Revoke previously assigned partitions kafka_postgres_.public.contact-0
+2025-04-13T23:51:08.836+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: partitions revoked: [kafka_postgres_.public.customer-0]
+2025-04-13T23:51:08.836+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: partitions revoked: [kafka_postgres_.public.professional-0]
+2025-04-13T23:51:08.836+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: partitions revoked: [kafka_postgres_.public.job_offer-0]
+2025-04-13T23:51:08.836+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: partitions revoked: [kafka_postgres_.public.skill-0]
+2025-04-13T23:51:08.836+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: partitions revoked: [kafka_postgres_.public.contact-0]
+2025-04-13T23:51:08.837+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Member consumer-analytics-1-1dc86c09-0182-4766-8b1e-a15c025e4523 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483647 rack: null) due to the consumer unsubscribed from all topics
+2025-04-13T23:51:08.837+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Member consumer-analytics-3-73ef0520-3951-4f5d-bfa4-e4947f97551a sending LeaveGroup request to coordinator localhost:9092 (id: 2147483647 rack: null) due to the consumer unsubscribed from all topics
+2025-04-13T23:51:08.837+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Member consumer-analytics-2-ff486344-39c9-4f57-ad69-94d05ec0e558 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483647 rack: null) due to the consumer unsubscribed from all topics
+2025-04-13T23:51:08.837+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Member consumer-analytics-4-89ca3b32-17c8-4561-9b4a-b86362067755 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483647 rack: null) due to the consumer unsubscribed from all topics
+2025-04-13T23:51:08.837+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Member consumer-analytics-5-64e381e7-6bf8-430c-b489-b50800589173 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483647 rack: null) due to the consumer unsubscribed from all topics
+2025-04-13T23:51:08.838+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.838+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.838+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.838+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.838+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.839+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Request joining group due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.839+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Request joining group due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.839+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Request joining group due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.839+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Request joining group due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.839+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Request joining group due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.839+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.LegacyKafkaConsumer  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Unsubscribed all topics or patterns and assigned partitions
+2025-04-13T23:51:08.839+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.LegacyKafkaConsumer  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Unsubscribed all topics or patterns and assigned partitions
+2025-04-13T23:51:08.839+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.LegacyKafkaConsumer  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Unsubscribed all topics or patterns and assigned partitions
+2025-04-13T23:51:08.839+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.LegacyKafkaConsumer  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Unsubscribed all topics or patterns and assigned partitions
+2025-04-13T23:51:08.839+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.LegacyKafkaConsumer  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Unsubscribed all topics or patterns and assigned partitions
+2025-04-13T23:51:08.847+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.847+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.847+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.847+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.847+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.847+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-5, groupId=analytics] Request joining group due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.847+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-2, groupId=analytics] Request joining group due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.847+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-3, groupId=analytics] Request joining group due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.848+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-4, groupId=analytics] Request joining group due to: consumer pro-actively leaving the group
+2025-04-13T23:51:08.848+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-analytics-1, groupId=analytics] Request joining group due to: consumer pro-actively leaving the group
+2025-04-13T23:51:09.142+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2025-04-13T23:51:09.143+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2025-04-13T23:51:09.143+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2025-04-13T23:51:09.143+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2025-04-13T23:51:09.143+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2025-04-13T23:51:09.143+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2025-04-13T23:51:09.143+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2025-04-13T23:51:09.144+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2025-04-13T23:51:09.144+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2025-04-13T23:51:09.144+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2025-04-13T23:51:09.145+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2025-04-13T23:51:09.145+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2025-04-13T23:51:09.145+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2025-04-13T23:51:09.145+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2025-04-13T23:51:09.146+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2025-04-13T23:51:09.145+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2025-04-13T23:51:09.145+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2025-04-13T23:51:09.146+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2025-04-13T23:51:09.149+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2025-04-13T23:51:09.149+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2025-04-13T23:51:09.188+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-analytics-2 unregistered
+2025-04-13T23:51:09.188+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-analytics-4 unregistered
+2025-04-13T23:51:09.189+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-analytics-3 unregistered
+2025-04-13T23:51:09.189+02:00  INFO 14892 --- [analytics] [customer_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: Consumer stopped
+2025-04-13T23:51:09.190+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-analytics-5 unregistered
+2025-04-13T23:51:09.190+02:00  INFO 14892 --- [analytics] [skill_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: Consumer stopped
+2025-04-13T23:51:09.190+02:00  INFO 14892 --- [analytics] [professional_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: Consumer stopped
+2025-04-13T23:51:09.194+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-analytics-1 unregistered
+2025-04-13T23:51:09.191+02:00  INFO 14892 --- [analytics] [contact_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: Consumer stopped
+2025-04-13T23:51:09.195+02:00  INFO 14892 --- [analytics] [jobOffer_listener_id-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : analytics: Consumer stopped
+2025-04-13T23:51:09.203+02:00  INFO 14892 --- [analytics] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-13T23:51:09.544+02:00  INFO 14892 --- [analytics] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-13T23:51:09.558+02:00  INFO 14892 --- [analytics] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-13T23:51:09.567+02:00  INFO 14892 --- [analytics] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-13T23:51:09.573+02:00  INFO 14892 --- [analytics] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
