@@ -5,7 +5,7 @@ scrape_configs:
 
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['prometheus-container:9091']
+      - targets: ['prometheus-container:9100']
 
   - job_name: 'crm_listener'
     metrics_path: '/actuator/prometheus'

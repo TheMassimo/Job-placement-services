@@ -19,7 +19,9 @@ services:
     volumes:
       - ./configs/prometheus.yaml/:/etc/prometheus/prometheus.yml
     ports:
-      - ${PROMETHEUS_PORT}:${PROMETHEUS_PORT}
+      - ${PROMETHEUS_PORT}:${DEFAULT_PROMETHEUS_PORT}
+    #expose:
+    #  - ${PROMETHEUS_PORT}
     networks:
       - monitoring
 
@@ -51,6 +53,8 @@ services:
       - ./configs/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
       - ./configs/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
       - ./dashboards/loki_dashboard.json:/var/lib/grafana/dashboards/loki_dashboard.json
+      - ./dashboards/loki_dashboard_2.json:/var/lib/grafana/dashboards/loki_dashboard_2.json
+      - ./dashboards/loki_dashboard_3.json:/var/lib/grafana/dashboards/loki_dashboard_3.json
       - ./dashboards/prometheus_dashboard.json:/var/lib/grafana/dashboards/prometheus_dashboard.json
     ports:
       - ${GRAFANA_PORT}:${GRAFANA_PORT}

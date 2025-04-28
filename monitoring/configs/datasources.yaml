@@ -16,5 +16,5 @@ datasources:
     type: prometheus
     access: proxy
     uid: ${PROMETHEUS_DATASOURCE_ID}
-    url: http://${PROMETHEUS_CONTAINER_NAME}:${PROMETHEUS_PORT}
+    url: http://${PROMETHEUS_CONTAINER_NAME}:${DEFAULT_PROMETHEUS_PORT}
 

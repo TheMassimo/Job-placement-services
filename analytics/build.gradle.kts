@@ -44,6 +44,11 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("io.mockk:mockk:1.9.3")
 	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+
+	implementation("org.springframework.security:spring-security-oauth2-jose") // For JWT support
+	implementation("org.springframework.security:spring-security-oauth2-resource-server") // For resource server support
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 }
 
 kotlin {
