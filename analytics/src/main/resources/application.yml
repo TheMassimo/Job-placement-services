@@ -49,6 +49,6 @@ server:
 logging:
   level:
     root: INFO
-    com.example: DEBUG
+    org.springframework: DEBUG
   file:
-    name: filename.log
+    name: './src/log/analytics_logfile.log'
