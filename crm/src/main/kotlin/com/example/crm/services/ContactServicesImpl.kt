@@ -272,6 +272,10 @@ class ContactServicesImpl(private val entityManager: EntityManager,
             contactRepository.findById(contactId)
                 .orElseThrow { ContactNotFoundException("contact not found") }
 
+        if (contact.customer != null || contact.professional != null) {
+            throw ContactNotFoundException("Cannot delete contact associated with a customer or professional.")
+        }
+
         // Crea una copia delle collezioni per evitare la ConcurrentModificationException
         val telephoneCopy = ArrayList(contact.telephone)
         telephoneCopy.forEach { elTelephone ->

@@ -54,8 +54,14 @@ async function DeleteProfessional(professionalId, xsrfToken) {
             headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
         })
 
-    if (!response.ok) {
-        throw "Error"
+    if(response.status !== 204){
+        const obj = await response.json()
+
+        if (response.ok) {
+            return "professional successfully deleted"
+        } else {
+            throw obj
+        }
     }
 }
 

@@ -47,6 +47,8 @@ class ProfessionalController(private val professionalServices : ProfessionalServ
         professionalServices.deleteProfessional(professionalId)
     }
 
+
+
     @PutMapping("/{id}", "/{id}/")
     @ResponseStatus(HttpStatus.OK)
     fun updateProfessional(
