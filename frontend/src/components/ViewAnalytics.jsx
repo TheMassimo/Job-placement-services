@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Card, Dropdown} from "react-bootstrap";
 import {Row, Col} from "react-bootstrap"
+import Button from 'react-bootstrap/Button';
 import { useNotification } from '../contexts/NotificationProvider';
 import AnalyticsAPI from "../api/analytics/AnalyticsAPI.js";
 
@@ -42,12 +43,12 @@ function ViewAnalytics(props) {
 
     return (
         <div style={{paddingTop: '90px', display: 'flex', flexDirection: 'row'}}>
-            <div style={{width: '300%', paddingLeft: '10px', paddingRight: '300px'}}>
+            <div style={{width: '300%', paddingLeft: '100px', paddingRight: '100px'}}>
 
                 {/* Analytics */}
                 <h4 className={"filtersTitle"}>Analytics</h4>
                 {/* Average Job Offer Value */}
-                <Card className="p-0 m-1" style={{ height: '70px' }}>
+                <Card className="p-0 m-1" style={{height: '70px'}}>
                     <Card.Body>
                         <Row>
                             <Col className="text-start" xs={8}>
@@ -61,7 +62,7 @@ function ViewAnalytics(props) {
                 </Card>
 
                 {/* Average Job Offer Duration */}
-                <Card className="p-0 m-1" style={{ height: '70px' }}>
+                <Card className="p-0 m-1" style={{height: '70px'}}>
                     <Card.Body>
                         <Row>
                             <Col className="text-start" xs={8}>
@@ -75,13 +76,14 @@ function ViewAnalytics(props) {
                 </Card>
 
                 {/* Professionals locations */}
-                <Card className="p-0 m-1" style={{ height: `${locationList.length>0 ? 55+locationList.length*30 : 85}px` }}>
+                <Card className="p-0 m-1"
+                      style={{height: `${locationList.length > 0 ? 55 + locationList.length * 30 : 85}px`}}>
                     <Card.Body>
                         <Row>
                             <Col className="text-start" xs={4}>
                                 <Card.Title> Locations ordered by available Professionals </Card.Title>
                             </Col>
-                            <Col className="text-center" xs={3}>
+                            <Col className="text-center" xs={4}>
                                 <Dropdown onSelect={handleSelect}>
                                     <Dropdown.Toggle className="custom-button m-2" id="dropdown-basic">
                                         {locationList.length ? `${shownLocations} items` : "Select an option"}
@@ -94,12 +96,12 @@ function ViewAnalytics(props) {
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </Col>
-                            <Col className="center" xs={5} style={{ paddingTop: '10px' }}>
+                            <Col className="center" xs={4} style={{paddingTop: '10px'}}>
                                 {/*Show locations list*/}
                                 {locationList.length > 0 ?
                                     <>
                                         {locationList.map((location) => {
-                                            return(
+                                            return (
                                                 <>
                                                     <Row style={{paddingBottom: '10px'}}>
                                                         <Col className="text-end fw-bold">
@@ -120,6 +122,19 @@ function ViewAnalytics(props) {
                         </Row>
                     </Card.Body>
                 </Card>
+
+                <Row style={{paddingTop: '20px'}}>
+                    <Col className="center">
+                        <Button
+                            className={"custom-button m-2"}
+                            variant="secondary"
+                            href="http://localhost:3000"
+                            target="_blank"
+                        >
+                            Grafana monitoring
+                        </Button>
+                    </Col>
+                </Row>
 
 
             </div>

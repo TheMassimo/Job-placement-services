@@ -77,18 +77,6 @@ function NavbarComponent(props) {
                         Analytics
                     </NavLink>
                 </li>
-                <li className="nav-item active">
-                    <a
-                        style={{color: 'white',
-                            fontWeight: 'normal',
-                            textDecoration: 'none',
-                            verticalAlign: 'text-top'
-                        }}
-                        href="http://localhost:3000"
-                        target="_blank">
-                        Monitoring
-                    </a>
-                </li>
             </ul>
 
 
