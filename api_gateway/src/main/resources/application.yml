@@ -52,7 +52,7 @@ spring:
             predicates:
               - Path=/
             filters:
-              - RedirectTo=301, http://localhost:5173
+              - RedirectTo=301, http://localhost:5173/reach_us
   security:
     oauth2:
       resourceserver:

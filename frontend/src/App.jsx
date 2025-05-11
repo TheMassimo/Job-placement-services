@@ -19,10 +19,19 @@ import Documents from "./components/Documents";
 import FileForm from "./components/FileForm";
 import ContactUs from "./components/ContactUs";
 import ViewMessages from "./components/ViewMessages";
+import {Navigate} from "react-router-dom";
 
 // Import del provider di errore
 import {NotificationProvider} from './contexts/NotificationProvider';
 import axios from "axios";
+
+
+const PrivateRoute = ({ user, children }) => {
+    if (!user?.roles || user?.roles.length === 0) {
+        return <Navigate to="/reach_us" replace />;
+    }
+    return children;
+};
 
 function App() {
 
@@ -59,7 +68,7 @@ function App() {
     };
 
 
-
+    console.log("ddddd",user?.roles)
 
     return (
         <NotificationProvider>
@@ -67,34 +76,105 @@ function App() {
                 <Container fluid>
                     <NavbarComponent user={user} />
                     <Routes>
-                        <Route path="/" element={<HomeLayout user={user} />}/>
-
-                        <Route path="/analytics" element={<ViewAnalytics role = {user?.roles}/>}/>
-
-                        {/* action= add/edit */}
-                        <Route path="/contacts" element={<ViewContacts role = {user?.roles}/>} />
-                        <Route path="/contacts/:action/" element={<ContactForm mode={null} user={user} />} />
-                        <Route path="/contacts/:action/:contactId" element={<ContactForm mode={null} user={user}/>} />
-                        <Route path="/contact/:contactId/details" element={<ViewContactDetails user={user} />} />
-
-                        <Route path="/customer/:action/:contactId" element={<ContactForm mode={"Customer"} user={user}/>} />
-
-                        <Route path="/documents" element={<Documents user={user}/>}/>
-                        <Route path="/fileform" element={<FileForm user={user}/>}/>
-
-                        <Route path="/jobOffers" element={<ViewJobOffers role = {user?.roles} user={user}/>}/>
-                        <Route path="/jobOffers/add/:contactId" element={<AddJobOffer user={user}/>} />
-                        <Route path="/jobOffers/edit/:jobOfferId" element={<AddJobOffer user={user}/>} />
-                        <Route path="/jobOffers/history/:jobOfferId" element={<ViewJobOfferHistory user={user}/>} />
-                        <Route path="/jobOffers/progress/:jobOfferId" element={<ProgressJobOffer user={user}/>} />
-
-                        <Route path="/messages" element={<ViewMessages />}/>
-
-                        <Route path="/professional/:action/:contactId" element={<ContactForm mode={"Professional"} user={user}/>} />
-
+                        {/* Pubbliche */}
                         <Route path="/reach_us" element={<ContactUs />} />
 
-                        <Route path="*" element={<NotFoundPage/>}/>
+                        {/* Protette */}
+                        <Route path="/" element={
+                            <PrivateRoute user={user}>
+                                <HomeLayout user={user}/>
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/analytics" element={
+                            <PrivateRoute user={user}>
+                                <ViewAnalytics />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/contacts" element={
+                            <PrivateRoute user={user}>
+                                <ViewContacts role={user?.roles} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/contacts/:action/" element={
+                            <PrivateRoute user={user}>
+                                <ContactForm mode={null} user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/contacts/:action/:contactId" element={
+                            <PrivateRoute user={user}>
+                                <ContactForm mode={null} user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/contact/:contactId/details" element={
+                            <PrivateRoute user={user}>
+                                <ViewContactDetails user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/customer/:action/:contactId" element={
+                            <PrivateRoute user={user}>
+                                <ContactForm mode="Customer" user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/documents" element={
+                            <PrivateRoute user={user}>
+                                <Documents user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/fileform" element={
+                            <PrivateRoute user={user}>
+                                <FileForm user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/jobOffers" element={
+                            <PrivateRoute user={user}>
+                                <ViewJobOffers role={user?.roles} user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/jobOffers/add/:contactId" element={
+                            <PrivateRoute user={user}>
+                                <AddJobOffer user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/jobOffers/edit/:jobOfferId" element={
+                            <PrivateRoute user={user}>
+                                <AddJobOffer user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/jobOffers/history/:jobOfferId" element={
+                            <PrivateRoute user={user}>
+                                <ViewJobOfferHistory user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/jobOffers/progress/:jobOfferId" element={
+                            <PrivateRoute user={user}>
+                                <ProgressJobOffer user={user} />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/messages" element={
+                            <PrivateRoute user={user}>
+                                <ViewMessages />
+                            </PrivateRoute>
+                        } />
+
+                        <Route path="/professional/:action/:contactId" element={
+                            <PrivateRoute user={user}>
+                                <ContactForm mode="Professional" user={user} />
+                            </PrivateRoute>
+                        } />
                     </Routes>
                 </Container>
                 <ToastContainer/>
