@@ -65,6 +65,7 @@ class SecurityConfig {
             .cors { } // Enable CORS configuration
             .authorizeHttpRequests {
                 /* ApiGateway Server end-points */
+                it.requestMatchers(HttpMethod.POST, "/API/messages").permitAll()
                 it.requestMatchers(HttpMethod.POST, "/API/**").hasAnyRole("manager", "recruiter")
                 it.requestMatchers(HttpMethod.DELETE, "/API/**").hasRole("manager")
 
@@ -76,7 +77,7 @@ class SecurityConfig {
             .oauth2ResourceServer { oauth2 ->
                 oauth2.jwt { jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()) }
             }            .csrf {
-                it.ignoringRequestMatchers("/crm/api/messages")
+                it.ignoringRequestMatchers("/crm/api/messages", "/API/messages")
                 it.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 it.csrfTokenRequestHandler(SpaCsrfTokenRequestHandler())
                 //it.ignoringRequestMatchers("/logout")

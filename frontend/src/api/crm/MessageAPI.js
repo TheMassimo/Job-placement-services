@@ -35,12 +35,12 @@ async function GetMessageById(messageId) {
     }
 }
 
-async function InsertNewMessage(message, xsrfToken) {
+async function InsertNewMessage(message, ) {
     const response = await fetch(
         generateUrl(URL_MESSAGES, null, null), {
             method: 'POST',
             credentials: 'include',
-            headers: {'Content-Type': 'application/json', 'X-XSRF-TOKEN': xsrfToken},
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(message)
         })
 

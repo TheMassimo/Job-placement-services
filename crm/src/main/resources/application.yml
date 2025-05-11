@@ -25,7 +25,7 @@ spring:
           CRMclient:
             provider: keycloak
             client-id: apigateway
-            client-secret: v2Seb5AyEkjIdEhQs7DjpIZoug1MnbYH #Luca
+            client-secret: aXVXpJtABK9M5goNLGsgON8vSLkMIHrt #Luca
             scope:
               - openid
               - offline_access
