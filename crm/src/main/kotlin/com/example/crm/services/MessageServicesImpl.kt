@@ -59,10 +59,6 @@ class MessageServicesImpl(private val entityManager: EntityManager,
 
         val predicates = mutableListOf<Predicate>()
 
-        logger.info("sender: $sender")
-        logger.info("channel: $channel")
-        logger.info("state: $state")
-
         if (!sender.isNullOrBlank()) {
             predicates.add(cb.like(cb.lower(rootMessage.get<String>("sender")), "${sender.lowercase()}%"))
         }
@@ -86,8 +82,6 @@ class MessageServicesImpl(private val entityManager: EntityManager,
         val query = entityManager.createQuery(cqMessage)
         query.firstResult = pageNumber * pageSize
         query.maxResults = pageSize
-
-        val resultList = query.resultList
 
         return query.resultList.map { it.toDto() }
     }
