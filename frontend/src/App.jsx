@@ -67,8 +67,7 @@ function App() {
         }
     };
 
-
-    console.log("ddddd",user?.roles)
+    //console.log(user?.roles[0])
 
     return (
         <NotificationProvider>

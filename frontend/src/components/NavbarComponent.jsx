@@ -1,17 +1,20 @@
 import { Navbar, Button, Nav, NavDropdown } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Link, NavLink  } from 'react-router-dom';
 import logo from '../assets/logo_tmp.png';  // Importazione dell'immagine
+import PrivateRoute from "../App.jsx";
 
-
+const PrivateTabs = ({ user, children }) => {
+    if (!user?.roles || user?.roles.length === 0) {
+        return <Navigate to="/reach_us" replace />;
+    }
+    return children;
+};
 
 function NavbarComponent(props) {
-    //const navigate = useNavigate();
-    //const name = props.user && props.user.name;
-
-    const name = "miriam"
-    const navigate = useNavigate();
+    //const user = props.user;
+    console.log("User: ", props.user?.roles)
 
     return (
         <Navbar  fixed="top" className="navbar navbar-expand-lg w-100" style={{ backgroundColor: '#003366', zIndex: 1030 }}>
@@ -28,6 +31,7 @@ function NavbarComponent(props) {
                 </Navbar.Brand>
             </Link>
 
+            { (props.user?.roles == "manager" || props.user?.roles == "recruiter") &&
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                     <NavLink
@@ -69,6 +73,7 @@ function NavbarComponent(props) {
                         Messages
                     </NavLink>
                 </li>
+                { (props.user?.roles == "manager") &&
                 <li className="nav-item active">
                     <NavLink
                         to="/analytics"
@@ -77,7 +82,10 @@ function NavbarComponent(props) {
                         Analytics
                     </NavLink>
                 </li>
+                }
             </ul>
+            }
+
 
 
             <Nav className="ms-auto">
