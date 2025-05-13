@@ -5,7 +5,7 @@ import com.example.crm.dtos.MachineStateDTO
 import com.example.crm.dtos.MessageDTO
 
 interface MessageServices {
-    fun getAllMessages(page: Int, limit: Int, sorted: String, filtered: String): List<MessageDTO>
+    fun getAllMessages(sender : String?, channel : String?, state : State?, pageNumber : Int, pageSize : Int): List<MessageDTO>
 
     fun create(dto: MessageCreateDTO): MessageDTO
 

@@ -26,7 +26,7 @@ spring:
             provider: keycloak
             client-id: apigateway
             #client-secret: 784jYAnNndMiACzCzDGiXjtWLiePlN9o #Massimo2
-            client-secret: IRENkPNCvWzPe1fjHrmF1jkzR10Vxr1j #Luca
+            client-secret: aXVXpJtABK9M5goNLGsgON8vSLkMIHrt #Luca
             scope:
               - openid
               - offline_access

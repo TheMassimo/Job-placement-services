@@ -7,12 +7,15 @@ import com.example.crm.exeptions.BadParameterException
 import com.example.crm.exeptions.MessageNotFoundException
 import com.example.crm.repositories.MachineStateRepository
 import com.example.crm.repositories.MessageRepository
+import jakarta.persistence.criteria.CriteriaBuilder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
+import jakarta.persistence.criteria.*
+import jakarta.persistence.EntityManager
 
 enum class State{
     RECEIVED,
@@ -37,37 +40,56 @@ enum class State{
 }
 
 @Service
-class MessageServicesImpl(private val messageRepository: MessageRepository,
+class MessageServicesImpl(private val entityManager: EntityManager,
+                          private val messageRepository: MessageRepository,
                           private val machineStateRepository: MachineStateRepository) : MessageServices {
 
     private val logger: Logger = LoggerFactory.getLogger(MessageServices::class.java)
 
-    override fun getAllMessages(page: Int, limit: Int, sorted : String, filtered : String): List<MessageDTO> {
+    override fun getAllMessages(
+        sender: String?,
+        channel: String?,
+        state: State?,
+        pageNumber: Int,
+        pageSize: Int
+    ): List<MessageDTO> {
+        val cb: CriteriaBuilder = entityManager.criteriaBuilder
+        val cqMessage: CriteriaQuery<Message> = cb.createQuery(Message::class.java)
+        val rootMessage: Root<Message> = cqMessage.from(Message::class.java)
 
-            val pageable = PageRequest.of(page, limit)
-            val messages = messageRepository.findAll(pageable)
-            var ritorno: List<Message> = messages.content
+        val predicates = mutableListOf<Predicate>()
 
-            if(filtered != "NOT FILTERED") {
-                try {
-                    val stateEnum = State.valueOf(filtered.uppercase())
-                    ritorno = ritorno.filter { it.state == stateEnum }
-                } catch (e: Exception) {
-                    //throw BadParameterException("filter argument not valid:")
-                    ritorno = emptyList()
-                }
-            }
+        logger.info("sender: $sender")
+        logger.info("channel: $channel")
+        logger.info("state: $state")
 
-            when (sorted.uppercase()){
-                "PRIORITY" -> ritorno = ritorno.sortedBy { it.priority }
-                "SUBJECT" -> ritorno = ritorno.sortedBy { it.subject }
-                "STATE" -> ritorno = ritorno.sortedBy { it.state }
-                //"NOT SORTED" -> println("debug")
-                // else -> restituisce il sort di deafult
-            }
+        if (!sender.isNullOrBlank()) {
+            predicates.add(cb.like(cb.lower(rootMessage.get<String>("sender")), "${sender.lowercase()}%"))
+        }
 
-            logger.info("Messages fetched successfully")
-            return ritorno.map { it.toDto() }
+        if (!channel.isNullOrBlank()) {
+            predicates.add(cb.like(cb.lower(rootMessage.get<String>("channel")), "${channel.lowercase()}%"))
+        }
+
+        if (state != null) {
+            predicates.add(cb.equal(rootMessage.get<State>("state"), state))
+        }
+
+
+        // Combine all filters
+        if (predicates.isNotEmpty()) {
+            cqMessage.where(*predicates.toTypedArray())
+        }
+
+        cqMessage.orderBy(cb.asc(rootMessage.get<Long>("messageId")))
+
+        val query = entityManager.createQuery(cqMessage)
+        query.firstResult = pageNumber * pageSize
+        query.maxResults = pageSize
+
+        val resultList = query.resultList
+
+        return query.resultList.map { it.toDto() }
     }
 
     override fun create(dto: MessageCreateDTO) : MessageDTO {

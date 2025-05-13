@@ -4,6 +4,8 @@ import {Message} from "./entities/Message.ts"
 const URL_MESSAGES = 'http://localhost:8080/service_crm/API/messages'
 
 async function GetMessages(filter, pagination) {
+    console.log("filters: ", filter)
+    console.log("pagination: ", pagination)
     const response = await fetch(
         generateUrl(URL_MESSAGES, filter, pagination), {
             method: 'GET',

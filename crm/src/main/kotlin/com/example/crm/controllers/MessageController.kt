@@ -4,6 +4,7 @@ import com.example.crm.dtos.MessageCreateDTO
 import com.example.crm.dtos.MachineStateDTO
 import com.example.crm.dtos.MessageDTO
 import com.example.crm.services.MessageServices
+import com.example.crm.services.State
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Positive
+import kotlinx.coroutines.channels.Channel
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
@@ -23,12 +25,19 @@ class MessageController(private val messageServices: MessageServices) {
 
     @GetMapping("", "/")
     fun getAllMessages(
-        @RequestParam("page", defaultValue = "0") @Min(value = 0) page: Int,
-        @RequestParam("limit", defaultValue = "10") @Min(value = 1) limit: Int,
-        @RequestParam(defaultValue = "NOT SORTED") sorted: String,
-        @RequestParam(defaultValue = "NOT FILTERED") filtered: String
+        @RequestParam("sender", required = false) sender: String?,
+        @RequestParam("channel", required = false) channel: String?,
+        @RequestParam("state", required = false) state: State?,
+        @RequestParam("pageNumber", required = false) @Min(
+            value = 0,
+            message = "Page number not valid, value must be great or equal to 0"
+        ) pageNumber: Int = 0,
+        @RequestParam("pageSize", required = false) @Min(
+            value = 1,
+            message = "Page size not valid, value must be great or equal to 1"
+        ) pageSize: Int = 20,
     ): ResponseEntity<List<MessageDTO>> {
-        val messages = messageServices.getAllMessages(page, limit, sorted, filtered)
+        val messages = messageServices.getAllMessages(sender, channel, state, pageNumber, pageSize);
         return ResponseEntity.ok(messages)
     }
 

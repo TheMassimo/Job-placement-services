@@ -193,6 +193,15 @@ function Documents(props) {
                                     </Icon>
                                     */}
                                     <Button
+                                        variant="primary"
+                                        className="bi bi-download me-2"
+                                        onClick={() => {
+                                            DocumentStoreAPI.GetDocumentDataById(document.metadataId)
+                                                .then(() => console.log("Download iniziato"))
+                                                .catch((err) => console.error("Errore nel download:", err));
+                                        }}
+                                    > </Button>
+                                    <Button
                                         variant="danger"
                                         className="bi bi-trash me-2"
                                         onClick={() => {

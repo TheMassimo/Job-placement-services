@@ -158,7 +158,9 @@ function ContactForm(props) {
             // Se spuntato aggiungere anche il customer
             if( (mode===null || mode==="Customer") && customerChecked) {
                 const customerId = contact?.customer?.customerId;
-                const resUpdateCustomer = await CustomerAPI.UpdateNotes(customerId, formData.customerNotes, user?.xsrfToken);
+
+                let newNote = formData.customerNotes ? formData.customerNotes : " " ;
+                const resUpdateCustomer = await CustomerAPI.UpdateNotes(customerId, newNote, user?.xsrfToken);
                 handleSuccess('Customer data update!');
             }
 
@@ -178,7 +180,7 @@ function ContactForm(props) {
             }
 
             //if all is right go back to contacts
-            navigate(`/contacts`)
+            navigate(`/contacts`);
         } catch (err) {
             console.error("Errore durante l'elaborazione:", err);
             handleError(err);
