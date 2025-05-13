@@ -65,6 +65,7 @@ class SecurityConfig {
             .cors { } // Enable CORS configuration
             .authorizeHttpRequests {
                 /* ApiGateway Server end-points */
+                it.requestMatchers(HttpMethod.GET, "/API/**").hasAnyRole("manager", "recruiter")
                 it.requestMatchers(HttpMethod.POST, "/API/messages").permitAll()
                 it.requestMatchers(HttpMethod.POST, "/API/**").hasAnyRole("manager", "recruiter")
                 it.requestMatchers(HttpMethod.DELETE, "/API/**").hasRole("manager")

@@ -28,7 +28,7 @@ spring:
               - TokenRelay
           #route for Communication_manager
           - id: service_cm
-            uri: http://localhost:8083
+            uri: http://localhost:8085
             predicates:
               - Path= /service_cm/**
             filters:

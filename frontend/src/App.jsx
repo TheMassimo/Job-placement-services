@@ -27,7 +27,7 @@ import axios from "axios";
 
 
 const PrivateRoute = ({ user, children }) => {
-    if (!user?.roles || user?.roles.length === 0) {
+    if (user?.roles.length === 0) {
         return <Navigate to="/reach_us" replace />;
     }
     return children;
