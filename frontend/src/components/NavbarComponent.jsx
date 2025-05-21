@@ -14,7 +14,7 @@ const PrivateTabs = ({ user, children }) => {
 
 function NavbarComponent(props) {
     //const user = props.user;
-    console.log("User: ", props.user?.roles)
+    //console.log("User: ", props.user?.roles)
 
     return (
         <Navbar  fixed="top" className="navbar navbar-expand-lg w-100" style={{ backgroundColor: '#003366', zIndex: 1030 }}>

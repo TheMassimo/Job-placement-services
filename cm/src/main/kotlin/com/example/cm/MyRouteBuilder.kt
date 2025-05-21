@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component
 import java.util.Base64
 
 
-/*
+
 @Component
 class MyRouteBuilder : RouteBuilder() {
     @EndpointInject("google-mail:messages/get")
@@ -63,9 +63,9 @@ class MyRouteBuilder : RouteBuilder() {
     }
 }
 
- */
 
-/*
+
+
 
 @Component
 class EmailSender : RouteBuilder() {
@@ -110,4 +110,4 @@ private fun createEmail(to: String, from: String, subject: String, bodyText: Str
     email.writeTo(buffer)
     return Base64.getUrlEncoder().encodeToString(buffer.toByteArray())
 }
-*/
+

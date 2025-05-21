@@ -25,10 +25,22 @@ class AnalyticsController(private val analyticsServices: AnalyticsServices) {
         return ResponseEntity.ok(averageDuration)
     }
 
+    @GetMapping("/JobOfferMinMax", "/JobOfferMinMax/")
+    fun getJobOfferMinMaxValue() : ResponseEntity<List<Double>> {
+        val minMaxVal = analyticsServices.getJobOfferMinMaxValue()
+        return ResponseEntity.ok(minMaxVal)
+    }
+
+    @GetMapping("/JobOfferMonthValue", "/JobOfferMonthValue/")
+    fun getAverageJobOfferValuePerMonth() : ResponseEntity<Double> {
+        val averageMonthlyVal = analyticsServices.getAverageJobOfferMonthlyValue()
+        return ResponseEntity.ok(averageMonthlyVal)
+    }
+
     @GetMapping("/locations", "/locations/")
     fun getLocations(@RequestParam numLocations: Int = 1) : ResponseEntity<List<LocationDTO>> {
         val locationsList = analyticsServices.getLocationsList(numLocations)
-        val sortedLocationList = locationsList.sortedByDescending { it.professionals }
+        val sortedLocationList = locationsList.sortedByDescending { it.professionalsCount }
         return ResponseEntity.ok(sortedLocationList)
     }
 

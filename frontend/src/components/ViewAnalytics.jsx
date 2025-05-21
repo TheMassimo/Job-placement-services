@@ -13,6 +13,8 @@ function ViewAnalytics(props) {
     const [locationList, setLocationList] = useState([]);
     const [averageJobOfferValue, setAverageJobOfferValue] = useState(0);
     const [averageJobOfferDuration, setAverageJobOfferDuration] = useState(0);
+    const [minMaxJobOfferValue, setMinMaxJobOfferValue] = useState([0, 0]);
+    const [averageJobOfferMonthlyValue, setAverageJobOfferMonthlyValue] = useState(0);
 
     //USE Effect
     useEffect(() => {
@@ -26,6 +28,20 @@ function ViewAnalytics(props) {
         AnalyticsAPI.GetAverageJobOfferDuration(user?.xsrfToken).then((res) => {
             //get data
             setAverageJobOfferDuration(res);
+        }).catch((err) => console.log(err))
+    }, []);
+
+    useEffect(() => {
+        AnalyticsAPI.GetMinMaxJobOfferValue(user?.xsrfToken).then((res) => {
+            //get data
+            setMinMaxJobOfferValue(res);
+        }).catch((err) => console.log(err))
+    }, []);
+
+    useEffect(() => {
+        AnalyticsAPI.GetAverageJobOfferMonthlyValue(user?.xsrfToken).then((res) => {
+            //get data
+            setAverageJobOfferMonthlyValue(res);
         }).catch((err) => console.log(err))
     }, []);
 
@@ -55,7 +71,7 @@ function ViewAnalytics(props) {
                                 <Card.Title> Average Job Offer Value </Card.Title>
                             </Col>
                             <Col className="text-end" xs={4}>
-                                <span> {averageJobOfferValue ? `€ ${averageJobOfferValue}` : 'No data available'}</span>
+                                <span> {averageJobOfferValue ? `€ ${averageJobOfferValue.toFixed(2)}` : 'No data available'}</span>
                             </Col>
                         </Row>
                     </Card.Body>
@@ -69,19 +85,47 @@ function ViewAnalytics(props) {
                                 <Card.Title> Average Job Offer Duration </Card.Title>
                             </Col>
                             <Col className="text-end" xs={4}>
-                                <span>{averageJobOfferDuration ? averageJobOfferDuration : 'No data available'}</span>
+                                <span>{averageJobOfferDuration ? `${averageJobOfferDuration.toFixed(0)} months` : 'No data available'}</span>
                             </Col>
                         </Row>
                     </Card.Body>
                 </Card>
 
-                {/* Professionals locations */}
+                {/* Min Max Job Offer Value */}
+                <Card className="p-0 m-1" style={{height: '70px'}}>
+                    <Card.Body>
+                        <Row>
+                            <Col className="text-start" xs={8}>
+                                <Card.Title> Minimum and Maximum job offer values </Card.Title>
+                            </Col>
+                            <Col className="text-end" xs={4}>
+                                <span>{minMaxJobOfferValue ? `Min: ${minMaxJobOfferValue[0]} - Max: ${minMaxJobOfferValue[1]}` : 'No data available'}</span>
+                            </Col>
+                        </Row>
+                    </Card.Body>
+                </Card>
+
+                {/* Average Job Offer Value per month */}
+                <Card className="p-0 m-1" style={{height: '70px'}}>
+                    <Card.Body>
+                        <Row>
+                            <Col className="text-start" xs={8}>
+                                <Card.Title> Average Job Offer payment per month </Card.Title>
+                            </Col>
+                            <Col className="text-end" xs={4}>
+                                <span>{averageJobOfferMonthlyValue ? `${averageJobOfferMonthlyValue.toFixed(2)}` : 'No data available'}</span>
+                            </Col>
+                        </Row>
+                    </Card.Body>
+                </Card>
+                {/*
+                {/*Professionals locations}
                 <Card className="p-0 m-1"
                       style={{height: `${locationList.length > 0 ? 55 + locationList.length * 30 : 85}px`}}>
                     <Card.Body>
                         <Row>
                             <Col className="text-start" xs={4}>
-                                <Card.Title> Locations ordered by available Professionals </Card.Title>
+                                <Card.Title> Locations ordered by existing Professionals </Card.Title>
                             </Col>
                             <Col className="text-center" xs={4}>
                                 <Dropdown onSelect={handleSelect}>
@@ -97,7 +141,7 @@ function ViewAnalytics(props) {
                                 </Dropdown>
                             </Col>
                             <Col className="center" xs={4} style={{paddingTop: '10px'}}>
-                                {/*Show locations list*/}
+                                {/*Show locations list}
                                 {locationList.length > 0 ?
                                     <>
                                         {locationList.map((location) => {
@@ -108,7 +152,7 @@ function ViewAnalytics(props) {
                                                             {location.location}
                                                         </Col>
                                                         <Col className="text-start">
-                                                            {location.professionals} {location.professionals > 1 ? 'professionals' : 'professional'}
+                                                            {location.professionalsCount} {location.professionals > 1 ? 'professionals' : 'professional'}
                                                         </Col>
                                                     </Row>
                                                 </>
@@ -122,13 +166,14 @@ function ViewAnalytics(props) {
                         </Row>
                     </Card.Body>
                 </Card>
+                */}
 
                 <Row style={{paddingTop: '20px'}}>
                     <Col className="center">
                         <Button
                             className={"custom-button m-2"}
                             variant="secondary"
-                            href="http://localhost:3000"
+                            href="http://localhost:3000/dashboards"
                             target="_blank"
                         >
                             Grafana monitoring

@@ -9,10 +9,10 @@ function HomeLayout(props) {
     const [profile, setProfile] = useState({
         name: props.user? props.user.name : '',
         surname: props.user? props.user.surname : '',
-        ssn: '123-45-6789',
+        ssn: '', //'123-45-6789'
         email: '',
-        telephone: '+123456789',
-        address: '123 Main St, Anytown, USA',
+        telephone: '', //'+123456789'
+        address: '', //'123 Main St, Anytown, USA'
     });
 
     useEffect(() => {

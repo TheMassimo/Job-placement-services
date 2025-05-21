@@ -10,11 +10,21 @@ interface AnalyticsServices {
 
     fun storeJobOffer(jobOfferAnalyticsDTO: JobOfferAnalyticsDTO?)
 
+    fun deleteJobOffer(jobOfferAnalyticsDTO: JobOfferAnalyticsDTO?)
+
+    fun updateJobOffer(jobOfferAnalyticsDTO: JobOfferAnalyticsDTO?)
+
     fun getAverageJobOfferValue(): Double?
 
     fun getAverageJobOfferDuration(): Double?
 
-    fun storeLocation(location: String)
+    fun getJobOfferMinMaxValue(): List<Double>
+
+    fun getAverageJobOfferMonthlyValue(): Double?
+
+    fun storeLocation(location: String, professionalId: Long)
+
+    fun deleteOrReduceLocation(professionalId: Long)
 
     fun getLocationsList(numLocations: Int): List<LocationDTO>
 

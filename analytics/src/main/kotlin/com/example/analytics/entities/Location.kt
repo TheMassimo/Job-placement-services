@@ -2,6 +2,7 @@ package com.example.analytics.entities
 
 import jakarta.persistence.*
 
+
 @Entity
 class Location {
     @Id
@@ -9,6 +10,9 @@ class Location {
     var locationId: Long = 0
 
     var location: String = ""
-    var professionals: Int = 0
+    var professionalsCount: Int = 0
+
+    @ElementCollection
+    var professionals: ArrayList<Long> = ArrayList()
 }
 

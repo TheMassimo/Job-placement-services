@@ -1,5 +1,6 @@
 package com.example.analytics.analytics_dtos
 
+import com.example.analytics.entities.JobOfferAnalytics
 import com.example.analytics.services.JobStatus
 
 data class JobOfferAnalyticsDTO (

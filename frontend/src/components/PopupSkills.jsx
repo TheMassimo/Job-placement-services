@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Card } from "react-bootstrap";
 import SkillAPI from "../api/crm/SkillAPI.js";
+import Form from "react-bootstrap/Form";
+import ContactAPI from "../api/crm/ContactAPI.js";
+import {useNotification} from "../contexts/NotificationProvider.jsx";
 
-const PopupSkills = ({ isOpen, onClose, onConfirm, preSelectedSkills = [] }) => {
+const PopupSkills = ({props, isOpen, onClose, onConfirm, preSelectedSkills = [] }) => {
+    const user = props.user;
     const [selectedValues, setSelectedValues] = useState([]); // Tiene traccia delle selezioni
     const [skills, setSkills] = useState([]); // Tiene traccia delle skill disponibili
+    const [newSkill, setNewSkill] = useState({
+        skill: ''
+    });
+    const { handleError, handleSuccess } = useNotification();
+
 
     // Aggiorna i selectedValues con le skill pre-selezionate
     useEffect(() => {
@@ -15,12 +24,13 @@ const PopupSkills = ({ isOpen, onClose, onConfirm, preSelectedSkills = [] }) => 
 
     // Recupera le skill dall'API quando il componente viene montato
     useEffect(() => {
-        SkillAPI.GetSkills()
+        SkillAPI.GetSkills(user?.xsrfToken)
             .then((res) => {
                 setSkills(res);
             })
             .catch((err) => console.log(err));
     }, []);
+
 
     // Funzione per aggiungere/rimuovere una selezione
     const toggleSelection = (skill) => {
@@ -34,6 +44,45 @@ const PopupSkills = ({ isOpen, onClose, onConfirm, preSelectedSkills = [] }) => 
                 return [...prev, skill];
             }
         });
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setNewSkill((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (newSkill.skill === "")
+            handleError("New skill must have a name", null);
+        else{
+            handleAdd(e);
+            onConfirm(selectedValues)
+        }
+
+        //onClose()
+    };
+
+    const handleAdd = async (e) => {
+        try {
+
+            let resAddSkill = null;
+            const tmpSkill = {
+                skill: newSkill.skill
+            };
+
+            resAddSkill = await SkillAPI.AddSkill(tmpSkill, user?.xsrfToken);
+            handleSuccess('Skill added successfully!');
+            toggleSelection(resAddSkill)
+
+        } catch (err) {
+            console.error("Errore durante l'aggiunta della nuova skill:", err);
+            handleError(err);
+        }
     };
 
     return (
@@ -60,13 +109,27 @@ const PopupSkills = ({ isOpen, onClose, onConfirm, preSelectedSkills = [] }) => 
                         </Card>
                     );
                 })}
-            </Modal.Body>
-            <Modal.Footer>
+
+                <Form onSubmit={handleSubmit} className="newSkillForm">
+                    <Form.Group controlId="addNewSkill" className="mb-2">
+                        <Form.Control
+                            type="text"
+                            name="skill"
+                            placeholder="Create new skill"
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+                    <Button variant="primary" type="submit" className="custom-button">
+                        Add new skill
+                    </Button>
+                </Form>
+        </Modal.Body>
+    <Modal.Footer>
                 <Button variant="primary" onClick={() => onConfirm(selectedValues)}>
-                    Conferma
+                    Confirm
                 </Button>
                 <Button variant="secondary" onClick={onClose}>
-                    Chiudi
+                    Close
                 </Button>
             </Modal.Footer>
         </Modal>

@@ -239,7 +239,7 @@ function AddJobOffer(props) {
                     {/* Offer Value */}
                     <Col>
                         <Form.Group controlId="formOfferValue" className="text-start">
-                            <Form.Label>Offer Value</Form.Label>
+                            <Form.Label>Offer Value (€)</Form.Label>
                             <Form.Control
                                 type="number"
                                 name="offerValue"
@@ -296,6 +296,7 @@ function AddJobOffer(props) {
             {/* PopUpSkills per la selezione delle skills */}
             {isPopupOpen && (
                 <PopupSkills
+                    props={props}
                     isOpen={isPopupOpen}
                     onClose={togglePopup}
                     preSelectedSkills={formData.requiredSkills}

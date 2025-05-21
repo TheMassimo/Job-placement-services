@@ -39,6 +39,42 @@ async function GetAverageJobOfferDuration(xsrfToken){
     }
 }
 
+async function GetMinMaxJobOfferValue(xsrfToken){
+    const response = await fetch(
+        generateUrl(`${URL_ANALYTICS}/JobOfferMinMax`), {
+            method: 'GET',
+            credentials: 'include',
+            headers: {'X-XSRF-TOKEN': xsrfToken}
+        }
+    )
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return obj
+    } else {
+        throw obj
+    }
+}
+
+async function GetAverageJobOfferMonthlyValue(xsrfToken){
+    const response = await fetch(
+        generateUrl(`${URL_ANALYTICS}/JobOfferMonthValue`), {
+            method: 'GET',
+            credentials: 'include',
+            headers: {'X-XSRF-TOKEN': xsrfToken}
+        }
+    )
+
+    const obj = await response.json()
+
+    if (response.ok) {
+        return obj
+    } else {
+        throw obj
+    }
+}
+
 async function GetLocationsList(numLocations = 1, xsrfToken){
     const response = await fetch(
         generateUrl(`${URL_ANALYTICS}/locations`, {numLocations}), {
@@ -61,6 +97,8 @@ async function GetLocationsList(numLocations = 1, xsrfToken){
 const AnalyticsAPI = {
     GetAverageJobOfferValue,
     GetAverageJobOfferDuration,
+    GetMinMaxJobOfferValue,
+    GetAverageJobOfferMonthlyValue,
     GetLocationsList,
 }
 

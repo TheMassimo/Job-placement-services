@@ -130,8 +130,8 @@ function ContactForm(props) {
                     notes: formData.professionalNotes,
                     skills: tmpSkills,
                 }
-                const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData, user?.xsrfToken);
-                handleSuccess('Professional added successfully!');
+                    const resAddProfessional = await ProfessionalAPI.AddProfessional(tmpProfessionalData, user?.xsrfToken);
+                    handleSuccess('Professional added successfully!');
             }
             //if all is right go back to contacts
             navigate(`/contacts`)
@@ -590,7 +590,7 @@ function ContactForm(props) {
                                     />
                                 </Form.Group>
                                 <Form.Group controlId="formDailyRate" className="text-start">
-                                    <Form.Label>Daily Rate</Form.Label>
+                                    <Form.Label>Daily Rate (€)</Form.Label>
                                     <Form.Control
                                         type="text"
                                         name="dailyRate"
@@ -660,6 +660,7 @@ function ContactForm(props) {
             {/* PopupSelector */}
             {isPopupOpen && (
                 <PopupSkills
+                    props ={props}
                     isOpen={isPopupOpen}
                     onClose={togglePopup}
                     preSelectedSkills={formData.skills}

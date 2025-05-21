@@ -162,18 +162,18 @@ function MyCard(props){
         <Card className="p-0 m-3">
         <Card.Header className="d-flex justify-content-between align-items-center">
             <Row className="w-100">
-                <Col xs={4} className="text-start">
+                <Col xs={6} className="text-start">
                     {/* Nome a sinistra */}
-                    <Card.Title className="hover-underline cursor-pointer">
-                        Sender:{message.sender}
+                    <Card.Title >
+                        Sender: {message.sender}
                     </Card.Title>
                 </Col>
                 <Col>
-                    <span className="custom-text">
+                    <span >
                         <Card.Title>Channel: {message.channel} </Card.Title>
                     </span>
                 </Col>
-                <Col xs={4} className="text-end">
+                <Col xs={2} className="text-end">
                     <Badge pill bg={getBadgeColor(message.state)} className="me-2">
                         {message.state}
                     </Badge>

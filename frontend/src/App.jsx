@@ -67,8 +67,6 @@ function App() {
         }
     };
 
-    //console.log(user?.roles[0])
-
     return (
         <NotificationProvider>
             <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
@@ -173,6 +171,10 @@ function App() {
                             <PrivateRoute user={user}>
                                 <ContactForm mode="Professional" user={user} />
                             </PrivateRoute>
+                        } />
+
+                        <Route path="*" element={
+                            <Navigate to="/" />
                         } />
                     </Routes>
                 </Container>

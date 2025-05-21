@@ -6,7 +6,7 @@ import jakarta.persistence.*
 @Entity
 class JobOfferAnalytics {
     @Id
-    @GeneratedValue
+    //@GeneratedValue
     var jobOfferId: Long = 0
 
     var status: JobStatus? = JobStatus.CREATED

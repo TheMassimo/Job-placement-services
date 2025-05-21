@@ -169,3 +169,8 @@ create table if not exists public.telephone_contact (
 );
 
 
+ALTER TABLE public.contact REPLICA IDENTITY FULL;
+ALTER TABLE public.skill REPLICA IDENTITY FULL;
+ALTER TABLE public.job_offer REPLICA IDENTITY FULL;
+ALTER TABLE public.customer REPLICA IDENTITY FULL;
+ALTER TABLE public.professional REPLICA IDENTITY FULL;
