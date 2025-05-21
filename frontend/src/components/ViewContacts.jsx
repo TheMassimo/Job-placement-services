@@ -359,7 +359,7 @@ function ProfessionalCard(props) {
             </Card.Header>
             <Card.Body>
                 <Row>
-                    Nation: {contact.professional?.geographicalInfo || "N/A"}
+                    Location: {contact.professional?.geographicalInfo || "N/A"}
                 </Row>
                 <Row>
                     Daily Rate: {contact.professional?.dailyRate+"€" || "N/A"}
@@ -405,7 +405,6 @@ function ViewContacts(props) {
         ContactAPI.GetContacts(filters, new Pagination(currentPage, pageSize)).then((res) => {
             //get data
             setContacts(res);
-            //console.log("CONTACTS ",res);
         }).catch((err) => console.log(err))
     }, [filters, currentPage, pageSize, refreshContact]);
 
@@ -414,7 +413,6 @@ function ViewContacts(props) {
             .then((res) => {
                 // Setta le skills
                 setSkills(res);
-                //console.log("skills", res);
             })
             .catch((err) => console.log(err));
     }, []); // Esegui solo una volta quando il componente viene montato

@@ -70,6 +70,7 @@ function HomeLayout(props) {
                                 />
                             </Form.Group>
                         ))}
+                        {/*
                         {isEditing ? (
                             <div className="d-flex justify-content-end">
                                 <Button variant="success" onClick={handleSave} className="custom-button">
@@ -84,6 +85,7 @@ function HomeLayout(props) {
                                 Edit Profile
                             </Button>
                         )}
+                        */}
                     </Form>
                 </Col>
             </Row>

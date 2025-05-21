@@ -153,7 +153,6 @@ function ViewJobOffers (props)  {
             .then((res) => {
                 // Setta le skills
                 setSkills(res);
-                //console.log("skills", res);
             })
             .catch((err) => console.log(err));
     }, []); // Esegui solo una volta quando il componente viene montato
@@ -248,7 +247,7 @@ function ViewJobOffers (props)  {
                             <Card.Body className="p-1">
                                 <Card.Title>{offer.description}</Card.Title>
                                 <div className="card-content-row">
-                                    <div><strong>Duration:</strong> {offer.duration}</div>
+                                    <div><strong>Duration:</strong> {offer.duration} months</div>
                                     <div><strong>Status:</strong> {offer.status}</div>
                                 </div>
                                 <div className="card-content-row">

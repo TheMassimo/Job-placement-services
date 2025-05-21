@@ -57,7 +57,7 @@ function ContactUs(props) {
                 <Row className="mb-3">
                     <Col>
                         <Form.Group controlId="formDescription" className="text-start">
-                            <Form.Label>Your name</Form.Label>
+                            <Form.Label>Your contact</Form.Label>
                             <Form.Control
                                 as="textarea"
                                 rows={1}

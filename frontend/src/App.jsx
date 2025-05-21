@@ -75,6 +75,7 @@ function App() {
                     <Routes>
                         {/* Pubbliche */}
                         <Route path="/reach_us" element={<ContactUs />} />
+                        <Route path="/*" element={<NotFoundPage />} />
 
                         {/* Protette */}
                         <Route path="/" element={
@@ -173,9 +174,6 @@ function App() {
                             </PrivateRoute>
                         } />
 
-                        <Route path="*" element={
-                            <Navigate to="/" />
-                        } />
                     </Routes>
                 </Container>
                 <ToastContainer/>

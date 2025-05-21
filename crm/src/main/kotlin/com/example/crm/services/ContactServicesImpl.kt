@@ -171,8 +171,8 @@ class ContactServicesImpl(private val entityManager: EntityManager,
 
         // Create the query
         val query = entityManager.createQuery(cqContact)
-        query.firstResult = pageNumber * pageSize
-        query.maxResults = pageSize  // Limitiamo il numero di risultati
+        query.firstResult = pageNumber * (pageSize + 1)
+        query.maxResults = (pageSize + 1)  // Limitiamo il numero di risultati
 
         // execute the query anf get results
         val resultList = query.resultList
@@ -180,6 +180,7 @@ class ContactServicesImpl(private val entityManager: EntityManager,
         return resultList.map { contact ->
             //logger.info("RESULT {$contact}");
             contact.toDetailsDto()
+
         }
     }
 

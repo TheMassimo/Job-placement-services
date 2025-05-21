@@ -16,6 +16,7 @@ async function GetContacts(filters, pagination) {
             method: 'GET',
             credentials: 'include'
         })
+    //console.log(filters)
     const obj = await response.json()
 
     if (response.ok) {

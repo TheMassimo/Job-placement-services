@@ -11,14 +11,19 @@ function appendArrayParams(baseUrl, key, values) {
 function buildQueryParams(baseUrl, params) {
     // Genera i parametri di query per un oggetto
     for (const key in params) {
-        const value = params[key];
+        let value = params[key];
+        if (typeof value == "string"){
+            value = value.replace(/ /gi, '+')
+        }
 
+        //console.log('key: ', key, ', val: ', value)
         if (Array.isArray(value)) {
             baseUrl = appendArrayParams(baseUrl, key, value);
         } else if (value !== null && value !== undefined) {
             baseUrl += `${key}=${encodeURIComponent(value)}&`;
         }
     }
+    //console.log('baseurl: ', baseUrl)
     return baseUrl;
 }
 

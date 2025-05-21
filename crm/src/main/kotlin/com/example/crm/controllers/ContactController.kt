@@ -6,6 +6,8 @@ import com.example.crm.entities.ProfessionalEmployment
 import com.example.crm.services.ContactServices
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Positive
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/API/contacts")
 class ContactController(private val contactServices: ContactServices) {
+
+    private val logger: Logger = LoggerFactory.getLogger(ContactServices::class.java)
 
     @GetMapping("", "/")
     fun getAllContacts(
